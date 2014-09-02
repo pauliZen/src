@@ -1,0 +1,166 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 8.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[      6190,        157]
+NotebookOptionsPosition[      5869,        141]
+NotebookOutlinePosition[      6217,        156]
+CellTagsIndexPosition[      6174,        153]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Column", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"Grid", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"\"\<p\>\"", ",", "\"\<ecc\>\"", ",", "\"\<\[Omega]\>\""}], 
+          "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"p", ",", "ecc", ",", "\[Omega]"}], "}"}]}], "}"}], "]"}], 
+      ",", 
+      RowBox[{"PolarPlot", "[", 
+       RowBox[{
+        FractionBox["p", 
+         RowBox[{"1", "+", 
+          RowBox[{"ecc", " ", 
+           RowBox[{"Cos", "[", 
+            RowBox[{"\[Theta]", "-", "\[Omega]"}], "]"}]}]}]], ",", 
+        RowBox[{"{", 
+         RowBox[{"\[Theta]", ",", "0", ",", 
+          RowBox[{"2", "\[Pi]"}]}], "}"}], ",", 
+        RowBox[{"PlotRange", "\[Rule]", "size"}], ",", 
+        RowBox[{"ImageSize", "\[Rule]", "500"}]}], "]"}]}], "}"}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"p", ",", "1", ",", "\"\<p\>\""}], "}"}], ",", "0", ",", "10", 
+     ",", "0.1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"ecc", ",", "1", ",", "\"\<Ecc\>\""}], "}"}], ",", "0", ",", 
+     "10", ",", "0.01"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[Omega]", ",", "0", ",", "\"\<\[Omega]\>\""}], "}"}], ",", 
+     "0", ",", 
+     RowBox[{"2", "\[Pi]"}], ",", "0.1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"size", ",", "10.0", ",", "\"\<PlotRange\>\""}], "}"}], ",", 
+     "1", ",", "100", ",", "1"}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.520813079182021*^9, 3.5208130904596663`*^9}, {
+   3.520813121607448*^9, 3.5208134730545497`*^9}, {3.5208135133358536`*^9, 
+   3.5208135512660227`*^9}, {3.5208135827398233`*^9, 3.520813597750682*^9}, {
+   3.520813657943125*^9, 3.5208136612853155`*^9}, {3.520813705870866*^9, 
+   3.5208137113681803`*^9}, {3.520813752763548*^9, 3.5208138417446375`*^9}, {
+   3.5208138780537143`*^9, 3.5208139308947363`*^9}, 3.5208140099722595`*^9, {
+   3.520820431222534*^9, 3.5208204333316545`*^9}, {3.5208204934790945`*^9, 
+   3.5208205068718605`*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`ecc$$ = 1, $CellContext`p$$ = 
+    1, $CellContext`size$$ = 4, $CellContext`\[Omega]$$ = 0, Typeset`show$$ = 
+    True, Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`p$$], 1, "p"}, 0, 10, 0.1}, {{
+       Hold[$CellContext`ecc$$], 1, "Ecc"}, 0, 10, 0.01}, {{
+       Hold[$CellContext`\[Omega]$$], 0, "\[Omega]"}, 0, 2 Pi, 0.1}, {{
+       Hold[$CellContext`size$$], 10., "PlotRange"}, 1, 100, 1}}, 
+    Typeset`size$$ = {500., {262.5, 267.5}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = True, $CellContext`p$7939$$ =
+     0, $CellContext`ecc$7940$$ = 0, $CellContext`\[Omega]$7941$$ = 
+    0, $CellContext`size$7942$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`ecc$$ = 1, $CellContext`p$$ = 
+        1, $CellContext`size$$ = 10., $CellContext`\[Omega]$$ = 0}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`p$$, $CellContext`p$7939$$, 0], 
+        Hold[$CellContext`ecc$$, $CellContext`ecc$7940$$, 0], 
+        Hold[$CellContext`\[Omega]$$, $CellContext`\[Omega]$7941$$, 0], 
+        Hold[$CellContext`size$$, $CellContext`size$7942$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> Column[{
+         Grid[{{
+           "p", "ecc", 
+            "\[Omega]"}, {$CellContext`p$$, $CellContext`ecc$$, $CellContext`\
+\[Omega]$$}}], 
+         PolarPlot[$CellContext`p$$/(
+          1 + $CellContext`ecc$$ 
+           Cos[$CellContext`\[Theta] - $CellContext`\[Omega]$$]), \
+{$CellContext`\[Theta], 0, 2 Pi}, PlotRange -> $CellContext`size$$, ImageSize -> 
+          500]}], 
+      "Specifications" :> {{{$CellContext`p$$, 1, "p"}, 0, 10, 
+         0.1}, {{$CellContext`ecc$$, 1, "Ecc"}, 0, 10, 
+         0.01}, {{$CellContext`\[Omega]$$, 0, "\[Omega]"}, 0, 2 Pi, 
+         0.1}, {{$CellContext`size$$, 10., "PlotRange"}, 1, 100, 1}}, 
+      "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{549., {350., 355.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{{3.5208133550127983`*^9, 3.520813361471167*^9}, 
+   3.52081347411161*^9, {3.5208135138448825`*^9, 3.5208135518420563`*^9}, {
+   3.5208135848249426`*^9, 3.5208135988657455`*^9}, 3.5208136617323413`*^9, 
+   3.5208137123592367`*^9, {3.520813861277755*^9, 3.520813910335561*^9}, 
+   3.520814010469288*^9, 3.5208204346607304`*^9, {3.5208205000524707`*^9, 
+   3.5208205074918966`*^9}}]
+}, Open  ]]
+},
+WindowSize->{707, 547},
+WindowMargins->{{Automatic, -1138}, {-42, Automatic}},
+FrontEndVersion->"8.0 for Microsoft Windows (64-bit) (November 7, 2010)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[579, 22, 2166, 55, 148, "Input"],
+Cell[2748, 79, 3105, 59, 722, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

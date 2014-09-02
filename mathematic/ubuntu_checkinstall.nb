@@ -1,0 +1,1079 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 8.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[     45671,       1069]
+NotebookOptionsPosition[     44915,       1039]
+NotebookOutlinePosition[     45252,       1054]
+CellTagsIndexPosition[     45209,       1051]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Based", "=", 
+   RowBox[{"Import", "[", 
+    RowBox[{
+    "\"\</home/lswl/Downloads/installf/install\>\"", ",", "\"\<Table\>\""}], 
+    "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.5161837982649307`*^9, 3.5161838611355886`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Inst", "=", 
+   RowBox[{"Import", "[", 
+    RowBox[{
+    "\"\</home/lswl/Downloads/installf/installednow\>\"", ",", 
+     "\"\<Table\>\""}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.516183864922138*^9, 3.5161838847246943`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Instlist", "=", 
+   RowBox[{
+    RowBox[{"Delete", "[", 
+     RowBox[{"Inst", ",", "1"}], "]"}], "[", 
+    RowBox[{"[", 
+     RowBox[{"All", ",", "3"}], "]"}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.5161844456271257`*^9, 3.516184462592326*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"Basedrm", "=", 
+   RowBox[{
+    RowBox[{"Delete", "[", 
+     RowBox[{"Based", ",", "1"}], "]"}], "[", 
+    RowBox[{"[", 
+     RowBox[{"All", ",", "3"}], "]"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Length", "[", "Basedrm", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Length", "[", "Instlist", "]"}]}], "Input",
+ CellChangeTimes->{{3.516184545430587*^9, 3.5161845638196*^9}, {
+  3.516184604227087*^9, 3.5161846171535797`*^9}}],
+
+Cell[BoxData["1402"], "Output",
+ CellChangeTimes->{{3.5161846049686832`*^9, 3.516184617871489*^9}, 
+   3.516184776862015*^9, 3.5161848635036583`*^9}],
+
+Cell[BoxData["2347"], "Output",
+ CellChangeTimes->{{3.5161846049686832`*^9, 3.516184617871489*^9}, 
+   3.516184776862015*^9, 3.51618486350504*^9}]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"For", "[", 
+   RowBox[{
+    RowBox[{"i", "=", "1"}], ",", 
+    RowBox[{"i", "\[LessEqual]", 
+     RowBox[{"Length", "[", "Instlist", "]"}]}], ",", 
+    RowBox[{"i", "++"}], ",", 
+    RowBox[{"Basedrm", "=", 
+     RowBox[{"DeleteCases", "[", 
+      RowBox[{"Basedrm", ",", 
+       RowBox[{"Instlist", "[", 
+        RowBox[{"[", "i", "]"}], "]"}]}], "]"}]}]}], "]"}], ";"}]], "Input",
+ CellChangeTimes->{{3.5161840037966833`*^9, 3.516184050284827*^9}, {
+  3.516184173301297*^9, 3.5161842455828257`*^9}, {3.5161843454087143`*^9, 
+  3.516184503091177*^9}, {3.5161845735810423`*^9, 3.5161845821020613`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Length", "[", "Basedrm", "]"}]], "Input",
+ CellChangeTimes->{{3.516184757300164*^9, 3.516184805183715*^9}}],
+
+Cell[BoxData["222"], "Output",
+ CellChangeTimes->{{3.516184763333559*^9, 3.5161848657499247`*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"res", "=", 
+  RowBox[{"Partition", "[", 
+   RowBox[{
+    RowBox[{"Prepend", "[", 
+     RowBox[{
+      RowBox[{"Riffle", "[", 
+       RowBox[{"Basedrm", ",", "\"\<wget -c\>\""}], "]"}], ",", 
+      "\"\<wget -c\>\""}], "]"}], ",", "2"}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"Export", "[", 
+  RowBox[{
+  "\"\</home/lswl/Downloads/installf/install_final.txt\>\"", ",", "res"}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.516184913095997*^9, 3.516184985436225*^9}, {
+  3.516185041583454*^9, 3.516185043452899*^9}, {3.516185189228653*^9, 
+  3.516185189410451*^9}, {3.5161852566918993`*^9, 3.516185325646076*^9}, {
+  3.516185480297995*^9, 3.5161855250440493`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/p/perl/perl-base_5.10.\
+1-17ubuntu4_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/p/pam/libpam-modules_1.\
+1.2-2ubuntu8_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/p/pam/libpam0g_1.1.2-\
+2ubuntu8_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://security.ubuntu.com/ubuntu/pool/main/k/krb5/\
+libk5crypto3_1.8.3+dfsg-5ubuntu2.1_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://security.ubuntu.com/ubuntu/pool/main/k/krb5/libgssapi-\
+krb5-2_1.8.3+dfsg-5ubuntu2.1_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://security.ubuntu.com/ubuntu/pool/main/k/krb5/libkrb5-3_1.\
+8.3+dfsg-5ubuntu2.1_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://security.ubuntu.com/ubuntu/pool/main/k/krb5/\
+libkrb5support0_1.8.3+dfsg-5ubuntu2.1_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/c/cups/libcups2_1.4.6-\
+5ubuntu1_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/c/cups/cups_1.4.6-\
+5ubuntu1_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/l/language-pack-en/\
+language-pack-en_11.04+20110421_all.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/l/language-pack-es/\
+language-pack-es_11.04+20110421_all.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/l/language-pack-es-\
+base/language-pack-es-base_11.04+20110421_all.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/l/language-pack-gnome-\
+en/language-pack-gnome-en_11.04+20110421_all.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/l/language-pack-gnome-\
+es/language-pack-gnome-es_11.04+20110421_all.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/l/language-pack-gnome-\
+es-base/language-pack-gnome-es-base_11.04+20110421_all.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/l/language-pack-gnome-\
+pt/language-pack-gnome-pt_11.04+20110421_all.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/l/language-pack-gnome-\
+pt-base/language-pack-gnome-pt-base_11.04+20110421_all.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/l/language-pack-gnome-\
+xh/language-pack-gnome-xh_11.04+20110421_all.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/l/language-pack-gnome-\
+xh-base/language-pack-gnome-xh-base_11.04+20110421_all.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/l/language-pack-gnome-\
+zh-hans/language-pack-gnome-zh-hans_11.04+20110421_all.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/l/language-pack-pt/\
+language-pack-pt_11.04+20110421_all.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/l/language-pack-pt-\
+base/language-pack-pt-base_11.04+20110421_all.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/l/language-pack-xh/\
+language-pack-xh_11.04+20110421_all.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/l/language-pack-xh-\
+base/language-pack-xh-base_11.04+20110421_all.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/l/language-pack-zh-\
+hans/language-pack-zh-hans_11.04+20110421_all.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/b/bamf/libbamf0_0.2.90-\
+0ubuntu2_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/libx/libxi/libxi6_1.4.\
+1-1ubuntu2_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/l/linux/linux-image-2.\
+6.38-8-generic_2.6.38-8.42_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/u/ubuntu-docs/ubuntu-\
+docs_11.04.2_all.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/libr/libreoffice/ure_1.\
+7.0+LibO3.3.2-1ubuntu4_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/u/ubuntu-sso-client/\
+ubuntu-sso-client_1.2.1-0ubuntu1_all.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", \
+"\<\"http://ubuntu.cn99.com/ubuntu/pool/main/a/apt/apt_0.8.13.2ubuntu2_amd64.\
+deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/u/upstart/upstart_0.9.\
+7-1_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/p/pam/libpam-modules-\
+bin_1.1.2-2ubuntu8_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/p/pam/libpam-runtime_1.\
+1.2-2ubuntu8_all.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/t/tzdata/tzdata_2011f-\
+1_all.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/a/apt/apt-utils_0.8.13.\
+2ubuntu2_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/s/sudo/sudo_1.7.4p4-\
+5ubuntu7_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/p/plymouth/\
+libplymouth2_0.8.2-2ubuntu22_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/p/plymouth/plymouth_0.\
+8.2-2ubuntu22_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/g/gnome-session/gnome-\
+session-bin_2.32.1-0ubuntu19_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/a/apt/apt-transport-\
+https_0.8.13.2ubuntu2_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/b/bind9/bind9-host_9.7.\
+3.dfsg-1ubuntu2_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/b/bind9/dnsutils_9.7.3.\
+dfsg-1ubuntu2_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/l/language-selector/\
+language-selector-common_0.33_all.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/b/bind9/libbind9-60_9.\
+7.3.dfsg-1ubuntu2_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/b/bind9/libdns69_9.7.3.\
+dfsg-1ubuntu2_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/b/bind9/libisc62_9.7.3.\
+dfsg-1ubuntu2_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/b/bind9/libisccc60_9.7.\
+3.dfsg-1ubuntu2_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/b/bind9/libisccfg62_9.\
+7.3.dfsg-1ubuntu2_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/b/bind9/liblwres60_9.7.\
+3.dfsg-1ubuntu2_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/p/perl/perl_5.10.1-\
+17ubuntu4_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/p/perl/perl-modules_5.\
+10.1-17ubuntu4_all.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/p/plymouth/plymouth-\
+theme-ubuntu-text_0.8.2-2ubuntu22_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/p/python-apt/python-\
+apt-common_0.7.100.3ubuntu6_all.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/p/python-apt/python-\
+apt_0.7.100.3ubuntu6_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/p/pygobject/python-\
+gobject_2.28.3-1ubuntu1_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/p/pygobject/python-\
+gobject-cairo_2.28.3-1ubuntu1_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/u/update-manager/\
+update-manager-core_0.150_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/a/app-install-data-\
+ubuntu/app-install-data_0.11.04.7.3_all.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/a/apturl/apturl_0.4.\
+2ubuntu5_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/a/apturl/apturl-common_\
+0.4.2ubuntu5_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/h/hw-detect/archdetect-\
+deb_1.81ubuntu2_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/b/bamf/bamfdaemon_0.2.\
+90-0ubuntu2_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/b/binutils/binutils_2.\
+21.0.20110327-2ubuntu2_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/b/btrfs-tools/btrfs-\
+tools_0.19+20100601-3ubuntu2_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/c/cifs-utils/cifs-\
+utils_4.5-2_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/n/nux/libnux-0.9-0_0.9.\
+46-0ubuntu4_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/u/unity/unity_3.8.10-\
+0ubuntu2_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/c/cryptsetup/\
+cryptsetup_1.1.3-4ubuntu1_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/c/cups/cups-client_1.4.\
+6-5ubuntu1_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/c/cups/cups-common_1.4.\
+6-5ubuntu1_all.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/c/cups/cups-ppdc_1.4.6-\
+5ubuntu1_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/d/dmraid/dmraid_1.0.0.\
+rc16-4.1ubuntu3_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/d/dpkg-repack/dpkg-\
+repack_1.33ubuntu2_all.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/e/evince/evince_2.32.0-\
+0ubuntu12_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", \
+"\<\"http://ubuntu.cn99.com/ubuntu/pool/main/e/evince/evince-common_2.32.0-\
+0ubuntu12_all.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/f/file-roller/file-\
+roller_2.32.1-0ubuntu4_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/f/firefox/firefox_4.0+\
+nobinonly-0ubuntu3_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/f/firefox/firefox-\
+globalmenu_4.0+nobinonly-0ubuntu3_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/f/firefox/firefox-\
+gnome-support_4.0+nobinonly-0ubuntu3_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/g/gnome-panel/gnome-\
+panel_2.32.1-0ubuntu6.3_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/g/gnome-session/gnome-\
+session_2.32.1-0ubuntu19_all.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/g/gdm/gdm_2.32.1-\
+0ubuntu3_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/g/geoclue/geoclue_0.12.\
+0-1ubuntu8_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/g/gnome-panel/gir1.2-\
+panelapplet-3.0_2.32.1-0ubuntu6.3_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/g/glib-networking/glib-\
+networking_2.28.5-0ubuntu1_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/g/gnome-nettool/gnome-\
+nettool_2.32.0-0ubuntu1_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/g/gnome-panel/gnome-\
+panel-bonobo_2.32.1-0ubuntu6.3_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/g/gnome-panel/gnome-\
+panel-data_2.32.1-0ubuntu6.3_all.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/g/gnome-session/gnome-\
+session-common_2.32.1-0ubuntu19_all.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/g/gnome-user-docs/\
+gnome-user-guide_3.0.0+git20110406ubuntu8_all.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/g/gparted/gparted_0.7.\
+0-1ubuntu1_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/g/gwibber/gwibber_3.0.\
+0.1-0ubuntu2_all.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/g/gwibber/gwibber-\
+service_3.0.0.1-0ubuntu2_all.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/g/gwibber/gwibber-\
+service-facebook_3.0.0.1-0ubuntu2_all.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/g/gwibber/gwibber-\
+service-identica_3.0.0.1-0ubuntu2_all.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/g/gwibber/gwibber-\
+service-twitter_3.0.0.1-0ubuntu2_all.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/libr/libreoffice/\
+libreoffice-core_3.3.2-1ubuntu4_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/j/jfsutils/jfsutils_1.\
+1.12-2.1_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/l/language-selector/\
+language-selector-gnome_0.33_all.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/c/cheese/libcheese-\
+gtk18_2.32.0-0ubuntu2_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/c/cups/libcupscgi1_1.4.\
+6-5ubuntu1_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/c/cups/libcupsdriver1_\
+1.4.6-5ubuntu1_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/c/cups/libcupsimage2_1.\
+4.6-5ubuntu1_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/c/cups/libcupsmime1_1.\
+4.6-5ubuntu1_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/c/cups/libcupsppdc1_1.\
+4.6-5ubuntu1_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/c/cdebconf/\
+libdebconfclient0_0.154ubuntu2_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/libd/libdebian-\
+installer/libdebian-installer4_0.77ubuntu2_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/d/dmraid/libdmraid1.0.\
+0.rc16_1.0.0.rc16-4.1ubuntu3_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/e/evince/\
+libevdocument3_2.32.0-0ubuntu12_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/e/evince/libevview3_2.\
+32.0-0ubuntu12_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/g/geoclue/libgeoclue0_\
+0.12.0-1ubuntu8_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/j/jackd2/libjack-\
+jackd2-0_1.9.6~dfsg.1-5ubuntu1_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/n/nux/libnux-0.9-\
+common_0.9.46-0ubuntu4_all.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/o/overlay-scrollbar/\
+overlay-scrollbar_0.1.9-0ubuntu1_all.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/o/overlay-scrollbar/\
+liboverlay-scrollbar-0.1-0_0.1.9-0ubuntu1_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/g/gnome-panel/libpanel-\
+applet-3-0_2.32.1-0ubuntu6.3_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/g/gnome-panel/libpanel-\
+applet2-0_2.32.1-0ubuntu6.3_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/p/perl/libperl5.10_5.\
+10.1-17ubuntu4_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/p/poppler/libpoppler-\
+glib6_0.16.4-0ubuntu1_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/p/poppler/libpoppler13_\
+0.16.4-0ubuntu1_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/p/pulseaudio/libpulse-\
+browse0_0.9.22+stable-queue-24-g67d18-0ubuntu3_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/p/pulseaudio/libpulse-\
+mainloop-glib0_0.9.22+stable-queue-24-g67d18-0ubuntu3_amd64.deb\"\>"}], "}"}],
+    ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/p/pulseaudio/libpulse0_\
+0.9.22+stable-queue-24-g67d18-0ubuntu3_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/libr/libreoffice/\
+libreoffice-base-core_3.3.2-1ubuntu4_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/libr/libreoffice/\
+libreoffice-calc_3.3.2-1ubuntu4_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/libr/libreoffice/\
+libreoffice-common_3.3.2-1ubuntu4_all.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/libr/libreoffice/\
+libreoffice-draw_3.3.2-1ubuntu4_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/libr/libreoffice/\
+libreoffice-emailmerge_3.3.2-1ubuntu4_all.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/libr/libreoffice/\
+libreoffice-gnome_3.3.2-1ubuntu4_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/libr/libreoffice/\
+libreoffice-gtk_3.3.2-1ubuntu4_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/libr/libreoffice/\
+libreoffice-help-en-us_3.3.2-1ubuntu4_all.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/libr/libreoffice/\
+libreoffice-impress_3.3.2-1ubuntu4_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/libr/libreoffice/\
+libreoffice-math_3.3.2-1ubuntu4_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/libr/libreoffice/\
+libreoffice-style-human_3.3.2-1ubuntu4_all.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/libr/libreoffice/\
+libreoffice-writer_3.3.2-1ubuntu4_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/u/ubuntuone-client/\
+libsyncdaemon-1.0-1_1.6.1-0ubuntu3_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/t/telepathy-logger/\
+libtelepathy-logger2_0.2.6-1ubuntu1_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/s/samba/libwbclient0_3.\
+5.8~dfsg-1ubuntu2_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/l/light-themes/light-\
+themes_0.1.8.13_all.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/l/linux-meta/linux-\
+generic_2.6.38.8.22_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/l/linux/linux-headers-\
+2.6.38-8_2.6.38-8.42_all.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/l/linux/linux-headers-\
+2.6.38-8-generic_2.6.38-8.42_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/l/linux-meta/linux-\
+headers-generic_2.6.38.8.22_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/l/linux-meta/linux-\
+image-generic_2.6.38.8.22_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/l/linux/linux-libc-dev_\
+2.6.38-8.42_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/l/localechooser/\
+localechooser-data_2.34ubuntu4_all.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/n/nux/nux-tools_0.9.46-\
+0ubuntu4_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/p/plymouth/plymouth-\
+label_0.8.2-2ubuntu22_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/p/plymouth/plymouth-\
+theme-ubuntu-logo_0.8.2-2ubuntu22_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/p/poppler/poppler-\
+utils_0.16.4-0ubuntu1_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/p/pulseaudio/\
+pulseaudio_0.9.22+stable-queue-24-g67d18-0ubuntu3_amd64.deb\"\>"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/p/pulseaudio/\
+pulseaudio-esound-compat_0.9.22+stable-queue-24-g67d18-0ubuntu3_amd64.deb\"\>\
+"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/p/pulseaudio/\
+pulseaudio-module-gconf_0.9.22+stable-queue-24-g67d18-0ubuntu3_amd64.deb\"\>"}\
+], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/p/pulseaudio/\
+pulseaudio-module-x11_0.9.22+stable-queue-24-g67d18-0ubuntu3_amd64.deb\"\>"}],
+     "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/p/pulseaudio/\
+pulseaudio-utils_0.9.22+stable-queue-24-g67d18-0ubuntu3_amd64.deb\"\>"}], 
+    "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/s/system-config-\
+printer/python-cupshelpers_1.3.1+20110222-0ubuntu16.1_all.deb\"\>"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/p/pygtk/python-glade2_\
+2.22.0-0ubuntu1_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/p/pygtk/python-gtk2_2.\
+22.0-0ubuntu1_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/p/papyon/python-papyon_\
+0.5.5-1ubuntu1_all.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/p/pyicu/python-pyicu_1.\
+0-1build1_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/u/ubuntuone-client/\
+python-ubuntuone-client_1.6.1-0ubuntu3_all.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/u/ubuntuone-storage-\
+protocol/python-ubuntuone-storageprotocol_1.6.0-0ubuntu1_all.deb\"\>"}], 
+    "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/libr/libreoffice/\
+python-uno_3.3.2-1ubuntu4_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/r/rdate/rdate_1.2-\
+4build1_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/r/rdesktop/rdesktop_1.\
+6.0-3ubuntu4_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/r/reiserfsprogs/\
+reiserfsprogs_3.6.21-1build1_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/s/samba/samba-common_3.\
+5.8~dfsg-1ubuntu2_all.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/s/samba/samba-common-\
+bin_3.5.8~dfsg-1ubuntu2_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/s/samba/smbclient_3.5.\
+8~dfsg-1ubuntu2_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/a/aptdaemon/aptdaemon_\
+0.41+bzr646-0ubuntu2_all.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/s/software-center/\
+software-center_4.0_all.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/s/system-config-\
+printer/system-config-printer-common_1.3.1+20110222-0ubuntu16.1_all.deb\"\>"}]\
+, "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/s/system-config-\
+printer/system-config-printer-gnome_1.3.1+20110222-0ubuntu16.1_all.deb\"\>"}],
+     "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/s/system-config-\
+printer/system-config-printer-udev_1.3.1+20110222-0ubuntu16.1_amd64.deb\"\>"}]\
+, "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/t/tcltk-defaults/tcl_8.\
+4.16-2_all.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/t/telepathy-haze/\
+telepathy-haze_0.4.0-1ubuntu_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/t/telepathy-logger/\
+telepathy-logger_0.2.6-1ubuntu1_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/libr/libreoffice/ttf-\
+opensymbol_2.4.3+LibO3.3.2-1ubuntu4_all.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/u/ubiquity/ubiquity_2.\
+6.10_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/c/casper/ubiquity-\
+casper_1.265_all.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/u/ubiquity/ubiquity-\
+frontend-gtk_2.6.10_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/u/ubiquity-slideshow-\
+ubuntu/ubiquity-slideshow-ubuntu_40_all.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/u/ubiquity/ubiquity-\
+ubuntu-artwork_2.6.10_all.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/u/ubuntuone-client/\
+ubuntuone-client-gnome_1.6.1-0ubuntu3_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/u/ubuntuone-client/\
+ubuntuone-client_1.6.1-0ubuntu3_all.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/u/unattended-upgrades/\
+unattended-upgrades_0.72.1ubuntu1_all.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/u/unionfs-fuse/unionfs-\
+fuse_0.24-2_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/u/unity/unity-common_3.\
+8.10-0ubuntu2_all.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/u/unity-place-files/\
+unity-place-files_0.5.46-0ubuntu5_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/libr/libreoffice/uno-\
+libs3_1.7.0+LibO3.3.2-1ubuntu4_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/u/update-manager/\
+update-manager_0.150_all.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", \
+"\<\"http://ubuntu.cn99.com/ubuntu/pool/main/u/usb-creator/usb-creator-common_\
+0.2.28_all.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/u/usb-creator/usb-\
+creator-gtk_0.2.28_all.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/v/vino/vino_2.32.1-\
+0ubuntu2_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/x/xorg/x11-common_7.6+\
+4ubuntu3_all.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/x/xfsprogs/xfsprogs_3.\
+1.4ubuntu2_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/x/xorg/xorg_7.6+\
+4ubuntu3_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/x/xorg-server/xserver-\
+common_1.10.1-1ubuntu1_all.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/x/xorg/xserver-xorg_7.\
+6+4ubuntu3_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/x/xorg-server/xserver-\
+xorg-core_1.10.1-1ubuntu1_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/x/xorg/xserver-xorg-\
+input-all_7.6+4ubuntu3_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/x/xorg/xserver-xorg-\
+video-all_7.6+4ubuntu3_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/x/xserver-xorg-video-\
+intel/xserver-xorg-video-intel_2.14.0-4ubuntu7_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/a/apt-clone/apt-clone_\
+0.1.6_all.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/a/aptdaemon/aptdaemon-\
+data_0.41+bzr646-0ubuntu2_all.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/c/casper/casper_1.265_\
+amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/c/cups/cups-bsd_1.4.6-\
+5ubuntu1_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/l/lirc/liblircclient0_\
+0.8.7-0ubuntu4_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/s/samba/libsmbclient_3.\
+5.8~dfsg-1ubuntu2_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/l/lupin/lupin-casper_0.\
+34_all.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/p/pulseaudio/\
+pulseaudio-module-bluetooth_0.9.22+stable-queue-24-g67d18-0ubuntu3_amd64.deb\"\
+\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/a/aptdaemon/python-\
+aptdaemon_0.41+bzr646-0ubuntu2_all.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/a/aptdaemon/python-\
+aptdaemon-gtk_0.41+bzr646-0ubuntu2_all.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/a/aptdaemon/python-\
+aptdaemon.gtk3widgets_0.41+bzr646-0ubuntu2_all.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/a/aptdaemon/python-\
+aptdaemon.gtkwidgets_0.41+bzr646-0ubuntu2_all.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/u/ubuntuone-control-\
+panel/python-ubuntuone-control-panel_1.0.0-0ubuntu1_all.deb\"\>"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/s/shotwell/shotwell_0.\
+9.2-0ubuntu3_amd64.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/u/ubuntuone-control-\
+panel/ubuntuone-control-panel_1.0.0-0ubuntu1_all.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/u/ubuntuone-control-\
+panel/ubuntuone-control-panel-gtk_1.0.0-0ubuntu1_all.deb\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"wget -c\"\>", 
+     ",", "\<\"http://ubuntu.cn99.com/ubuntu/pool/main/u/user-setup/user-\
+setup_1.28ubuntu15_all.deb\"\>"}], "}"}]}], "}"}]], "Output",
+ CellChangeTimes->{{3.5161849234588947`*^9, 3.516184985874387*^9}, 
+   3.5161850483574553`*^9, 3.5161851903110037`*^9, {3.516185272231471*^9, 
+   3.516185313027459*^9}, {3.516185498351058*^9, 3.5161855257791147`*^9}}],
+
+Cell[BoxData["\<\"/home/lswl/Downloads/installf/install_final.txt\"\>"], \
+"Output",
+ CellChangeTimes->{{3.5161849234588947`*^9, 3.516184985874387*^9}, 
+   3.5161850483574553`*^9, 3.5161851903110037`*^9, {3.516185272231471*^9, 
+   3.516185313027459*^9}, {3.516185498351058*^9, 3.516185525833074*^9}}]
+}, Open  ]]
+},
+WindowSize->{740, 631},
+WindowMargins->{{149, Automatic}, {Automatic, 23}},
+FrontEndVersion->"8.0 for Linux x86 (64-bit) (November 7, 2010)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[557, 20, 266, 7, 30, "Input"],
+Cell[826, 29, 269, 7, 30, "Input"],
+Cell[1098, 38, 288, 8, 30, "Input"],
+Cell[CellGroupData[{
+Cell[1411, 50, 473, 12, 69, "Input"],
+Cell[1887, 64, 149, 2, 30, "Output"],
+Cell[2039, 68, 146, 2, 30, "Output"]
+}, Open  ]],
+Cell[2200, 73, 637, 15, 50, "Input"],
+Cell[CellGroupData[{
+Cell[2862, 92, 131, 2, 30, "Input"],
+Cell[2996, 96, 98, 1, 30, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3131, 102, 693, 17, 50, "Input"],
+Cell[3827, 121, 40769, 909, 8752, "Output"],
+Cell[44599, 1032, 300, 4, 30, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

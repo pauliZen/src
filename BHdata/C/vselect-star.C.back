@@ -1,0 +1,328 @@
+// scan stars in all time from log file list========//
+// No used now. ====================================//
+// then store them in new tree in -result.root======//
+// add black hole center coordinates velocity and ==//
+// distance and total energy to each black hole=====//
+//Input: rootname: star dat rootname================//
+//       treename: new tree name to store data======//
+//       treetitle: new tree title==================//
+//       logfile: logfile with star list index======//
+//                (should remove black hole index)  //
+//       range: scan tree name range (P0000->P[range]/
+//Notes!: rootname do not need suffix===============//
+
+{
+  //variables=========================================//
+  string rootname;
+  string newrootname;
+  string newtreename;
+  string newtreetitle;
+  string logname;
+  int totnum;
+  char inflagc='y';
+  bool inflag=1;
+
+  cout<<"Load last input(y/n)?";
+  cin>>inflagc;
+  if (inflagc=='n')
+    inflag=0;
+
+  if (inflag)
+  {
+    ifstream configf(".vselect-star.conf");
+    if (!configf.is_open())
+      cout<<"No config file"<<endl;
+    else
+    {
+      configf>>rootname;
+      configf>>newtreename;
+      configf>>newtreetitle;
+      configf>>logname;
+      configf>>totnum;
+      configf.close();
+    }
+  }
+
+  //input=============================================//
+  cout<<"root name("<<rootname<<")('y'/n):";
+  cin>>inflagc;
+  if (inflagc=='n')
+  {
+    cout<<"Input root name:";
+    cin>>rootname;
+  }
+  cout<<"Tree name("<<newtreename<<")('y'/n):";
+  cin>>inflagc;
+  if (inflagc=='n')
+  {
+    cout<<"New Tree name:";
+    cin>>newtreename;
+  }
+  cout<<"New Tree title("<<newtreetitle<<")('y'/n):";
+  cin>>inflagc;
+  if (inflagc=='n')
+  {
+    cout<<"Input New Tree title(no space):";
+    cin>>newtreetitle;
+  }
+  cout<<"Index log name("<<logname<<")('y'/n):";
+  cin>>inflagc;
+  if (inflagc=='n')
+  {
+    cout<<"Input index log name:";
+    cin>>logname;
+  }
+  cout<<"Scan dat range end("<<totnum<<")('y'/n):";
+  cin>>inflagc;
+  if (inflagc=='n')
+  {
+    cout<<"Input scan dat range end:";
+    cin>>totnum;
+  }
+  ofstream outconf(".vselect-star.conf");
+  outconf<<rootname<<endl;
+  outconf<<newtreename<<endl;
+  outconf<<newtreetitle<<endl;
+  outconf<<logname<<endl;
+  outconf<<totnum<<endl;
+  outconf.close();
+
+  newrootname=rootname+"-result.root";
+  rootname=rootname+"-star-extra.root";
+
+  //analysis==========================================//
+  TFile *fn=new TFile(rootname.c_str(),"update");
+  TFile *f2=new TFile(newrootname.c_str(),"update");
+
+  //new tree =========================================//
+  TTree *nntree=new TTree (newtreename.c_str(),newtreetitle.c_str());
+  Double_t t_curd2,massd2;
+  Int_t indexd2;
+  Double_t xd2,yd2,zd2,rd2,xbd2,ybd2,zbd2,rbd2;
+  Double_t vxd2,vyd2,vzd2,vd2,vbxd2,vbyd2,vbzd2,vbd2;
+  Double_t axd2,ayd2,azd2,potd2,potsd2,etotd2;
+  Double_t asxd2,asyd2,aszd2;
+  TBranch *t_cur2=nntree->Branch("time_cur",&t_curd2);
+  TBranch *index2=nntree->Branch("index",&indexd2);
+  TBranch *mass2=nntree->Branch("mass",&massd2);
+  TBranch *x2=nntree->Branch("x",&xd2);
+  TBranch *y2=nntree->Branch("y",&yd2);
+  TBranch *z2=nntree->Branch("z",&zd2);
+  TBranch *r2=nntree->Branch("r",&rd2);
+  TBranch *xb2=nntree->Branch("xb",&xbd2);
+  TBranch *yb2=nntree->Branch("yb",&ybd2);
+  TBranch *zb2=nntree->Branch("zb",&zbd2);
+  TBranch *rb2=nntree->Branch("rb",&rbd2);
+  TBranch *vx2=nntree->Branch("vx",&vxd2);
+  TBranch *vy2=nntree->Branch("vy",&vyd2);
+  TBranch *vz2=nntree->Branch("vz",&vzd2);
+  TBranch *v2=nntree->Branch("v",&vd2);
+  TBranch *vbx2=nntree->Branch("vbx",&vbxd2);
+  TBranch *vby2=nntree->Branch("vby",&vbyd2);
+  TBranch *vbz2=nntree->Branch("vbz",&vbzd2);
+  TBranch *vb2=nntree->Branch("vb",&vbd2);
+  TBranch *pot2=nntree->Branch("pot",&potd2);
+  TBranch *pots2=nntree->Branch("pots",&potsd2);
+  TBranch *ax2=nntree->Branch("ax",&axd2);
+  TBranch *ay2=nntree->Branch("ay",&ayd2);
+  TBranch *az2=nntree->Branch("az",&azd2);
+  TBranch *asx2=nntree->Branch("asx",&asxd2);
+  TBranch *asy2=nntree->Branch("asy",&asyd2);
+  TBranch *asz2=nntree->Branch("asz",&aszd2);
+  TBranch *etot2=nntree->Branch("etot",&etotd2);
+
+  //header tree=======================================//
+  TTree *htree=(TTree*)(fn->Get("HTree"));
+  Double_t t_curd1;
+  Int_t nd1;
+  htree->SetBranchAddress("time_cur",&t_curd1);
+  htree->SetBranchAddress("N",&nd1);
+  
+  for (int i=0;i<=totnum;i++)
+  {
+    //treename==========================================//
+    string treename="P";
+    string order;
+    stringstream sstr;
+    sstr.str("");
+    sstr.clear();
+    sstr<<i;
+    sstr>>order;
+    if (i<10)
+      treename="P000";
+    if (i>=10&&i<100)
+      treename="P00";
+    if (i>=100&&i<1000)
+      treename="P0";
+    if (i>=1000&&i<10000)
+      treename="P";
+    treename=treename+order;
+    cout<<"now "<<treename<<endl;
+
+    //tree->treename====================================//
+    TTree *ntree=(TTree*)(fn->Get(treename.c_str()));
+    Double_t massd1;
+    Int_t indexd1;
+    Double_t xd1,yd1,zd1,rd1;
+    Double_t vxd1,vyd1,vzd1,vd1;
+    Double_t potd1,axd1,ayd1,azd1;
+    ntree->SetBranchAddress("index",&indexd1);
+    ntree->SetBranchAddress("mass",&massd1);
+    ntree->SetBranchAddress("x",&xd1);
+    ntree->SetBranchAddress("y",&yd1);
+    ntree->SetBranchAddress("z",&zd1);
+    ntree->SetBranchAddress("r",&rd1);
+    ntree->SetBranchAddress("vx",&vxd1);
+    ntree->SetBranchAddress("vy",&vyd1);
+    ntree->SetBranchAddress("vz",&vzd1);
+    ntree->SetBranchAddress("v",&vd1);
+    ntree->SetBranchAddress("pot",&potd1);
+    ntree->SetBranchAddress("ax",&axd1);
+    ntree->SetBranchAddress("ay",&ayd1);
+    ntree->SetBranchAddress("az",&azd1);
+    
+    //save bh data temp=================================//
+    htree->GetEntry(i);
+    ntree->GetEntry(nd1-2);
+    Double_t bh1m=massd1;
+    Double_t bh1x=xd1;
+    Double_t bh1y=yd1;
+    Double_t bh1z=zd1;
+    Double_t bh1vx=vxd1;
+    Double_t bh1vy=vyd1;
+    Double_t bh1vz=vzd1;
+    ntree->GetEntry(nd1-1);
+    Double_t bh2m=massd1;
+    Double_t bh2x=xd1;
+    Double_t bh2y=yd1;
+    Double_t bh2z=zd1;
+    Double_t bh2vx=vxd1;
+    Double_t bh2vy=vyd1;
+    Double_t bh2vz=vzd1;
+    
+    Double_t bhx=(bh1m*bh1x+bh2m*bh2x)/(bh1m+bh2m);
+    Double_t bhy=(bh1m*bh1y+bh2m*bh2y)/(bh1m+bh2m);
+    Double_t bhz=(bh1m*bh1z+bh2m*bh2z)/(bh1m+bh2m);
+    Double_t bhvx=(bh1m*bh1vx+bh2m*bh2vx)/(bh1m+bh2m);
+    Double_t bhvy=(bh1m*bh1vy+bh2m*bh2vy)/(bh1m+bh2m);
+    Double_t bhvz=(bh1m*bh1vz+bh2m*bh2vz)/(bh1m+bh2m);
+
+    Double_t bha2=pow((bh1x-bh2x),2)+pow((bh1y-bh2y),2)+pow((bh1z-bh2z),2);
+    Double_t bha=sqrt(bha2);
+
+    //save to newtree===================================//
+    ifstream orgdata(logname.c_str());
+    if (!orgdata.is_open())
+    {
+      cout<<"No log file"<<endl;
+      exit();
+    }
+    else
+    {
+      for (int j=1;j<=2;j++)
+      {
+        ntree->GetEntry(nd1-j);
+        // origin data=======================================//
+        t_curd2=t_curd1;
+        indexd2=indexd1;
+        massd2=massd1;
+        xd2=xd1;
+        yd2=yd1;
+        zd2=zd1;
+        rd2=rd1;
+        vxd2=vxd1;
+        vyd2=vyd1;
+        vzd2=vzd1;
+        vd2=vd1;
+        potd2=potd1;
+        axd2=axd1;
+        ayd2=ayd1;
+        azd2=azd1;
+        // calculated bh coordinates data===================//
+        xbd2=xd2-bhx;
+        ybd2=yd2-bhy;
+        zbd2=zd2-bhz;
+        rbd2=sqrt(xbd2*xbd2+ybd2*ybd2+zbd2*zbd2);
+        vbxd2=vxd2-bhvx;
+        vbyd2=vyd2-bhvy;
+        vbzd2=vzd2-bhvz;
+        vbd2=sqrt(vbxd2*vbxd2+vbyd2*vbyd2+vbzd2*vbzd2);
+        // calculated field potential and total energy======//
+        asxd2=axd1+(bh1m*(xd2-bh1x)+bh2m*(xd2-bh2x))/bha2*bha;
+        asyd2=ayd1+(bh1m*(yd2-bh1y)+bh2m*(yd2-bh2y))/bha2*bha;
+        aszd2=azd1+(bh1m*(zd2-bh1z)+bh2m*(zd2-bh2z))/bha2*bha;
+        if (j==1)
+          potsd2=potd2+bh1m/bha;
+        else
+          potsd2=potd2+bh2m/bha;
+        etotd2=(potd2+0.5*vd2*vd2)*massd2;
+        nntree->Fill();
+      }
+      while (!orgdata.eof())
+      {
+        Int_t sindex;
+        Int_t tmpindex=sindex;
+        orgdata>>sindex;
+        if (tmpindex==sindex)
+          continue;
+        ntree->GetEntry(sindex);
+        if (indexd1!=sindex)
+        {
+          cout<<"tree "<<treename<<" index .NE. checked log index"<<endl;
+          Int_t numv=ntree->GetEntries();
+          int j=0;
+          bool finded=0;
+          while (!finded&&j<numv)
+          {
+            ntree->GetEntry(j);
+            j++;
+            if (indexd1==sindex)
+              finded=1;
+          }
+        }
+        if (indexd1!=sindex)
+        {
+          cout<<"Error: check fail: index: "<<indexd1<<","<<sindex<<endl;
+          break;
+        }
+        t_curd2=t_curd1;
+        indexd2=indexd1;
+        massd2=massd1;
+        xd2=xd1;
+        yd2=yd1;
+        zd2=zd1;
+        rd2=rd1;
+        vxd2=vxd1;
+        vyd2=vyd1;
+        vzd2=vzd1;
+        vd2=vd1;
+        potd2=potd1;
+        axd2=axd1;
+        ayd2=ayd1;
+        azd2=azd1;
+
+        xbd2=xd2-bhx;
+        ybd2=yd2-bhy;
+        zbd2=zd2-bhz;
+        rbd2=sqrt(xbd2*xbd2+ybd2*ybd2+zbd2*zbd2);
+        vbxd2=vxd2-bhvx;
+        vbyd2=vyd2-bhvy;
+        vbzd2=vzd2-bhvz;
+        vbd2=sqrt(vbxd2*vbxd2+vbyd2*vbyd2+vbzd2*vbzd2);
+        
+        Double_t dbh21=pow((xd2-bh1x),2)+pow((yd2-bh1y),2)+pow((zd2-bh1z),2);
+        Double_t dbh22=pow((xd2-bh2x),2)+pow((yd2-bh2y),2)+pow((zd2-bh2z),2);
+        Double_t dbh1=sqrt(dbh21);
+        Double_t dbh2=sqrt(dbh22);
+        asxd2=axd1+bh1m*(xd2-bh1x)/dbh21*dbh1+bh2m*(xd2-bh2x)/dbh22*dbh2;
+        asyd2=ayd1+bh1m*(yd2-bh1y)/dbh21*dbh1+bh2m*(yd2-bh2y)/dbh22*dbh2;
+        aszd2=azd1+bh1m*(zd2-bh1z)/dbh21*dbh1+bh2m*(zd2-bh2z)/dbh22*dbh2;
+        potsd2=potd2+bh1m/dbh1+bh2m/dbh2;
+        etotd2=(potd2+0.5*vd2*vd2)*massd2;
+        nntree->Fill();
+      }
+    }
+  }
+  f2->cd();
+  nntree->Write("",TObject::kOverwrite);
+}

@@ -1,0 +1,277 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 8.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[      8108,        268]
+NotebookOptionsPosition[      6846,        219]
+NotebookOutlinePosition[      7203,        235]
+CellTagsIndexPosition[      7160,        232]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["\<\
+The Art of Computer Programming\
+\>", "Title",
+ CellChangeTimes->{{3.548995820656131*^9, 3.548995843365119*^9}}],
+
+Cell["1. Fundamental Algorithms", "Subtitle",
+ CellChangeTimes->{{3.54899584859064*^9, 3.548995874125586*^9}}],
+
+Cell["Basic Concepts", "Subsubtitle",
+ CellChangeTimes->{{3.548995879357609*^9, 3.5489959123384132`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["1.1 Algorithms", "Section",
+ CellChangeTimes->{{3.54899591617098*^9, 3.548995921058893*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["Algorithm", "Subsection",
+ CellChangeTimes->{{3.548995931626609*^9, 3.5489959335541553`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["Algorithm E", "Subsubsection",
+ CellChangeTimes->{{3.548995941274544*^9, 3.548995944466522*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"m", "=", 
+   RowBox[{"a", "*", "k"}]}], ";", " ", 
+  RowBox[{"n", "=", 
+   RowBox[{"b", "*", "k"}]}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"if", " ", "b"}], ">", "1"}], "\[IndentingNewLine]", 
+ RowBox[{"\t", 
+  RowBox[{"a", "\[NotEqual]", 
+   RowBox[{"b", "*", "i_integer"}]}]}], "\[IndentingNewLine]", 
+ RowBox[{"m", "=", 
+  RowBox[{
+   RowBox[{"n", "*", 
+    SubscriptBox["i", "0"]}], "+", 
+   SubscriptBox["r", "0"]}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"If", " ", "0"}], "<", 
+  SubscriptBox["r", "0"], "<", "n"}], "\[IndentingNewLine]", 
+ RowBox[{"\t", 
+  RowBox[{
+   SubscriptBox["r", "0"], "=", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"a", "-", 
+       RowBox[{
+        SubscriptBox["i", "0"], "*", "b"}]}], ")"}], "k"}], "=", 
+    RowBox[{"c", "*", "k"}]}]}]}], "\[IndentingNewLine]", 
+ RowBox[{"\t", 
+  RowBox[{"c", "<", "b"}]}], "\[IndentingNewLine]", 
+ RowBox[{"else", " "}], "\[IndentingNewLine]", 
+ RowBox[{"\t", 
+  RowBox[{
+  "n", " ", "is", " ", "the", " ", "common", " ", 
+   "divisor"}]}]}], "DisplayFormula",
+ CellChangeTimes->{{3.5489969772763777`*^9, 3.54899700613144*^9}, {
+  3.548997092312728*^9, 3.5489971110406103`*^9}, {3.5489974015874166`*^9, 
+  3.5489974042729597`*^9}, {3.548997805726225*^9, 3.54899785981898*^9}, {
+  3.548997933440298*^9, 3.548998016814212*^9}, {3.548998051794774*^9, 
+  3.548998068180386*^9}, {3.54899814069038*^9, 3.5489981501458683`*^9}, {
+  3.548998276054669*^9, 3.548998277142847*^9}, {3.549005717945719*^9, 
+  3.549005751072568*^9}, {3.54900605640068*^9, 3.549006058201086*^9}, {
+  3.549006118173778*^9, 3.549006120205481*^9}, {3.549006601096574*^9, 
+  3.5490066444142*^9}}],
+
+Cell["\<\
+Where k is the common divisor of m and n.\
+\>", "Text",
+ CellChangeTimes->{{3.5489970104949923`*^9, 3.5489970457695436`*^9}}],
+
+Cell[BoxData[{
+ RowBox[{"n", "=", 
+  RowBox[{
+   RowBox[{
+    SubscriptBox["r", "0"], "*", 
+    SubscriptBox["i", "1"]}], "+", 
+   SubscriptBox["r", "1"]}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"If", " ", "0"}], "<", 
+  SubscriptBox["r", "1"], "<", 
+  SubscriptBox["r", "0"]}], "\[IndentingNewLine]", 
+ RowBox[{"\t", 
+  RowBox[{
+   SubscriptBox["r", "1"], "=", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"b", "-", 
+       RowBox[{"c", "*", 
+        SubscriptBox["i", "1"]}]}], ")"}], "*", "k"}], "=", 
+    RowBox[{"d", "*", "k"}]}]}]}], "\[IndentingNewLine]", 
+ RowBox[{"\t", 
+  RowBox[{
+  "d", "<", "c"}]}], "\[IndentingNewLine]", "...", "\[IndentingNewLine]", 
+ RowBox[{"Loop", " ", "until", " ", "reach", " ", "common", " ", 
+  "divisor"}]}], "DisplayFormula",
+ CellChangeTimes->{{3.548997067722763*^9, 3.548997068201975*^9}, {
+   3.5489971265359373`*^9, 3.5489971352744617`*^9}, {3.548997191342134*^9, 
+   3.54899719608598*^9}, {3.548997230468993*^9, 3.548997246332596*^9}, {
+   3.548997276563654*^9, 3.548997318570524*^9}, {3.548997388576861*^9, 
+   3.548997418745557*^9}, {3.548997524456695*^9, 3.548997557437448*^9}, {
+   3.548997621521901*^9, 3.548997638011456*^9}, {3.548998178693431*^9, 
+   3.5489982201277637`*^9}, {3.5490056945257807`*^9, 3.549005701458901*^9}, {
+   3.549005802023068*^9, 3.549005843253751*^9}, 3.5490059117735233`*^9, {
+   3.549006670789461*^9, 3.549006719819746*^9}, {3.549006753252801*^9, 
+   3.549006809258835*^9}}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Exercises", "Subsection",
+ CellChangeTimes->{{3.549012313120963*^9, 3.549012316725552*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["3.", "Subsubsection",
+ CellChangeTimes->{{3.549012321546232*^9, 3.549012322181971*^9}}],
+
+Cell["\<\
+Just use m to store remainder of n divded by r and exchange the roles of m, n \
+and r.\
+\>", "Text",
+ CellChangeTimes->{{3.549012326733307*^9, 3.549012375923834*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["6.", "Subsubsection",
+ CellChangeTimes->{{3.549016353656146*^9, 3.549016353838728*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"m", "=", "1"}], ",", "2", ",", "3", ",", "4", ",", 
+  "5"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"T", "=", "1"}], ",", "2", ",", "3", ",", "2", ",", 
+  "1"}]}], "DisplayFormula",
+ CellChangeTimes->{{3.549016356885252*^9, 3.549016465510131*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  SubscriptBox["T", "5"], "=", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"1", "+", "2", "+", "3", "+", "2", "+", "1"}], ")"}], "/", "5"}],
+    "//", "N"}]}]], "Input",
+ CellChangeTimes->{{3.5490164687343693`*^9, 3.549016472749587*^9}},
+ FontWeight->"Plain"],
+
+Cell[BoxData["1.8`"], "Output",
+ CellChangeTimes->{{3.549016469352149*^9, 3.5490164733141727`*^9}}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["7.", "Subsubsection",
+ CellChangeTimes->{{3.549017163650023*^9, 3.5490171648166437`*^9}}],
+
+Cell[TextData[Cell[BoxData[
+ FormBox[
+  RowBox[{
+   RowBox[{
+    SubscriptBox["U", "m"], "=", 
+    RowBox[{
+     SubscriptBox["T", 
+      RowBox[{"m", ",", "i"}]], "-", 
+     RowBox[{"1", " ", 
+      RowBox[{"(", 
+       RowBox[{"m", ">", "n"}], ")"}]}]}]}], ";", " ", 
+   RowBox[{
+    SubscriptBox["T", 
+     RowBox[{"m", ",", "i"}]], "+", 
+    RowBox[{"2", 
+     RowBox[{"(", 
+      RowBox[{"m", "<", "n"}], ")"}]}]}]}], TraditionalForm]],
+ FormatType->"TraditionalForm"]], "Text",
+ CellChangeTimes->{{3.5490171667008953`*^9, 3.549017251764583*^9}, {
+  3.549018801158826*^9, 3.5490188270976152`*^9}, {3.54901890314425*^9, 
+  3.5490189116400623`*^9}, {3.549018948622901*^9, 3.54901895921806*^9}, {
+  3.5490190275240192`*^9, 3.549019035286331*^9}}]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{740, 691},
+WindowMargins->{{319, Automatic}, {50, Automatic}},
+FrontEndVersion->"8.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (November 6, \
+2010)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[579, 22, 122, 3, 76, "Title"],
+Cell[704, 27, 110, 1, 46, "Subtitle"],
+Cell[817, 30, 105, 1, 26, "Subsubtitle"],
+Cell[CellGroupData[{
+Cell[947, 35, 98, 1, 67, "Section"],
+Cell[CellGroupData[{
+Cell[1070, 40, 99, 1, 35, "Subsection"],
+Cell[CellGroupData[{
+Cell[1194, 45, 102, 1, 24, "Subsubsection"],
+Cell[1299, 48, 1701, 44, 141, "DisplayFormula"],
+Cell[3003, 94, 135, 3, 26, "Text"],
+Cell[3141, 99, 1473, 35, 96, "DisplayFormula"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4663, 140, 97, 1, 34, "Subsection"],
+Cell[CellGroupData[{
+Cell[4785, 145, 93, 1, 24, "Subsubsection"],
+Cell[4881, 148, 176, 4, 26, "Text"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5094, 157, 93, 1, 24, "Subsubsection"],
+Cell[5190, 160, 288, 7, 36, "DisplayFormula"],
+Cell[CellGroupData[{
+Cell[5503, 171, 294, 9, 27, "Input"],
+Cell[5800, 182, 99, 1, 27, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5948, 189, 95, 1, 24, "Subsubsection"],
+Cell[6046, 192, 748, 21, 29, "Text"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

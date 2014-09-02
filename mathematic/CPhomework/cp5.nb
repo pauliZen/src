@@ -1,0 +1,112 @@
+(* Content-type: application/mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 7.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       145,          7]
+NotebookDataLength[      2768,        102]
+NotebookOptionsPosition[      2178,         78]
+NotebookOutlinePosition[      2516,         93]
+CellTagsIndexPosition[      2473,         90]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{"DSolve", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"y", "'"}], "[", "t", "]"}], "==", 
+      RowBox[{
+       RowBox[{"-", "2"}], "*", "t", "*", 
+       RowBox[{"y", "[", "t", "]"}]}]}], ",", 
+     RowBox[{
+      RowBox[{"y", "[", "0", "]"}], "\[Equal]", "1"}]}], "}"}], ",", 
+   RowBox[{"y", "[", "t", "]"}], ",", "t"}], "]"}]], "Input",
+ CellChangeTimes->{{3.467628293315916*^9, 3.467628330657955*^9}, {
+  3.467628390384919*^9, 3.467628449997211*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"y", "[", "t", "]"}], "\[Rule]", 
+    SuperscriptBox["\[ExponentialE]", 
+     RowBox[{"-", 
+      SuperscriptBox["t", "2"]}]]}], "}"}], "}"}]], "Output",
+ CellChangeTimes->{{3.467628434285383*^9, 3.467628451165738*^9}}]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{"N", "[", 
+  RowBox[{
+   RowBox[{"Exp", "[", 
+    RowBox[{"-", 
+     SuperscriptBox["1.2", "2"]}], "]"}], ",", "5"}], "]"}]], "Input",
+ CellChangeTimes->{{3.467628471066649*^9, 3.467628524242259*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["0.23692775868212176`"], "Input",
+ CellChangeTimes->{3.467628542071567*^9}],
+
+Cell[BoxData["0.23692775868212176`"], "Output",
+ CellChangeTimes->{3.467628542247322*^9}]
+}, Open  ]],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.467628505985916*^9, 3.467628506586201*^9}}],
+
+Cell[BoxData[
+ SuperscriptBox["", 
+  SuperscriptBox["", "\:ffff"]]], "Input",
+ CellChangeTimes->{{3.467628537852316*^9, 3.467628538712844*^9}}],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.467628393297614*^9, 3.467628394029827*^9}}]
+},
+WindowSize->{640, 623},
+WindowMargins->{{150, Automatic}, {Automatic, 52}},
+FrontEndVersion->"7.0 for Linux x86 (32-bit) (February 25, 2009)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[567, 22, 525, 15, 32, "Input"],
+Cell[1095, 39, 288, 8, 40, "Output"]
+}, Open  ]],
+Cell[1398, 50, 223, 6, 32, "Input"],
+Cell[CellGroupData[{
+Cell[1646, 60, 88, 1, 32, InheritFromParent],
+Cell[1737, 63, 89, 1, 31, "Output"]
+}, Open  ]],
+Cell[1841, 67, 92, 1, 32, "Input"],
+Cell[1936, 70, 143, 3, 32, InheritFromParent],
+Cell[2082, 75, 92, 1, 32, "Input"]
+}
+]
+*)
+
+(* End of internal cache information *)
+

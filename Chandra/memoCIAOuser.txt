@@ -1,0 +1,647 @@
+####################
+# NON-GRATING DATA #
+# ACIS-I/S IMAGING #
+####################
+
+############################################################################
+############################################################################
+                                ################
+                                # PREPARATIONS #
+                                ################
+############################################################################
+############################################################################
+
+#Detect the Chip ID
+> dmcoords acis_evt1.fits
+dmcoords>: sky 4100 4000
+(RA,Dec):     12:42:50.745    +02:41:03.76   
+(RA,Dec):      190.71144        2.68438 deg
+THETA,PHI           47.5        347.48 deg
+(Logical):        4100.00       4000.00
+SKY(X,Y):         4100.00       4000.00
+DETX,DETY         4190.77       4075.57
+CHIP ACIS-S3       315.14        553.10
+TDET              4232.14       2255.10
+>: q
+> 
+
+
+#Check Where Parameter Files Are
+> echo $PFILES
+
+
+#Check the CALDBVER and DATE keywords in the header: 
+> dmlist acis_evt1.fits header | grep CALDBVER
+ 0114 CALDBVER              1.6                           String       
+> dmlist acis_evt1.fits header | grep "DATE "
+ 0011 DATE                 2000-10-31T09:28:55            String       Date and time of file creation
+
+
+#Check the Focal Plane Temperature (ONLY RECORED IN LEVEL 1 DATASET)
+> dmlist acis_evt1.fits header |grep FP_TEMP
+ 0117 FP_TEMP                    153.4460140              Real8    
+
+
+#Check Detectors
+> dmlist acis_evt1.fits header | grep DETNAM
+ 0035 DETNAM               ACIS-012367                    String       Detector
+
+
+#Check the Pipeline Version
+> dmlist acis_evt1.fits header | grep ASCDSVER
+ 0008 ASCDSVER             R4CU5UPD8.2                    String       ASCDS version number
+
+
+#Determine the Eventdef Parameter
+> dmlist acis_evt2.fits header | egrep '(READ|DATA)MODE'
+ 0043 DATAMODE             FAINT                          String       Data mode
+ 0044 READMODE             TIMED                          String       Read mode
+#Compare with the table below
+READMODE   DATAMODE      event mode                       eventdef string
+TIMED      (V)FAINT      timed exposure (very) faint      stdlev1
+TIMED      GRADED        timed exposure graded            grdlev1
+CONTINUOUS CC(33)_FAINT  continuous clocking (3x3) faint  cclev1
+CONTINUOUS CC(33)_GRADED continuous clocking (3x3) graded ccgrdlev1
+
+
+memoCIAOuser.txt
+
+
+##############
+IMAGE CREATION
+##############
+
+#Restrict Region & Energy -> image file
+> dmcopy "acis_evt2.fits[energy=1500:2500][bin x=3773:4380,y=4006:4509]" test.fits
+#or
+>dmcopy "acis_evt2.fits[energy=1500:2500][bin x=3773:4380:4,y=4006:4509:4]" test.fits
+
+#or (simplest way)
+draw a region in ds9 and save as ciao file format, assuming to be
+img.reg
+>dmcopy "acis_evt2.fits[energy=1500:2500][sky=region(img.reg)][bin x=::1,y=::1]" test.fits
+
+
+#Can use energy or spatial filter only
+> dmcopy "acis_evt2.fits[energy=1500:2500]" test.fits
+> dmcopy "acis_evt2.fits[ccd_id=7]" test.fits 
+
+#if you need to exclude a small region (=hole.reg) on the image
+> dmcopy "acis_evt2.fits[exclude sky=region(hole.reg)]" test.fits
+#But this DOESN"T work for an exposure map.
+#For an exposure map use below
+> dmcopy "expmap.fits[sky=region(hole2.reg)]" test.fits
+#where hole2.reg = whole region - hole region 
+## Region file format: CIAO version 1.0
+#circle(4376,3824,1396)
+#-circle(4232,3968,96)
+
+
+
+
+#########################
+Merge FITS Files (Images)
+#########################
+#Use merge_allmemoCIAOuser.txt
+#asol file is not necessary for the blank-sky merging...
+#Merge_all may not work if heasoft environment is set-up.
+> punlearn merge_all
+> pset merge_all evtfile="acis3sD2000-01-29bkgrndN0001.fits,acis5sD2000-01-29bkgrndN0001.fits,acis6sD2000-01-29bkgrndN0001.fits,acis7sD2000-01-29bkgrndN0001.fits,acis8sD2000-01-29bkgrndN0001.fits"
+> pset merge_all merged=blanksky.fits
+> pset merge_all chip="3,5,6,7,8" 
+> ./merge_all
+...
+
+
+
+
+################
+COUNT ESTIMATION
+################
+# Before estimating the count, create an image first as the input file
+# Use energy filter if necessary.
+# Corresponding exposure map is also needed. 
+> dmextract infile="image.fits[bin sky=@bh.reg]" outfile=stackexp.fits bkg="image.fits[bin sky=@bh_bgd.reg]" exp=expmap.fits bkgexp=expmap.fits
+# After finishing this
+> dmlist "stackexp.fits[cols counts,area,bg_counts,bg_area,net_counts,net_err]" data
+#Note: [exclude sky=region(cutsall.reg)] can be used before [bin sky=@bh.reg].
+
+
+######################
+Point Source Detection
+######################
+#Detect chip by chip and then merge the obtained region files into one.
+#It may not work for all chips simultaneously.
+>celldetect image_c7.fits cell_output7.fits regfile=celldetect_7.reg
+
+
+
+############################################################################
+############################################################################
+                          ########################
+                          # BASIC DATA SCREENING #
+                          ########################
+############################################################################
+############################################################################
+
+
+#To Remove the ACIS Afterglow (IF NOT IN VFAINT MODE; FOR MORE SEE THREADS)
+#Begin with the level=1 event file acisf00323_000N002_evt1.fits
+#Apply grade filters
+punlearn dmcopy
+dmcopy "acisf_evt1.fits[EVENTS][grade=0,2,3,4,6,status=000000000000xxxx0000000000000000]" acis_flt1_evt.fits opt=all clobber=yes
+
+#Apply GTI filters
+punlearn dmcopy
+dmcopy "acis_flt1_evt.fits[EVENTS][@acisf_flt1.fits][cols -phas]" acis_evt2.fits opt=all clobber=yes
+
+
+#Destreak the ACIS-S4 Chip###only S4 can do that##
+ punlearn destreak
+ pset destreak infile=acis_evt2.fits
+ pset destreak outfile=acis_dstrk_evt2.fits
+ pset destreak ccd_id=8
+ pset destreak filter=yes
+ destreak verbose=2 clobber=yes
+
+
+#Remove the ACIS Readout Streak
+#IF THERE IS ANY
+
+
+#Use acis_process_events to
+#(1) Apply an ACIS Gain Map 
+#(2) Remove Pixel Randomization 
+#(3) Apply/Remove PHA Randomization 
+#First Determine the Eventdef Parameter
+>dmlist acis_evt2.fits header | egrep '(READ|DATA)MODE'
+#Run acis_process_events
+ punlearn acis_process_events
+ pset acis_process_events infile=acis_dstrk_evt2.fits
+ pset acis_process_events outfile=acis_dstrknew_evt2.fits
+ pset acis_process_events acaofffile=asol.fits
+ pset acis_process_events eventdef=")stdlev1"
+ pset acis_process_events rand_pha=yes
+ pset acis_process_events doevtgrade=no
+ pset acis_process_events gradefile=none
+ pset acis_process_events rand_pix_size=0.0
+ acis_process_events clobber=yes
+#NOTE:
+#IF PUNLEARN DOESN'T WORK, EDIT ACIS_PROCESS_EVENTS.PAR MANUALLY
+#AND THE RUN ACIS_PROCESS_EVENTS DIRECTLY.
+#OR
+#DO NOT SET HEASOFT'S ENVIRONMENT WHEN STARTING A X-TERMINAL 
+
+
+
+
+
+############################################################################
+############################################################################
+                              #######################
+                              # FURTHER PROCESSINGS #
+                              #######################
+############################################################################
+############################################################################
+
+#Restrict The Energy Range
+> punlearn dmcopy
+> dmcopy "acis_evt2.fits[energy=300:10000]" acis_evt2_0.3-10.fits
+
+
+#Eliminate High Background Times (Remove Flare Durations)
+#View the image first
+> ds9 acis_dstrknew_evt2.fits 
+#Define the background area by saving an obj.reg file including
+#the bright sources.
+#Then create Background-Only Lightcurve
+> punlearn lightcurve
+> pset lightcurve infile="acis_dstrknew_evt2.fits[exclude sky=region(obj.reg)]"
+#Or by include one:
+#pset lightcurve infile="acis_dstrknew_evt2.fits[sky=region(bkg.reg)]"
+ pset lightcurve bkgfile=NONE
+ pset lightcurve outfile=background_lc.fits
+ pset lightcurve nbins=200
+ pset lightcurve binlength=0
+ pset lightcurve counts_per_bin=0
+ lightcurve
+#Examine Lightcurve and Define Filter
+> chips
+chips> CURVE "background_lc.fits[cols time,rate]"
+chips> XLABEL Time
+chips> YLABEL "Background Count Rate"
+chips> PICKPOINTS
+  Click LMB or tap spacebar to pick point.
+  Click RMB or type 'q' to quit picking points.
+  Point picked: (84274272.000000, 88.870926)
+  ... ...
+chips> quit
+> 
+#or better to do it this way
+> dmcopy "evt2_c7.fits[time=77379730.949650:77399530.949650,77404930.949650:77406730.949650]" evt2_c7_clean2.fits
+
+
+
+
+
+#Create Good Time Interval Table
+###method 1##########this is not so useful#######
+> punlearn dmgti
+> pset dmgti infile=background_lc.fits
+> pset dmgti outfile=bkg_gti.fits
+> pset dmgti userlimit="rate <=85.0"
+# or like this: "rate >= 5.5 && rate <=85.0"
+> dmgti
+#Apply GTI Table
+> punlearn dmcopy
+> pset dmcopy infile="acis_dstrknew_evt2.fits[@bkg_gti.fits]"
+> pset dmcopy outfile="acis_dstrknewbkgflt_evt2.fits"
+> dmcopy
+> ...
+########################################################
+#########method 2################################
+#Filtering Light Curves of A Background Region
+#Remove bright/variable sources from the dataset
+#Using ds9, we chose several regions and saved them in CIAO format to exclude.reg
+> cat exclude.reg
+# Region file format: CIAO version 1.0
+ rotbox(4200.3328,4137.9892,1129.5056,74.07019,24.22333)
+ circle(4076.5,4088.5,316)
+ circle(4296.5,5024.5,48)
+#Create the lightcurve (lightcurve)
+> punlearn lightcurve 
+> pset lightcurve infile="evt2_c7.fits[exclude sky=region(exclude.reg)]"
+> pset lightcurve outfile=lc_c7.fits
+> pset lightcurve binlength=1000
+> lightcurve
+#Analyze the lightcurve
+> chips
+ Welcome to ChIPS, version 2.2
+ Copyright (C) 1999-2001, Smithsonian Astrophysical Observatory
+chips> () = evalfile("analyze_ltcrv.sl")
+chips> analyze_ltcrv("lc_c7.fits")
+ ((time > 77379730.949650) && (time < 77399530.949650))  ; 19.80 ksec
+ ((time > 77404930.949650) && (time < 77406730.949650))  ;  1.80 ksec
+#Using dmgti
+> punlearn dmgti
+> pset dmgti infile=lc_c7.fits
+> pset dmgti outfile=lc_c7.gti
+> pset dmgti userlimit="((time > 77379730.949650) && (time < 77399530.949650))||((time > 77404930.949650) && (time < 77406730.949650))"
+> dmgti
+#The output file lc_c7.gti can be applied to the evt2 file 
+#with dmcopy (see just above).
+
+
+
+##############
+CREATE & APPLY 
+EXPOSURE MAP
+WITH MERGE_ALL
+[NOT SMOOTHED]
+##############
+#Merge_all may not work if heasoft environment is set-up.
+#Before run merge_all Make Sure That Ardlib Have Been 
+#Set Up to Use the Bad Pixel File 
+> pwd
+/home/hxu/n4636/primary
+> ls *bpix*
+acisf00323_000N002_bpix1.fits
+> dmlist acis_evt2.fits header | grep DETNAM
+0035 DETNAM               ACIS-23678                     String       Detector
+> foreach d ( 2 3 6 7 8 )
+foreach? pset ardlib AXAF_ACIS${d}_BADPIX_FILE = "/home/hxu/n4636/primary/acisf00323_000N002_bpix1.fits[BADPIX${d}]"
+foreach? end
+>
+> plist ardlib | more
+Parameters for /home/hxu/pfiles/ardlib.par
+ArdlibDataPath = $ASCDS_CALIB     Directory containing data files
+GENERIC_EFFAREA_FILE = xrt_ea_v2_0.fits Enter effective area file
+GENERIC_VIGNET_FILE = /dev/null        Enter vignetting file
+AXAF_EFFAREA_FILE_0001 = CALDB            Enter AXAF eff-area file 0001
+AXAF_EFFAREA_FILE_0010 = CALDB            Enter AXAF eff-area file 0010
+AXAF_EFFAREA_FILE_0100 = CALDB            Enter AXAF eff-area file 0100
+AXAF_EFFAREA_FILE_1000 = CALDB            Enter AXAF eff-area file 1000
+...
+...
+...
+> pwd
+/home/hxu/n4636/primary
+> ./acis_set_ardlib
+Searching for bad pixel file in current directory:
+Found bad pixel file /home/hxu/n4636/primary/acisf00323_000N002_bpix1.fits
+Taking parameter file from directory .
+CCDs found in bad pixel file:
+CCD 2
+CCD 3
+CCD 6
+CCD 7
+CCD 8
+ 
+Updated parameter values:
+AXAF_ACIS0_BADPIX_FILE = /home/hxu/n4636/primary/acisf00323_000N002_bpix1.fits[B
+AXAF_ACIS1_BADPIX_FILE = /home/hxu/n4636/primary/acisf00323_000N002_bpix1.fits[B
+AXAF_ACIS2_BADPIX_FILE = /home/hxu/n4636/primary/acisf00323_000N002_bpix1.fits[B
+AXAF_ACIS3_BADPIX_FILE = /home/hxu/n4636/primary/acisf00323_000N002_bpix1.fits[B
+AXAF_ACIS4_BADPIX_FILE = CALDB            Enter ACIS-4 Bad Pixel File
+AXAF_ACIS5_BADPIX_FILE = CALDB            Enter ACIS-5 Bad Pixel File
+AXAF_ACIS6_BADPIX_FILE = /home/hxu/n4636/primary/acisf00323_000N002_bpix1.fits[B
+AXAF_ACIS7_BADPIX_FILE = /home/hxu/n4636/primary/acisf00323_000N002_bpix1.fits[B
+AXAF_ACIS8_BADPIX_FILE = /home/hxu/n4636/primary/acisf00323_000N002_bpix1.fits[B
+AXAF_ACIS9_BADPIX_FILE = CALDB            Enter ACIS-9 Bad Pixel File
+ 
+New ardlib.par parameter file is in directory .
+> 
+> punlearn merge_all
+> pset merge_all evtfile=acis_dstrknew_evt2.fits
+> pset merge_all asol=pcadf059301922N002_asol1.fits
+> pset merge_all chip=7
+> pset merge_all xygrid=0.5:8192.5:#1024,0.5:8192.5:#1024
+> pset merge_all energy=0.65
+> pset merge_all expmap=n4636_expmap.fits
+> pset merge_all expcorr=n4636_expcorr.fits
+> ./merge_all
+Input event file(s) (n4636image.fits):  acis_dstrknewbkgflt_evt2.fits
+Input asol file(s); time-sorted (pcadf065266258N002_asol1.fits):  
+Input Live Time Correction list files for HRC-I ():  
+ACIS CCD ID(s), comma-separated or range; or 'HRC-I' or 'HRC-S' (7):  
+Reference coordinates or evt2 file for reproject_events ():  
+XY grid (e.g., 0.5:8192.5:#1024,0.5:8192.5:#1024) (3800.5:4450.5:#600,3650.5:4400.5:#600):  
+Energy or spectrum file for mkinstmap (0.65):  
+Output merged event file ():  
+Output merged exposure map (n4636_expmap.fits):  
+Output exposure-corrected image (n4636_expcorr.fits):  
+WARNING: binning in x is different from that in y.
+ Resulting image will look distorted.
+Creating aspect histogram for CCD 7...
+Making instrument map for CCD 7...
+Making exposure map for CCD 7...
+Exposure map limits: 0.000000e+00, 2.367060e+07
+Creating image
+Normalizing image
+All done!
+[hxu@ccc3 primary]
+#NOTICE: The output file n4636_expcorr.fits is a
+#flux image and can't be smoothed in usual ways.
+#In order to obtain a smoothed flux map, see below.
+
+
+##################
+APLLY EXPOSURE MAP
+WITH MERGE_ALL
+[SMOOTHED]
+##################
+#Merge_all may not work if heasoft environment is set-up.
+#Smooth the Image
+> dmcopy "acis_dstrknew_evt2.fits[energy=3000:7000]" 3-7.fits                                      
+> dmcopy "1.2-3.fits[bin x=3795.5:4313.5:1,y=4002.5:4500.5:1]" center_1.2-3.fits
+>
+> punlearn csmooth
+> pset csmooth infile=
+> pset csmooth outfile=
+> pset csmooth outsigfile=sm_sig.fits clobber=yes
+> pset csmooth outsclfile=sm_scl.fits clobber=yes
+> pset csmooth sigmin=3
+> csmooth 
+input file name (n4636image.fits): 
+image of user-supplied map of smoothing scales (): 
+output file name (smoothed_n4636.fits): 
+output significance image (smoothed_n4636_sig.fits): 
+output scales [kernel sizes] image (smoothed_n4636_scl.fits): 
+Convolution method. (slide|fft) (fft): 
+Convolution kernel type. (gauss|tophat) (gauss): 
+initial (minimal) smoothing scale [pixel] (INDEF): 
+maximal smoothing scale [pixel] ()sclmax) (INDEF): 
+minimal significance, s/n ratio (3): 
+maximal significance, S/N ratio ()sigmin) (5): 
+compute smoothing scales or user user-supplied map (compute|user) (compute): 
+Message: edge treatment options will be ignored
+CSMOOTH: kernel cannot be larger than image
+setting kernel size to size of image
+CSMOOTH: remainder will be smoothed on scale of 80.986885
+[hxu@ccc3 primary]$ 
+#Create and Smooth the Exposure Map (csmooth)
+> punlearn merge_all
+> pset merge_all evtfile=acis_dstrknewbkgflt_evt2.fits
+> pset merge_all asol=pcadf065266258N002_asol1.fits
+> pset merge_all chip=7
+> pset merge_all xygrid=3800.5:4450.5:#650,3650.5:4400.5:#750
+> pset merge_all energy=0.65
+> pset merge_all expmap=expmap.fits
+> ./merge_all
+Input event file(s) (acis_dstrknewbkgflt_evt2.fits):  
+Input asol file(s); time-sorted (pcadf065266258N002_asol1.fits):  
+Input Live Time Correction list files for HRC-I ():  
+ACIS CCD ID(s), comma-separated or range; or 'HRC-I' or 'HRC-S' (7):  
+Reference coordinates or evt2 file for reproject_events ():  
+XY grid (e.g., 0.5:8192.5:#1024,0.5:8192.5:#1024) (3800.5:4450.5:#650,3650.5:4400.5:#750):  
+Energy or spectrum file for mkinstmap (0.65):  
+Output merged event file ():  
+Output merged exposure map (expmap.fits):  
+Output exposure-corrected image ():  
+Creating aspect histogram for CCD 7...
+Making instrument map for CCD 7...
+Exposure map limits: 0.000000e+00, 2.248612e+07
+All done!
+> punlearn csmooth
+> pset csmooth infile=expmap.fits
+> pset csmooth sclmap=smoothed_n4636_scl.fits 
+> pset csmooth outfile=smoothed_expmap.fits
+> pset csmooth outsigfile=smoothed_expmap_sig.fits
+> pset csmooth outsclfile=smoothed_expmap_scl.fits
+> pset csmooth sigmin=3
+> pset csmooth sclmode=user
+> csmooth
+input file name (expmap.fits): 
+image of user-supplied map of smoothing scales (smoothed_n4636_scl.fits): 
+output file name (smoothed_expmap.fits): 
+output significance image (smoothed_expmap_sig.fits): 
+output scales [kernel sizes] image (smoothed_expmap_scl.fits): 
+Convolution method. (slide|fft) (fft): 
+Convolution kernel type. (gauss|tophat) (gauss): 
+initial (minimal) smoothing scale [pixel] (INDEF): 
+maximal smoothing scale [pixel] ()sclmax) (INDEF): 
+minimal significance, s/n ratio (3): 
+maximal significance, S/N ratio ()sigmin) (5): 
+compute smoothing scales or user user-supplied map (compute|user) (user): 
+Message: edge treatment options will be ignored
+>
+> punlearn dmimgcalc
+> dmimgcalc infile=smoothed_n4636.fits infile2=smoothed_expmap.fits 
+output file  (none): smoothed_expcorr.fits
+arithmetic operation (add|sub|mul|div|tst) (tst): div
+DETNAM has different value...Merged...
+> 
+
+#####################
+Combine Exposure Maps
+#####################
+#REMEMBER: It's not always necessary to create the 
+#exposure maps chip by chip and then merge them together.
+#Usually the exposure map for more than one chips can
+#be created 
+#image_clean7_0.5.fits
+> ls *expmap*.fits > expmap.lis
+> cat expmap.lis
+>
+>dmregrid infile=@expmap.lis outfile=expmap.fits bin="1:1024:1,1:1024:1" rotangle=0 npts=1 xoffset=0 yoffset=0 rotxcenter=0 rotycenter=0
+>
+
+
+###################################
+Detect and Remove the Point Sources
+###################################
+#THIS IS NOT ALWAYS NEEDED!!!
+#Check if region files are in CIAO format
+
+
+#########
+Blank-Sky
+#########
+#Find blank-sky files
+> ls -1 $CALDB/data/chandra/acis/bcf/bkgrnd/
+#Use Merge_all to merge blank-sky files
+#Merge_all may not work if heasoft environment is set-up.
+#asol file is not useful in this case
+#Talyor the blank-sky file blanksky.fits to match the observation
+> reproject_events "blanksky.fits[cols -time]" blanksky_new.fits aspect=/home/hxu/Xdata/chandra/Egalaxies/n5044/primary/pcadf069868775N002_asol1.fits match=/home/hxu/Xdata/chandra/Egalaxies/n5044/primary/acis_dstrknew_evt2.fits
+
+
+
+######################
+Extract Radial Profile
+######################
+#MUST CREATE AN IMAGE FIRST!!! IT DOESN'T READ THE ORGINAL FITS FILE
+#
+#NOTE: Use n4636image.fits instead of acis_dstrknewbkgflt_evt2.fits
+#in order to match the size of exposure map.
+#Also, never input files ALREADY corrected for exposure map otherwise
+#there will be extremely large errors. Just choose an expmap here. 
+#Save the region file in CIAO format and make sure it reads like
+## Region file format: CIAO version 1.0
+#annulus(4376,3824,0,65.866667) 
+#annulus(4376,3824,65.866667,131.73333) 
+#annulus(4376,3824,131.73333,197.6) 
+#... 
+# there should be no & in the reg file!!!
+#Can be corrected manually or use script fix
+
+> punlearn dmextract                                          
+> pset dmextract infile="[bin sky=@annu40.reg]"
+#or pset dmextract infile="n4636image.fits[exclude sky=region(cutsall.reg)][bin sky=@annu.reg]"
+#to exclude regions you don't want and those regions IN/OUTSIDE CCD gaps/chips.
+#otherwise the count rate will not be correct in these annuli
+> pset dmextract outfile=rprofile.fits  clobber=yes                     
+> pset dmextract exp=                          
+> dmextract
+Input event file (acis_dstrknewbkgflt_evt2.fits[bin sky=@annu.reg]): 
+Enter output file name (rprofile.fits): 
+# 8940: dmextract: 
+ WARNING: Could not read file n4636image, continuing without it.
+>
+> dmlist rprofile.fits cols
+>...
+>...
+> punlearn dmtcalc
+> pset dmtcalc infile=rprofile.fits
+> pset dmtcalc outfile=rprofile_rmid.fits
+> pset dmtcalc expression="rmid=0.5*(R[0]+R[1])"
+> dmtcalc
+Input file (rprofile.fits): 
+Output file (rprofile_rmid.fits): 
+expression(s) to evaluate (rmid=0.5*(R[0]+R[1])): 
+>
+> chips
+Welcome to ChIPS, version 2.2.1
+Copyright (C) 1999-2001, Smithsonian Astrophysical Observatory
+chips> plot "rprofile_rmid.fits[cols rmid,sur_bri,sur_bri_err]" x 1 y 2 yerr 3
+chips> log
+Warning: negative and zero values ignored in log scale
+Warning: negative and zero values ignored in log scale
+chips> quit
+>
+
+
+
+
+
+#######################################################################
+#######################################################################
+                     ############################
+                     # Create A Spectral Weight #
+                     ############################
+#######################################################################
+#######################################################################
+> sherpa
+sherpa> dataspace (0.5:3:0.01) histogram
+sherpa> source = xswabs*xsapec
+xswabs.nH parameter value [0.1] 0.035
+xsapec.kT parameter value [1] 5.0
+xsapec.Abundanc parameter value [1] 0.24
+xsapec.Redshift parameter value [0] 0.313
+xsapec.norm parameter value [100] 0.0188
+sherpa> show
+sherpa> write model 0.3_5keV.mdl
+sherpa> junk = readascii("0.3_5keV.mdl")
+sherpa> print(junk) 
+sherpa> ()=evalfile("spectrum.sl")
+sherpa> runtest("0.3_5keV.mdl")
+sherpa> quit
+#Resulted file is weights.txt
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+############################################################################
+############################################################################
+                                 ##########
+                                 # Sherpa #
+                                 ##########
+############################################################################
+############################################################################
+
+#Before use "identify" in Sherpa
+sherpa> import("guide")
+#then
+sherpa> identify(15.0,0.1,1.e-17)
+
+
+
+
+
+############################################################################
+############################################################################
+                                 #########
+                                 # NOTES #
+                                 #########
+############################################################################
+############################################################################
+dmmerge -> merge several event files
+
+
+
+###########
+# THE END #
+###########
+############################################################################
+############################################################################
+############################################################################
+
+
+

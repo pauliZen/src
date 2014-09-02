@@ -1,0 +1,8 @@
+#!/bin/bash
+
+input=input.t.ref
+sub=nbd6++.sub
+
+for nstar in 16000 32000 64000 128000 256000
+do
+    for 

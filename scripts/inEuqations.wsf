@@ -1,0 +1,17 @@
+<package>
+   <job id="vbs">
+      <script language="VBScript">
+         set WshShell = WScript.CreateObject("WScript.Shell")
+         WshShell.SendKeys "%="
+         WScript.Sleep 200
+         WshShell.SendKeys "%"
+         WScript.Sleep 10
+         WshShell.SendKeys "j"
+         WScript.Sleep 10
+         WshShell.SendKeys "e"
+         WScript.Sleep 10
+         WshShell.SendKeys "k"
+         WScript.Sleep 10
+      </script>
+   </job>
+</package>

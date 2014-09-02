@@ -1,0 +1,16 @@
+1.afterglow leve1->level2
+   --ciao_level1_script.sh
+2.light_curve
+   --light_curve_my**.sh
+     --blanksky background
+       -- see http://cxc.harvard.edu/ciao/threads/acisbackground/index.py.html
+     --filtering lightcurves
+       -- see http://cxc.harvard.edu/ciao/threads/filter_ltcrv/index.py.html
+3.spectrum
+   --draw 6 annulus
+     --ds9 evt2_after_lc.fits
+       -->analysis->smooth
+       -->region->shape->annulus
+       --change annulus parameter: 6 annulus & inner radius=0
+   --spectrum_my**.sh
+4.fit spectrum model by xspec

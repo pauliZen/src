@@ -1,0 +1,125 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 9.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[      3571,        115]
+NotebookOptionsPosition[      3316,        101]
+NotebookOutlinePosition[      3672,        117]
+CellTagsIndexPosition[      3629,        114]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"GetPos", "[", 
+    RowBox[{"tree_", ",", "root_"}], "]"}], ":=", 
+   RowBox[{"root", "/.", 
+    RowBox[{"tree", "[", 
+     RowBox[{"[", "2", "]"}], "]"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"GetLeft", "[", "pos_", "]"}], ":=", 
+   RowBox[{"pos", "-", "0.5"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"GetRight", "[", "pos_", "]"}], ":=", 
+   RowBox[{"pos", "+", "0.5"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Enlarge2", "[", 
+    RowBox[{"tree_", ",", "root_"}], "]"}], ":=", 
+   RowBox[{"Replace", "[", 
+    RowBox[{"tree", ",", 
+     RowBox[{
+      RowBox[{"GetPos", "[", 
+       RowBox[{"tree", ",", "root"}], "]"}], "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"GetPos", "[", 
+         RowBox[{"tree", ",", "root"}], "]"}], "[", 
+        RowBox[{"[", "1", "]"}], "]"}], "}"}]}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Gplot", "[", 
+    RowBox[{"tree_", ",", "root_", ",", "left_", ",", "right_"}], "]"}], ":=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"tree", "[", 
+       RowBox[{"[", "1", "]"}], "]"}], "~~", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"root", "\[Rule]", "left"}], ",", 
+        RowBox[{"root", "\[Rule]", "right"}]}], "}"}]}], ",", 
+     RowBox[{
+      RowBox[{"tree", "[", 
+       RowBox[{"[", "2", "]"}], "]"}], "~~", 
+      RowBox[{"{", 
+       RowBox[{"left", "\[Rule]", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"GetLeft", "[", 
+           RowBox[{
+            RowBox[{"GetPos", "[", 
+             RowBox[{"tree", ",", "root"}], "]"}], "[", 
+            RowBox[{"[", "1", "]"}], "]"}], "]"}], ",", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"GetPos", "[", 
+             RowBox[{"tree", ",", "root"}], "]"}], "[", 
+            RowBox[{"[", "2", "]"}], "]"}], "+", "1"}]}], "}"}]}], "}"}]}], 
+     ",", 
+     RowBox[{"right", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"GetRight", "[", 
+         RowBox[{
+          RowBox[{"GetPos", "[", 
+           RowBox[{"tree", ",", "root"}], "]"}], "[", 
+          RowBox[{"[", "1", "]"}], "]"}], "]"}], ",", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"GetPos", "[", 
+           RowBox[{"tree", ",", "root"}], "]"}], "[", 
+          RowBox[{"[", "2", "]"}], "]"}], "+", "1"}]}], "}"}]}]}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]"}], "Input",
+ CellChangeTimes->{{3.579396998072958*^9, 3.579397073338516*^9}, {
+  3.579397147929134*^9, 3.579397152704463*^9}, {3.5793972587201223`*^9, 
+  3.579397555535375*^9}, {3.579397638911367*^9, 3.5793976657021513`*^9}, {
+  3.579398144760029*^9, 3.579398271616432*^9}}]
+},
+WindowSize->{740, 687},
+WindowMargins->{{12, Automatic}, {Automatic, 24}},
+FrontEndVersion->"9.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (January 25, \
+2013)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[557, 20, 2755, 79, 199, "Input"]
+}
+]
+*)
+
+(* End of internal cache information *)
+

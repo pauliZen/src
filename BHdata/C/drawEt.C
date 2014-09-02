@@ -1,0 +1,37 @@
+{
+  TFile f("run-020-020-1mil-result.root","update");
+  TCanvas c1;
+  selstars0->Draw("Lx:Ly:Lz:time_cur","index==11294","goff");
+  Double_t *lx=selstars0->GetV1();
+  Double_t *ly=selstars0->GetV2();
+  Double_t *lz=selstars0->GetV3();
+  Double_t *t=selstars0->GetV4();
+  TGraph *gx=new TGraph(151,t,lx);
+  TGraph *gy=new TGraph(151,t,ly);
+  TGraph *gz=new TGraph(151,t,lz);
+  gx->SetLineColor(kRed);
+  gy->SetLineColor(kGreen);
+  gz->SetLineColor(kBlue);
+  gx->GetYaxis()->SetRange(-3E-6,4E-6);
+  gy->GetYaxis()->SetRange(-3E-6,4E-6);
+  gz->GetYaxis()->SetRange(-3E-6,4E-6);
+  selstars0->Draw("etot:time_cur","index==11294","goff");
+  Double_t *etot=selstars0->GetV1();
+  t=selstars0->GetV2();
+  TGraph *e=new TGraph(151,t,etot);
+  e->Draw();
+  e->GetYaxis()->SetRange(-3E-6,4E-6);
+  TMultiGraph *nn=new TMultiGraph();
+  nn->SetTitle("Index=11294;t;L||E");
+  nn->Add(e);
+  nn->Add(gx);
+  nn->Add(gy);
+  nn->Add(gz);
+  TLegend *tl=new TLegend(0.57,0.75,0.9,0.9);
+  tl->AddEntry(gx,"L_{x}");
+  tl->AddEntry(gy,"L_{y}");
+  tl->AddEntry(gz,"L_{z}");
+  tl->AddEntry(e,"E");
+  tl->SetFillStyle(kBlack);
+  nn->Draw("AL");
+}

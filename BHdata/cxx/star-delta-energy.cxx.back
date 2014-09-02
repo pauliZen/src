@@ -1,0 +1,627 @@
+//Calculate the delat E and delta L for stars=======//
+// store the result in new tree in -result.root=====//
+// Tree branch use long name, no array =============//
+//Command: [pro.] [rootname] [treename] [newtreename]      //
+//         [newtreetitle] [logname] [bhindex1] [bhindex2]  //
+//Input: rootname: result root file name===================//
+//       treename: tree name to store eject stars data=====//
+//       newtreename: new tree name store new analysis data//
+//       newtreetitle: title for new tree==================//
+//       logfile: logfile with star list index=============//
+//                (should remove black hole index)=========//
+//       bhindex1/2: bh index==============================//
+//Notes!: rootname do not need suffix===============//
+//Tree: index,mass,t_eject,dt_eject,Elow,Elow_dev,dE//
+//      Ehigh_dev,alphas_in,deltas_in,rs_in=========//
+//      Lalphabh_in,Ldeltabh_in,Lrbh_in=============//
+//      Lalphas_out,Ldeltas_out,Lrs_out=============//
+//      Lalphabh_out,Ldeltabh_out,Lrbh_out==========//
+//      L[xyz][s|bh][12]_[in|out],==================//
+//      (and inherit origin parameters)=============//
+#include <iomanip>
+#include <utility>
+#include <iostream>
+#include <string>
+#include <cmath>
+#include <sstream>
+#include <fstream>
+#include "TFile.h"
+#include "TTree.h"
+#include "TROOT.h"
+#include "TEntryList.h"
+#include "TCut.h"
+#include "TObject.h"
+#include "TDirectory.h"
+#include "TSystem.h"
+#include "TDataType.h"
+#include "TClass.h"
+#include "TBuffer.h"
+#include "TStorage.h"
+#include "TBranch.h"
+
+using namespace std;
+
+int main(int argc, char* argv[])
+{
+  //variables=========================================//
+  string rootname;
+  string treename;
+  string newtreename;
+  string newtreetitle;
+  string logname;
+  string bhindex[2];
+  stringstream namestr;
+  string checksh;
+  char inflagc='y';
+  bool inflag=1;
+
+  switch (argc)
+  {
+  case 1:
+    cout<<"Load last input(y/n)?";
+    cin>>inflagc;
+    if (inflagc=='n')
+      inflag=0;
+    if (inflag)
+    {
+      ifstream configf(".star-delta-energy.conf");
+      if (!configf.is_open())
+        cout<<"No config file"<<endl;
+      else
+      {
+        configf>>rootname;
+        configf>>treename;
+        configf>>newtreename;
+        configf>>newtreetitle;
+        configf>>logname;
+        configf>>bhindex[0];
+        configf>>bhindex[1];
+        configf.close();
+      }
+    }
+    
+    //input=============================================//
+    cout<<"root name("<<rootname<<")('y'/n):";
+    cin>>inflagc;
+    if (inflagc=='n')
+    {
+      cout<<"Input root name(no suffix):";
+      cin>>rootname;
+    }
+    cout<<"Tree name("<<treename<<")('y'/n):";
+    cin>>inflagc;
+    if (inflagc=='n')
+    {
+      cout<<"Tree name:";
+      cin>>treename;
+    }
+    cout<<"New tree name("<<newtreename<<")('y'/n):";
+    cin>>inflagc;
+    if (inflagc=='n')
+    {
+    cout<<"New Tree name:";
+    cin>>newtreename;
+    }
+    cout<<"New Tree title("<<newtreetitle<<")('y'/n):";
+    cin>>inflagc;
+    if (inflagc=='n')
+    {
+      cout<<"Input New Tree title(no space):";
+      cin>>newtreetitle;
+    }
+    cout<<"Index log name("<<logname<<")('y'/n):";
+    cin>>inflagc;
+    if (inflagc=='n')
+    {
+      cout<<"Input index log name:";
+      cin>>logname;
+    }
+    cout<<"black hole index("<<bhindex[0]<<", "<<bhindex[1]<<")('y'/n):";
+    cin>>inflagc;
+    if (inflagc=='n')
+    {
+      cout<<"Input black hole index 1:";
+      cin>>bhindex[0];
+      cout<<"Input black hole index 2:";
+      cin>>bhindex[1];
+    }
+    break;
+  case 2:
+    namestr.str("");
+    namestr.clear();
+    namestr<<argv[1];
+    namestr>>checksh;
+    if (checksh=="-l")
+    {
+      ifstream configf(".star-delta-energy.conf");
+      if (!configf.is_open())
+        cout<<"No config file"<<endl;
+      else
+      {
+        configf>>rootname;
+        configf>>treename;
+        configf>>newtreename;
+        configf>>newtreetitle;
+        configf>>logname;
+        configf>>bhindex[0];
+        configf>>bhindex[1];
+        configf.close();
+      }
+    }
+    else
+    {
+      cout<<"input incomplete"<<endl;
+      return 0;
+    }
+    break;
+  case 8:
+    namestr.str("");
+    namestr.clear();
+    namestr<<argv[1];
+    namestr>>rootname;
+    namestr.str("");
+    namestr.clear();
+    namestr<<argv[2];
+    namestr>>treename;
+    namestr.str("");
+    namestr.clear();
+    namestr<<argv[3];
+    namestr>>newtreename;
+    namestr.str("");
+    namestr.clear();
+    namestr<<argv[4];
+    namestr>>newtreetitle;
+    namestr.str("");
+    namestr.clear();
+    namestr<<argv[5];
+    namestr>>logname;
+    namestr.str("");
+    namestr.clear();
+    namestr<<argv[6];
+    namestr>>bhindex[0];
+    namestr.str("");
+    namestr.clear();
+    namestr<<argv[7];
+    namestr>>bhindex[1];
+    break;
+  default:
+    cout<<"input incomplete"<<endl;
+    return 0;
+    break;
+  }
+
+  ofstream outconf(".star-delta-energy.conf");
+  outconf<<rootname<<endl;
+  outconf<<treename<<endl;
+  outconf<<newtreename<<endl;
+  outconf<<newtreetitle<<endl;
+  outconf<<logname<<endl;
+  outconf<<bhindex[0]<<endl;
+  outconf<<bhindex[1]<<endl;
+  outconf.close();
+
+  rootname +="-result.root";
+  cout<<rootname<<":"<<treename<<"->"<<newtreename<<"("<<newtreetitle<<")"<<endl;
+  cout<<"star index:"<<logname<<"; bh index:"<<bhindex[0]<<", "<<bhindex[1]<<endl;
+
+  //analysis==========================================//
+  TFile *f=new TFile(rootname.c_str(),"update");
+
+  //new tree==========================================//
+  // index: star index================================//
+  // mass: star mass==================================//
+  // t_eject: eject time==============================//
+  // dt_eject: eject time interval====================//
+  // Elow: energy before eject========================//
+  // Elow_dev: energy deviation before eject==========//
+  // dE: energy change================================//
+  // Ehigh_dev: energy deviation after eject==========//
+  // alphas_in: star L alpha angle before eject=======//
+  // deltas_in: star L delta angle before eject=======//  
+  // rs_in: star L value before eject=================//
+  // alphabh_in: BH L alpha angle before eject========//
+  // deltabh_in: BH L delta angle before eject========//  
+  // rbh_in: BH L value before eject==================//
+  // alphas_out: star L alpha angle after eject=======//
+  // deltas_out: star L delta angle after eject=======//  
+  // rs_out: star L value after eject=================//
+  // alphabh_out: BH L alpha angle after eject========//
+  // deltabh_out: BH L delta angle after eject========//  
+  // rbh_out: BH L value after eject==================//
+
+  TTree *ntree=new TTree (newtreename.c_str(),newtreetitle.c_str());
+  Double_t tn,dtn,elown,den,elowsign,ehighsign,massn;
+  Double_t alphaslin,deltaslin,rslin,alphabhin[2],deltabhin[2],rbhin[2];
+  Double_t alphaslon,deltaslon,rslon,alphabhon[2],deltabhon[2],rbhon[2];
+  Double_t lsxin,lsyin,lszin,lsxon,lsyon,lszon;
+  Double_t lbhxin[2],lbhyin[2],lbhzin[2],lbhxon[2],lbhyon[2],lbhzon[2];
+  Double_t xn,yn,zn,xbn,ybn,zbn,rbn,rn,vxn,vyn,vzn,vxbn,vybn,vzbn,vn,vbn,potn,potsn;
+  Double_t axn,ayn,azn,asxn,asyn,aszn,time_curn;
+  Double_t dxn,dyn,dzn,dxbn,dybn,dzbn,drbn,drn,dvxn,dvyn,dvzn,dvxbn,dvybn,dvzbn,dvn,dvbn,dpotn,dpotsn;
+  Double_t daxn,dayn,dazn,dasxn,dasyn,daszn;
+  Int_t indexn;
+  // new parameters===================================//
+  ntree->Branch("t_eject",&tn);
+  ntree->Branch("dt_eject",&dtn);
+  ntree->Branch("Elow",&elown);
+  ntree->Branch("Elow_dev",&elowsign);
+  ntree->Branch("dE",&den);
+  ntree->Branch("Ehigh_dev",&ehighsign);
+  //   angular momentum star sc==========================//
+  ntree->Branch("Lsalpha_in",&alphaslin);
+  ntree->Branch("Lsdelta_in",&deltaslin);
+  ntree->Branch("Lsr_in",&rslin);
+  ntree->Branch("Lsalpha_out",&alphaslon);
+  ntree->Branch("Lsdelta_out",&deltaslon);
+  ntree->Branch("Lsr_out",&rslon);
+  //   angular momentum bh sc============================//
+  ntree->Branch("Lalphabh1_in",&alphabhin[0]);
+  ntree->Branch("Ldeltabh1_in",&deltabhin[0]);
+  ntree->Branch("Lrbh1_in",&rbhin[0]);
+  ntree->Branch("Lalphabh1_out",&alphabhon[0]);
+  ntree->Branch("Ldeltabh1_out",&deltabhon[0]);
+  ntree->Branch("Lrbh1_out",&rbhon[0]);
+  ntree->Branch("Lalphabh2_in",&alphabhin[1]);
+  ntree->Branch("Ldeltabh2_in",&deltabhin[1]);
+  ntree->Branch("Lrbh2_in",&rbhin[1]);
+  ntree->Branch("Lalphabh2_out",&alphabhon[1]);
+  ntree->Branch("Ldeltabh2_out",&deltabhon[1]);
+  ntree->Branch("Lrbh2_out",&rbhon[1]);
+  //   angular momentum star oc==========================//
+  ntree->Branch("Lxs_in",&lsxin);
+  ntree->Branch("Lys_in",&lsyin);
+  ntree->Branch("Lzs_in",&lszin);
+  ntree->Branch("Lxs_out",&lsxon);
+  ntree->Branch("Lys_out",&lsyon);
+  ntree->Branch("Lzs_out",&lszon);
+  //   angular momentum bh oc--==========================//
+  ntree->Branch("Lxbh1_in",&lbhxin[0]);
+  ntree->Branch("Lybh1_in",&lbhyin[0]);
+  ntree->Branch("Lzbh1_in",&lbhzin[0]);
+  ntree->Branch("Lxbh1_out",&lbhxon[0]);
+  ntree->Branch("Lybh1_out",&lbhyon[0]);
+  ntree->Branch("Lzbh1_out",&lbhzon[0]);
+  ntree->Branch("Lxbh2_in",&lbhxin[1]);
+  ntree->Branch("Lybh2_in",&lbhyin[1]);
+  ntree->Branch("Lzbh2_in",&lbhzin[1]);
+  ntree->Branch("Lxbh2_out",&lbhxon[1]);
+  ntree->Branch("Lybh2_out",&lbhyon[1]);
+  ntree->Branch("Lzbh2_out",&lbhzon[1]);
+  
+  // inherit before eject=============================//
+  ntree->Branch("time_cur",&time_curn);
+  ntree->Branch("index",&indexn);
+  ntree->Branch("mass",&massn);  
+  ntree->Branch("x",&xn);
+  ntree->Branch("y",&yn);
+  ntree->Branch("z",&zn);
+  ntree->Branch("vx",&vxn);
+  ntree->Branch("vy",&vyn);
+  ntree->Branch("vz",&vzn);
+  ntree->Branch("xb",&xbn);
+  ntree->Branch("yb",&ybn);
+  ntree->Branch("zb",&zbn);
+  ntree->Branch("vbx",&vxbn);
+  ntree->Branch("vby",&vybn);
+  ntree->Branch("vbz",&vzbn);
+  ntree->Branch("v",&vn);
+  ntree->Branch("vb",&vbn);
+  ntree->Branch("r",&rn);
+  ntree->Branch("rb",&rbn);
+  ntree->Branch("pot",&potn);
+  ntree->Branch("pots",&potsn);
+  ntree->Branch("ax",&axn);
+  ntree->Branch("ay",&ayn);
+  ntree->Branch("az",&azn);
+  ntree->Branch("asx",&asxn);
+  ntree->Branch("asy",&asyn);
+  ntree->Branch("asz",&aszn);
+  // pars change======================================//
+  ntree->Branch("dx",&dxn);
+  ntree->Branch("dy",&dyn);
+  ntree->Branch("dz",&dzn);
+  ntree->Branch("dvx",&dvxn);
+  ntree->Branch("dvy",&dvyn);
+  ntree->Branch("dvz",&dvzn);
+  ntree->Branch("dxb",&dxbn);
+  ntree->Branch("dyb",&dybn);
+  ntree->Branch("dzb",&dzbn);
+  ntree->Branch("dvbx",&dvxbn);
+  ntree->Branch("dvby",&dvybn);
+  ntree->Branch("dvbz",&dvzbn);
+  ntree->Branch("dv",&dvn);
+  ntree->Branch("dvb",&dvbn);
+  ntree->Branch("dr",&drn);
+  ntree->Branch("drb",&drbn);
+  ntree->Branch("dpot",&dpotn);
+  ntree->Branch("dpots",&dpotsn);
+  ntree->Branch("dax",&daxn);
+  ntree->Branch("day",&dayn);
+  ntree->Branch("daz",&dazn);
+  ntree->Branch("dasx",&dasxn);
+  ntree->Branch("dasy",&dasyn);
+  ntree->Branch("dasz",&daszn);
+
+  // open treename====================================//
+  TTree *ftree=(TTree*)(f->Get(treename.c_str()));
+  Double_t time_cur1,mass1,x1,y1,z1,r1,xb1,yb1,zb1,rb1;
+  Double_t vx1,vy1,vz1,v1,vbx1,vby1,vbz1,vb1,pot1,pots1;
+  Double_t etot1,ax1,ay1,az1,asx1,asy1,asz1;
+  Double_t lx,ly,lz,lr,la,ld,abh;
+  Int_t index1;
+  ftree->SetBranchAddress("time_cur",&time_cur1);
+  ftree->SetBranchAddress("index",&index1);
+  ftree->SetBranchAddress("mass",&mass1);
+  ftree->SetBranchAddress("x",&x1);
+  ftree->SetBranchAddress("y",&y1);
+  ftree->SetBranchAddress("z",&z1);
+  ftree->SetBranchAddress("r",&r1);
+  ftree->SetBranchAddress("vx",&vx1);
+  ftree->SetBranchAddress("vy",&vy1);
+  ftree->SetBranchAddress("vz",&vz1);
+  ftree->SetBranchAddress("v",&v1);
+  ftree->SetBranchAddress("xb",&xb1);
+  ftree->SetBranchAddress("yb",&yb1);
+  ftree->SetBranchAddress("zb",&zb1);
+  ftree->SetBranchAddress("rb",&rb1);
+  ftree->SetBranchAddress("vbx",&vbx1);
+  ftree->SetBranchAddress("vby",&vby1);
+  ftree->SetBranchAddress("vbz",&vbz1);
+  ftree->SetBranchAddress("vb",&vb1);
+  ftree->SetBranchAddress("pot",&pot1);
+  ftree->SetBranchAddress("pots",&pots1);
+  ftree->SetBranchAddress("ax",&ax1);
+  ftree->SetBranchAddress("ay",&ay1);
+  ftree->SetBranchAddress("az",&az1);
+  ftree->SetBranchAddress("asx",&asx1);
+  ftree->SetBranchAddress("asy",&asy1);
+  ftree->SetBranchAddress("asz",&asz1);
+  ftree->SetBranchAddress("etot",&etot1);
+  ftree->SetBranchAddress("Lx",&lx);
+  ftree->SetBranchAddress("Ly",&ly);
+  ftree->SetBranchAddress("Lz",&lz);
+  ftree->SetBranchAddress("Lr",&lr);
+  ftree->SetBranchAddress("Lalpha",&la);
+  ftree->SetBranchAddress("Ldelta",&ld);
+  //Black hole inherit================================//
+  ftree->SetBranchAddress("bh_a",&abh);
+
+  // data calculation=================================//
+  ifstream orgdata(logname.c_str());
+  if (!orgdata.is_open())
+  {
+    cout<<"No log file"<<endl;
+    return 0;
+  }
+  else
+  {
+    ofstream twicedata("star-eject-energy-twice-match.log");
+    ofstream faildata("star-eject-energy-fail.log");
+    while (!orgdata.eof())
+    {
+      stringstream sstr;
+      sstr.str("");
+      sstr.clear();
+      Int_t sindex;
+      string ssindex;
+      orgdata>>sindex;
+      sstr<<sindex;
+      sstr>>ssindex;
+      TCut select=("index=="+ssindex).c_str();
+      ftree->Draw(">>indexlist",select,"entrylist");
+      TEntryList *indexl=(TEntryList*)gDirectory->Get("indexlist");
+      Int_t entrynum=indexl->GetN();
+
+      // check each index one by one======================//
+      Double_t *estore=new Double_t[entrynum];
+      Double_t emean=0;
+      Int_t itriger=0;
+      bool match=0;
+
+      for (Int_t i=0;i<entrynum;i++)
+      {
+        Int_t entryi=indexl->GetEntry(i);
+        ftree->GetEntry(entryi);
+        estore[i]=etot1;
+        if (i>0)
+          if (fabs(estore[i-1]-etot1)>7*mass1)
+          {
+            if (match)
+            {
+              cout<<"warning!: match twice!";
+              twicedata<<sindex<<endl;
+            }
+            match=1;
+            itriger=i;
+            for (Int_t j=0;j<i;j++)
+              emean +=estore[i];
+            emean /=(Double_t)i;
+            elowsign=0;
+            for (Int_t j=0;j<i;j++)
+              elowsign +=pow((estore[i]-emean),2);
+            elowsign /=(Double_t)i;
+            elowsign = sqrt(elowsign);
+            
+            //Copy pars before eject============================//
+            entryi=indexl->GetEntry(i-1);
+            ftree->GetEntry(entryi);
+            indexn=index1;
+            time_curn=time_cur1;
+            massn=mass1;
+            xn=x1;
+            yn=y1;
+            zn=z1;
+            rn=r1;
+            xbn=xb1;
+            ybn=yb1;
+            zbn=zb1;
+            rbn=rb1;
+            vxn=vx1;
+            vyn=vy1;
+            vzn=vz1;
+            vn=v1;
+            vxbn=vbx1;
+            vybn=vby1;
+            vzbn=vbz1;
+            vbn=vb1;
+            potn=pot1;
+            potsn=pots1;
+            elown=etot1;
+            axn=ax1;
+            ayn=ay1;
+            azn=az1;
+            asxn=asx1;
+            asyn=asy1;
+            aszn=asz1;
+            //Angular momentum calculation======================//
+            Double_t lsxt=(-vby1*zb1+vbz1*yb1);
+            Double_t lsyt=(-vbz1*xb1+vbx1*zb1);
+            Double_t lszt=(-vbx1*yb1+vby1*xb1);
+            Double_t lsrt=sqrt(lsxt*lsxt+lsyt*lsyt+lszt*lszt);
+            Double_t lsxyt=sqrt(lsxt*lsxt+lsyt*lsyt);
+            lsxin=mass1*lsxt;
+            lsyin=mass1*lsyt;
+            lszin=mass1*lszt;
+            rslin=mass1*lsrt;
+            alphaslin=acos(lsxt/lsxyt);
+            deltaslin=asin(lsxyt/lsrt);
+            
+            //Calculate change of all pars======================//
+            entryi=indexl->GetEntry(i);
+            ftree->GetEntry(entryi);
+            dtn=time_cur1-time_curn;
+            tn=time_curn+0.5*dtn;
+            dxn=x1-xn;
+            dyn=y1-yn;
+            dzn=z1-zn;
+            drn=sqrt(dxn*dxn+dyn*dyn+dzn*dzn);
+            dxbn=xb1-xbn;
+            dybn=yb1-ybn;
+            dzbn=zb1-zbn;
+            drbn=sqrt(dxbn*dxbn+dybn*dybn+dzbn*dzbn);
+            dvxn=vx1-vxn;
+            dvyn=vy1-vyn;
+            dvzn=vz1-vzn;
+            dvn=sqrt(dvxn*dvxn+dvyn*dvyn+dvzn*dvzn);
+            dvxbn=vbx1-vxbn;
+            dvybn=vby1-vybn;
+            dvzbn=vbz1-vzbn;
+            dvbn=sqrt(dvxbn*dvxbn+dvybn*dvybn+dvzbn*dvzbn);
+            dpotn=pot1-potn;
+            dpotsn=pots1-potsn;
+            den=etot1-elown;
+            daxn=ax1-axn;
+            dayn=ay1-ayn;
+            dazn=az1-azn;
+            dasxn=asx1-asxn;
+            dasyn=asy1-asyn;
+            daszn=asz1-aszn;
+            
+            //Angular momentum calculation======================//
+            lsxt=(-vby1*zb1+vbz1*yb1);
+            lsyt=(-vbz1*xb1+vbx1*zb1);
+            lszt=(-vbx1*yb1+vby1*xb1);
+            lsrt=sqrt(lsxt*lsxt+lsyt*lsyt+lszt*lszt);
+            lsxyt=sqrt(lsxt*lsxt+lsyt*lsyt);
+            lsxon=mass1*lsxt;
+            lsyon=mass1*lsyt;
+            lszon=mass1*lszt;
+            rslon=mass1*lsrt;
+            alphaslon=acos(lsxt/lsxyt);
+            deltaslon=asin(lsxyt/lsrt);
+          }
+      }
+      if (match)
+      {
+        cout<<"index "<<sindex<<" match successful"<<endl;
+        emean=0;
+        for (Int_t j=itriger;j<entrynum;j++)
+            emean +=estore[j];
+        emean /=(Double_t)entrynum-itriger+1;
+        ehighsign=0;
+        for (Int_t j=itriger;j<entrynum;j++)
+          ehighsign +=pow((estore[j]-emean),2);
+        ehighsign /=(Double_t)entrynum-itriger+1;
+        
+        //black hole angular momentum calculation===========//
+        for (Int_t j=0;j<2;j++)
+        {
+          string tbbh,tebh,tbh1,tbh2;
+          sstr.str("");
+          sstr.clear();
+          sstr<<time_curn;
+          sstr>>tbbh;
+          sstr.str("");
+          sstr.clear();
+          sstr<<dtn;
+          sstr>>tebh;
+          tbh1=tbbh+"-0.01*"+tebh;
+          tbh2=tbbh+"+1.01*"+tebh;
+          select=("index=="+bhindex[j]+"&&time_cur>="+tbh1+"&&time_cur<="+tbh2).c_str();
+          ftree->Draw(">>bhindexlist",select,"entrylist");
+          TEntryList *bhindexl=(TEntryList*)gDirectory->Get("bhindexlist");
+          entrynum=bhindexl->GetN();
+          if (entrynum==2)
+          {
+            Int_t entryj=bhindexl->GetEntry(0);
+            ftree->GetEntry(entryj);
+            Double_t tdtmp=time_cur1;
+            Double_t lxt=(-vby1*zb1+vbz1*yb1);
+            Double_t lyt=(-vbz1*xb1+vbx1*zb1);
+            Double_t lzt=(-vbx1*yb1+vby1*xb1);
+            Double_t lrt=sqrt(lxt*lxt+lyt*lyt+lzt*lzt);
+            Double_t lxyt=sqrt(lxt*lxt+lyt*lyt);
+            lbhxin[j]=mass1*lxt;
+            lbhyin[j]=mass1*lyt;
+            lbhzin[j]=mass1*lzt;
+            rbhin[j]=mass1*lrt;
+            alphabhin[j]=acos(lxt/lxyt);
+            deltabhin[j]=asin(lxyt/lrt);
+
+            entryj=bhindexl->GetEntry(1);
+            ftree->GetEntry(entryj);
+            tdtmp -=time_cur1;
+            if (tdtmp>0)
+              cout<<"warning! black hole time reverse!"<<endl;
+            lxt=(-vby1*zb1+vbz1*yb1);
+            lyt=(-vbz1*xb1+vbx1*zb1);
+            lzt=(-vbx1*yb1+vby1*xb1);
+            lrt=sqrt(lxt*lxt+lyt*lyt+lzt*lzt);
+            lxyt=sqrt(lxt*lxt+lyt*lyt);
+            lbhxon[j]=mass1*lxt;
+            lbhyon[j]=mass1*lyt;
+            lbhzon[j]=mass1*lzt;
+            rbhon[j]=mass1*lrt;
+            alphabhon[j]=acos(lxt/lxyt);
+            deltabhon[j]=asin(lxyt/lrt);
+
+          }
+          else if (entrynum<2)
+          {
+            cout<<"Black hole data incomplete"<<endl;
+            faildata<<sindex<<endl;
+            match=0;
+          }
+          else if (entrynum>2)
+          {
+            cout<<"Black hole list too large: "<<entrynum<<"please change tbh1 and tbh2"<<endl;
+            faildata<<sindex<<endl;
+            match=0;
+          }
+          bhindexl->Delete();
+        }
+        if (match)
+          ntree->Fill();
+      }
+      else
+      {
+        cout<<"index "<<sindex<<" match fail"<<endl;
+        faildata<<sindex<<endl;
+      }
+      indexl->Delete();
+    }
+    ntree->Write("",TObject::kOverwrite);
+    cout<<"Finished"<<endl;
+  }
+  return 0;
+}

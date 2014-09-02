@@ -1,0 +1,30 @@
+#!/bin/bash -x
+
+#MSUB -l walltime=ttt:00:00
+
+#MSUB -e my-err.txt
+#MSUB -o my-out.txt
+
+### #MSUB -l nodes=8:ppn=1:gpus=1:m2070
+
+#MSUB -l nodes=nnn:ppn=1:gpus=1
+
+### NSLOTS = nodes * ppn = 4 * 2 = 8
+NSLOTS=nnn
+
+echo "running on $NSLOTS cpus ..."
+
+echo $PBS_GPUFILE 
+echo $PBS_NODEFILE
+
+echo $CUDA_VISIBLE_DEVICES
+
+export OMP_NUM_THREADS=1
+
+### start of jobscript
+
+cd $PBS_O_WORKDIR
+
+echo "workdir: $PBS_O_WORKDIR"
+
+mpiexec -np ${NSLOTS} nbody6.mpigpu < input 2> run.err 1> run.log

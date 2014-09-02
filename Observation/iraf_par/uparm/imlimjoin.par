@@ -1,0 +1,6 @@
+input,s,a,"@test.lst",,,"Input images"
+output,s,a,"test.fit",,,"Output image"
+join_dimension,i,a,1,1,,"Dimension to be joined"
+pixtype,s,h,"",,,"Output image pixel type"
+verbose,s,h,"yes",,,"Print messages about progress of task ?"
+mode,s,h,"ql",,,

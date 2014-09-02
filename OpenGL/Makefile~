@@ -1,0 +1,23 @@
+EXTRALIBS = -I./include -L./lib -lLoadShaders -lglut -lGLEW -lGL -lGLU
+
+SOURCE	=$(shell ls *.cpp)
+OBJECTS = $(SOURCE:.cpp=)
+
+#CC= g++ -Wall -O3
+CC= g++ -Wall -g
+
+all: $(OBJECTS)
+
+$(OBJECTS): %: %.cpp
+	$(CC) $(EXTRALIBS) $< -o $@
+	@echo $@ >>.mvlist
+	@sort .mvlist|uniq >.mvlist.tmp
+	@mv .mvlist.tmp .mvlist
+
+install: $(shell cat .mvlist)
+	mv -f $(shell uniq .mvlist) ~/bin/
+
+clean:
+	rm -f $(OBJECTS)
+	rm -f .mvlist
+

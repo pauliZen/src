@@ -1,0 +1,295 @@
+#define DEBUG
+
+#include <fstream>
+#include <iostream>
+#include <string>
+#include <cmath>
+#include "uftools.h"
+#include "initial.h"
+#include "nbodystep3.h"
+#include "nbodyhfm.h"
+#include "nbodytcr.h"
+#include "nbodyscr.h"
+#include "nbodyqcr.h"
+#include "TEntryList.h"
+
+void check(Double_t arr[], Int_t gnum, Int_t data[])
+{
+  piksrt(arr,gnum);
+  while (data[0]>10*arr[gnum/2])
+  {
+    gnum--;
+    data[0]=0;
+    for (int j=0; j<gnum;j++)
+      data[0] +=arr[j];
+    data[0] /=gnum;
+    if (gnum<=1)
+      break;
+  }
+  for (int gn=0;gn<gnum;gn++)
+    data[1] +=pow(arr[gn]-data[0],2);
+  data[1] = sqrt(data[1]/gnum);
+}
+
+int main (int argc, char *argv[])
+{
+  pars_initial pars(".step3_config");
+  pars.add("parlist","group_num:ns:rbar:nbratio:npratio:m1:p1","parlist");
+  pars.add("filelist","dup:dirname list","filelist");
+  pars.add("saverootname","new root to store data","step3.root");
+  pars.initial(argc,argv);
+
+  std::ifstream parin(pars.get<std::string>("parlist").c_str());
+  std::ifstream filein(pars.get<std::string>("filelist").c_str());
+  if (parin.is_open()&&filein.is_open())
+  {
+    Float_t  nbratio, npratio;
+    int dup;
+    nbodystep3 st3(pars.get<std::string>("saverootname"));
+    std::string filename;
+    while (!parin.eof())
+    {
+      parin>>st3.gnum;
+      parin>>st3.ns;
+      parin>>st3.rbar;
+      parin>>nbratio;
+      parin>>npratio;
+      parin>>st3.m1;
+      parin>>st3.p1;
+      if (parin.eof()) break;
+      st3.np=static_cast<Int_t>(st3.ns*npratio);
+      st3.nb=static_cast<Int_t>(st3.ns*nbratio);
+      //ns np ============================================//
+      for (int j=0;j<4;j++)
+      {
+        st3.hnst[j]=0;
+        st3.hnpt[j]=0;
+        st3.hnpst[j]=0;
+      }
+      for (int j=0;j<2;j++)
+      {
+        st3.endt[j]=0;
+        st3.ssp[j]=0;
+        st3.psp[j]=0;
+        st3.sss[j]=0;
+        st3.pss[j]=0;
+        st3.ss[j]=0;
+        st3.sp[j]=0;
+        st3.pp[j]=0;
+        st3.spsp[j]=0;
+        st3.sssp[j]=0;
+        st3.ssss[j]=0;
+      }
+      Double_t *thnst=new Double_t[st3.gnum];
+      Double_t *thnpt=new Double_t[st3.gnum];
+      Double_t *thnpst=new Double_t[st3.gnum];
+      Double_t *tendt=new Double_t[st3.gnum];
+      Double_t *tss=new Double_t[st3.gnum];
+      Double_t *tsp=new Double_t[st3.gnum];
+      Double_t *tpp=new Double_t[st3.gnum];
+      Double_t *tsss=new Double_t[st3.gnum];
+      Double_t *tssp=new Double_t[st3.gnum];
+      Double_t *tpsp=new Double_t[st3.gnum];
+      Double_t *tpss=new Double_t[st3.gnum];
+      Double_t *tssss=new Double_t[st3.gnum];
+      Double_t *tsssp=new Double_t[st3.gnum];
+      Double_t *tspsp=new Double_t[st3.gnum];
+      for (int gn=0;gn<st3.gnum;gn++)
+      {
+        filein>>dup;
+        filein>>filename;
+        std::cout<<"Dup: "<<dup<<"  Filename: "<<filename<<std::endl;
+        //ns np=============================================//
+        nbodyhfm nhfm(filename+"_hfm.root");
+        if (nhfm.Identify()==1)
+        {
+          std::cerr<<"out3 error\n";
+          st3.gnum--;
+          gn--;
+        }
+        else
+        {
+          nhfm.GetEntry(0);
+          nhfm.gethalfns();
+          thnst[gn]=nhfm.t;
+          nhfm.gethalfnp();
+          thnpt[gn]=nhfm.t;
+          nhfm.gethalfnpvsns();
+          thnpst[gn]=nhfm.t;
+          nhfm.GetEntry(nhfm.GetEntries()-1);
+          tendt[gn]=nhfm.t;
+          st3.hnst[0] +=thnst[gn];
+          st3.hnpt[0] +=thnpt[gn];
+          st3.hnpst[0] +=thnpst[gn];
+          st3.hnst[2] +=thnst[gn]/tendt[gn];
+          st3.hnpt[2] +=thnpt[gn]/tendt[gn];
+          st3.hnpst[2] +=thnpst[gn]/tendt[gn];
+          st3.endt[0] +=tendt[gn];
+          //encounter single==================================//
+          nbodyscr scr(filename+"_scr.root");
+          if (scr.Identify()==1)
+          {
+            std::cerr<<"scr error\n";
+            st3.gnum--;
+            gn--;
+          }
+          else
+          {
+            scr.setinit(st3.ns,st3.np,st3.nb);
+            scr.Drawsp(">>splist","","entrylist");
+            scr.Drawss(">>sslist","","entrylist");
+            scr.Drawpp(">>pplist","","entrylist");
+            TEntryList *ssl=(TEntryList*)gDirectory->Get("sslist");
+            TEntryList *spl=(TEntryList*)gDirectory->Get("splist");
+            TEntryList *ppl=(TEntryList*)gDirectory->Get("pplist");
+            tsp[gn]=spl->GetN();
+            tss[gn]=ssl->GetN();
+            tpp[gn]=ppl->GetN();
+#ifdef DEBUG
+            std::cout<<"gn:"<<gn<<"; ss:"<<tss[gn]<<"; sp:"<<tsp[gn]<<"; pp:"<<tpp[gn]<<std::endl;
+#endif                
+            st3.sp[0] +=tsp[gn];
+            st3.ss[0] +=tss[gn];
+            st3.pp[0] +=tpp[gn];
+            if (dup<3)
+            {
+              tssp[gn]=0;
+              tsss[gn]=0;
+              tpsp[gn]=0;
+              tpss[gn]=0;
+              tssss[gn]=0;
+              tsssp[gn]=0;
+              tspsp[gn]=0;
+            }
+            if (dup==3)
+            {
+              tssss[gn]=0;
+              tsssp[gn]=0;
+              tspsp[gn]=0;
+            }          
+            if (dup==3||dup==4)
+            {
+              // triple quater====================================//
+              nbodytcr tcr(filename+"_tcr.root");
+              if (tcr.Identify()==1)
+              {
+                std::cout<<"tcr empty\n";
+                tssp[gn]=0;
+                tsss[gn]=0;
+                tpsp[gn]=0;
+                tpss[gn]=0;
+              }
+              else
+              {
+                tcr.setinit(st3.ns,st3.np,st3.nb);
+                tcr.Drawssp(">>ssplist","","entrylist");
+                tcr.Drawpsp(">>psplist","","entrylist");
+                tcr.Drawsss(">>ssslist","","entrylist");
+                tcr.Drawpss(">>psslist","","entrylist");
+                TEntryList *sspl=(TEntryList*)gDirectory->Get("ssplist");
+                TEntryList *pspl=(TEntryList*)gDirectory->Get("psplist");
+                TEntryList *sssl=(TEntryList*)gDirectory->Get("ssslist");
+                TEntryList *pssl=(TEntryList*)gDirectory->Get("psslist");
+                tssp[gn]=sspl->GetN();
+                tsss[gn]=sssl->GetN();
+                tpsp[gn]=pspl->GetN();
+                tpss[gn]=pssl->GetN();
+#ifdef DEBUG
+                std::cout<<"gn:"<<gn<<"; ssp:"<<tssp[gn]<<"; sss"<<tsss[gn]<<"; psp"<<tpsp[gn]<<"; pss"<<tpss[gn]<<std::endl;
+#endif
+                st3.ssp[0] +=tssp[gn];
+                st3.sss[0] +=tsss[gn];
+                st3.psp[0] +=tpsp[gn];
+                st3.pss[0] +=tpss[gn];
+              }
+            }
+            if (dup==4)
+            {
+              nbodyqcr qcr(filename+"_qcr.root");
+              if (qcr.Identify()==1)
+              {
+                std::cout<<"qcr empty\n";
+                tsssp[gn]=0;
+                tspsp[gn]=0;
+                tssss[gn]=0;
+              }
+              else
+              {
+                qcr.setinit(st3.ns,st3.np,st3.nb);
+                qcr.Drawspsp(">>spsplist","","entrylist");
+                qcr.Drawsssp(">>sssplist","","entrylist");
+                qcr.Drawssss(">>sssslist","","entrylist");
+                TEntryList *spspl=(TEntryList*)gDirectory->Get("spsplist");
+                TEntryList *ssspl=(TEntryList*)gDirectory->Get("sssplist");
+                TEntryList *ssssl=(TEntryList*)gDirectory->Get("sssslist");
+                tsssp[gn]=ssspl->GetN();
+                tspsp[gn]=spspl->GetN();
+                tssss[gn]=ssssl->GetN();
+#ifdef DEBUG
+                std::cout<<"gn:"<<gn<<"; sssp:"<<tsssp[gn]<<"; spsp:"<<tspsp[gn]<<"; ssss:"<<tssss[gn]<<std::endl;
+#endif                
+
+                st3.ssss[0] +=tssss[gn];
+                st3.sssp[0] +=tsssp[gn];
+                st3.spsp[0] +=tspsp[gn];
+              }
+            }
+          }
+        }
+      }
+      //ns np=============================================//
+      st3.hnst[0] /=st3.gnum;
+      st3.hnpt[0] /=st3.gnum;
+      st3.hnpst[0] /=st3.gnum;
+      st3.hnst[2] /=st3.gnum;
+      st3.hnpt[2] /=st3.gnum;
+      st3.hnpst[2] /=st3.gnum;
+      st3.endt[0] /=st3.gnum;
+      st3.ss[0] /=st3.gnum;
+      st3.sp[0] /=st3.gnum;
+      st3.pp[0] /=st3.gnum;
+      st3.ssp[0] /=st3.gnum;
+      st3.psp[0] /=st3.gnum;
+      st3.sss[0] /=st3.gnum;
+      st3.pss[0] /=st3.gnum;
+      st3.ssss[0] /=st3.gnum;
+      st3.sssp[0] /=st3.gnum;
+      st3.spsp[0] /=st3.gnum;
+      for (int gn=0;gn<st3.gnum;gn++)
+      {
+        st3.hnst[1] +=pow(thnst[gn]-st3.hnst[0],2);
+        st3.hnpt[1] +=pow(thnpt[gn]-st3.hnpt[0],2);
+        st3.hnpst[1] +=pow(thnpst[gn]-st3.hnpst[0],2);
+        st3.endt[1] +=pow(tendt[gn]-st3.endt[0],2);
+        st3.hnst[3] +=pow(thnst[gn]/tendt[gn]-st3.hnst[2],2);
+        st3.hnpt[3] +=pow(thnpt[gn]/tendt[gn]-st3.hnpt[2],2);
+        st3.hnpst[3] +=pow(thnpst[gn]/tendt[gn]-st3.hnpst[2],2);
+      }
+      st3.hnst[1] = sqrt(st3.hnst[1]/st3.gnum);
+      st3.hnpt[1] = sqrt(st3.hnpt[1]/st3.gnum);
+      st3.hnpst[1] = sqrt(st3.hnpst[1]/st3.gnum);
+      st3.endt[1] = sqrt(st3.endt[1]/st3.gnum);
+      st3.hnst[3] = sqrt(st3.hnst[3]/st3.gnum);
+      st3.hnpt[3] = sqrt(st3.hnpt[3]/st3.gnum);
+      st3.hnpst[3] = sqrt(st3.hnpst[3]/st3.gnum);
+      //check special cases===============================//
+      check(tss,st3.gnum,st3.ss);
+      check(tsp,st3.gnum,st3.sp);
+      check(tpp,st3.gnum,st3.pp);
+      check(tsss,st3.gnum,st3.sss);
+      check(tssp,st3.gnum,st3.ssp);
+      check(tpsp,st3.gnum,st3.psp);
+      check(tpss,st3.gnum,st3.pss);
+      check(tssss,st3.gnum,st3.ssss);
+      check(tsssp,st3.gnum,st3.sssp);
+      check(tspsp,st3.gnum,st3.spsp);
+      //encounter=========================================//
+      st3.Fill();
+    }
+    st3.Write("",TObject::kOverwrite);
+    std::cout<<"All finished\n.";
+  }
+  else
+    std::cerr<<"Error: parlist or filelist cannot open\n";
+  return 0;
+}

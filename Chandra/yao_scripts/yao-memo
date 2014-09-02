@@ -1,0 +1,39 @@
+
+ln -s /home/yao/xdata/scripts/s6.sh
+改s6.sh的energy、ccd
+s6.sh
+
+xspec
+@apec6.xcm
+fit
+@kt.tcl							生成kt-err.txt
+@norm.tcl
+@flux.tcl						生成norm-err.txt
+cd ..
+
+新建文件zda.txt，填入z,da,dl
+./readkt.py						生成kt.qdp
+./readnorm.py
+./readflux.py						生成ne.qdp
+
+./dynamical_fit.out fit-kt.cfg a.qdp kt-para.txt	生成a.qdp kt-para.txt
+./kt100.py
+./dynamical_fit.out fit-ne.cfg c.qdp ne-para.txt	生成c.qdp ne-para.txt
+cat a.qdp kt.qdp>b.qdp					生成b.qdp
+cat c.qdp ne.qdp>d.qdp					生成d.qdp
+./kt-30.py						生成kt-30.qdp
+./clngfunc.py						生成ne-30-beforenorm.qdp
+./dynamical_fit.out fit-ne-30-beforenorm.cfg e.qdp ne-30-beforenorm-para.txt
+./rhodm.py						输出rhodm/100，为了方便拟合
+./dynamical_fit.out fit-nfw.cfg nfw.qdp nfw-para.txt
+./nfw.py
+
+#读ans6.reg，转为arcmin
+#sur=flux/(pi*(Rout^2-Rin^2)) -> ergs/cm^2/s/arcmin^2
+#sur*10^11，方便拟合
+#新建sur.qdp,格式：R(kpc) 0 0 sur*10^11 -.01 .01
+
+./dynamical_fit.out fit-sur.cfg 2.qdp sur-para.txt
+./lumin.py
+
+

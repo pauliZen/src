@@ -1,0 +1,221 @@
+ubuntu Emacs开发环境的配置：emacs+cedet+ecb+line-num+......(20090701)
+2009-07-01 17:04
+
+首先说明下EMACS里的 命令C-c =   Ctrl+C     M-x=alt-X    我开始没搞清楚，emacs的文档又少。
+
+1 . 下载EMACS
+
+sudo apt-get install emacs-snapshot-gtk   emacs-snapshot-el
+
+修改字体: emacs默认使用X核心字体，可以更改成XFT字体引擎
+
+装载新的而配置文件.
+vim $HOME/.emacs
+
+gedit .Xresources
+
+Emacs.FontBackend: xft
+Emacs.Font:DejaVu Sans YuanTi Mono-15
+Emacs.Foreground: Wheat
+Emacs.Background: DarkSlateGray
+Emacs.ScrollBars: nil
+Emacs.Geometry: 126x44+0+0
+Xft.dpi: 96
+Xft.hinting: none
+
+保存生效
+xrdb -load ./.Xresources
+
+sudo apt-get --purge remove ttf-kochi-gothic ttf-kochi-mincho ttf-baekmuk ttf-arphic-uming
+
+2. 建立emacs 配置文件;(如果涉及的文件和目录没有均可以自己mkdir 或 vim 建立。
+
+新建$HOME/.emacs文件
+
+如果你的插件没有装在site-lisp下，把路径加入即可。
+
+2.1
+
+Colortheme 下载color-theme.el 文件 放到/site-lisp 下 然后在.emcas添加下面语句(后面雷同)
+;;<1>COLOR_THEME 注释
+(require 'color-theme)
+(color-theme-classic)
+
+http://docs.huihoo.com/homepage/shredderyin/src/emacs-lisp/color-theme.el.gz
+
+2.2  
+
+显示行号 ： 网上很多介绍display-line-number.el插件，确实很好 可惜现在官网关了.
+
+我找了个line-num.el 这个插件也不错。如果想要+我QQ :295535 传给你。
+
+到现在我的全部设置就完了，上面所用的插件我已经打包了。如果需要可以+QQ ：295535 如果有错误的地方其回帖告知 ，我会马上改正 。
+
+本人是新手 ，上面很多都是参考网上来设置的。emacs 如何使用还是希望能得到高手的指点 。到今天M.J已经走了快一星期了 再次怀念Jackson带给我们的舞蹈和歌曲。
+
+;;<2>linnum
+(require 'linum)
+(global-linum-mode t)
+(add-hook 'c-mode-hook 'display-line-number-mode)
+(add-hook 'c++-mode-hook 'display-line-number-mode)
+
+2.3  
+
+   session 看字面是连接会话的意思，暂时不知道做什么用 反正看别人都装 咱也不例外。
+
+   下载地址在 ： http://emacs-session.sourceforge.net/ 放到/site-lisp 添加配置文件；
+(require 'session)
+(add-hook 'after-init-hook 'session-initialize)
+(load "desktop")
+(desktop-save-mode)
+
+下面是代码阅读插件和编译调试插件的下载 ：
+
+        在emacs下读代码通常有一下几种工具，etags，ECB（emacs code browser），cscope，Xref。这几种工具也可以相互配合使用。其中：etags是emcas自带的标准插件，注意不是ctags。Xref 是的Xrefactory的免费版本，非GNU，支持C和java的跳转，自动补全插等功能，比cedet＋ECB组合速度要快，用起来也很简单，回答几个问题新建一个project，然后几个快捷键就可以满足需要了，美中不足的是对C＋＋支持是收费，且狂贵，这个小东西要400刀，也没找到破解的版本，写C＋＋代码的时候还得用CEDET＋ECB。
+
+2.4
+
+   cscope 的安装 直接 sudo apt-get install cscope 然后找到cscope.el cp到site-lisp/
+
+添加:
+(require 'xcscope)
+
+cscope的主要功能和对应的快捷键：（ 貌似全局查找函数的插件）
+;; C-c s a             设定初始化的目录，一般是你代码的根目录
+;; C-s s I             对目录中的相关文件建立列表并进行索引
+;; C-c s s             序找符号
+;; C-c s g             寻找全局的定义
+;; C-c s c             看看指定函数被哪些函数所调用
+;; C-c s C             看看指定函数调用了哪些函数
+;; C-c s e             寻找正则表达式
+;; C-c s f             寻找文件
+;; C-c s i             看看指定的文件被哪些文件include)
+
+2.5
+
+    CEDET 这个是C/C++开发最重要的一个插件集，没有他 ecb无法安装，还要注意版本问题cedet和ecb的版本一定要对应。具体看ecb官站介绍
+
+http://cedet.sourceforge.net/ 现在官方提供的是 cedet-1.0pre6.tar.gz.   版本
+cp cedet-1.0pre6.tar.gz ~/.emacs.d/site-lisp/
+cd ~/.emacs.d/site-lisp/
+tar xvzf cedet-1.0pre6.tar.gz
+cd cedet-1.0pre6
+make
+
+注意要重新make ，然后在.emacs添加
+(add-hook 'texinfo-mode-hook (lambda () (require 'sb-texinfo)))
+      (load-file "~/.emacs.d/site-lisp/cedet-1.0pre6/common/cedet.el")
+      (semantic-load-enable-code-helpers)
+      (autoload 'speedbar-frame-mode "speedbar" "Popup a speedbar frame" t)
+      (autoload 'speedbar-get-focus "speedbar" "Jump to speedbar frame" t)
+      (define-key-after (lookup-key global-map [menu-bar tools])
+                 [speedbar]
+                 '("Speedbar" .
+                 speedbar-frame-mode)
+                 [calendar])
+
+2.6
+
+   安装ECB
+
+下载 ：http://ecb.sourceforge.net/ 我安装的是 ECB 2.40 released! 这个和cedet 1.06是配合的
+
+解压到 dsite-lisp/ 目录下 然后添加配置文件
+
+add-to-list 'load-path "~/.emacs.d/site-lisp/ecb-2.32")
+(load-file "~/.emacs.d/site-lisp/ecb-2.32/ecb.el")
+(require 'ecb)
+(setq ecb-auto-activate t
+           ecb-tip-of-the-day nil
+           ecb-tree-indent 4
+           ecb-windows-height 0.5
+           ecb-windows-width 0.20)
+           ecb-auto-compatibility-check nil
+           ecb-version-check nil
+           inhibit-startup-message t
+
+重启Emacs .
+
+在emacs执行M-x ecb-byte-complie编译，可以加快ECB运行速度
+M-x ecb-show-help看在线帮助
+M-x customize-option RET ecb-source-path RET设置源码目录
+
+ECB默认是不支持鼠标响应的，需作如下设置：
+打开emacs中的菜单 ECB->Preferences->Most important...,
+找到Ecb Primary Secondary Mouse Buttons:并点击Show Value，
+选择第三个选项：Primary:mouse-1,secondary:mouse-2
+保存选项为以后所用;
+
+2.7 设置自动补全
+.emacs添加
+
+;;;;C/C++语言启动时自动加载semantic对/usr/include的索引数据库
+(setq semanticdb-search-system-databases t)
+   (add-hook 'c-mode-common-hook
+           (lambda ()
+             (setq semanticdb-project-system-databases
+                   (list (semanticdb-create-database
+                            semanticdb-new-database-class
+                           "/usr/include")))))
+
+;; project root path
+(setq semanticdb-project-roots
+           (list
+         (expand-file-name "/")))
+;; 避免semantic占用CPU过多
+(setq-default semantic-idle-scheduler-idle-time 432000)
+
+(defun my-indent-or-complete ()
+    (interactive)
+    (if (looking-at "\\>")
+           (hippie-expand nil)
+           (indent-for-tab-command)))
+(autoload 'senator-try-expand-semantic "senator")
+
+(setq hippie-expand-try-functions-list
+           '(
+                 senator-try-expand-semantic
+                try-expand-dabbrev
+                try-expand-dabbrev-visible
+                try-expand-dabbrev-all-buffers
+                try-expand-dabbrev-from-kill
+                try-expand-list
+                try-expand-list-all-buffers
+                try-expand-line
+                try-expand-line-all-buffers
+            try-complete-file-name-partially
+            try-complete-file-name
+            try-expand-whole-kill
+         )
+)
+
+;;快捷键
+(global-set-key [M-/] 'hippie-expand)
+;;右Ctrl+\ 自动补全menu
+(global-set-key "\C-\\" 'semantic-ia-complete-symbol-menu)
+;; 跳转到全局定义
+(global-set-key "\C-xg" 'cscope-find-global-definition-no-prompting)
+
+2.8  
+
+    Xref
+
+安装Xref
+从 http://xref-tech.com/xrefactory/downloads/下载1.X.X linux版本(1.X.X为免费版，2.X.X为收费版）。解压后放到~/.emacs.d/site-lisp/目录下。以下载的xref-1.6.10-i86pcLinux.tar.gz为例
+cp xref-1.6.10-i86pcLinux.tar.gz ~/.emacs.d/site-lisp/
+cd ~/.emacs.d/site-lisp/xref
+sh ./xrefsetup
+
+sh 注意要付权限 。 执行正确的话会有0-3个选择 1 2 会让加载C java 。启动EMACS 这时候右边就会出现4个小窗口 。speedbar在右边 。
+
+修改. emcas 使上次建立的project有效，需将
+(defvar xref-current-project nil) ;; can be also "my_project_name"
+
+改为
+(defvar xref-current-project t) ;; can be also "my_project_name"
+
+基本设置到此就已经完了 ， 我也是参考晚上来配置的 。所需插件已经打包 QQ：295535 。如果按这个方法配置不行，请马上回帖或QQ联系 ，我会尽快改正。 我只是个初学者 emacs也不太会使用 ，希望高手们指点下，谢谢。 M.J 已经走了快一周了，看他的MV依旧那么震撼 。
+
+把emacs插件放在 $HOME/.emacs.d/site-lisp/ 目录，并加载目录路径如下:
+;;LOAD_PATH
+(add-to-list 'load-path' "~/.emacs.d/site-lisp")

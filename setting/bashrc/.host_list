@@ -1,0 +1,25 @@
+#ssh host list
+ipari=welcome.ari.uni-heidelberg.de #longwang
+ipkepler=welcome.ari.uni-heidelberg.de #longwang #L 1211:kepler:22 #lwang
+ipkeplerin=kepler.ari.uni-heidelberg.de #lwang
+ipkiaa=162.105.156.247 #wanglong
+ipsilk0=silk0.bao.ac.cn #lwang
+ipsilk0in=192.168.35.201 #lwang
+ipsilk3=silk0.bao.ac.cn #lwang #L 1212:silk3:22 #lwang
+ipdragon=162.105.156.8 #lwang
+ipdragonroot=162.105.156.8 #root
+ipdragonin=10.0.1.3 #lwang
+iplighter=162.105.156.193 #lwang
+iplighterin=192.168.1.21 #lwang
+iplaohu=laohu.bao.ac.cn #lwang
+ipcambody=cappc110.ast.cam.ac.uk #cambody
+iplwpc=162.105.204.89 #lwang
+iplwpcin=192.168.1.11 #lwang
+ipdragon1=162.105.156.158 #lwang #L 1201:10.0.1.5:22 #lwang
+ipdragon2=162.105.156.158 #lwang #L 1202:10.0.1.6:22 #lwang
+ipdragon3=162.105.156.158 #lwang #L 1203:10.0.1.7:22 #lwang
+ipmilky=milkyway.fz-juelich.de #sfb016
+iphydra=welcome.ari.uni-heidelberg.de #longwang #L 1212:hydra:22 #lwang 
+iphyd=gate.rzg.mpg.de #longw #L 1207:hydra:22 #longw
+iprzg=gate.rzg.mpg.de #longw
+ipcamk=ssh.camk.edu.pl #wang

@@ -1,0 +1,4 @@
+input,s,a,"@4096fit.lst//or",,,"Input images"
+output,s,a,"@4096fit.lst//black[2049:4096,*]",,,"Output images or directory"
+verbose,b,h,yes,,,"Print operations performed?"
+mode,s,h,"ql",,,

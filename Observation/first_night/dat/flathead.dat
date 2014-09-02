@@ -1,0 +1,1775 @@
+d4305841FLATd097.fit[4160,4096][ushort]:       flat d 4540a
+No bad pixels, min=0., max=0. (old)
+Line storage mode, physdim [4160,4096], length of user area 2471 s.u.
+Created Sat 17:27:10 08-Oct-2011, Last modified Sat 12:51:23 08-Oct-2011
+Pixel file "d4305841FLATd097.fit" [ok]
+CRVAL1  =                    0 / COLUMN ORIGIN
+CRVAL2  =                    0 / ROW ORIGIN
+CDELT1  =                    1 / COLUMN CHANGE PER PIXEL
+CDELT2  =                    1 / ROW CHANGE PER PIXEL
+IDNUM   =                    4 / IMAGE ID
+EXPTIME =           130.000000 / Exp time (not counting shutter error)
+BSCALE  =             1.000000 / DATA SCALE FACTOR
+BZERO   =         32768.000000 / DATA ZERO POINT
+COMMENT = 'Real Value = FITS*BSCALE+BZERO'
+PROGRAM = 'NEWCAM'             / New Lick Camera
+VERSION = 'cat'                / Data acquisition version
+TSEC    =           1317940125 / CLOCK TICK - SECONDS
+TUSEC   =               115315 / CLOCK TICK - MICROSECONDS
+COMMENT = 'Epoch is 00:00:00 UTC Jan. 1, 1970'
+DATE-OBS= '2011-10-06T22:28:45.11' / UTC DATE AND TIME OF OBSERVATION
+DATE-STA= '2011-10-07T06:26:30.0' / START OF OBSERVATION
+DATE-END= '2011-10-07T06:28:40.0' / END OF OBSERVATION
+CAMERAID=                    7 / CAMERA ID NUMBER
+ERASE   =                    3 / NUMBER OF ERASES
+PSKIP   =                    0 / CONTROLS POST-IMAGE SKIPPING
+CSMP    =                    1 / DCS CAP SELECTION
+CSELPRD =                    0 / PREREAD CLOCK SELECTION
+SCLEAN  =                    0 / SERIAL CLEANING CLOCK SELECTION
+TEMPCON =             5.300000 / CONTROLLER TEMPERATURE
+NSTIME  =                    1 / CONTROLS RISING TIME FOR SUBSTRATE
+VSUBEX  =                    0 / SUBSTRATE VOLTAGE DURING EXPOSURE
+VSUBER  =                    0 / SUBSTRATE VOLTAGE DURING ERASE
+NHBESP  =                   32 / BINNING FOR SPECIAL ERASE
+MERSP   =                    0 / CONTROLS SPECIAL ERASE MODE
+ERPBIN  =                    5 / PARALLEL BINNING DURING ERASE
+BINPRD  =                    0 / PREREAD SERIAL BINNING
+PPRERD  =                  100 / PRE-IMAGE ROWS
+PFREQ   =                    1 / PARALLEL CLOCK PERIOD
+PADDC   =                    0 / PARALLEL CLOCK CAPACITOR SELECTION
+BINSCLN =                    0 / BINNING FOR SERIAL CLEAN
+TSCLEAN =                   40 / SERIAL CLEAN SAMPLE TIME
+SFREQ   =                    2 / SERIAL CLOCK PERIOD
+TEMPDET =          -130.899994 / EXPOSURE START DETECTOR TEMPERATURE
+TEMPDETE=             0.000000 / EXPOSURE END DETECTOR TEMPERATURE
+SADDC   =                    2 / SERIAL CLOCK CAP SELECTION
+TCPR2   =                   16 / POST-IMAGE SERIAL PIXELS BEFORE OVERSCAN
+TCPR1   =                    4 / PRE-IMAGE SERIAL PIXELS
+TSPRD   =                   40 / SAMPLE TIME IN 0.1 MICROSECOND UNITS
+DEC     = '         +00:00:00' / DECLINATION
+NCSHIFT =                    0 / NUMBER OF CHARGE SHUFFLES
+RCSHIFT =                    0 / NUMBER OF ROWS IN EACH CHARGE SHUFFLE
+OBJECT  = '      flat d 4540a'
+MPP     =                    0 / MPP STATE
+HA      = '         +00:00:00' / HOUR ANGLE
+REVERASE=                    1 / NUMBER OF REVERSE ERASES
+READ-SPD=                   40 / DCS READ SPEED
+ROVER   =                    0 / NUMBER OF OVERSCAN ROWS
+COVER   =                   32 / NUMBER OF OVERSCAN COLUMNS
+GAIN    =                    0 / DCS GAIN INDEX
+RA      = '         +01:14:04' / RIGHT ASCENSION
+IMAGETYP= '            OBJECT' / IMAGE TYPE
+RBIN    =                    1 / ROW BINNING
+CBIN    =                    1 / COLUMN BINNING
+CKSUMOK =                    T / CHECKSUMS MATCH
+CAMCKSUM=                58450 / CAMERA-COMPUTED CHECKSUM
+SFTCKSUM=                58450 / SOFTWARE-COMPUTED CHECKSUM
+
+d4305841FLATd097o.fit[4096,4096][real]: @maind.lst//f
+No bad pixels, min=0., max=0. (old)
+Line storage mode, physdim [4096,4096], length of user area 4131 s.u.
+Created Sun 15:33:29 09-Oct-2011, Last modified Sun 15:33:31 09-Oct-2011
+Pixel file "d4305841FLATd097o.fit" [ok]
+EXTEND  =                    F / File may contain extensions
+ORIGIN  = 'NOAO-IRAF FITS Image Kernel July 2003' / FITS file originator
+DATE    = '2011-10-09T07:33:29' / Date FITS file was generated
+IRAF-TLM= '2011-10-09T07:33:31' / Time of last modification
+OBJECT  = '@maind.lst//f'      / Name of the object observed
+CDELT1  =                    1 / COLUMN CHANGE PER PIXEL
+CDELT2  =                    1 / ROW CHANGE PER PIXEL
+IDNUM   =                    4 / IMAGE ID
+EXPTIME =           130.000000 / Exp time (not counting shutter error)
+COMMENT = 'Real Value = FITS*BSCALE+BZERO'
+PROGRAM = 'NEWCAM'             / New Lick Camera
+VERSION = 'cat'                / Data acquisition version
+TSEC    =           1317940125 / CLOCK TICK - SECONDS
+TUSEC   =               115315 / CLOCK TICK - MICROSECONDS
+COMMENT = 'Epoch is 00:00:00 UTC Jan. 1, 1970'
+DATE-OBS= '2011-10-06T22:28:45.11' / UTC DATE AND TIME OF OBSERVATION
+DATE-STA= '2011-10-07T06:26:30.0' / START OF OBSERVATION
+DATE-END= '2011-10-07T06:28:40.0' / END OF OBSERVATION
+CAMERAID=                    7 / CAMERA ID NUMBER
+ERASE   =                    3 / NUMBER OF ERASES
+PSKIP   =                    0 / CONTROLS POST-IMAGE SKIPPING
+CSMP    =                    1 / DCS CAP SELECTION
+CSELPRD =                    0 / PREREAD CLOCK SELECTION
+SCLEAN  =                    0 / SERIAL CLEANING CLOCK SELECTION
+TEMPCON =             5.300000 / CONTROLLER TEMPERATURE
+NSTIME  =                    1 / CONTROLS RISING TIME FOR SUBSTRATE
+VSUBEX  =                    0 / SUBSTRATE VOLTAGE DURING EXPOSURE
+VSUBER  =                    0 / SUBSTRATE VOLTAGE DURING ERASE
+NHBESP  =                   32 / BINNING FOR SPECIAL ERASE
+MERSP   =                    0 / CONTROLS SPECIAL ERASE MODE
+ERPBIN  =                    5 / PARALLEL BINNING DURING ERASE
+BINPRD  =                    0 / PREREAD SERIAL BINNING
+PPRERD  =                  100 / PRE-IMAGE ROWS
+PFREQ   =                    1 / PARALLEL CLOCK PERIOD
+PADDC   =                    0 / PARALLEL CLOCK CAPACITOR SELECTION
+BINSCLN =                    0 / BINNING FOR SERIAL CLEAN
+TSCLEAN =                   40 / SERIAL CLEAN SAMPLE TIME
+SFREQ   =                    2 / SERIAL CLOCK PERIOD
+TEMPDET =          -130.899994 / EXPOSURE START DETECTOR TEMPERATURE
+TEMPDETE=             0.000000 / EXPOSURE END DETECTOR TEMPERATURE
+SADDC   =                    2 / SERIAL CLOCK CAP SELECTION
+TCPR2   =                   16 / POST-IMAGE SERIAL PIXELS BEFORE OVERSCAN
+TCPR1   =                    4 / PRE-IMAGE SERIAL PIXELS
+TSPRD   =                   40 / SAMPLE TIME IN 0.1 MICROSECOND UNITS
+DEC     = '         +00:00:00' / DECLINATION
+NCSHIFT =                    0 / NUMBER OF CHARGE SHUFFLES
+RCSHIFT =                    0 / NUMBER OF ROWS IN EACH CHARGE SHUFFLE
+MPP     =                    0 / MPP STATE
+HA      = '         +00:00:00' / HOUR ANGLE
+REVERASE=                    1 / NUMBER OF REVERSE ERASES
+READ-SPD=                   40 / DCS READ SPEED
+ROVER   =                    0 / NUMBER OF OVERSCAN ROWS
+COVER   =                   32 / NUMBER OF OVERSCAN COLUMNS
+GAIN    =                    0 / DCS GAIN INDEX
+RA      = '         +01:14:04' / RIGHT ASCENSION
+IMAGETYP= '            OBJECT' / IMAGE TYPE
+RBIN    =                    1 / ROW BINNING
+CBIN    =                    1 / COLUMN BINNING
+CKSUMOK =                    T / CHECKSUMS MATCH
+CAMCKSUM=                58450 / CAMERA-COMPUTED CHECKSUM
+SFTCKSUM=                58450 / SOFTWARE-COMPUTED CHECKSUM
+WCSDIM  =                    2
+CTYPE1  = 'LINEAR  '
+CTYPE2  = 'LINEAR  '
+CD1_1   =                   1.
+CD2_2   =                   1.
+LTM1_1  =                   1.
+LTM2_2  =                   1.
+WAT0_001= 'system=image'
+TRIM    = 'Oct  8 23:27 Trim data section is [1:4096,1:4096]'
+CCDSEC  = '[1:4096,1:4096]'
+BIASSEC = '[1:4096,1:4096]'
+CCDMEANT=           1002583637
+CCDPROC = 'Oct  8 23:27 CCD processing done'
+CCDMEAN =                   1.
+
+d4305841FLATd098.fit[4160,4096][ushort]:       flat d 4540a
+No bad pixels, min=0., max=0. (old)
+Line storage mode, physdim [4160,4096], length of user area 2471 s.u.
+Created Sat 17:27:10 08-Oct-2011, Last modified Sat 12:59:17 08-Oct-2011
+Pixel file "d4305841FLATd098.fit" [ok]
+CRVAL1  =                    0 / COLUMN ORIGIN
+CRVAL2  =                    0 / ROW ORIGIN
+CDELT1  =                    1 / COLUMN CHANGE PER PIXEL
+CDELT2  =                    1 / ROW CHANGE PER PIXEL
+IDNUM   =                    5 / IMAGE ID
+EXPTIME =           130.000000 / Exp time (not counting shutter error)
+BSCALE  =             1.000000 / DATA SCALE FACTOR
+BZERO   =         32768.000000 / DATA ZERO POINT
+COMMENT = 'Real Value = FITS*BSCALE+BZERO'
+PROGRAM = 'NEWCAM'             / New Lick Camera
+VERSION = 'cat'                / Data acquisition version
+TSEC    =           1317940368 / CLOCK TICK - SECONDS
+TUSEC   =                92116 / CLOCK TICK - MICROSECONDS
+COMMENT = 'Epoch is 00:00:00 UTC Jan. 1, 1970'
+DATE-OBS= '2011-10-06T22:32:48.09' / UTC DATE AND TIME OF OBSERVATION
+DATE-STA= '2011-10-07T06:30:33.0' / START OF OBSERVATION
+DATE-END= '2011-10-07T06:32:43.0' / END OF OBSERVATION
+CAMERAID=                    7 / CAMERA ID NUMBER
+ERASE   =                    3 / NUMBER OF ERASES
+PSKIP   =                    0 / CONTROLS POST-IMAGE SKIPPING
+CSMP    =                    1 / DCS CAP SELECTION
+CSELPRD =                    0 / PREREAD CLOCK SELECTION
+SCLEAN  =                    0 / SERIAL CLEANING CLOCK SELECTION
+TEMPCON =             5.300000 / CONTROLLER TEMPERATURE
+NSTIME  =                    1 / CONTROLS RISING TIME FOR SUBSTRATE
+VSUBEX  =                    0 / SUBSTRATE VOLTAGE DURING EXPOSURE
+VSUBER  =                    0 / SUBSTRATE VOLTAGE DURING ERASE
+NHBESP  =                   32 / BINNING FOR SPECIAL ERASE
+MERSP   =                    0 / CONTROLS SPECIAL ERASE MODE
+ERPBIN  =                    5 / PARALLEL BINNING DURING ERASE
+BINPRD  =                    0 / PREREAD SERIAL BINNING
+PPRERD  =                  100 / PRE-IMAGE ROWS
+PFREQ   =                    1 / PARALLEL CLOCK PERIOD
+PADDC   =                    0 / PARALLEL CLOCK CAPACITOR SELECTION
+BINSCLN =                    0 / BINNING FOR SERIAL CLEAN
+TSCLEAN =                   40 / SERIAL CLEAN SAMPLE TIME
+SFREQ   =                    2 / SERIAL CLOCK PERIOD
+TEMPDET =          -130.899994 / EXPOSURE START DETECTOR TEMPERATURE
+TEMPDETE=             0.000000 / EXPOSURE END DETECTOR TEMPERATURE
+SADDC   =                    2 / SERIAL CLOCK CAP SELECTION
+TCPR2   =                   16 / POST-IMAGE SERIAL PIXELS BEFORE OVERSCAN
+TCPR1   =                    4 / PRE-IMAGE SERIAL PIXELS
+TSPRD   =                   40 / SAMPLE TIME IN 0.1 MICROSECOND UNITS
+DEC     = '         +00:00:00' / DECLINATION
+NCSHIFT =                    0 / NUMBER OF CHARGE SHUFFLES
+RCSHIFT =                    0 / NUMBER OF ROWS IN EACH CHARGE SHUFFLE
+OBJECT  = '      flat d 4540a'
+MPP     =                    0 / MPP STATE
+HA      = '         +00:00:00' / HOUR ANGLE
+REVERASE=                    1 / NUMBER OF REVERSE ERASES
+READ-SPD=                   40 / DCS READ SPEED
+ROVER   =                    0 / NUMBER OF OVERSCAN ROWS
+COVER   =                   32 / NUMBER OF OVERSCAN COLUMNS
+GAIN    =                    0 / DCS GAIN INDEX
+RA      = '         +01:16:04' / RIGHT ASCENSION
+IMAGETYP= '            OBJECT' / IMAGE TYPE
+RBIN    =                    1 / ROW BINNING
+CBIN    =                    1 / COLUMN BINNING
+CKSUMOK =                    T / CHECKSUMS MATCH
+CAMCKSUM=                  848 / CAMERA-COMPUTED CHECKSUM
+SFTCKSUM=                  848 / SOFTWARE-COMPUTED CHECKSUM
+
+d4305841FLATd098o.fit[4096,4096][real]: @maind.lst//f
+No bad pixels, min=0., max=0. (old)
+Line storage mode, physdim [4096,4096], length of user area 4131 s.u.
+Created Sun 15:33:33 09-Oct-2011, Last modified Sun 15:33:35 09-Oct-2011
+Pixel file "d4305841FLATd098o.fit" [ok]
+EXTEND  =                    F / File may contain extensions
+ORIGIN  = 'NOAO-IRAF FITS Image Kernel July 2003' / FITS file originator
+DATE    = '2011-10-09T07:33:33' / Date FITS file was generated
+IRAF-TLM= '2011-10-09T07:33:35' / Time of last modification
+OBJECT  = '@maind.lst//f'      / Name of the object observed
+CDELT1  =                    1 / COLUMN CHANGE PER PIXEL
+CDELT2  =                    1 / ROW CHANGE PER PIXEL
+IDNUM   =                    5 / IMAGE ID
+EXPTIME =           130.000000 / Exp time (not counting shutter error)
+COMMENT = 'Real Value = FITS*BSCALE+BZERO'
+PROGRAM = 'NEWCAM'             / New Lick Camera
+VERSION = 'cat'                / Data acquisition version
+TSEC    =           1317940368 / CLOCK TICK - SECONDS
+TUSEC   =                92116 / CLOCK TICK - MICROSECONDS
+COMMENT = 'Epoch is 00:00:00 UTC Jan. 1, 1970'
+DATE-OBS= '2011-10-06T22:32:48.09' / UTC DATE AND TIME OF OBSERVATION
+DATE-STA= '2011-10-07T06:30:33.0' / START OF OBSERVATION
+DATE-END= '2011-10-07T06:32:43.0' / END OF OBSERVATION
+CAMERAID=                    7 / CAMERA ID NUMBER
+ERASE   =                    3 / NUMBER OF ERASES
+PSKIP   =                    0 / CONTROLS POST-IMAGE SKIPPING
+CSMP    =                    1 / DCS CAP SELECTION
+CSELPRD =                    0 / PREREAD CLOCK SELECTION
+SCLEAN  =                    0 / SERIAL CLEANING CLOCK SELECTION
+TEMPCON =             5.300000 / CONTROLLER TEMPERATURE
+NSTIME  =                    1 / CONTROLS RISING TIME FOR SUBSTRATE
+VSUBEX  =                    0 / SUBSTRATE VOLTAGE DURING EXPOSURE
+VSUBER  =                    0 / SUBSTRATE VOLTAGE DURING ERASE
+NHBESP  =                   32 / BINNING FOR SPECIAL ERASE
+MERSP   =                    0 / CONTROLS SPECIAL ERASE MODE
+ERPBIN  =                    5 / PARALLEL BINNING DURING ERASE
+BINPRD  =                    0 / PREREAD SERIAL BINNING
+PPRERD  =                  100 / PRE-IMAGE ROWS
+PFREQ   =                    1 / PARALLEL CLOCK PERIOD
+PADDC   =                    0 / PARALLEL CLOCK CAPACITOR SELECTION
+BINSCLN =                    0 / BINNING FOR SERIAL CLEAN
+TSCLEAN =                   40 / SERIAL CLEAN SAMPLE TIME
+SFREQ   =                    2 / SERIAL CLOCK PERIOD
+TEMPDET =          -130.899994 / EXPOSURE START DETECTOR TEMPERATURE
+TEMPDETE=             0.000000 / EXPOSURE END DETECTOR TEMPERATURE
+SADDC   =                    2 / SERIAL CLOCK CAP SELECTION
+TCPR2   =                   16 / POST-IMAGE SERIAL PIXELS BEFORE OVERSCAN
+TCPR1   =                    4 / PRE-IMAGE SERIAL PIXELS
+TSPRD   =                   40 / SAMPLE TIME IN 0.1 MICROSECOND UNITS
+DEC     = '         +00:00:00' / DECLINATION
+NCSHIFT =                    0 / NUMBER OF CHARGE SHUFFLES
+RCSHIFT =                    0 / NUMBER OF ROWS IN EACH CHARGE SHUFFLE
+MPP     =                    0 / MPP STATE
+HA      = '         +00:00:00' / HOUR ANGLE
+REVERASE=                    1 / NUMBER OF REVERSE ERASES
+READ-SPD=                   40 / DCS READ SPEED
+ROVER   =                    0 / NUMBER OF OVERSCAN ROWS
+COVER   =                   32 / NUMBER OF OVERSCAN COLUMNS
+GAIN    =                    0 / DCS GAIN INDEX
+RA      = '         +01:16:04' / RIGHT ASCENSION
+IMAGETYP= '            OBJECT' / IMAGE TYPE
+RBIN    =                    1 / ROW BINNING
+CBIN    =                    1 / COLUMN BINNING
+CKSUMOK =                    T / CHECKSUMS MATCH
+CAMCKSUM=                  848 / CAMERA-COMPUTED CHECKSUM
+SFTCKSUM=                  848 / SOFTWARE-COMPUTED CHECKSUM
+WCSDIM  =                    2
+CTYPE1  = 'LINEAR  '
+CTYPE2  = 'LINEAR  '
+CD1_1   =                   1.
+CD2_2   =                   1.
+LTM1_1  =                   1.
+LTM2_2  =                   1.
+WAT0_001= 'system=image'
+TRIM    = 'Oct  8 23:27 Trim data section is [1:4096,1:4096]'
+CCDSEC  = '[1:4096,1:4096]'
+BIASSEC = '[1:4096,1:4096]'
+CCDMEANT=           1002583642
+CCDPROC = 'Oct  8 23:27 CCD processing done'
+CCDMEAN =                   1.
+
+d4305841FLATd099.fit[4160,4096][ushort]:       flat d 4540a
+No bad pixels, min=0., max=0. (old)
+Line storage mode, physdim [4160,4096], length of user area 2471 s.u.
+Created Sat 17:27:10 08-Oct-2011, Last modified Sat 12:51:44 08-Oct-2011
+Pixel file "d4305841FLATd099.fit" [ok]
+CRVAL1  =                    0 / COLUMN ORIGIN
+CRVAL2  =                    0 / ROW ORIGIN
+CDELT1  =                    1 / COLUMN CHANGE PER PIXEL
+CDELT2  =                    1 / ROW CHANGE PER PIXEL
+IDNUM   =                    6 / IMAGE ID
+EXPTIME =           130.000000 / Exp time (not counting shutter error)
+BSCALE  =             1.000000 / DATA SCALE FACTOR
+BZERO   =         32768.000000 / DATA ZERO POINT
+COMMENT = 'Real Value = FITS*BSCALE+BZERO'
+PROGRAM = 'NEWCAM'             / New Lick Camera
+VERSION = 'cat'                / Data acquisition version
+TSEC    =           1317940611 / CLOCK TICK - SECONDS
+TUSEC   =                95331 / CLOCK TICK - MICROSECONDS
+COMMENT = 'Epoch is 00:00:00 UTC Jan. 1, 1970'
+DATE-OBS= '2011-10-06T22:36:51.09' / UTC DATE AND TIME OF OBSERVATION
+DATE-STA= '2011-10-07T06:34:36.0' / START OF OBSERVATION
+DATE-END= '2011-10-07T06:36:46.0' / END OF OBSERVATION
+CAMERAID=                    7 / CAMERA ID NUMBER
+ERASE   =                    3 / NUMBER OF ERASES
+PSKIP   =                    0 / CONTROLS POST-IMAGE SKIPPING
+CSMP    =                    1 / DCS CAP SELECTION
+CSELPRD =                    0 / PREREAD CLOCK SELECTION
+SCLEAN  =                    0 / SERIAL CLEANING CLOCK SELECTION
+TEMPCON =             5.300000 / CONTROLLER TEMPERATURE
+NSTIME  =                    1 / CONTROLS RISING TIME FOR SUBSTRATE
+VSUBEX  =                    0 / SUBSTRATE VOLTAGE DURING EXPOSURE
+VSUBER  =                    0 / SUBSTRATE VOLTAGE DURING ERASE
+NHBESP  =                   32 / BINNING FOR SPECIAL ERASE
+MERSP   =                    0 / CONTROLS SPECIAL ERASE MODE
+ERPBIN  =                    5 / PARALLEL BINNING DURING ERASE
+BINPRD  =                    0 / PREREAD SERIAL BINNING
+PPRERD  =                  100 / PRE-IMAGE ROWS
+PFREQ   =                    1 / PARALLEL CLOCK PERIOD
+PADDC   =                    0 / PARALLEL CLOCK CAPACITOR SELECTION
+BINSCLN =                    0 / BINNING FOR SERIAL CLEAN
+TSCLEAN =                   40 / SERIAL CLEAN SAMPLE TIME
+SFREQ   =                    2 / SERIAL CLOCK PERIOD
+TEMPDET =          -130.899994 / EXPOSURE START DETECTOR TEMPERATURE
+TEMPDETE=             0.000000 / EXPOSURE END DETECTOR TEMPERATURE
+SADDC   =                    2 / SERIAL CLOCK CAP SELECTION
+TCPR2   =                   16 / POST-IMAGE SERIAL PIXELS BEFORE OVERSCAN
+TCPR1   =                    4 / PRE-IMAGE SERIAL PIXELS
+TSPRD   =                   40 / SAMPLE TIME IN 0.1 MICROSECOND UNITS
+DEC     = '         +00:00:00' / DECLINATION
+NCSHIFT =                    0 / NUMBER OF CHARGE SHUFFLES
+RCSHIFT =                    0 / NUMBER OF ROWS IN EACH CHARGE SHUFFLE
+OBJECT  = '      flat d 4540a'
+MPP     =                    0 / MPP STATE
+HA      = '         +00:00:00' / HOUR ANGLE
+REVERASE=                    1 / NUMBER OF REVERSE ERASES
+READ-SPD=                   40 / DCS READ SPEED
+ROVER   =                    0 / NUMBER OF OVERSCAN ROWS
+COVER   =                   32 / NUMBER OF OVERSCAN COLUMNS
+GAIN    =                    0 / DCS GAIN INDEX
+RA      = '         +00:04:48' / RIGHT ASCENSION
+IMAGETYP= '            OBJECT' / IMAGE TYPE
+RBIN    =                    1 / ROW BINNING
+CBIN    =                    1 / COLUMN BINNING
+CKSUMOK =                    T / CHECKSUMS MATCH
+CAMCKSUM=                63191 / CAMERA-COMPUTED CHECKSUM
+SFTCKSUM=                63191 / SOFTWARE-COMPUTED CHECKSUM
+
+d4305841FLATd099o.fit[4096,4096][real]: @maind.lst//f
+No bad pixels, min=0., max=0. (old)
+Line storage mode, physdim [4096,4096], length of user area 4131 s.u.
+Created Sun 15:33:37 09-Oct-2011, Last modified Sun 15:33:39 09-Oct-2011
+Pixel file "d4305841FLATd099o.fit" [ok]
+EXTEND  =                    F / File may contain extensions
+ORIGIN  = 'NOAO-IRAF FITS Image Kernel July 2003' / FITS file originator
+DATE    = '2011-10-09T07:33:37' / Date FITS file was generated
+IRAF-TLM= '2011-10-09T07:33:39' / Time of last modification
+OBJECT  = '@maind.lst//f'      / Name of the object observed
+CDELT1  =                    1 / COLUMN CHANGE PER PIXEL
+CDELT2  =                    1 / ROW CHANGE PER PIXEL
+IDNUM   =                    6 / IMAGE ID
+EXPTIME =           130.000000 / Exp time (not counting shutter error)
+COMMENT = 'Real Value = FITS*BSCALE+BZERO'
+PROGRAM = 'NEWCAM'             / New Lick Camera
+VERSION = 'cat'                / Data acquisition version
+TSEC    =           1317940611 / CLOCK TICK - SECONDS
+TUSEC   =                95331 / CLOCK TICK - MICROSECONDS
+COMMENT = 'Epoch is 00:00:00 UTC Jan. 1, 1970'
+DATE-OBS= '2011-10-06T22:36:51.09' / UTC DATE AND TIME OF OBSERVATION
+DATE-STA= '2011-10-07T06:34:36.0' / START OF OBSERVATION
+DATE-END= '2011-10-07T06:36:46.0' / END OF OBSERVATION
+CAMERAID=                    7 / CAMERA ID NUMBER
+ERASE   =                    3 / NUMBER OF ERASES
+PSKIP   =                    0 / CONTROLS POST-IMAGE SKIPPING
+CSMP    =                    1 / DCS CAP SELECTION
+CSELPRD =                    0 / PREREAD CLOCK SELECTION
+SCLEAN  =                    0 / SERIAL CLEANING CLOCK SELECTION
+TEMPCON =             5.300000 / CONTROLLER TEMPERATURE
+NSTIME  =                    1 / CONTROLS RISING TIME FOR SUBSTRATE
+VSUBEX  =                    0 / SUBSTRATE VOLTAGE DURING EXPOSURE
+VSUBER  =                    0 / SUBSTRATE VOLTAGE DURING ERASE
+NHBESP  =                   32 / BINNING FOR SPECIAL ERASE
+MERSP   =                    0 / CONTROLS SPECIAL ERASE MODE
+ERPBIN  =                    5 / PARALLEL BINNING DURING ERASE
+BINPRD  =                    0 / PREREAD SERIAL BINNING
+PPRERD  =                  100 / PRE-IMAGE ROWS
+PFREQ   =                    1 / PARALLEL CLOCK PERIOD
+PADDC   =                    0 / PARALLEL CLOCK CAPACITOR SELECTION
+BINSCLN =                    0 / BINNING FOR SERIAL CLEAN
+TSCLEAN =                   40 / SERIAL CLEAN SAMPLE TIME
+SFREQ   =                    2 / SERIAL CLOCK PERIOD
+TEMPDET =          -130.899994 / EXPOSURE START DETECTOR TEMPERATURE
+TEMPDETE=             0.000000 / EXPOSURE END DETECTOR TEMPERATURE
+SADDC   =                    2 / SERIAL CLOCK CAP SELECTION
+TCPR2   =                   16 / POST-IMAGE SERIAL PIXELS BEFORE OVERSCAN
+TCPR1   =                    4 / PRE-IMAGE SERIAL PIXELS
+TSPRD   =                   40 / SAMPLE TIME IN 0.1 MICROSECOND UNITS
+DEC     = '         +00:00:00' / DECLINATION
+NCSHIFT =                    0 / NUMBER OF CHARGE SHUFFLES
+RCSHIFT =                    0 / NUMBER OF ROWS IN EACH CHARGE SHUFFLE
+MPP     =                    0 / MPP STATE
+HA      = '         +00:00:00' / HOUR ANGLE
+REVERASE=                    1 / NUMBER OF REVERSE ERASES
+READ-SPD=                   40 / DCS READ SPEED
+ROVER   =                    0 / NUMBER OF OVERSCAN ROWS
+COVER   =                   32 / NUMBER OF OVERSCAN COLUMNS
+GAIN    =                    0 / DCS GAIN INDEX
+RA      = '         +00:04:48' / RIGHT ASCENSION
+IMAGETYP= '            OBJECT' / IMAGE TYPE
+RBIN    =                    1 / ROW BINNING
+CBIN    =                    1 / COLUMN BINNING
+CKSUMOK =                    T / CHECKSUMS MATCH
+CAMCKSUM=                63191 / CAMERA-COMPUTED CHECKSUM
+SFTCKSUM=                63191 / SOFTWARE-COMPUTED CHECKSUM
+WCSDIM  =                    2
+CTYPE1  = 'LINEAR  '
+CTYPE2  = 'LINEAR  '
+CD1_1   =                   1.
+CD2_2   =                   1.
+LTM1_1  =                   1.
+LTM2_2  =                   1.
+WAT0_001= 'system=image'
+TRIM    = 'Oct  8 23:27 Trim data section is [1:4096,1:4096]'
+CCDSEC  = '[1:4096,1:4096]'
+BIASSEC = '[1:4096,1:4096]'
+CCDMEANT=           1002583647
+CCDPROC = 'Oct  8 23:27 CCD processing done'
+CCDMEAN =                   1.
+
+d4305841FLATd102.fit[4160,4096][ushort]:       flat d 4540a
+No bad pixels, min=0., max=0. (old)
+Line storage mode, physdim [4160,4096], length of user area 2471 s.u.
+Created Sat 17:27:07 08-Oct-2011, Last modified Sat 12:46:45 08-Oct-2011
+Pixel file "d4305841FLATd102.fit" [ok]
+CRVAL1  =                    0 / COLUMN ORIGIN
+CRVAL2  =                    0 / ROW ORIGIN
+CDELT1  =                    1 / COLUMN CHANGE PER PIXEL
+CDELT2  =                    1 / ROW CHANGE PER PIXEL
+IDNUM   =                    1 / IMAGE ID
+EXPTIME =           130.000000 / Exp time (not counting shutter error)
+BSCALE  =             1.000000 / DATA SCALE FACTOR
+BZERO   =         32768.000000 / DATA ZERO POINT
+COMMENT = 'Real Value = FITS*BSCALE+BZERO'
+PROGRAM = 'NEWCAM'             / New Lick Camera
+VERSION = 'cat'                / Data acquisition version
+TSEC    =           1317941340 / CLOCK TICK - SECONDS
+TUSEC   =                25337 / CLOCK TICK - MICROSECONDS
+COMMENT = 'Epoch is 00:00:00 UTC Jan. 1, 1970'
+DATE-OBS= '2011-10-06T22:49:00.02' / UTC DATE AND TIME OF OBSERVATION
+DATE-STA= '2011-10-07T06:46:45.0' / START OF OBSERVATION
+DATE-END= '2011-10-07T06:48:55.0' / END OF OBSERVATION
+CAMERAID=                    7 / CAMERA ID NUMBER
+ERASE   =                    3 / NUMBER OF ERASES
+PSKIP   =                    0 / CONTROLS POST-IMAGE SKIPPING
+CSMP    =                    1 / DCS CAP SELECTION
+CSELPRD =                    0 / PREREAD CLOCK SELECTION
+SCLEAN  =                    0 / SERIAL CLEANING CLOCK SELECTION
+TEMPCON =             5.300000 / CONTROLLER TEMPERATURE
+NSTIME  =                    1 / CONTROLS RISING TIME FOR SUBSTRATE
+VSUBEX  =                    0 / SUBSTRATE VOLTAGE DURING EXPOSURE
+VSUBER  =                    0 / SUBSTRATE VOLTAGE DURING ERASE
+NHBESP  =                   32 / BINNING FOR SPECIAL ERASE
+MERSP   =                    0 / CONTROLS SPECIAL ERASE MODE
+ERPBIN  =                    5 / PARALLEL BINNING DURING ERASE
+BINPRD  =                    0 / PREREAD SERIAL BINNING
+PPRERD  =                  100 / PRE-IMAGE ROWS
+PFREQ   =                    1 / PARALLEL CLOCK PERIOD
+PADDC   =                    0 / PARALLEL CLOCK CAPACITOR SELECTION
+BINSCLN =                    0 / BINNING FOR SERIAL CLEAN
+TSCLEAN =                   40 / SERIAL CLEAN SAMPLE TIME
+SFREQ   =                    2 / SERIAL CLOCK PERIOD
+TEMPDET =          -130.899994 / EXPOSURE START DETECTOR TEMPERATURE
+TEMPDETE=             0.000000 / EXPOSURE END DETECTOR TEMPERATURE
+SADDC   =                    2 / SERIAL CLOCK CAP SELECTION
+TCPR2   =                   16 / POST-IMAGE SERIAL PIXELS BEFORE OVERSCAN
+TCPR1   =                    4 / PRE-IMAGE SERIAL PIXELS
+TSPRD   =                   40 / SAMPLE TIME IN 0.1 MICROSECOND UNITS
+DEC     = '         +00:00:00' / DECLINATION
+NCSHIFT =                    0 / NUMBER OF CHARGE SHUFFLES
+RCSHIFT =                    0 / NUMBER OF ROWS IN EACH CHARGE SHUFFLE
+OBJECT  = '      flat d 4540a'
+MPP     =                    0 / MPP STATE
+HA      = '         +00:00:00' / HOUR ANGLE
+REVERASE=                    1 / NUMBER OF REVERSE ERASES
+READ-SPD=                   40 / DCS READ SPEED
+ROVER   =                    0 / NUMBER OF OVERSCAN ROWS
+COVER   =                   32 / NUMBER OF OVERSCAN COLUMNS
+GAIN    =                    0 / DCS GAIN INDEX
+RA      = '         +00:29:43' / RIGHT ASCENSION
+IMAGETYP= '            OBJECT' / IMAGE TYPE
+RBIN    =                    1 / ROW BINNING
+CBIN    =                    1 / COLUMN BINNING
+CKSUMOK =                    T / CHECKSUMS MATCH
+CAMCKSUM=                54457 / CAMERA-COMPUTED CHECKSUM
+SFTCKSUM=                54457 / SOFTWARE-COMPUTED CHECKSUM
+
+d4305841FLATd102o.fit[4096,4096][real]: @maind.lst//f
+No bad pixels, min=0., max=0. (old)
+Line storage mode, physdim [4096,4096], length of user area 4131 s.u.
+Created Sun 15:33:42 09-Oct-2011, Last modified Sun 15:33:45 09-Oct-2011
+Pixel file "d4305841FLATd102o.fit" [ok]
+EXTEND  =                    F / File may contain extensions
+ORIGIN  = 'NOAO-IRAF FITS Image Kernel July 2003' / FITS file originator
+DATE    = '2011-10-09T07:33:42' / Date FITS file was generated
+IRAF-TLM= '2011-10-09T07:33:45' / Time of last modification
+OBJECT  = '@maind.lst//f'      / Name of the object observed
+CDELT1  =                    1 / COLUMN CHANGE PER PIXEL
+CDELT2  =                    1 / ROW CHANGE PER PIXEL
+IDNUM   =                    1 / IMAGE ID
+EXPTIME =           130.000000 / Exp time (not counting shutter error)
+COMMENT = 'Real Value = FITS*BSCALE+BZERO'
+PROGRAM = 'NEWCAM'             / New Lick Camera
+VERSION = 'cat'                / Data acquisition version
+TSEC    =           1317941340 / CLOCK TICK - SECONDS
+TUSEC   =                25337 / CLOCK TICK - MICROSECONDS
+COMMENT = 'Epoch is 00:00:00 UTC Jan. 1, 1970'
+DATE-OBS= '2011-10-06T22:49:00.02' / UTC DATE AND TIME OF OBSERVATION
+DATE-STA= '2011-10-07T06:46:45.0' / START OF OBSERVATION
+DATE-END= '2011-10-07T06:48:55.0' / END OF OBSERVATION
+CAMERAID=                    7 / CAMERA ID NUMBER
+ERASE   =                    3 / NUMBER OF ERASES
+PSKIP   =                    0 / CONTROLS POST-IMAGE SKIPPING
+CSMP    =                    1 / DCS CAP SELECTION
+CSELPRD =                    0 / PREREAD CLOCK SELECTION
+SCLEAN  =                    0 / SERIAL CLEANING CLOCK SELECTION
+TEMPCON =             5.300000 / CONTROLLER TEMPERATURE
+NSTIME  =                    1 / CONTROLS RISING TIME FOR SUBSTRATE
+VSUBEX  =                    0 / SUBSTRATE VOLTAGE DURING EXPOSURE
+VSUBER  =                    0 / SUBSTRATE VOLTAGE DURING ERASE
+NHBESP  =                   32 / BINNING FOR SPECIAL ERASE
+MERSP   =                    0 / CONTROLS SPECIAL ERASE MODE
+ERPBIN  =                    5 / PARALLEL BINNING DURING ERASE
+BINPRD  =                    0 / PREREAD SERIAL BINNING
+PPRERD  =                  100 / PRE-IMAGE ROWS
+PFREQ   =                    1 / PARALLEL CLOCK PERIOD
+PADDC   =                    0 / PARALLEL CLOCK CAPACITOR SELECTION
+BINSCLN =                    0 / BINNING FOR SERIAL CLEAN
+TSCLEAN =                   40 / SERIAL CLEAN SAMPLE TIME
+SFREQ   =                    2 / SERIAL CLOCK PERIOD
+TEMPDET =          -130.899994 / EXPOSURE START DETECTOR TEMPERATURE
+TEMPDETE=             0.000000 / EXPOSURE END DETECTOR TEMPERATURE
+SADDC   =                    2 / SERIAL CLOCK CAP SELECTION
+TCPR2   =                   16 / POST-IMAGE SERIAL PIXELS BEFORE OVERSCAN
+TCPR1   =                    4 / PRE-IMAGE SERIAL PIXELS
+TSPRD   =                   40 / SAMPLE TIME IN 0.1 MICROSECOND UNITS
+DEC     = '         +00:00:00' / DECLINATION
+NCSHIFT =                    0 / NUMBER OF CHARGE SHUFFLES
+RCSHIFT =                    0 / NUMBER OF ROWS IN EACH CHARGE SHUFFLE
+MPP     =                    0 / MPP STATE
+HA      = '         +00:00:00' / HOUR ANGLE
+REVERASE=                    1 / NUMBER OF REVERSE ERASES
+READ-SPD=                   40 / DCS READ SPEED
+ROVER   =                    0 / NUMBER OF OVERSCAN ROWS
+COVER   =                   32 / NUMBER OF OVERSCAN COLUMNS
+GAIN    =                    0 / DCS GAIN INDEX
+RA      = '         +00:29:43' / RIGHT ASCENSION
+IMAGETYP= '            OBJECT' / IMAGE TYPE
+RBIN    =                    1 / ROW BINNING
+CBIN    =                    1 / COLUMN BINNING
+CKSUMOK =                    T / CHECKSUMS MATCH
+CAMCKSUM=                54457 / CAMERA-COMPUTED CHECKSUM
+SFTCKSUM=                54457 / SOFTWARE-COMPUTED CHECKSUM
+WCSDIM  =                    2
+CTYPE1  = 'LINEAR  '
+CTYPE2  = 'LINEAR  '
+CD1_1   =                   1.
+CD2_2   =                   1.
+LTM1_1  =                   1.
+LTM2_2  =                   1.
+WAT0_001= 'system=image'
+TRIM    = 'Oct  8 23:27 Trim data section is [1:4096,1:4096]'
+CCDSEC  = '[1:4096,1:4096]'
+BIASSEC = '[1:4096,1:4096]'
+CCDMEANT=           1002583654
+CCDPROC = 'Oct  8 23:27 CCD processing done'
+CCDMEAN =                   1.
+
+d4305841FLATd103.fit[4160,4096][ushort]:       flat d 4540a
+No bad pixels, min=0., max=0. (old)
+Line storage mode, physdim [4160,4096], length of user area 2471 s.u.
+Created Sat 17:27:07 08-Oct-2011, Last modified Sat 12:55:28 08-Oct-2011
+Pixel file "d4305841FLATd103.fit" [ok]
+CRVAL1  =                    0 / COLUMN ORIGIN
+CRVAL2  =                    0 / ROW ORIGIN
+CDELT1  =                    1 / COLUMN CHANGE PER PIXEL
+CDELT2  =                    1 / ROW CHANGE PER PIXEL
+IDNUM   =                    2 / IMAGE ID
+EXPTIME =           130.000000 / Exp time (not counting shutter error)
+BSCALE  =             1.000000 / DATA SCALE FACTOR
+BZERO   =         32768.000000 / DATA ZERO POINT
+COMMENT = 'Real Value = FITS*BSCALE+BZERO'
+PROGRAM = 'NEWCAM'             / New Lick Camera
+VERSION = 'cat'                / Data acquisition version
+TSEC    =           1317941582 / CLOCK TICK - SECONDS
+TUSEC   =               150579 / CLOCK TICK - MICROSECONDS
+COMMENT = 'Epoch is 00:00:00 UTC Jan. 1, 1970'
+DATE-OBS= '2011-10-06T22:53:02.15' / UTC DATE AND TIME OF OBSERVATION
+DATE-STA= '2011-10-07T06:50:47.0' / START OF OBSERVATION
+DATE-END= '2011-10-07T06:52:57.0' / END OF OBSERVATION
+CAMERAID=                    7 / CAMERA ID NUMBER
+ERASE   =                    3 / NUMBER OF ERASES
+PSKIP   =                    0 / CONTROLS POST-IMAGE SKIPPING
+CSMP    =                    1 / DCS CAP SELECTION
+CSELPRD =                    0 / PREREAD CLOCK SELECTION
+SCLEAN  =                    0 / SERIAL CLEANING CLOCK SELECTION
+TEMPCON =             5.300000 / CONTROLLER TEMPERATURE
+NSTIME  =                    1 / CONTROLS RISING TIME FOR SUBSTRATE
+VSUBEX  =                    0 / SUBSTRATE VOLTAGE DURING EXPOSURE
+VSUBER  =                    0 / SUBSTRATE VOLTAGE DURING ERASE
+NHBESP  =                   32 / BINNING FOR SPECIAL ERASE
+MERSP   =                    0 / CONTROLS SPECIAL ERASE MODE
+ERPBIN  =                    5 / PARALLEL BINNING DURING ERASE
+BINPRD  =                    0 / PREREAD SERIAL BINNING
+PPRERD  =                  100 / PRE-IMAGE ROWS
+PFREQ   =                    1 / PARALLEL CLOCK PERIOD
+PADDC   =                    0 / PARALLEL CLOCK CAPACITOR SELECTION
+BINSCLN =                    0 / BINNING FOR SERIAL CLEAN
+TSCLEAN =                   40 / SERIAL CLEAN SAMPLE TIME
+SFREQ   =                    2 / SERIAL CLOCK PERIOD
+TEMPDET =          -130.899994 / EXPOSURE START DETECTOR TEMPERATURE
+TEMPDETE=             0.000000 / EXPOSURE END DETECTOR TEMPERATURE
+SADDC   =                    2 / SERIAL CLOCK CAP SELECTION
+TCPR2   =                   16 / POST-IMAGE SERIAL PIXELS BEFORE OVERSCAN
+TCPR1   =                    4 / PRE-IMAGE SERIAL PIXELS
+TSPRD   =                   40 / SAMPLE TIME IN 0.1 MICROSECOND UNITS
+DEC     = '         +00:00:00' / DECLINATION
+NCSHIFT =                    0 / NUMBER OF CHARGE SHUFFLES
+RCSHIFT =                    0 / NUMBER OF ROWS IN EACH CHARGE SHUFFLE
+OBJECT  = '      flat d 4540a'
+MPP     =                    0 / MPP STATE
+HA      = '         +00:00:00' / HOUR ANGLE
+REVERASE=                    1 / NUMBER OF REVERSE ERASES
+READ-SPD=                   40 / DCS READ SPEED
+ROVER   =                    0 / NUMBER OF OVERSCAN ROWS
+COVER   =                   32 / NUMBER OF OVERSCAN COLUMNS
+GAIN    =                    0 / DCS GAIN INDEX
+RA      = '         +01:15:19' / RIGHT ASCENSION
+IMAGETYP= '            OBJECT' / IMAGE TYPE
+RBIN    =                    1 / ROW BINNING
+CBIN    =                    1 / COLUMN BINNING
+CKSUMOK =                    T / CHECKSUMS MATCH
+CAMCKSUM=                33116 / CAMERA-COMPUTED CHECKSUM
+SFTCKSUM=                33116 / SOFTWARE-COMPUTED CHECKSUM
+
+d4305841FLATd103o.fit[4096,4096][real]: @maind.lst//f
+No bad pixels, min=0., max=0. (old)
+Line storage mode, physdim [4096,4096], length of user area 4131 s.u.
+Created Sun 15:33:48 09-Oct-2011, Last modified Sun 15:33:50 09-Oct-2011
+Pixel file "d4305841FLATd103o.fit" [ok]
+EXTEND  =                    F / File may contain extensions
+ORIGIN  = 'NOAO-IRAF FITS Image Kernel July 2003' / FITS file originator
+DATE    = '2011-10-09T07:33:48' / Date FITS file was generated
+IRAF-TLM= '2011-10-09T07:33:50' / Time of last modification
+OBJECT  = '@maind.lst//f'      / Name of the object observed
+CDELT1  =                    1 / COLUMN CHANGE PER PIXEL
+CDELT2  =                    1 / ROW CHANGE PER PIXEL
+IDNUM   =                    2 / IMAGE ID
+EXPTIME =           130.000000 / Exp time (not counting shutter error)
+COMMENT = 'Real Value = FITS*BSCALE+BZERO'
+PROGRAM = 'NEWCAM'             / New Lick Camera
+VERSION = 'cat'                / Data acquisition version
+TSEC    =           1317941582 / CLOCK TICK - SECONDS
+TUSEC   =               150579 / CLOCK TICK - MICROSECONDS
+COMMENT = 'Epoch is 00:00:00 UTC Jan. 1, 1970'
+DATE-OBS= '2011-10-06T22:53:02.15' / UTC DATE AND TIME OF OBSERVATION
+DATE-STA= '2011-10-07T06:50:47.0' / START OF OBSERVATION
+DATE-END= '2011-10-07T06:52:57.0' / END OF OBSERVATION
+CAMERAID=                    7 / CAMERA ID NUMBER
+ERASE   =                    3 / NUMBER OF ERASES
+PSKIP   =                    0 / CONTROLS POST-IMAGE SKIPPING
+CSMP    =                    1 / DCS CAP SELECTION
+CSELPRD =                    0 / PREREAD CLOCK SELECTION
+SCLEAN  =                    0 / SERIAL CLEANING CLOCK SELECTION
+TEMPCON =             5.300000 / CONTROLLER TEMPERATURE
+NSTIME  =                    1 / CONTROLS RISING TIME FOR SUBSTRATE
+VSUBEX  =                    0 / SUBSTRATE VOLTAGE DURING EXPOSURE
+VSUBER  =                    0 / SUBSTRATE VOLTAGE DURING ERASE
+NHBESP  =                   32 / BINNING FOR SPECIAL ERASE
+MERSP   =                    0 / CONTROLS SPECIAL ERASE MODE
+ERPBIN  =                    5 / PARALLEL BINNING DURING ERASE
+BINPRD  =                    0 / PREREAD SERIAL BINNING
+PPRERD  =                  100 / PRE-IMAGE ROWS
+PFREQ   =                    1 / PARALLEL CLOCK PERIOD
+PADDC   =                    0 / PARALLEL CLOCK CAPACITOR SELECTION
+BINSCLN =                    0 / BINNING FOR SERIAL CLEAN
+TSCLEAN =                   40 / SERIAL CLEAN SAMPLE TIME
+SFREQ   =                    2 / SERIAL CLOCK PERIOD
+TEMPDET =          -130.899994 / EXPOSURE START DETECTOR TEMPERATURE
+TEMPDETE=             0.000000 / EXPOSURE END DETECTOR TEMPERATURE
+SADDC   =                    2 / SERIAL CLOCK CAP SELECTION
+TCPR2   =                   16 / POST-IMAGE SERIAL PIXELS BEFORE OVERSCAN
+TCPR1   =                    4 / PRE-IMAGE SERIAL PIXELS
+TSPRD   =                   40 / SAMPLE TIME IN 0.1 MICROSECOND UNITS
+DEC     = '         +00:00:00' / DECLINATION
+NCSHIFT =                    0 / NUMBER OF CHARGE SHUFFLES
+RCSHIFT =                    0 / NUMBER OF ROWS IN EACH CHARGE SHUFFLE
+MPP     =                    0 / MPP STATE
+HA      = '         +00:00:00' / HOUR ANGLE
+REVERASE=                    1 / NUMBER OF REVERSE ERASES
+READ-SPD=                   40 / DCS READ SPEED
+ROVER   =                    0 / NUMBER OF OVERSCAN ROWS
+COVER   =                   32 / NUMBER OF OVERSCAN COLUMNS
+GAIN    =                    0 / DCS GAIN INDEX
+RA      = '         +01:15:19' / RIGHT ASCENSION
+IMAGETYP= '            OBJECT' / IMAGE TYPE
+RBIN    =                    1 / ROW BINNING
+CBIN    =                    1 / COLUMN BINNING
+CKSUMOK =                    T / CHECKSUMS MATCH
+CAMCKSUM=                33116 / CAMERA-COMPUTED CHECKSUM
+SFTCKSUM=                33116 / SOFTWARE-COMPUTED CHECKSUM
+WCSDIM  =                    2
+CTYPE1  = 'LINEAR  '
+CTYPE2  = 'LINEAR  '
+CD1_1   =                   1.
+CD2_2   =                   1.
+LTM1_1  =                   1.
+LTM2_2  =                   1.
+WAT0_001= 'system=image'
+TRIM    = 'Oct  8 23:27 Trim data section is [1:4096,1:4096]'
+CCDSEC  = '[1:4096,1:4096]'
+BIASSEC = '[1:4096,1:4096]'
+CCDMEANT=           1002583663
+CCDPROC = 'Oct  8 23:27 CCD processing done'
+CCDMEAN =                   1.
+
+d4305841FLATd104.fit[4160,4096][ushort]:       flat d 4540a
+No bad pixels, min=0., max=0. (old)
+Line storage mode, physdim [4160,4096], length of user area 2471 s.u.
+Created Sat 17:27:07 08-Oct-2011, Last modified Sat 12:56:33 08-Oct-2011
+Pixel file "d4305841FLATd104.fit" [ok]
+CRVAL1  =                    0 / COLUMN ORIGIN
+CRVAL2  =                    0 / ROW ORIGIN
+CDELT1  =                    1 / COLUMN CHANGE PER PIXEL
+CDELT2  =                    1 / ROW CHANGE PER PIXEL
+IDNUM   =                    3 / IMAGE ID
+EXPTIME =           130.000000 / Exp time (not counting shutter error)
+BSCALE  =             1.000000 / DATA SCALE FACTOR
+BZERO   =         32768.000000 / DATA ZERO POINT
+COMMENT = 'Real Value = FITS*BSCALE+BZERO'
+PROGRAM = 'NEWCAM'             / New Lick Camera
+VERSION = 'cat'                / Data acquisition version
+TSEC    =           1317941824 / CLOCK TICK - SECONDS
+TUSEC   =               265349 / CLOCK TICK - MICROSECONDS
+COMMENT = 'Epoch is 00:00:00 UTC Jan. 1, 1970'
+DATE-OBS= '2011-10-06T22:57:04.26' / UTC DATE AND TIME OF OBSERVATION
+DATE-STA= '2011-10-07T06:54:49.0' / START OF OBSERVATION
+DATE-END= '2011-10-07T06:56:59.0' / END OF OBSERVATION
+CAMERAID=                    7 / CAMERA ID NUMBER
+ERASE   =                    3 / NUMBER OF ERASES
+PSKIP   =                    0 / CONTROLS POST-IMAGE SKIPPING
+CSMP    =                    1 / DCS CAP SELECTION
+CSELPRD =                    0 / PREREAD CLOCK SELECTION
+SCLEAN  =                    0 / SERIAL CLEANING CLOCK SELECTION
+TEMPCON =             5.300000 / CONTROLLER TEMPERATURE
+NSTIME  =                    1 / CONTROLS RISING TIME FOR SUBSTRATE
+VSUBEX  =                    0 / SUBSTRATE VOLTAGE DURING EXPOSURE
+VSUBER  =                    0 / SUBSTRATE VOLTAGE DURING ERASE
+NHBESP  =                   32 / BINNING FOR SPECIAL ERASE
+MERSP   =                    0 / CONTROLS SPECIAL ERASE MODE
+ERPBIN  =                    5 / PARALLEL BINNING DURING ERASE
+BINPRD  =                    0 / PREREAD SERIAL BINNING
+PPRERD  =                  100 / PRE-IMAGE ROWS
+PFREQ   =                    1 / PARALLEL CLOCK PERIOD
+PADDC   =                    0 / PARALLEL CLOCK CAPACITOR SELECTION
+BINSCLN =                    0 / BINNING FOR SERIAL CLEAN
+TSCLEAN =                   40 / SERIAL CLEAN SAMPLE TIME
+SFREQ   =                    2 / SERIAL CLOCK PERIOD
+TEMPDET =          -130.899994 / EXPOSURE START DETECTOR TEMPERATURE
+TEMPDETE=             0.000000 / EXPOSURE END DETECTOR TEMPERATURE
+SADDC   =                    2 / SERIAL CLOCK CAP SELECTION
+TCPR2   =                   16 / POST-IMAGE SERIAL PIXELS BEFORE OVERSCAN
+TCPR1   =                    4 / PRE-IMAGE SERIAL PIXELS
+TSPRD   =                   40 / SAMPLE TIME IN 0.1 MICROSECOND UNITS
+DEC     = '         +00:00:00' / DECLINATION
+NCSHIFT =                    0 / NUMBER OF CHARGE SHUFFLES
+RCSHIFT =                    0 / NUMBER OF ROWS IN EACH CHARGE SHUFFLE
+OBJECT  = '      flat d 4540a'
+MPP     =                    0 / MPP STATE
+HA      = '         +00:00:00' / HOUR ANGLE
+REVERASE=                    1 / NUMBER OF REVERSE ERASES
+READ-SPD=                   40 / DCS READ SPEED
+ROVER   =                    0 / NUMBER OF OVERSCAN ROWS
+COVER   =                   32 / NUMBER OF OVERSCAN COLUMNS
+GAIN    =                    0 / DCS GAIN INDEX
+RA      = '         +01:13:10' / RIGHT ASCENSION
+IMAGETYP= '            OBJECT' / IMAGE TYPE
+RBIN    =                    1 / ROW BINNING
+CBIN    =                    1 / COLUMN BINNING
+CKSUMOK =                    T / CHECKSUMS MATCH
+CAMCKSUM=                50795 / CAMERA-COMPUTED CHECKSUM
+SFTCKSUM=                50795 / SOFTWARE-COMPUTED CHECKSUM
+
+d4305841FLATd104o.fit[4096,4096][real]: @maind.lst//f
+No bad pixels, min=0., max=0. (old)
+Line storage mode, physdim [4096,4096], length of user area 4131 s.u.
+Created Sun 15:33:53 09-Oct-2011, Last modified Sun 15:33:56 09-Oct-2011
+Pixel file "d4305841FLATd104o.fit" [ok]
+EXTEND  =                    F / File may contain extensions
+ORIGIN  = 'NOAO-IRAF FITS Image Kernel July 2003' / FITS file originator
+DATE    = '2011-10-09T07:33:53' / Date FITS file was generated
+IRAF-TLM= '2011-10-09T07:33:56' / Time of last modification
+OBJECT  = '@maind.lst//f'      / Name of the object observed
+CDELT1  =                    1 / COLUMN CHANGE PER PIXEL
+CDELT2  =                    1 / ROW CHANGE PER PIXEL
+IDNUM   =                    3 / IMAGE ID
+EXPTIME =           130.000000 / Exp time (not counting shutter error)
+COMMENT = 'Real Value = FITS*BSCALE+BZERO'
+PROGRAM = 'NEWCAM'             / New Lick Camera
+VERSION = 'cat'                / Data acquisition version
+TSEC    =           1317941824 / CLOCK TICK - SECONDS
+TUSEC   =               265349 / CLOCK TICK - MICROSECONDS
+COMMENT = 'Epoch is 00:00:00 UTC Jan. 1, 1970'
+DATE-OBS= '2011-10-06T22:57:04.26' / UTC DATE AND TIME OF OBSERVATION
+DATE-STA= '2011-10-07T06:54:49.0' / START OF OBSERVATION
+DATE-END= '2011-10-07T06:56:59.0' / END OF OBSERVATION
+CAMERAID=                    7 / CAMERA ID NUMBER
+ERASE   =                    3 / NUMBER OF ERASES
+PSKIP   =                    0 / CONTROLS POST-IMAGE SKIPPING
+CSMP    =                    1 / DCS CAP SELECTION
+CSELPRD =                    0 / PREREAD CLOCK SELECTION
+SCLEAN  =                    0 / SERIAL CLEANING CLOCK SELECTION
+TEMPCON =             5.300000 / CONTROLLER TEMPERATURE
+NSTIME  =                    1 / CONTROLS RISING TIME FOR SUBSTRATE
+VSUBEX  =                    0 / SUBSTRATE VOLTAGE DURING EXPOSURE
+VSUBER  =                    0 / SUBSTRATE VOLTAGE DURING ERASE
+NHBESP  =                   32 / BINNING FOR SPECIAL ERASE
+MERSP   =                    0 / CONTROLS SPECIAL ERASE MODE
+ERPBIN  =                    5 / PARALLEL BINNING DURING ERASE
+BINPRD  =                    0 / PREREAD SERIAL BINNING
+PPRERD  =                  100 / PRE-IMAGE ROWS
+PFREQ   =                    1 / PARALLEL CLOCK PERIOD
+PADDC   =                    0 / PARALLEL CLOCK CAPACITOR SELECTION
+BINSCLN =                    0 / BINNING FOR SERIAL CLEAN
+TSCLEAN =                   40 / SERIAL CLEAN SAMPLE TIME
+SFREQ   =                    2 / SERIAL CLOCK PERIOD
+TEMPDET =          -130.899994 / EXPOSURE START DETECTOR TEMPERATURE
+TEMPDETE=             0.000000 / EXPOSURE END DETECTOR TEMPERATURE
+SADDC   =                    2 / SERIAL CLOCK CAP SELECTION
+TCPR2   =                   16 / POST-IMAGE SERIAL PIXELS BEFORE OVERSCAN
+TCPR1   =                    4 / PRE-IMAGE SERIAL PIXELS
+TSPRD   =                   40 / SAMPLE TIME IN 0.1 MICROSECOND UNITS
+DEC     = '         +00:00:00' / DECLINATION
+NCSHIFT =                    0 / NUMBER OF CHARGE SHUFFLES
+RCSHIFT =                    0 / NUMBER OF ROWS IN EACH CHARGE SHUFFLE
+MPP     =                    0 / MPP STATE
+HA      = '         +00:00:00' / HOUR ANGLE
+REVERASE=                    1 / NUMBER OF REVERSE ERASES
+READ-SPD=                   40 / DCS READ SPEED
+ROVER   =                    0 / NUMBER OF OVERSCAN ROWS
+COVER   =                   32 / NUMBER OF OVERSCAN COLUMNS
+GAIN    =                    0 / DCS GAIN INDEX
+RA      = '         +01:13:10' / RIGHT ASCENSION
+IMAGETYP= '            OBJECT' / IMAGE TYPE
+RBIN    =                    1 / ROW BINNING
+CBIN    =                    1 / COLUMN BINNING
+CKSUMOK =                    T / CHECKSUMS MATCH
+CAMCKSUM=                50795 / CAMERA-COMPUTED CHECKSUM
+SFTCKSUM=                50795 / SOFTWARE-COMPUTED CHECKSUM
+WCSDIM  =                    2
+CTYPE1  = 'LINEAR  '
+CTYPE2  = 'LINEAR  '
+CD1_1   =                   1.
+CD2_2   =                   1.
+LTM1_1  =                   1.
+LTM2_2  =                   1.
+WAT0_001= 'system=image'
+TRIM    = 'Oct  8 23:27 Trim data section is [1:4096,1:4096]'
+CCDSEC  = '[1:4096,1:4096]'
+BIASSEC = '[1:4096,1:4096]'
+CCDMEANT=           1002583671
+CCDPROC = 'Oct  8 23:27 CCD processing done'
+CCDMEAN =                   1.
+
+d4305841FLATd105.fit[4160,4096][ushort]:       flat d 4540a
+No bad pixels, min=0., max=0. (old)
+Line storage mode, physdim [4160,4096], length of user area 2471 s.u.
+Created Sat 17:27:07 08-Oct-2011, Last modified Sat 12:54:50 08-Oct-2011
+Pixel file "d4305841FLATd105.fit" [ok]
+CRVAL1  =                    0 / COLUMN ORIGIN
+CRVAL2  =                    0 / ROW ORIGIN
+CDELT1  =                    1 / COLUMN CHANGE PER PIXEL
+CDELT2  =                    1 / ROW CHANGE PER PIXEL
+IDNUM   =                    4 / IMAGE ID
+EXPTIME =           130.000000 / Exp time (not counting shutter error)
+BSCALE  =             1.000000 / DATA SCALE FACTOR
+BZERO   =         32768.000000 / DATA ZERO POINT
+COMMENT = 'Real Value = FITS*BSCALE+BZERO'
+PROGRAM = 'NEWCAM'             / New Lick Camera
+VERSION = 'cat'                / Data acquisition version
+TSEC    =           1317942067 / CLOCK TICK - SECONDS
+TUSEC   =               175396 / CLOCK TICK - MICROSECONDS
+COMMENT = 'Epoch is 00:00:00 UTC Jan. 1, 1970'
+DATE-OBS= '2011-10-06T23:01:07.17' / UTC DATE AND TIME OF OBSERVATION
+DATE-STA= '2011-10-07T06:58:52.0' / START OF OBSERVATION
+DATE-END= '2011-10-07T07:01:02.0' / END OF OBSERVATION
+CAMERAID=                    7 / CAMERA ID NUMBER
+ERASE   =                    3 / NUMBER OF ERASES
+PSKIP   =                    0 / CONTROLS POST-IMAGE SKIPPING
+CSMP    =                    1 / DCS CAP SELECTION
+CSELPRD =                    0 / PREREAD CLOCK SELECTION
+SCLEAN  =                    0 / SERIAL CLEANING CLOCK SELECTION
+TEMPCON =             5.300000 / CONTROLLER TEMPERATURE
+NSTIME  =                    1 / CONTROLS RISING TIME FOR SUBSTRATE
+VSUBEX  =                    0 / SUBSTRATE VOLTAGE DURING EXPOSURE
+VSUBER  =                    0 / SUBSTRATE VOLTAGE DURING ERASE
+NHBESP  =                   32 / BINNING FOR SPECIAL ERASE
+MERSP   =                    0 / CONTROLS SPECIAL ERASE MODE
+ERPBIN  =                    5 / PARALLEL BINNING DURING ERASE
+BINPRD  =                    0 / PREREAD SERIAL BINNING
+PPRERD  =                  100 / PRE-IMAGE ROWS
+PFREQ   =                    1 / PARALLEL CLOCK PERIOD
+PADDC   =                    0 / PARALLEL CLOCK CAPACITOR SELECTION
+BINSCLN =                    0 / BINNING FOR SERIAL CLEAN
+TSCLEAN =                   40 / SERIAL CLEAN SAMPLE TIME
+SFREQ   =                    2 / SERIAL CLOCK PERIOD
+TEMPDET =          -130.899994 / EXPOSURE START DETECTOR TEMPERATURE
+TEMPDETE=             0.000000 / EXPOSURE END DETECTOR TEMPERATURE
+SADDC   =                    2 / SERIAL CLOCK CAP SELECTION
+TCPR2   =                   16 / POST-IMAGE SERIAL PIXELS BEFORE OVERSCAN
+TCPR1   =                    4 / PRE-IMAGE SERIAL PIXELS
+TSPRD   =                   40 / SAMPLE TIME IN 0.1 MICROSECOND UNITS
+DEC     = '         +00:00:00' / DECLINATION
+NCSHIFT =                    0 / NUMBER OF CHARGE SHUFFLES
+RCSHIFT =                    0 / NUMBER OF ROWS IN EACH CHARGE SHUFFLE
+OBJECT  = '      flat d 4540a'
+MPP     =                    0 / MPP STATE
+HA      = '         +00:00:00' / HOUR ANGLE
+REVERASE=                    1 / NUMBER OF REVERSE ERASES
+READ-SPD=                   40 / DCS READ SPEED
+ROVER   =                    0 / NUMBER OF OVERSCAN ROWS
+COVER   =                   32 / NUMBER OF OVERSCAN COLUMNS
+GAIN    =                    0 / DCS GAIN INDEX
+RA      = '         +01:14:04' / RIGHT ASCENSION
+IMAGETYP= '            OBJECT' / IMAGE TYPE
+RBIN    =                    1 / ROW BINNING
+CBIN    =                    1 / COLUMN BINNING
+CKSUMOK =                    T / CHECKSUMS MATCH
+CAMCKSUM=                30967 / CAMERA-COMPUTED CHECKSUM
+SFTCKSUM=                30967 / SOFTWARE-COMPUTED CHECKSUM
+
+d4305841FLATd105o.fit[4096,4096][real]: @maind.lst//f
+No bad pixels, min=0., max=0. (old)
+Line storage mode, physdim [4096,4096], length of user area 4131 s.u.
+Created Sun 15:33:58 09-Oct-2011, Last modified Sun 15:34:01 09-Oct-2011
+Pixel file "d4305841FLATd105o.fit" [ok]
+EXTEND  =                    F / File may contain extensions
+ORIGIN  = 'NOAO-IRAF FITS Image Kernel July 2003' / FITS file originator
+DATE    = '2011-10-09T07:33:58' / Date FITS file was generated
+IRAF-TLM= '2011-10-09T07:34:01' / Time of last modification
+OBJECT  = '@maind.lst//f'      / Name of the object observed
+CDELT1  =                    1 / COLUMN CHANGE PER PIXEL
+CDELT2  =                    1 / ROW CHANGE PER PIXEL
+IDNUM   =                    4 / IMAGE ID
+EXPTIME =           130.000000 / Exp time (not counting shutter error)
+COMMENT = 'Real Value = FITS*BSCALE+BZERO'
+PROGRAM = 'NEWCAM'             / New Lick Camera
+VERSION = 'cat'                / Data acquisition version
+TSEC    =           1317942067 / CLOCK TICK - SECONDS
+TUSEC   =               175396 / CLOCK TICK - MICROSECONDS
+COMMENT = 'Epoch is 00:00:00 UTC Jan. 1, 1970'
+DATE-OBS= '2011-10-06T23:01:07.17' / UTC DATE AND TIME OF OBSERVATION
+DATE-STA= '2011-10-07T06:58:52.0' / START OF OBSERVATION
+DATE-END= '2011-10-07T07:01:02.0' / END OF OBSERVATION
+CAMERAID=                    7 / CAMERA ID NUMBER
+ERASE   =                    3 / NUMBER OF ERASES
+PSKIP   =                    0 / CONTROLS POST-IMAGE SKIPPING
+CSMP    =                    1 / DCS CAP SELECTION
+CSELPRD =                    0 / PREREAD CLOCK SELECTION
+SCLEAN  =                    0 / SERIAL CLEANING CLOCK SELECTION
+TEMPCON =             5.300000 / CONTROLLER TEMPERATURE
+NSTIME  =                    1 / CONTROLS RISING TIME FOR SUBSTRATE
+VSUBEX  =                    0 / SUBSTRATE VOLTAGE DURING EXPOSURE
+VSUBER  =                    0 / SUBSTRATE VOLTAGE DURING ERASE
+NHBESP  =                   32 / BINNING FOR SPECIAL ERASE
+MERSP   =                    0 / CONTROLS SPECIAL ERASE MODE
+ERPBIN  =                    5 / PARALLEL BINNING DURING ERASE
+BINPRD  =                    0 / PREREAD SERIAL BINNING
+PPRERD  =                  100 / PRE-IMAGE ROWS
+PFREQ   =                    1 / PARALLEL CLOCK PERIOD
+PADDC   =                    0 / PARALLEL CLOCK CAPACITOR SELECTION
+BINSCLN =                    0 / BINNING FOR SERIAL CLEAN
+TSCLEAN =                   40 / SERIAL CLEAN SAMPLE TIME
+SFREQ   =                    2 / SERIAL CLOCK PERIOD
+TEMPDET =          -130.899994 / EXPOSURE START DETECTOR TEMPERATURE
+TEMPDETE=             0.000000 / EXPOSURE END DETECTOR TEMPERATURE
+SADDC   =                    2 / SERIAL CLOCK CAP SELECTION
+TCPR2   =                   16 / POST-IMAGE SERIAL PIXELS BEFORE OVERSCAN
+TCPR1   =                    4 / PRE-IMAGE SERIAL PIXELS
+TSPRD   =                   40 / SAMPLE TIME IN 0.1 MICROSECOND UNITS
+DEC     = '         +00:00:00' / DECLINATION
+NCSHIFT =                    0 / NUMBER OF CHARGE SHUFFLES
+RCSHIFT =                    0 / NUMBER OF ROWS IN EACH CHARGE SHUFFLE
+MPP     =                    0 / MPP STATE
+HA      = '         +00:00:00' / HOUR ANGLE
+REVERASE=                    1 / NUMBER OF REVERSE ERASES
+READ-SPD=                   40 / DCS READ SPEED
+ROVER   =                    0 / NUMBER OF OVERSCAN ROWS
+COVER   =                   32 / NUMBER OF OVERSCAN COLUMNS
+GAIN    =                    0 / DCS GAIN INDEX
+RA      = '         +01:14:04' / RIGHT ASCENSION
+IMAGETYP= '            OBJECT' / IMAGE TYPE
+RBIN    =                    1 / ROW BINNING
+CBIN    =                    1 / COLUMN BINNING
+CKSUMOK =                    T / CHECKSUMS MATCH
+CAMCKSUM=                30967 / CAMERA-COMPUTED CHECKSUM
+SFTCKSUM=                30967 / SOFTWARE-COMPUTED CHECKSUM
+WCSDIM  =                    2
+CTYPE1  = 'LINEAR  '
+CTYPE2  = 'LINEAR  '
+CD1_1   =                   1.
+CD2_2   =                   1.
+LTM1_1  =                   1.
+LTM2_2  =                   1.
+WAT0_001= 'system=image'
+TRIM    = 'Oct  8 23:27 Trim data section is [1:4096,1:4096]'
+CCDSEC  = '[1:4096,1:4096]'
+BIASSEC = '[1:4096,1:4096]'
+CCDMEANT=           1002583676
+CCDPROC = 'Oct  8 23:27 CCD processing done'
+CCDMEAN =                   1.
+
+d4305841FLATd106.fit[4160,4096][ushort]:       flat d 4540a
+No bad pixels, min=0., max=0. (old)
+Line storage mode, physdim [4160,4096], length of user area 2471 s.u.
+Created Sat 17:27:07 08-Oct-2011, Last modified Sat 12:59:43 08-Oct-2011
+Pixel file "d4305841FLATd106.fit" [ok]
+CRVAL1  =                    0 / COLUMN ORIGIN
+CRVAL2  =                    0 / ROW ORIGIN
+CDELT1  =                    1 / COLUMN CHANGE PER PIXEL
+CDELT2  =                    1 / ROW CHANGE PER PIXEL
+IDNUM   =                    5 / IMAGE ID
+EXPTIME =           130.000000 / Exp time (not counting shutter error)
+BSCALE  =             1.000000 / DATA SCALE FACTOR
+BZERO   =         32768.000000 / DATA ZERO POINT
+COMMENT = 'Real Value = FITS*BSCALE+BZERO'
+PROGRAM = 'NEWCAM'             / New Lick Camera
+VERSION = 'cat'                / Data acquisition version
+TSEC    =           1317942310 / CLOCK TICK - SECONDS
+TUSEC   =               185450 / CLOCK TICK - MICROSECONDS
+COMMENT = 'Epoch is 00:00:00 UTC Jan. 1, 1970'
+DATE-OBS= '2011-10-06T23:05:10.18' / UTC DATE AND TIME OF OBSERVATION
+DATE-STA= '2011-10-07T07:02:55.0' / START OF OBSERVATION
+DATE-END= '2011-10-07T07:05:05.0' / END OF OBSERVATION
+CAMERAID=                    7 / CAMERA ID NUMBER
+ERASE   =                    3 / NUMBER OF ERASES
+PSKIP   =                    0 / CONTROLS POST-IMAGE SKIPPING
+CSMP    =                    1 / DCS CAP SELECTION
+CSELPRD =                    0 / PREREAD CLOCK SELECTION
+SCLEAN  =                    0 / SERIAL CLEANING CLOCK SELECTION
+TEMPCON =             5.300000 / CONTROLLER TEMPERATURE
+NSTIME  =                    1 / CONTROLS RISING TIME FOR SUBSTRATE
+VSUBEX  =                    0 / SUBSTRATE VOLTAGE DURING EXPOSURE
+VSUBER  =                    0 / SUBSTRATE VOLTAGE DURING ERASE
+NHBESP  =                   32 / BINNING FOR SPECIAL ERASE
+MERSP   =                    0 / CONTROLS SPECIAL ERASE MODE
+ERPBIN  =                    5 / PARALLEL BINNING DURING ERASE
+BINPRD  =                    0 / PREREAD SERIAL BINNING
+PPRERD  =                  100 / PRE-IMAGE ROWS
+PFREQ   =                    1 / PARALLEL CLOCK PERIOD
+PADDC   =                    0 / PARALLEL CLOCK CAPACITOR SELECTION
+BINSCLN =                    0 / BINNING FOR SERIAL CLEAN
+TSCLEAN =                   40 / SERIAL CLEAN SAMPLE TIME
+SFREQ   =                    2 / SERIAL CLOCK PERIOD
+TEMPDET =          -130.899994 / EXPOSURE START DETECTOR TEMPERATURE
+TEMPDETE=             0.000000 / EXPOSURE END DETECTOR TEMPERATURE
+SADDC   =                    2 / SERIAL CLOCK CAP SELECTION
+TCPR2   =                   16 / POST-IMAGE SERIAL PIXELS BEFORE OVERSCAN
+TCPR1   =                    4 / PRE-IMAGE SERIAL PIXELS
+TSPRD   =                   40 / SAMPLE TIME IN 0.1 MICROSECOND UNITS
+DEC     = '         +00:00:00' / DECLINATION
+NCSHIFT =                    0 / NUMBER OF CHARGE SHUFFLES
+RCSHIFT =                    0 / NUMBER OF ROWS IN EACH CHARGE SHUFFLE
+OBJECT  = '      flat d 4540a'
+MPP     =                    0 / MPP STATE
+HA      = '         +00:00:00' / HOUR ANGLE
+REVERASE=                    1 / NUMBER OF REVERSE ERASES
+READ-SPD=                   40 / DCS READ SPEED
+ROVER   =                    0 / NUMBER OF OVERSCAN ROWS
+COVER   =                   32 / NUMBER OF OVERSCAN COLUMNS
+GAIN    =                    0 / DCS GAIN INDEX
+RA      = '         +01:16:04' / RIGHT ASCENSION
+IMAGETYP= '            OBJECT' / IMAGE TYPE
+RBIN    =                    1 / ROW BINNING
+CBIN    =                    1 / COLUMN BINNING
+CKSUMOK =                    T / CHECKSUMS MATCH
+CAMCKSUM=                39851 / CAMERA-COMPUTED CHECKSUM
+SFTCKSUM=                39851 / SOFTWARE-COMPUTED CHECKSUM
+
+d4305841FLATd106o.fit[4096,4096][real]: @maind.lst//f
+No bad pixels, min=0., max=0. (old)
+Line storage mode, physdim [4096,4096], length of user area 4131 s.u.
+Created Sun 15:34:04 09-Oct-2011, Last modified Sun 15:34:07 09-Oct-2011
+Pixel file "d4305841FLATd106o.fit" [ok]
+EXTEND  =                    F / File may contain extensions
+ORIGIN  = 'NOAO-IRAF FITS Image Kernel July 2003' / FITS file originator
+DATE    = '2011-10-09T07:34:04' / Date FITS file was generated
+IRAF-TLM= '2011-10-09T07:34:07' / Time of last modification
+OBJECT  = '@maind.lst//f'      / Name of the object observed
+CDELT1  =                    1 / COLUMN CHANGE PER PIXEL
+CDELT2  =                    1 / ROW CHANGE PER PIXEL
+IDNUM   =                    5 / IMAGE ID
+EXPTIME =           130.000000 / Exp time (not counting shutter error)
+COMMENT = 'Real Value = FITS*BSCALE+BZERO'
+PROGRAM = 'NEWCAM'             / New Lick Camera
+VERSION = 'cat'                / Data acquisition version
+TSEC    =           1317942310 / CLOCK TICK - SECONDS
+TUSEC   =               185450 / CLOCK TICK - MICROSECONDS
+COMMENT = 'Epoch is 00:00:00 UTC Jan. 1, 1970'
+DATE-OBS= '2011-10-06T23:05:10.18' / UTC DATE AND TIME OF OBSERVATION
+DATE-STA= '2011-10-07T07:02:55.0' / START OF OBSERVATION
+DATE-END= '2011-10-07T07:05:05.0' / END OF OBSERVATION
+CAMERAID=                    7 / CAMERA ID NUMBER
+ERASE   =                    3 / NUMBER OF ERASES
+PSKIP   =                    0 / CONTROLS POST-IMAGE SKIPPING
+CSMP    =                    1 / DCS CAP SELECTION
+CSELPRD =                    0 / PREREAD CLOCK SELECTION
+SCLEAN  =                    0 / SERIAL CLEANING CLOCK SELECTION
+TEMPCON =             5.300000 / CONTROLLER TEMPERATURE
+NSTIME  =                    1 / CONTROLS RISING TIME FOR SUBSTRATE
+VSUBEX  =                    0 / SUBSTRATE VOLTAGE DURING EXPOSURE
+VSUBER  =                    0 / SUBSTRATE VOLTAGE DURING ERASE
+NHBESP  =                   32 / BINNING FOR SPECIAL ERASE
+MERSP   =                    0 / CONTROLS SPECIAL ERASE MODE
+ERPBIN  =                    5 / PARALLEL BINNING DURING ERASE
+BINPRD  =                    0 / PREREAD SERIAL BINNING
+PPRERD  =                  100 / PRE-IMAGE ROWS
+PFREQ   =                    1 / PARALLEL CLOCK PERIOD
+PADDC   =                    0 / PARALLEL CLOCK CAPACITOR SELECTION
+BINSCLN =                    0 / BINNING FOR SERIAL CLEAN
+TSCLEAN =                   40 / SERIAL CLEAN SAMPLE TIME
+SFREQ   =                    2 / SERIAL CLOCK PERIOD
+TEMPDET =          -130.899994 / EXPOSURE START DETECTOR TEMPERATURE
+TEMPDETE=             0.000000 / EXPOSURE END DETECTOR TEMPERATURE
+SADDC   =                    2 / SERIAL CLOCK CAP SELECTION
+TCPR2   =                   16 / POST-IMAGE SERIAL PIXELS BEFORE OVERSCAN
+TCPR1   =                    4 / PRE-IMAGE SERIAL PIXELS
+TSPRD   =                   40 / SAMPLE TIME IN 0.1 MICROSECOND UNITS
+DEC     = '         +00:00:00' / DECLINATION
+NCSHIFT =                    0 / NUMBER OF CHARGE SHUFFLES
+RCSHIFT =                    0 / NUMBER OF ROWS IN EACH CHARGE SHUFFLE
+MPP     =                    0 / MPP STATE
+HA      = '         +00:00:00' / HOUR ANGLE
+REVERASE=                    1 / NUMBER OF REVERSE ERASES
+READ-SPD=                   40 / DCS READ SPEED
+ROVER   =                    0 / NUMBER OF OVERSCAN ROWS
+COVER   =                   32 / NUMBER OF OVERSCAN COLUMNS
+GAIN    =                    0 / DCS GAIN INDEX
+RA      = '         +01:16:04' / RIGHT ASCENSION
+IMAGETYP= '            OBJECT' / IMAGE TYPE
+RBIN    =                    1 / ROW BINNING
+CBIN    =                    1 / COLUMN BINNING
+CKSUMOK =                    T / CHECKSUMS MATCH
+CAMCKSUM=                39851 / CAMERA-COMPUTED CHECKSUM
+SFTCKSUM=                39851 / SOFTWARE-COMPUTED CHECKSUM
+WCSDIM  =                    2
+CTYPE1  = 'LINEAR  '
+CTYPE2  = 'LINEAR  '
+CD1_1   =                   1.
+CD2_2   =                   1.
+LTM1_1  =                   1.
+LTM2_2  =                   1.
+WAT0_001= 'system=image'
+TRIM    = 'Oct  8 23:27 Trim data section is [1:4096,1:4096]'
+CCDSEC  = '[1:4096,1:4096]'
+BIASSEC = '[1:4096,1:4096]'
+CCDMEANT=           1002583682
+CCDPROC = 'Oct  8 23:28 CCD processing done'
+CCDMEAN =                   1.
+
+d4305841FLATd109.fit[4160,4096][ushort]:       flat d 4540a
+No bad pixels, min=0., max=0. (old)
+Line storage mode, physdim [4160,4096], length of user area 2471 s.u.
+Created Sat 17:27:07 08-Oct-2011, Last modified Sat 12:52:05 08-Oct-2011
+Pixel file "d4305841FLATd109.fit" [ok]
+CRVAL1  =                    0 / COLUMN ORIGIN
+CRVAL2  =                    0 / ROW ORIGIN
+CDELT1  =                    1 / COLUMN CHANGE PER PIXEL
+CDELT2  =                    1 / ROW CHANGE PER PIXEL
+IDNUM   =                    2 / IMAGE ID
+EXPTIME =           130.000000 / Exp time (not counting shutter error)
+BSCALE  =             1.000000 / DATA SCALE FACTOR
+BZERO   =         32768.000000 / DATA ZERO POINT
+COMMENT = 'Real Value = FITS*BSCALE+BZERO'
+PROGRAM = 'NEWCAM'             / New Lick Camera
+VERSION = 'cat'                / Data acquisition version
+TSEC    =           1317957781 / CLOCK TICK - SECONDS
+TUSEC   =               745259 / CLOCK TICK - MICROSECONDS
+COMMENT = 'Epoch is 00:00:00 UTC Jan. 1, 1970'
+DATE-OBS= '2011-10-07T03:23:01.74' / UTC DATE AND TIME OF OBSERVATION
+DATE-STA= '2011-10-07T11:20:46.0' / START OF OBSERVATION
+DATE-END= '2011-10-07T11:22:56.0' / END OF OBSERVATION
+CAMERAID=                    7 / CAMERA ID NUMBER
+ERASE   =                    3 / NUMBER OF ERASES
+PSKIP   =                    0 / CONTROLS POST-IMAGE SKIPPING
+CSMP    =                    1 / DCS CAP SELECTION
+CSELPRD =                    0 / PREREAD CLOCK SELECTION
+SCLEAN  =                    0 / SERIAL CLEANING CLOCK SELECTION
+TEMPCON =             5.300000 / CONTROLLER TEMPERATURE
+NSTIME  =                    1 / CONTROLS RISING TIME FOR SUBSTRATE
+VSUBEX  =                    0 / SUBSTRATE VOLTAGE DURING EXPOSURE
+VSUBER  =                    0 / SUBSTRATE VOLTAGE DURING ERASE
+NHBESP  =                   32 / BINNING FOR SPECIAL ERASE
+MERSP   =                    0 / CONTROLS SPECIAL ERASE MODE
+ERPBIN  =                    5 / PARALLEL BINNING DURING ERASE
+BINPRD  =                    0 / PREREAD SERIAL BINNING
+PPRERD  =                  100 / PRE-IMAGE ROWS
+PFREQ   =                    1 / PARALLEL CLOCK PERIOD
+PADDC   =                    0 / PARALLEL CLOCK CAPACITOR SELECTION
+BINSCLN =                    0 / BINNING FOR SERIAL CLEAN
+TSCLEAN =                   40 / SERIAL CLEAN SAMPLE TIME
+SFREQ   =                    2 / SERIAL CLOCK PERIOD
+TEMPDET =          -130.899994 / EXPOSURE START DETECTOR TEMPERATURE
+TEMPDETE=             0.000000 / EXPOSURE END DETECTOR TEMPERATURE
+SADDC   =                    2 / SERIAL CLOCK CAP SELECTION
+TCPR2   =                   16 / POST-IMAGE SERIAL PIXELS BEFORE OVERSCAN
+TCPR1   =                    4 / PRE-IMAGE SERIAL PIXELS
+TSPRD   =                   40 / SAMPLE TIME IN 0.1 MICROSECOND UNITS
+DEC     = '         +00:00:00' / DECLINATION
+NCSHIFT =                    0 / NUMBER OF CHARGE SHUFFLES
+RCSHIFT =                    0 / NUMBER OF ROWS IN EACH CHARGE SHUFFLE
+OBJECT  = '      flat d 4540a'
+MPP     =                    0 / MPP STATE
+HA      = '         +00:00:00' / HOUR ANGLE
+REVERASE=                    1 / NUMBER OF REVERSE ERASES
+READ-SPD=                   40 / DCS READ SPEED
+ROVER   =                    0 / NUMBER OF OVERSCAN ROWS
+COVER   =                   32 / NUMBER OF OVERSCAN COLUMNS
+GAIN    =                    0 / DCS GAIN INDEX
+RA      = '         +01:15:19' / RIGHT ASCENSION
+IMAGETYP= '            OBJECT' / IMAGE TYPE
+RBIN    =                    1 / ROW BINNING
+CBIN    =                    1 / COLUMN BINNING
+CKSUMOK =                    T / CHECKSUMS MATCH
+CAMCKSUM=                58557 / CAMERA-COMPUTED CHECKSUM
+SFTCKSUM=                58557 / SOFTWARE-COMPUTED CHECKSUM
+
+d4305841FLATd109o.fit[4096,4096][real]: @maind.lst//f
+No bad pixels, min=0., max=0. (old)
+Line storage mode, physdim [4096,4096], length of user area 4131 s.u.
+Created Sun 15:34:09 09-Oct-2011, Last modified Sun 15:34:11 09-Oct-2011
+Pixel file "d4305841FLATd109o.fit" [ok]
+EXTEND  =                    F / File may contain extensions
+ORIGIN  = 'NOAO-IRAF FITS Image Kernel July 2003' / FITS file originator
+DATE    = '2011-10-09T07:34:09' / Date FITS file was generated
+IRAF-TLM= '2011-10-09T07:34:11' / Time of last modification
+OBJECT  = '@maind.lst//f'      / Name of the object observed
+CDELT1  =                    1 / COLUMN CHANGE PER PIXEL
+CDELT2  =                    1 / ROW CHANGE PER PIXEL
+IDNUM   =                    2 / IMAGE ID
+EXPTIME =           130.000000 / Exp time (not counting shutter error)
+COMMENT = 'Real Value = FITS*BSCALE+BZERO'
+PROGRAM = 'NEWCAM'             / New Lick Camera
+VERSION = 'cat'                / Data acquisition version
+TSEC    =           1317957781 / CLOCK TICK - SECONDS
+TUSEC   =               745259 / CLOCK TICK - MICROSECONDS
+COMMENT = 'Epoch is 00:00:00 UTC Jan. 1, 1970'
+DATE-OBS= '2011-10-07T03:23:01.74' / UTC DATE AND TIME OF OBSERVATION
+DATE-STA= '2011-10-07T11:20:46.0' / START OF OBSERVATION
+DATE-END= '2011-10-07T11:22:56.0' / END OF OBSERVATION
+CAMERAID=                    7 / CAMERA ID NUMBER
+ERASE   =                    3 / NUMBER OF ERASES
+PSKIP   =                    0 / CONTROLS POST-IMAGE SKIPPING
+CSMP    =                    1 / DCS CAP SELECTION
+CSELPRD =                    0 / PREREAD CLOCK SELECTION
+SCLEAN  =                    0 / SERIAL CLEANING CLOCK SELECTION
+TEMPCON =             5.300000 / CONTROLLER TEMPERATURE
+NSTIME  =                    1 / CONTROLS RISING TIME FOR SUBSTRATE
+VSUBEX  =                    0 / SUBSTRATE VOLTAGE DURING EXPOSURE
+VSUBER  =                    0 / SUBSTRATE VOLTAGE DURING ERASE
+NHBESP  =                   32 / BINNING FOR SPECIAL ERASE
+MERSP   =                    0 / CONTROLS SPECIAL ERASE MODE
+ERPBIN  =                    5 / PARALLEL BINNING DURING ERASE
+BINPRD  =                    0 / PREREAD SERIAL BINNING
+PPRERD  =                  100 / PRE-IMAGE ROWS
+PFREQ   =                    1 / PARALLEL CLOCK PERIOD
+PADDC   =                    0 / PARALLEL CLOCK CAPACITOR SELECTION
+BINSCLN =                    0 / BINNING FOR SERIAL CLEAN
+TSCLEAN =                   40 / SERIAL CLEAN SAMPLE TIME
+SFREQ   =                    2 / SERIAL CLOCK PERIOD
+TEMPDET =          -130.899994 / EXPOSURE START DETECTOR TEMPERATURE
+TEMPDETE=             0.000000 / EXPOSURE END DETECTOR TEMPERATURE
+SADDC   =                    2 / SERIAL CLOCK CAP SELECTION
+TCPR2   =                   16 / POST-IMAGE SERIAL PIXELS BEFORE OVERSCAN
+TCPR1   =                    4 / PRE-IMAGE SERIAL PIXELS
+TSPRD   =                   40 / SAMPLE TIME IN 0.1 MICROSECOND UNITS
+DEC     = '         +00:00:00' / DECLINATION
+NCSHIFT =                    0 / NUMBER OF CHARGE SHUFFLES
+RCSHIFT =                    0 / NUMBER OF ROWS IN EACH CHARGE SHUFFLE
+MPP     =                    0 / MPP STATE
+HA      = '         +00:00:00' / HOUR ANGLE
+REVERASE=                    1 / NUMBER OF REVERSE ERASES
+READ-SPD=                   40 / DCS READ SPEED
+ROVER   =                    0 / NUMBER OF OVERSCAN ROWS
+COVER   =                   32 / NUMBER OF OVERSCAN COLUMNS
+GAIN    =                    0 / DCS GAIN INDEX
+RA      = '         +01:15:19' / RIGHT ASCENSION
+IMAGETYP= '            OBJECT' / IMAGE TYPE
+RBIN    =                    1 / ROW BINNING
+CBIN    =                    1 / COLUMN BINNING
+CKSUMOK =                    T / CHECKSUMS MATCH
+CAMCKSUM=                58557 / CAMERA-COMPUTED CHECKSUM
+SFTCKSUM=                58557 / SOFTWARE-COMPUTED CHECKSUM
+WCSDIM  =                    2
+CTYPE1  = 'LINEAR  '
+CTYPE2  = 'LINEAR  '
+CD1_1   =                   1.
+CD2_2   =                   1.
+LTM1_1  =                   1.
+LTM2_2  =                   1.
+WAT0_001= 'system=image'
+TRIM    = 'Oct  8 23:28 Trim data section is [1:4096,1:4096]'
+CCDSEC  = '[1:4096,1:4096]'
+BIASSEC = '[1:4096,1:4096]'
+CCDMEANT=           1002583688
+CCDPROC = 'Oct  8 23:28 CCD processing done'
+CCDMEAN =                   1.
+
+d4305841FLATd110.fit[4160,4096][ushort]:       flat d 4540a
+No bad pixels, min=0., max=0. (old)
+Line storage mode, physdim [4160,4096], length of user area 2471 s.u.
+Created Sat 17:27:07 08-Oct-2011, Last modified Sat 12:53:11 08-Oct-2011
+Pixel file "d4305841FLATd110.fit" [ok]
+CRVAL1  =                    0 / COLUMN ORIGIN
+CRVAL2  =                    0 / ROW ORIGIN
+CDELT1  =                    1 / COLUMN CHANGE PER PIXEL
+CDELT2  =                    1 / ROW CHANGE PER PIXEL
+IDNUM   =                    3 / IMAGE ID
+EXPTIME =           130.000000 / Exp time (not counting shutter error)
+BSCALE  =             1.000000 / DATA SCALE FACTOR
+BZERO   =         32768.000000 / DATA ZERO POINT
+COMMENT = 'Real Value = FITS*BSCALE+BZERO'
+PROGRAM = 'NEWCAM'             / New Lick Camera
+VERSION = 'cat'                / Data acquisition version
+TSEC    =           1317958024 / CLOCK TICK - SECONDS
+TUSEC   =               595472 / CLOCK TICK - MICROSECONDS
+COMMENT = 'Epoch is 00:00:00 UTC Jan. 1, 1970'
+DATE-OBS= '2011-10-07T03:27:04.59' / UTC DATE AND TIME OF OBSERVATION
+DATE-STA= '2011-10-07T11:24:49.0' / START OF OBSERVATION
+DATE-END= '2011-10-07T11:26:59.0' / END OF OBSERVATION
+CAMERAID=                    7 / CAMERA ID NUMBER
+ERASE   =                    3 / NUMBER OF ERASES
+PSKIP   =                    0 / CONTROLS POST-IMAGE SKIPPING
+CSMP    =                    1 / DCS CAP SELECTION
+CSELPRD =                    0 / PREREAD CLOCK SELECTION
+SCLEAN  =                    0 / SERIAL CLEANING CLOCK SELECTION
+TEMPCON =             5.300000 / CONTROLLER TEMPERATURE
+NSTIME  =                    1 / CONTROLS RISING TIME FOR SUBSTRATE
+VSUBEX  =                    0 / SUBSTRATE VOLTAGE DURING EXPOSURE
+VSUBER  =                    0 / SUBSTRATE VOLTAGE DURING ERASE
+NHBESP  =                   32 / BINNING FOR SPECIAL ERASE
+MERSP   =                    0 / CONTROLS SPECIAL ERASE MODE
+ERPBIN  =                    5 / PARALLEL BINNING DURING ERASE
+BINPRD  =                    0 / PREREAD SERIAL BINNING
+PPRERD  =                  100 / PRE-IMAGE ROWS
+PFREQ   =                    1 / PARALLEL CLOCK PERIOD
+PADDC   =                    0 / PARALLEL CLOCK CAPACITOR SELECTION
+BINSCLN =                    0 / BINNING FOR SERIAL CLEAN
+TSCLEAN =                   40 / SERIAL CLEAN SAMPLE TIME
+SFREQ   =                    2 / SERIAL CLOCK PERIOD
+TEMPDET =          -130.899994 / EXPOSURE START DETECTOR TEMPERATURE
+TEMPDETE=             0.000000 / EXPOSURE END DETECTOR TEMPERATURE
+SADDC   =                    2 / SERIAL CLOCK CAP SELECTION
+TCPR2   =                   16 / POST-IMAGE SERIAL PIXELS BEFORE OVERSCAN
+TCPR1   =                    4 / PRE-IMAGE SERIAL PIXELS
+TSPRD   =                   40 / SAMPLE TIME IN 0.1 MICROSECOND UNITS
+DEC     = '         +00:00:00' / DECLINATION
+NCSHIFT =                    0 / NUMBER OF CHARGE SHUFFLES
+RCSHIFT =                    0 / NUMBER OF ROWS IN EACH CHARGE SHUFFLE
+OBJECT  = '      flat d 4540a'
+MPP     =                    0 / MPP STATE
+HA      = '         +00:00:00' / HOUR ANGLE
+REVERASE=                    1 / NUMBER OF REVERSE ERASES
+READ-SPD=                   40 / DCS READ SPEED
+ROVER   =                    0 / NUMBER OF OVERSCAN ROWS
+COVER   =                   32 / NUMBER OF OVERSCAN COLUMNS
+GAIN    =                    0 / DCS GAIN INDEX
+RA      = '         +01:13:10' / RIGHT ASCENSION
+IMAGETYP= '            OBJECT' / IMAGE TYPE
+RBIN    =                    1 / ROW BINNING
+CBIN    =                    1 / COLUMN BINNING
+CKSUMOK =                    T / CHECKSUMS MATCH
+CAMCKSUM=                62152 / CAMERA-COMPUTED CHECKSUM
+SFTCKSUM=                62152 / SOFTWARE-COMPUTED CHECKSUM
+
+d4305841FLATd110o.fit[4096,4096][real]: @maind.lst//f
+No bad pixels, min=0., max=0. (old)
+Line storage mode, physdim [4096,4096], length of user area 4131 s.u.
+Created Sun 15:34:13 09-Oct-2011, Last modified Sun 15:34:15 09-Oct-2011
+Pixel file "d4305841FLATd110o.fit" [ok]
+EXTEND  =                    F / File may contain extensions
+ORIGIN  = 'NOAO-IRAF FITS Image Kernel July 2003' / FITS file originator
+DATE    = '2011-10-09T07:34:13' / Date FITS file was generated
+IRAF-TLM= '2011-10-09T07:34:15' / Time of last modification
+OBJECT  = '@maind.lst//f'      / Name of the object observed
+CDELT1  =                    1 / COLUMN CHANGE PER PIXEL
+CDELT2  =                    1 / ROW CHANGE PER PIXEL
+IDNUM   =                    3 / IMAGE ID
+EXPTIME =           130.000000 / Exp time (not counting shutter error)
+COMMENT = 'Real Value = FITS*BSCALE+BZERO'
+PROGRAM = 'NEWCAM'             / New Lick Camera
+VERSION = 'cat'                / Data acquisition version
+TSEC    =           1317958024 / CLOCK TICK - SECONDS
+TUSEC   =               595472 / CLOCK TICK - MICROSECONDS
+COMMENT = 'Epoch is 00:00:00 UTC Jan. 1, 1970'
+DATE-OBS= '2011-10-07T03:27:04.59' / UTC DATE AND TIME OF OBSERVATION
+DATE-STA= '2011-10-07T11:24:49.0' / START OF OBSERVATION
+DATE-END= '2011-10-07T11:26:59.0' / END OF OBSERVATION
+CAMERAID=                    7 / CAMERA ID NUMBER
+ERASE   =                    3 / NUMBER OF ERASES
+PSKIP   =                    0 / CONTROLS POST-IMAGE SKIPPING
+CSMP    =                    1 / DCS CAP SELECTION
+CSELPRD =                    0 / PREREAD CLOCK SELECTION
+SCLEAN  =                    0 / SERIAL CLEANING CLOCK SELECTION
+TEMPCON =             5.300000 / CONTROLLER TEMPERATURE
+NSTIME  =                    1 / CONTROLS RISING TIME FOR SUBSTRATE
+VSUBEX  =                    0 / SUBSTRATE VOLTAGE DURING EXPOSURE
+VSUBER  =                    0 / SUBSTRATE VOLTAGE DURING ERASE
+NHBESP  =                   32 / BINNING FOR SPECIAL ERASE
+MERSP   =                    0 / CONTROLS SPECIAL ERASE MODE
+ERPBIN  =                    5 / PARALLEL BINNING DURING ERASE
+BINPRD  =                    0 / PREREAD SERIAL BINNING
+PPRERD  =                  100 / PRE-IMAGE ROWS
+PFREQ   =                    1 / PARALLEL CLOCK PERIOD
+PADDC   =                    0 / PARALLEL CLOCK CAPACITOR SELECTION
+BINSCLN =                    0 / BINNING FOR SERIAL CLEAN
+TSCLEAN =                   40 / SERIAL CLEAN SAMPLE TIME
+SFREQ   =                    2 / SERIAL CLOCK PERIOD
+TEMPDET =          -130.899994 / EXPOSURE START DETECTOR TEMPERATURE
+TEMPDETE=             0.000000 / EXPOSURE END DETECTOR TEMPERATURE
+SADDC   =                    2 / SERIAL CLOCK CAP SELECTION
+TCPR2   =                   16 / POST-IMAGE SERIAL PIXELS BEFORE OVERSCAN
+TCPR1   =                    4 / PRE-IMAGE SERIAL PIXELS
+TSPRD   =                   40 / SAMPLE TIME IN 0.1 MICROSECOND UNITS
+DEC     = '         +00:00:00' / DECLINATION
+NCSHIFT =                    0 / NUMBER OF CHARGE SHUFFLES
+RCSHIFT =                    0 / NUMBER OF ROWS IN EACH CHARGE SHUFFLE
+MPP     =                    0 / MPP STATE
+HA      = '         +00:00:00' / HOUR ANGLE
+REVERASE=                    1 / NUMBER OF REVERSE ERASES
+READ-SPD=                   40 / DCS READ SPEED
+ROVER   =                    0 / NUMBER OF OVERSCAN ROWS
+COVER   =                   32 / NUMBER OF OVERSCAN COLUMNS
+GAIN    =                    0 / DCS GAIN INDEX
+RA      = '         +01:13:10' / RIGHT ASCENSION
+IMAGETYP= '            OBJECT' / IMAGE TYPE
+RBIN    =                    1 / ROW BINNING
+CBIN    =                    1 / COLUMN BINNING
+CKSUMOK =                    T / CHECKSUMS MATCH
+CAMCKSUM=                62152 / CAMERA-COMPUTED CHECKSUM
+SFTCKSUM=                62152 / SOFTWARE-COMPUTED CHECKSUM
+WCSDIM  =                    2
+CTYPE1  = 'LINEAR  '
+CTYPE2  = 'LINEAR  '
+CD1_1   =                   1.
+CD2_2   =                   1.
+LTM1_1  =                   1.
+LTM2_2  =                   1.
+WAT0_001= 'system=image'
+TRIM    = 'Oct  8 23:28 Trim data section is [1:4096,1:4096]'
+CCDSEC  = '[1:4096,1:4096]'
+BIASSEC = '[1:4096,1:4096]'
+CCDMEANT=           1002583692
+CCDPROC = 'Oct  8 23:28 CCD processing done'
+CCDMEAN =                   1.
+
+d4305841FLATd111.fit[4160,4096][ushort]:       flat d 4540a
+No bad pixels, min=0., max=0. (old)
+Line storage mode, physdim [4160,4096], length of user area 2471 s.u.
+Created Sat 17:27:07 08-Oct-2011, Last modified Sat 12:51:44 08-Oct-2011
+Pixel file "d4305841FLATd111.fit" [ok]
+CRVAL1  =                    0 / COLUMN ORIGIN
+CRVAL2  =                    0 / ROW ORIGIN
+CDELT1  =                    1 / COLUMN CHANGE PER PIXEL
+CDELT2  =                    1 / ROW CHANGE PER PIXEL
+IDNUM   =                    4 / IMAGE ID
+EXPTIME =           130.000000 / Exp time (not counting shutter error)
+BSCALE  =             1.000000 / DATA SCALE FACTOR
+BZERO   =         32768.000000 / DATA ZERO POINT
+COMMENT = 'Real Value = FITS*BSCALE+BZERO'
+PROGRAM = 'NEWCAM'             / New Lick Camera
+VERSION = 'cat'                / Data acquisition version
+TSEC    =           1317958267 / CLOCK TICK - SECONDS
+TUSEC   =               615495 / CLOCK TICK - MICROSECONDS
+COMMENT = 'Epoch is 00:00:00 UTC Jan. 1, 1970'
+DATE-OBS= '2011-10-07T03:31:07.61' / UTC DATE AND TIME OF OBSERVATION
+DATE-STA= '2011-10-07T11:28:52.0' / START OF OBSERVATION
+DATE-END= '2011-10-07T11:31:02.0' / END OF OBSERVATION
+CAMERAID=                    7 / CAMERA ID NUMBER
+ERASE   =                    3 / NUMBER OF ERASES
+PSKIP   =                    0 / CONTROLS POST-IMAGE SKIPPING
+CSMP    =                    1 / DCS CAP SELECTION
+CSELPRD =                    0 / PREREAD CLOCK SELECTION
+SCLEAN  =                    0 / SERIAL CLEANING CLOCK SELECTION
+TEMPCON =             5.300000 / CONTROLLER TEMPERATURE
+NSTIME  =                    1 / CONTROLS RISING TIME FOR SUBSTRATE
+VSUBEX  =                    0 / SUBSTRATE VOLTAGE DURING EXPOSURE
+VSUBER  =                    0 / SUBSTRATE VOLTAGE DURING ERASE
+NHBESP  =                   32 / BINNING FOR SPECIAL ERASE
+MERSP   =                    0 / CONTROLS SPECIAL ERASE MODE
+ERPBIN  =                    5 / PARALLEL BINNING DURING ERASE
+BINPRD  =                    0 / PREREAD SERIAL BINNING
+PPRERD  =                  100 / PRE-IMAGE ROWS
+PFREQ   =                    1 / PARALLEL CLOCK PERIOD
+PADDC   =                    0 / PARALLEL CLOCK CAPACITOR SELECTION
+BINSCLN =                    0 / BINNING FOR SERIAL CLEAN
+TSCLEAN =                   40 / SERIAL CLEAN SAMPLE TIME
+SFREQ   =                    2 / SERIAL CLOCK PERIOD
+TEMPDET =          -130.899994 / EXPOSURE START DETECTOR TEMPERATURE
+TEMPDETE=             0.000000 / EXPOSURE END DETECTOR TEMPERATURE
+SADDC   =                    2 / SERIAL CLOCK CAP SELECTION
+TCPR2   =                   16 / POST-IMAGE SERIAL PIXELS BEFORE OVERSCAN
+TCPR1   =                    4 / PRE-IMAGE SERIAL PIXELS
+TSPRD   =                   40 / SAMPLE TIME IN 0.1 MICROSECOND UNITS
+DEC     = '         +00:00:00' / DECLINATION
+NCSHIFT =                    0 / NUMBER OF CHARGE SHUFFLES
+RCSHIFT =                    0 / NUMBER OF ROWS IN EACH CHARGE SHUFFLE
+OBJECT  = '      flat d 4540a'
+MPP     =                    0 / MPP STATE
+HA      = '         +00:00:00' / HOUR ANGLE
+REVERASE=                    1 / NUMBER OF REVERSE ERASES
+READ-SPD=                   40 / DCS READ SPEED
+ROVER   =                    0 / NUMBER OF OVERSCAN ROWS
+COVER   =                   32 / NUMBER OF OVERSCAN COLUMNS
+GAIN    =                    0 / DCS GAIN INDEX
+RA      = '         +01:14:04' / RIGHT ASCENSION
+IMAGETYP= '            OBJECT' / IMAGE TYPE
+RBIN    =                    1 / ROW BINNING
+CBIN    =                    1 / COLUMN BINNING
+CKSUMOK =                    T / CHECKSUMS MATCH
+CAMCKSUM=                17289 / CAMERA-COMPUTED CHECKSUM
+SFTCKSUM=                17289 / SOFTWARE-COMPUTED CHECKSUM
+
+d4305841FLATd111o.fit[4096,4096][real]: @maind.lst//f
+No bad pixels, min=0., max=0. (old)
+Line storage mode, physdim [4096,4096], length of user area 4131 s.u.
+Created Sun 15:34:17 09-Oct-2011, Last modified Sun 15:34:19 09-Oct-2011
+Pixel file "d4305841FLATd111o.fit" [ok]
+EXTEND  =                    F / File may contain extensions
+ORIGIN  = 'NOAO-IRAF FITS Image Kernel July 2003' / FITS file originator
+DATE    = '2011-10-09T07:34:17' / Date FITS file was generated
+IRAF-TLM= '2011-10-09T07:34:19' / Time of last modification
+OBJECT  = '@maind.lst//f'      / Name of the object observed
+CDELT1  =                    1 / COLUMN CHANGE PER PIXEL
+CDELT2  =                    1 / ROW CHANGE PER PIXEL
+IDNUM   =                    4 / IMAGE ID
+EXPTIME =           130.000000 / Exp time (not counting shutter error)
+COMMENT = 'Real Value = FITS*BSCALE+BZERO'
+PROGRAM = 'NEWCAM'             / New Lick Camera
+VERSION = 'cat'                / Data acquisition version
+TSEC    =           1317958267 / CLOCK TICK - SECONDS
+TUSEC   =               615495 / CLOCK TICK - MICROSECONDS
+COMMENT = 'Epoch is 00:00:00 UTC Jan. 1, 1970'
+DATE-OBS= '2011-10-07T03:31:07.61' / UTC DATE AND TIME OF OBSERVATION
+DATE-STA= '2011-10-07T11:28:52.0' / START OF OBSERVATION
+DATE-END= '2011-10-07T11:31:02.0' / END OF OBSERVATION
+CAMERAID=                    7 / CAMERA ID NUMBER
+ERASE   =                    3 / NUMBER OF ERASES
+PSKIP   =                    0 / CONTROLS POST-IMAGE SKIPPING
+CSMP    =                    1 / DCS CAP SELECTION
+CSELPRD =                    0 / PREREAD CLOCK SELECTION
+SCLEAN  =                    0 / SERIAL CLEANING CLOCK SELECTION
+TEMPCON =             5.300000 / CONTROLLER TEMPERATURE
+NSTIME  =                    1 / CONTROLS RISING TIME FOR SUBSTRATE
+VSUBEX  =                    0 / SUBSTRATE VOLTAGE DURING EXPOSURE
+VSUBER  =                    0 / SUBSTRATE VOLTAGE DURING ERASE
+NHBESP  =                   32 / BINNING FOR SPECIAL ERASE
+MERSP   =                    0 / CONTROLS SPECIAL ERASE MODE
+ERPBIN  =                    5 / PARALLEL BINNING DURING ERASE
+BINPRD  =                    0 / PREREAD SERIAL BINNING
+PPRERD  =                  100 / PRE-IMAGE ROWS
+PFREQ   =                    1 / PARALLEL CLOCK PERIOD
+PADDC   =                    0 / PARALLEL CLOCK CAPACITOR SELECTION
+BINSCLN =                    0 / BINNING FOR SERIAL CLEAN
+TSCLEAN =                   40 / SERIAL CLEAN SAMPLE TIME
+SFREQ   =                    2 / SERIAL CLOCK PERIOD
+TEMPDET =          -130.899994 / EXPOSURE START DETECTOR TEMPERATURE
+TEMPDETE=             0.000000 / EXPOSURE END DETECTOR TEMPERATURE
+SADDC   =                    2 / SERIAL CLOCK CAP SELECTION
+TCPR2   =                   16 / POST-IMAGE SERIAL PIXELS BEFORE OVERSCAN
+TCPR1   =                    4 / PRE-IMAGE SERIAL PIXELS
+TSPRD   =                   40 / SAMPLE TIME IN 0.1 MICROSECOND UNITS
+DEC     = '         +00:00:00' / DECLINATION
+NCSHIFT =                    0 / NUMBER OF CHARGE SHUFFLES
+RCSHIFT =                    0 / NUMBER OF ROWS IN EACH CHARGE SHUFFLE
+MPP     =                    0 / MPP STATE
+HA      = '         +00:00:00' / HOUR ANGLE
+REVERASE=                    1 / NUMBER OF REVERSE ERASES
+READ-SPD=                   40 / DCS READ SPEED
+ROVER   =                    0 / NUMBER OF OVERSCAN ROWS
+COVER   =                   32 / NUMBER OF OVERSCAN COLUMNS
+GAIN    =                    0 / DCS GAIN INDEX
+RA      = '         +01:14:04' / RIGHT ASCENSION
+IMAGETYP= '            OBJECT' / IMAGE TYPE
+RBIN    =                    1 / ROW BINNING
+CBIN    =                    1 / COLUMN BINNING
+CKSUMOK =                    T / CHECKSUMS MATCH
+CAMCKSUM=                17289 / CAMERA-COMPUTED CHECKSUM
+SFTCKSUM=                17289 / SOFTWARE-COMPUTED CHECKSUM
+WCSDIM  =                    2
+CTYPE1  = 'LINEAR  '
+CTYPE2  = 'LINEAR  '
+CD1_1   =                   1.
+CD2_2   =                   1.
+LTM1_1  =                   1.
+LTM2_2  =                   1.
+WAT0_001= 'system=image'
+TRIM    = 'Oct  8 23:28 Trim data section is [1:4096,1:4096]'
+CCDSEC  = '[1:4096,1:4096]'
+BIASSEC = '[1:4096,1:4096]'
+CCDMEANT=           1002583698
+CCDPROC = 'Oct  8 23:28 CCD processing done'
+CCDMEAN =                   1.
+
+d4305841FLATd112.fit[4160,4096][ushort]:       flat d 4540a
+No bad pixels, min=0., max=0. (old)
+Line storage mode, physdim [4160,4096], length of user area 2471 s.u.
+Created Sat 17:27:07 08-Oct-2011, Last modified Sat 12:59:33 08-Oct-2011
+Pixel file "d4305841FLATd112.fit" [ok]
+CRVAL1  =                    0 / COLUMN ORIGIN
+CRVAL2  =                    0 / ROW ORIGIN
+CDELT1  =                    1 / COLUMN CHANGE PER PIXEL
+CDELT2  =                    1 / ROW CHANGE PER PIXEL
+IDNUM   =                    5 / IMAGE ID
+EXPTIME =           130.000000 / Exp time (not counting shutter error)
+BSCALE  =             1.000000 / DATA SCALE FACTOR
+BZERO   =         32768.000000 / DATA ZERO POINT
+COMMENT = 'Real Value = FITS*BSCALE+BZERO'
+PROGRAM = 'NEWCAM'             / New Lick Camera
+VERSION = 'cat'                / Data acquisition version
+TSEC    =           1317958510 / CLOCK TICK - SECONDS
+TUSEC   =               565346 / CLOCK TICK - MICROSECONDS
+COMMENT = 'Epoch is 00:00:00 UTC Jan. 1, 1970'
+DATE-OBS= '2011-10-07T03:35:10.56' / UTC DATE AND TIME OF OBSERVATION
+DATE-STA= '2011-10-07T11:32:55.0' / START OF OBSERVATION
+DATE-END= '2011-10-07T11:35:05.0' / END OF OBSERVATION
+CAMERAID=                    7 / CAMERA ID NUMBER
+ERASE   =                    3 / NUMBER OF ERASES
+PSKIP   =                    0 / CONTROLS POST-IMAGE SKIPPING
+CSMP    =                    1 / DCS CAP SELECTION
+CSELPRD =                    0 / PREREAD CLOCK SELECTION
+SCLEAN  =                    0 / SERIAL CLEANING CLOCK SELECTION
+TEMPCON =             5.300000 / CONTROLLER TEMPERATURE
+NSTIME  =                    1 / CONTROLS RISING TIME FOR SUBSTRATE
+VSUBEX  =                    0 / SUBSTRATE VOLTAGE DURING EXPOSURE
+VSUBER  =                    0 / SUBSTRATE VOLTAGE DURING ERASE
+NHBESP  =                   32 / BINNING FOR SPECIAL ERASE
+MERSP   =                    0 / CONTROLS SPECIAL ERASE MODE
+ERPBIN  =                    5 / PARALLEL BINNING DURING ERASE
+BINPRD  =                    0 / PREREAD SERIAL BINNING
+PPRERD  =                  100 / PRE-IMAGE ROWS
+PFREQ   =                    1 / PARALLEL CLOCK PERIOD
+PADDC   =                    0 / PARALLEL CLOCK CAPACITOR SELECTION
+BINSCLN =                    0 / BINNING FOR SERIAL CLEAN
+TSCLEAN =                   40 / SERIAL CLEAN SAMPLE TIME
+SFREQ   =                    2 / SERIAL CLOCK PERIOD
+TEMPDET =          -130.899994 / EXPOSURE START DETECTOR TEMPERATURE
+TEMPDETE=             0.000000 / EXPOSURE END DETECTOR TEMPERATURE
+SADDC   =                    2 / SERIAL CLOCK CAP SELECTION
+TCPR2   =                   16 / POST-IMAGE SERIAL PIXELS BEFORE OVERSCAN
+TCPR1   =                    4 / PRE-IMAGE SERIAL PIXELS
+TSPRD   =                   40 / SAMPLE TIME IN 0.1 MICROSECOND UNITS
+DEC     = '         +00:00:00' / DECLINATION
+NCSHIFT =                    0 / NUMBER OF CHARGE SHUFFLES
+RCSHIFT =                    0 / NUMBER OF ROWS IN EACH CHARGE SHUFFLE
+OBJECT  = '      flat d 4540a'
+MPP     =                    0 / MPP STATE
+HA      = '         +00:00:00' / HOUR ANGLE
+REVERASE=                    1 / NUMBER OF REVERSE ERASES
+READ-SPD=                   40 / DCS READ SPEED
+ROVER   =                    0 / NUMBER OF OVERSCAN ROWS
+COVER   =                   32 / NUMBER OF OVERSCAN COLUMNS
+GAIN    =                    0 / DCS GAIN INDEX
+RA      = '         +01:16:04' / RIGHT ASCENSION
+IMAGETYP= '            OBJECT' / IMAGE TYPE
+RBIN    =                    1 / ROW BINNING
+CBIN    =                    1 / COLUMN BINNING
+CKSUMOK =                    T / CHECKSUMS MATCH
+CAMCKSUM=                50168 / CAMERA-COMPUTED CHECKSUM
+SFTCKSUM=                50168 / SOFTWARE-COMPUTED CHECKSUM
+
+d4305841FLATd112o.fit[4096,4096][real]: @maind.lst//f
+No bad pixels, min=0., max=0. (old)
+Line storage mode, physdim [4096,4096], length of user area 4131 s.u.
+Created Sun 15:34:21 09-Oct-2011, Last modified Sun 15:34:24 09-Oct-2011
+Pixel file "d4305841FLATd112o.fit" [ok]
+EXTEND  =                    F / File may contain extensions
+ORIGIN  = 'NOAO-IRAF FITS Image Kernel July 2003' / FITS file originator
+DATE    = '2011-10-09T07:34:21' / Date FITS file was generated
+IRAF-TLM= '2011-10-09T07:34:24' / Time of last modification
+OBJECT  = '@maind.lst//f'      / Name of the object observed
+CDELT1  =                    1 / COLUMN CHANGE PER PIXEL
+CDELT2  =                    1 / ROW CHANGE PER PIXEL
+IDNUM   =                    5 / IMAGE ID
+EXPTIME =           130.000000 / Exp time (not counting shutter error)
+COMMENT = 'Real Value = FITS*BSCALE+BZERO'
+PROGRAM = 'NEWCAM'             / New Lick Camera
+VERSION = 'cat'                / Data acquisition version
+TSEC    =           1317958510 / CLOCK TICK - SECONDS
+TUSEC   =               565346 / CLOCK TICK - MICROSECONDS
+COMMENT = 'Epoch is 00:00:00 UTC Jan. 1, 1970'
+DATE-OBS= '2011-10-07T03:35:10.56' / UTC DATE AND TIME OF OBSERVATION
+DATE-STA= '2011-10-07T11:32:55.0' / START OF OBSERVATION
+DATE-END= '2011-10-07T11:35:05.0' / END OF OBSERVATION
+CAMERAID=                    7 / CAMERA ID NUMBER
+ERASE   =                    3 / NUMBER OF ERASES
+PSKIP   =                    0 / CONTROLS POST-IMAGE SKIPPING
+CSMP    =                    1 / DCS CAP SELECTION
+CSELPRD =                    0 / PREREAD CLOCK SELECTION
+SCLEAN  =                    0 / SERIAL CLEANING CLOCK SELECTION
+TEMPCON =             5.300000 / CONTROLLER TEMPERATURE
+NSTIME  =                    1 / CONTROLS RISING TIME FOR SUBSTRATE
+VSUBEX  =                    0 / SUBSTRATE VOLTAGE DURING EXPOSURE
+VSUBER  =                    0 / SUBSTRATE VOLTAGE DURING ERASE
+NHBESP  =                   32 / BINNING FOR SPECIAL ERASE
+MERSP   =                    0 / CONTROLS SPECIAL ERASE MODE
+ERPBIN  =                    5 / PARALLEL BINNING DURING ERASE
+BINPRD  =                    0 / PREREAD SERIAL BINNING
+PPRERD  =                  100 / PRE-IMAGE ROWS
+PFREQ   =                    1 / PARALLEL CLOCK PERIOD
+PADDC   =                    0 / PARALLEL CLOCK CAPACITOR SELECTION
+BINSCLN =                    0 / BINNING FOR SERIAL CLEAN
+TSCLEAN =                   40 / SERIAL CLEAN SAMPLE TIME
+SFREQ   =                    2 / SERIAL CLOCK PERIOD
+TEMPDET =          -130.899994 / EXPOSURE START DETECTOR TEMPERATURE
+TEMPDETE=             0.000000 / EXPOSURE END DETECTOR TEMPERATURE
+SADDC   =                    2 / SERIAL CLOCK CAP SELECTION
+TCPR2   =                   16 / POST-IMAGE SERIAL PIXELS BEFORE OVERSCAN
+TCPR1   =                    4 / PRE-IMAGE SERIAL PIXELS
+TSPRD   =                   40 / SAMPLE TIME IN 0.1 MICROSECOND UNITS
+DEC     = '         +00:00:00' / DECLINATION
+NCSHIFT =                    0 / NUMBER OF CHARGE SHUFFLES
+RCSHIFT =                    0 / NUMBER OF ROWS IN EACH CHARGE SHUFFLE
+MPP     =                    0 / MPP STATE
+HA      = '         +00:00:00' / HOUR ANGLE
+REVERASE=                    1 / NUMBER OF REVERSE ERASES
+READ-SPD=                   40 / DCS READ SPEED
+ROVER   =                    0 / NUMBER OF OVERSCAN ROWS
+COVER   =                   32 / NUMBER OF OVERSCAN COLUMNS
+GAIN    =                    0 / DCS GAIN INDEX
+RA      = '         +01:16:04' / RIGHT ASCENSION
+IMAGETYP= '            OBJECT' / IMAGE TYPE
+RBIN    =                    1 / ROW BINNING
+CBIN    =                    1 / COLUMN BINNING
+CKSUMOK =                    T / CHECKSUMS MATCH
+CAMCKSUM=                50168 / CAMERA-COMPUTED CHECKSUM
+SFTCKSUM=                50168 / SOFTWARE-COMPUTED CHECKSUM
+WCSDIM  =                    2
+CTYPE1  = 'LINEAR  '
+CTYPE2  = 'LINEAR  '
+CD1_1   =                   1.
+CD2_2   =                   1.
+LTM1_1  =                   1.
+LTM2_2  =                   1.
+WAT0_001= 'system=image'
+TRIM    = 'Oct  8 23:28 Trim data section is [1:4096,1:4096]'
+CCDSEC  = '[1:4096,1:4096]'
+BIASSEC = '[1:4096,1:4096]'
+CCDMEANT=           1002583703
+CCDPROC = 'Oct  8 23:28 CCD processing done'
+CCDMEAN =                   1.

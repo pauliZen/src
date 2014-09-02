@@ -1,0 +1,8 @@
+# define macro for plotting the histogram
+
+set macro
+
+hist(x,width)=width*floor(x/width)+width/2.0
+
+hstyle="smooth freq with boxes"
+

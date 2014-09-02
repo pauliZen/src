@@ -1,0 +1,200 @@
+#include "nbodyout.h"
+#include "uftools.h"
+#include <iostream>
+#include <cmath>
+#include <TH2.h>
+#include <TStyle.h>
+#include <TCanvas.h>
+#include <vector>
+#include <sstream>
+#include <TEntryList.h>
+
+//Constructer=======================================//
+
+//Distructer========================================//
+nbodyout::~nbodyout()
+
+//Default function==================================//
+
+Int_t nbodyout::GetEntry(Long64_t entry)
+{
+// Read contents of entry.
+   if (!tout3) return 0;
+   return tout3->GetEntry(entry);
+}
+
+
+void nbodyout::Show(TString name,Long64_t entry)
+{
+// Print contents of entry.
+// If entry is not specified, print current entry
+  if (name=="out3")
+    tout3->Show(entry);
+  else if (name=="pars")
+    tpars->Show(entry);
+  else if (name=="tscal")
+    tscal->Show(entry);
+  else return;
+}
+
+//My draw===========================================//
+Int_t nbodyout::calc(TFile *f)
+{
+  if (!f) return -1;
+  std::stringstream sstr;
+  sstr.clear();
+  sstr.str("");
+  std::string tstp,ntt,npt;
+  sstr<<init_nstar;
+  sstr>>ntt;
+  sstr.clear();
+  sstr.str("");
+  sstr<<init_nplanet+init_nstar;
+  sstr>>npt;
+  f->cd();
+  TTree *hftree=new TTree("out3ana","Half mass radius data");
+  Double_t cmass=0.0,cr=0,pcr=0;
+  Int_t starentry,planetentry;
+  hftree->Branch("shfm",&cmass);
+  hftree->Branch("shfr",&cr);
+  hftree->Branch("phfr",&pcr);
+  hftree->Branch("t",&t);
+  hftree->Branch("ns",&starentry);
+  hftree->Branch("np",&planetentry);
+  Int_t lastindex=tout3->GetEntries();
+  tout3->GetEntry(lastindex-1);
+  Double_t t_max=t;
+  for (Double_t i=0;i<t_max;i +=timestep)
+  {
+    sstr.clear();
+    sstr.str("");
+    sstr<<i;
+    sstr>>tstp;
+    // std::cout<<"t=="+tstp<<std::endl;
+    tout3->Draw(">>starlist",("t=="+tstp+"&&n<="+ntt).c_str(),"Entrylist");
+    tout3->Draw(">>planetlist",("t=="+tstp+"&&n>"+ntt+"&&n<="+npt).c_str(),"Entrylist");
+    TEntryList *sl=(TEntryList*)gDirectory->Get("starlist");
+    TEntryList *pl=(TEntryList*)gDirectory->Get("planetlist");
+    starentry=sl->GetN();
+    planetentry=pl->GetN();
+    std::vector<Double_t> vm,vr,vp;
+    Double_t tmass=0;
+    cmass=0;
+    if (starentry==0)
+    {
+      cr=0;
+    }
+    else
+    {
+      for (int j=0;j<starentry;j++)
+      {
+        Int_t entryi=sl->GetEntry(j);
+        tout3->GetEntry(entryi);
+        vm.push_back(m);
+        vr.push_back(r[3]);
+        tmass +=m;
+      }
+      quicksort(vr,vm);
+      int ji;
+      for (ji=0;ji<starentry;ji++)
+      {
+        cmass +=vm[ji];
+        if (cmass>tmass/2.0)
+          break;
+      }
+      cr=vr[ji]*rbar;
+      cmass =cmass*zmbar;
+    }
+    if (planetentry==0)
+    {
+      pcr=0;
+    }
+    else
+    {
+      for (int j=0;j<planetentry;j++)
+      {
+        Int_t entryi=pl->GetEntry(j);
+        tout3->GetEntry(entryi);
+        vp.push_back(r[3]);
+      }
+      quicksort(vp);
+      pcr=vp[(planetentry-1)/2]*rbar;
+    }
+    //    std::cout<<"cr="<<cr<<std::endl;
+    hftree->Fill();
+  }
+  hftree->Write("",TObject::kOverwrite);
+  return static_cast<Int_t>(t_max);
+}
+
+
+//void nbodyout::Loop()
+//{
+//   In a ROOT session, you can do:
+//      Root > .L nbodyout.C
+//      Root > nbodyout t
+//      Root > t.GetEntry(12); // Fill t data members with entry number 12
+//      Root > t.Show();       // Show values of entry 12
+//      Root > t.Show(16);     // Read and show values of entry 16
+//      Root > t.Loop();       // Loop on all entries
+//
+
+//     This is the loop skeleton where:
+//    jentry is the global entry number in the chain
+//    ientry is the entry number in the current Tree
+//  Note that the argument to GetEntry must be:
+//    jentry for TChain::GetEntry
+//    ientry for TTree::GetEntry and TBranch::GetEntry
+//
+//       To read only selected branches, Insert statements like:
+// METHOD1:
+//    fChain->SetBranchStatus("*",0);  // disable all branches
+//    fChain->SetBranchStatus("branchname",1);  // activate branchname
+// METHOD2: replace line
+//    fChain->GetEntry(jentry);       //read all branches
+//by  b_branchname->GetEntry(ientry); //read only this branch
+//   if (fChain == 0) return;
+
+//   Long64_t nentries = fChain->GetEntriesFast();
+
+//   Long64_t nbytes = 0, nb = 0;
+//   for (Long64_t jentry=0; jentry<nentries;jentry++) {
+//      Long64_t ientry = LoadTree(jentry);
+//      if (ientry < 0) break;
+//      nb = fChain->GetEntry(jentry);   nbytes += nb;
+      // if (Cut(ientry) < 0) continue;
+//   }
+//}
+
+// Long64_t nbodyout::LoadTree(Long64_t entry)
+// {
+// // Set the environment to read one entry
+//    if (!tout3) return -5;
+//    Long64_t centry = tout3->LoadTree(entry);
+//    if (centry < 0) return centry;
+//    if (tout3->GetTreeNumber() != out3n) {
+//       out3n = tout3->GetTreeNumber();
+//       Notify();
+//    }
+//    return centry;
+// }
+
+
+// Bool_t nbodyout::Notify()
+// {
+//    // The Notify() function is called when a new file is opened. This
+//    // can be either for a new TTree in a TChain or when when a new TTree
+//    // is started when using PROOF. It is normally not necessary to make changes
+//    // to the generated code, but the routine can be extended by the
+//    // user if needed. The return value is currently not used.
+
+//    return kTRUE;
+// }
+
+// Int_t nbodyout::Cut(Long64_t entry)
+// {
+// // This function may be called from Loop.
+// // returns  1 if entry is accepted.
+// // returns -1 otherwise.
+//    return 1;
+// }

@@ -1,0 +1,89 @@
+;;newshell
+(fset 'newshell
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([134217848 114 101 110 97 109 101 45 117 110 105 113 117 101 108 121 13 24 51 134217848 115 104 101 108 108 13] 0 "%d")) arg)))
+
+;;task windows
+(fset 'task
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([24 51 24 111 24 114 98 116 97 115 107 13 134217848 111 117 116 108 105 110 101 45 109 111 100 101 13 21 49 52 24 123 24 111] 0 "%d")) arg)))
+
+;;workspace for program
+
+(fset 'works-old
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([24 1 1 11 13 24 49 24 50 21 55 24 94 24 51 21 52 48 24 125 24 111 24 111 24 98 42 99 111 109 112 105 108 97 116 105 111 110 42 13 134217848 100 101 100 105 99 97 116 101 100 45 109 111 100 101 13 24 51 24 111 134217848 115 104 101 108 108 13 134217848 100 101 100 105 99 97 116 101 100 45 109 111 100 101 13 24 93 99 100 9 24 111 24 111 24 98 42 67 111 109 112 108 101 116 105 111 110 115 42 13 134217848 100 101 100 105 99 97 116 101 100 45 109 111 100 101 13 24 111 24 111 24 111 24 6 126 47 68 111 99 117 109 101 110 116 115 47 119 111 114 107 115 47 83 111 117 114 99 101] 0 "%d")) arg)))
+   
+(fset 'works-previous
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([24 1 1 11 13 24 49 24 50 21 55 24 94 24 51 21 52 48 24 125 24 111 24 111 24 98 42 99 111 109 112 105 108 97 116 105 111 110 42 13 134217848 100 101 100 105 99 97 116 101 100 45 109 111 100 101 13 24 51 24 111 134217848 115 104 101 108 108 13 134217848 100 101 100 105 99 97 116 101 100 45 109 111 100 101 13 24 93 99 100 9 24 111 24 111 24 98 42 67 111 109 112 108 101 116 105 111 110 115 42 13 134217848 100 101 100 105 99 97 116 101 100 45 109 111 100 101 13 24 111 24 111 24 111 24 98 13] 0 "%d")) arg)))
+
+(fset 'works-mac-right
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([24 49 24 51 21 53 48 24 125 24 111 24 50 134217848 115 104 101 108 108 13 134217848 100 101 100 105 99 97 116 101 100 45 109 111 100 101 13 24 111 24 111] 0 "%d")) arg)))
+
+   
+(fset 'works-mac-bottom
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([24 49 24 50 21 49 51 24 94 24 111 24 51 134217848 115 104 101 108 108 13 24 111 24 111] 0 "%d")) arg)))
+   
+;;fortran-mode comment
+(fset 'fortran-comment-title
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([1 42 9 21 53 50 45 42 1 21 54 6 134217848 111 118 101 114 119 114 105 116 101 45 109 111 100 101 13 45 45 134217848 105 110 115 101 114 116 45 99 117 114 114 101 110 116 45 100 97 116 101 45 116 105 109 101 13 45 108 119 97 110 103 45 21 24 113 134217848 111 118 101 114 119 114 105 116 101 45 109 111 100 101 13 5 13 42 42 42 42 42 9 21 54 53 45 42 42 1 21 54 6 134217848 111 118 101 114 119 114 105 116 101 45 109 111 100 101 13 78 111 116 101 58 21 24 113 134217848 111 118 101 114 119 114 105 116 101 45 109 111 100 101 13 5 13 13 42 9 21 53 50 45 42 1 21 54 6 134217848 111 118 101 114 119 114 105 116 101 45 109 111 100 101 13 45 45 134217848 105 110 115 101 114 116 45 99 117 114 114 101 110 116 45 100 97 116 101 45 116 105 109 101 13 45 108 119 97 110 103 45 101 110 100 45 21 24 113 134217848 111 118 101 114 119 114 105 116 101 45 109 111 100 101 13 16 1 9] 0 "%d")) arg)))
+
+;;fortran-comment-add
+(fset 'fortran-comment-add
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([1 42 42 42 42 42 9 21 54 53 45 42 42 1 21 56 6 134217848 111 118 101 114 119 114 105 116 101 45 109 111 100 101 13 21 24 113 134217848 111 118 101 114 119 114 105 116 101 45 109 111 100 101 13 14] 0 "%d")) arg)))
+
+;;Latex-comment-line   
+(fset 'latex-comment-line
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([37 21 56 48 45 37 1 9 6 6 134217848 111 118 101 114 119 114 105 116 101 45 109 111 100 101 13 21 24 113 134217848 111 118 101 114 119 114 105 116 101 45 109 111 100 101 13 14] 0 "%d")) arg)))
+   
+;;emacs-lisp-comment-add   
+(fset 'lisp-comment-add
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([1 59 59 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 1 6 6 134217848 111 118 101 114 119 114 105 116 101 45 109 111 100 101 13 21 24 113 134217848 111 118 101 114 119 114 105 116 101 45 109 111 100 101 13 14] 0 "%d")) arg)))
+
+;;emacs-lisp-comment-add-sub
+(fset 'lisp-comment-add-sub
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([1 59 59 59 59 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 1 6 6 6 6 134217848 111 118 101 114 119 114 105 116 101 45 109 111 100 101 13 21 24 113 134217848 111 118 101 114 119 114 105 116 101 45 109 111 100 101 13 14] 0 "%d")) arg)))
+
+
+   
+;;jump to temp.txt
+(fset 'jumptemp
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ("rbtemp" 0 "%d")) arg)))
+
+;;shell-script-comment-add
+(fset 'sh-comment-add
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([35 21 53 54 45 35 1 6 134217848 111 118 101 114 119 114 105 116 101 45 109 111 100 101 13 21 24 113 134217848 111 118 101 114 119 114 105 116 101 45 109 111 100 101 13 5 13] 0 "%d")) arg)))
+   
+;;notation
+(fset 'c-comment-title
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([47 47 21 53 48 61 47 47 1 9 6 6 134217848 111 118 101 114 119 114 105 116 101 45 109 111 100 101 13 21 24 113 134217848 111 118 101 114 119 114 105 116 101 45 109 111 100 101 13 14] 0 "%d")) arg)))
+
+(fset 'c-comment-date
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([47 47 21 52 48 45 47 47 1 9 6 6 134217848 111 118 101 114 119 114 105 116 101 45 109 111 100 101 13 45 45 134217848 105 110 115 101 114 116 45 99 117 114 114 101 110 116 45 100 97 116 101 45 116 105 109 101 13 45 21 24 113 134217848 111 118 101 114 119 114 105 116 101 45 109 111 100 101 13 14] 0 "%d")) arg)))
+
+;;debug tag   
+(fset 'c-debug-title
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ("#ifdef DEBUG
+
+#endif	" 0 "%d")) arg)))
+
+
+;;outline-mode title
+(fset 'outline-title1
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([42 21 53 54 61 42 1 6 134217848 111 118 101 114 119 114 105 116 101 45 109 111 100 101 13 21 24 113 134217848 111 118 101 114 119 114 105 116 101 45 109 111 100 101 13 5 13] 0 "%d")) arg)))
+(fset 'outline-title2
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([42 42 21 53 51 61 42 42 1 6 6 134217848 111 118 101 114 119 114 105 116 101 45 109 111 100 101 13 21 24 113 134217848 111 118 101 114 119 114 105 116 101 45 109 111 100 101 13 5 13] 0 "%d")) arg)))
+(fset 'outline-title3
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([42 42 42 21 53 48 61 42 42 42 1 6 6 6 134217848 111 118 101 114 119 114 105 116 101 45 109 111 100 101 13 21 24 113 134217848 111 118 101 114 119 114 105 116 101 45 109 111 100 101 13 5 13] 0 "%d")) arg)))
+(fset 'outline-title4
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([42 42 42 42 21 52 55 61 42 42 42 42 1 6 6 6 6 134217848 111 118 101 114 119 114 105 116 101 45 109 111 100 101 13 21 24 113 134217848 111 118 101 114 119 114 105 116 101 45 109 111 100 101 13 5 13] 0 "%d")) arg)))
+(fset 'outline-title5
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([42 42 42 42 42 21 52 52 61 42 42 42 42 42 1 6 6 6 6 6 134217848 111 118 101 114 119 114 105 116 101 45 109 111 100 101 13 21 24 113 134217848 111 118 101 114 119 114 105 116 101 45 109 111 100 101 13 5 13] 0 "%d")) arg)))
+(fset 'outline-title6
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([42 42 42 42 42 42 21 52 49 61 42 42 42 42 42 42 1 6 6 6 6 6 6 134217848 111 118 101 114 119 114 105 116 101 45 109 111 100 101 13 21 24 113 134217848 111 118 101 114 119 114 105 116 101 45 109 111 100 101 13 5 13] 0 "%d")) arg)))
+(fset 'outline-title7
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([42 42 42 42 42 42 42 21 51 56 61 42 42 42 42 42 42 42 1 6 6 6 6 6 6 6 134217848 111 118 101 114 119 114 105 116 101 45 109 111 100 101 13 21 24 113 134217848 111 118 101 114 119 114 105 116 101 45 109 111 100 101 13 5 13] 0 "%d")) arg)))
+(fset 'outline-title8
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([42 42 42 42 42 42 42 42 21 51 53 61 42 42 42 42 42 42 42 42 1 6 6 6 6 6 6 6 6 134217848 111 118 101 114 119 114 105 116 101 45 109 111 100 101 13 21 24 113 134217848 111 118 101 114 119 114 105 116 101 45 109 111 100 101 13 5 13] 0 "%d")) arg)))
+(fset 'outline-title9
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([42 42 42 42 42 42 42 42 42 21 51 50 61 42 42 42 42 42 42 42 42 42 1 6 6 6 6 6 6 6 6 6 134217848 111 118 101 114 119 114 105 116 101 45 109 111 100 101 13 21 24 113 134217848 111 118 101 114 119 114 105 116 101 45 109 111 100 101 13 5 13] 0 "%d")) arg)))
+
+
+

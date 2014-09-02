@@ -1,0 +1,65 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 8.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[      1514,         55]
+NotebookOptionsPosition[      1260,         41]
+NotebookOutlinePosition[      1617,         57]
+CellTagsIndexPosition[      1574,         54]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"ddata", "=", 
+   RowBox[{"Import", "[", 
+    RowBox[{
+    "\"\</Users/wanglong/Documents/Temp/Uscidodfsebc.fit\>\"", ",", 
+     "\"\<RawData\>\""}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"idata", "=", 
+   RowBox[{"Import", "[", 
+    RowBox[{
+    "\"\</Users/wanglong/Documents/Temp/Usciiodfsebc.fit\>\"", ",", 
+     "\"\<RawData\>\""}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"mdata", "=", 
+   RowBox[{"Import", "[", 
+    RowBox[{
+    "\"\</Users/wanglong/Documents/Temp/Uscimodfsebc.fit\>\"", ",", 
+     "\"\<RawData\>\""}], "]"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.5479522045826283`*^9, 3.547952279383437*^9}}]
+},
+WindowSize->{740, 692},
+WindowMargins->{{303, Automatic}, {47, Automatic}},
+FrontEndVersion->"8.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (November 6, \
+2010)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[557, 20, 699, 19, 58, "Input"]
+}
+]
+*)
+
+(* End of internal cache information *)
+

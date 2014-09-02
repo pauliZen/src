@@ -1,0 +1,167 @@
+//Old version, no used now==========================//
+//select neighbor stars by logfile index============//
+//Input: rootname, treename, Newtreename, newtreetitle, logname//
+//Notes: rootname don't need suffix                            //
+
+{
+  //variables=========================================//
+  string rootname;
+  string treename;
+  string newrootname;
+  string newtreename;
+  string newtreetitle;
+  string logname;
+  char inflagc='y';
+  bool inflag=1;
+
+  cout<<"Load last input(y/n)?";
+  cin>>inflagc;
+  if (inflagc=='n')
+    inflag=0;
+
+  if (inflag)
+  {
+    ifstream configf(".vselect-nb.conf");
+    configf>>rootname;
+    configf>>treename;
+    configf>>newtreename;
+    configf>>newtreetitle;
+    configf>>logname;
+    configf.close();
+  }
+
+  //input=============================================//
+  cout<<"Input root name("<<rootname<<")('y'/n):";
+  cin>>inflagc;
+  if (inflagc=='n')
+  {
+    cout<<"Input root name:";
+    cin>>rootname;
+  }
+  cout<<"Input Tree name to select data("<<treename<<")('y'/n):";
+  cin>>inflagc;
+  if (inflagc=='n')
+  {
+    cout<<"Input Tree name to select data:";
+    cin>>treename;
+  }
+  cout<<"New Tree name("<<newtreename<<")('y'/n):";
+  cin>>inflagc;
+  if (inflagc=='n')
+  {
+    cout<<"New Tree name:";
+    cin>>newtreename;
+  }
+  cout<<"New Tree title("<<newtreetitle<<")('y'/n):";
+  cin>>inflagc;
+  if (inflagc=='n')
+  {
+    cout<<"New Tree title:";
+    cin>>newtreetitle;
+  }
+  cout<<"Input index log name("<<logname<<")('y'/n):";
+  cin>>inflagc;
+  if (inflagc=='n')
+  {
+    cout<<"Input index log name:";
+    cin>>logname;
+  }
+  ofstream outconf(".vselect-nb.conf");
+  outconf<<rootname;
+  outconf<<treename;
+  outconf<<newtreename;
+  outconf<<newtreetitle;
+  outconf<<logname;
+  outconf.close();
+
+  newrootname=rootname+"-result.root";
+  rootname=rootname+"-nb.root";
+
+  //analysis==========================================//
+  TFile *fn=new TFile(rootname.c_str(),"update");
+  TFile *f2=new TFile(newrootname.c_str(),"update");
+
+  TTree *ntree=(TTree*)(fn->Get(treename.c_str()));
+  Double_t t_curd1,massd1;
+  Int_t numd1,indexd1,groupd1;
+  Double_t xd1,yd1,zd1,rd1;
+  Double_t vxd1,vyd1,vzd1,vd1;
+  ntree->SetBranchAddress("time_cur",&t_curd1);
+  ntree->SetBranchAddress("group",&groupd1);
+  ntree->SetBranchAddress("No",&numd1);
+  ntree->SetBranchAddress("index",&indexd1);
+  ntree->SetBranchAddress("mass",&massd1);
+  ntree->SetBranchAddress("x",&xd1);
+  ntree->SetBranchAddress("y",&yd1);
+  ntree->SetBranchAddress("z",&zd1);
+  ntree->SetBranchAddress("rb",&rd1);
+  ntree->SetBranchAddress("vx",&vxd1);
+  ntree->SetBranchAddress("vy",&vyd1);
+  ntree->SetBranchAddress("vz",&vzd1);
+  ntree->SetBranchAddress("vb",&vd1);
+
+  TTree *nntree=new TTree (newtreename.c_str(),newtreetitle.c_str());
+  Double_t t_curd2,massd2;
+  Int_t numd2,indexd2,groupd2;
+  Double_t xd2,yd2,zd2,rd2;
+  Double_t vxd2,vyd2,vzd2,vd2;
+  TBranch *t_cur2=nntree->Branch("time_cur",&t_curd2);
+  TBranch *group2=nntree->Branch("group",&groupd2);
+  TBranch *no2=nntree->Branch("No",&numd2);
+  TBranch *index2=nntree->Branch("index",&indexd2);
+  TBranch *mass2=nntree->Branch("mass",&massd2);
+  TBranch *x2=nntree->Branch("x",&xd2);
+  TBranch *y2=nntree->Branch("y",&yd2);
+  TBranch *z2=nntree->Branch("z",&zd2);
+  TBranch *r2=nntree->Branch("rb",&rd2);
+  TBranch *vx2=nntree->Branch("vx",&vxd2);
+  TBranch *vy2=nntree->Branch("vy",&vyd2);
+  TBranch *vz2=nntree->Branch("vz",&vzd2);
+  TBranch *v2=nntree->Branch("vb",&vd2);
+
+  ifstream orgdata(logname.c_str());
+  ofstream outdata((logname+"-"+treename+".recheck").c_str());
+  if (!orgdata.is_open())
+    cout<<"No log file";
+  else
+  {
+    int tot=(ntree->GetEntries());
+    while (!orgdata.eof())
+    {
+      int sindex;
+      orgdata>>sindex;
+      bool counted=0;
+      //      cout<<"now sindex "<<sindex<<endl;
+      for (int i=0;i<tot;i++)
+      {
+        ntree->GetEntry(i);
+        //        cout<<"now tree index "<<indexd1<<endl;
+        if (indexd1==sindex)
+        {
+          cout<<"one fit in "<<sindex<<endl;
+          if (!counted)
+          {
+            outdata<<sindex<<endl;
+            counted=1;
+          }
+          t_curd2=t_curd1;
+          massd2=massd1;
+          numd2=numd1;
+          indexd2=indexd1;
+          groupd2=groupd1;
+          xd2=xd1;
+          yd2=yd1;
+          zd2=zd1;
+          rd2=rd1;
+          vxd2=vxd1;
+          vyd2=vyd1;
+          vzd2=vzd1;
+          vd2=vd1;
+          nntree->Fill();
+        }
+      }
+    }
+  }
+  outdata.close();
+  nntree->Write("",TObject::kOverwrite);
+}

@@ -1,0 +1,6 @@
+The routine adot.f integrates the GR two-body equations
+for semi-major axis and eccentricity according to Peters (1964).
+It can be used for comparison with the three-body code KOZAI.
+
+The file triple.pdf contains four pages describing the AZ code
+and equations for external perturbation (like PN).

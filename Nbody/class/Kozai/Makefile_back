@@ -1,0 +1,20 @@
+CFLAGS = -O
+FFLAGS = -O3
+#FFLAGS = -O3 -ffortran-bounds-check
+FC = gfortran
+
+SOURCE = kozai.f binary.f block.f data.f derqp.f difsy1.f grbin.f inc.f \
+         inclin.f impact.f peri.f plpert.f transf.f xtpert.f wait.f \
+         ran2.f lenz.f gopu_SpinTerms.f cdot2.f
+
+OBJECTS = $(SOURCE:.f=.o)
+
+kozai:  $(OBJECTS) $(POBJS)
+	$(FC) $(FFLAGS) $(OBJECTS) $(POBJS) $(LIBP) -o kozai
+
+clean:
+	rm -f core *.o xtriple ptriple 
+
+print:
+	@- \rm -f KOZAI.TEXT
+	@cat $(SOURCE) > KOZAI.TEXT

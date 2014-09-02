@@ -1,0 +1,332 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 9.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[     13727,        323]
+NotebookOptionsPosition[     13287,        302]
+NotebookOutlinePosition[     13645,        318]
+CellTagsIndexPosition[     13602,        315]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["GC orbit", "Title",
+ CellChangeTimes->{{3.6103553665000067`*^9, 3.610355376385878*^9}}],
+
+Cell["Point mass potential", "Subtitle",
+ CellChangeTimes->{{3.610355378706135*^9, 3.6103553940332003`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Grid", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"\"\<Distance:\>\"", ",", 
+         RowBox[{"i", "*", 
+          TemplateBox[{"1"},
+           "QuantityUnit",
+           DisplayFunction->(TooltipBox[
+             StyleBox[
+              RowBox[{#, "\[InvisibleSpace]", 
+                StyleBox[
+                 RowBox[{" ", "\"kpc\""}], "QuantityUnitTraditionalInput"]}], 
+              ShowStringCharacters -> False], "Unit: kiloparsecs"]& ),
+           InterpretationFunction->(RowBox[{"Quantity", "[", 
+              RowBox[{#, ",", "\"Kiloparsecs\""}], "]"}]& )]}]}], "}"}], ",", 
+       
+       RowBox[{"{", 
+        RowBox[{"\"\<Velocity:\>\"", ",", 
+         RowBox[{"j", "*", 
+          TemplateBox[{"1"},
+           "QuantityUnit",
+           DisplayFunction->(TooltipBox[
+             StyleBox[
+              RowBox[{#, "\[InvisibleSpace]", 
+                StyleBox[
+                 RowBox[{" ", 
+                   
+                   RowBox[{
+                    "\"km\"", "\[InvisibleSpace]", "\"/\"", 
+                    "\[InvisibleSpace]", "\"s\""}]}], 
+                 "QuantityUnitTraditionalInput"]}], ShowStringCharacters -> 
+              False], "Unit: kilometers per second"]& ),
+           InterpretationFunction->(RowBox[{"Quantity", "[", 
+              RowBox[{#, ",", 
+                FractionBox["\"Kilometers\"", "\"Seconds\""]}], "]"}]& )]}]}],
+         "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"\"\<Cluster Mass:\>\"", ",", 
+         RowBox[{"m", "*", 
+          TemplateBox[{"1*^5"},
+           "QuantityUnit",
+           DisplayFunction->(TooltipBox[
+             StyleBox[
+              RowBox[{#, "\[InvisibleSpace]", 
+                StyleBox[
+                 RowBox[{" ", 
+                   SubscriptBox[
+                    StyleBox["\"M\"", Italic, StripOnInput -> False], 
+                    "\"\[CircleDot]\""]}], "QuantityUnitTraditionalInput"]}], 
+              ShowStringCharacters -> False], "Unit: solar masses"]& ),
+           InterpretationFunction->(RowBox[{"Quantity", "[", 
+              RowBox[{#, ",", "\"SolarMass\""}], "]"}]& )]}]}], "}"}]}], 
+      "}"}], "~", "Join", "~", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"\"\<Galactic Mass:\>\"", ",", "#"}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Tidel Radius:\>\"", ",", 
+            RowBox[{"i", "*", 
+             TemplateBox[{"1*^3"},
+              "QuantityUnit",
+              DisplayFunction->(TooltipBox[
+                StyleBox[
+                 RowBox[{#, "\[InvisibleSpace]", 
+                   StyleBox[
+                    RowBox[{" ", "\"pc\""}], 
+                    "QuantityUnitTraditionalInput"]}], ShowStringCharacters -> 
+                 False], "Unit: parsecs"]& ),
+              InterpretationFunction->(RowBox[{"Quantity", "[", 
+                 RowBox[{#, ",", "\"Parsecs\""}], "]"}]& )], 
+             SuperscriptBox[
+              RowBox[{"(", 
+               RowBox[{
+                RowBox[{
+                 RowBox[{"(", 
+                  RowBox[{"m", "*", 
+                   TemplateBox[{"1*^5"},
+                    "QuantityUnit",
+                    DisplayFunction->(TooltipBox[
+                    StyleBox[
+                    RowBox[{#, "\[InvisibleSpace]", 
+                    StyleBox[
+                    RowBox[{" ", 
+                    SubscriptBox[
+                    StyleBox["\"M\"", Italic, StripOnInput -> False], 
+                    "\"\[CircleDot]\""]}], "QuantityUnitTraditionalInput"]}], 
+                    ShowStringCharacters -> False], "Unit: solar masses"]& ),
+                    InterpretationFunction->(RowBox[{"Quantity", "[", 
+                    RowBox[{#, ",", "\"SolarMass\""}], "]"}]& )]}], ")"}], 
+                 "/", "3"}], "/", "#"}], ")"}], 
+              RowBox[{"1", "/", "3"}]]}]}], "}"}]}], "}"}], "&"}], "@", 
+       RowBox[{"(", 
+        RowBox[{"UnitConvert", "[", 
+         RowBox[{
+          RowBox[{"i", "*", 
+           TemplateBox[{"1"},
+            "QuantityUnit",
+            DisplayFunction->(TooltipBox[
+              StyleBox[
+               RowBox[{#, "\[InvisibleSpace]", 
+                 StyleBox[
+                  RowBox[{" ", "\"kpc\""}], "QuantityUnitTraditionalInput"]}],
+                ShowStringCharacters -> False], "Unit: kiloparsecs"]& ),
+            InterpretationFunction->(RowBox[{"Quantity", "[", 
+               RowBox[{#, ",", "\"Kiloparsecs\""}], "]"}]& )], "*", 
+           RowBox[{
+            SuperscriptBox[
+             RowBox[{"(", 
+              RowBox[{"j", "*", 
+               TemplateBox[{"1"},
+                "QuantityUnit",
+                DisplayFunction->(TooltipBox[
+                  StyleBox[
+                   RowBox[{#, "\[InvisibleSpace]", 
+                    StyleBox[
+                    RowBox[{" ", 
+                    
+                    RowBox[{
+                    "\"km\"", "\[InvisibleSpace]", "\"/\"", 
+                    "\[InvisibleSpace]", "\"s\""}]}], 
+                    "QuantityUnitTraditionalInput"]}], ShowStringCharacters -> 
+                   False], "Unit: kilometers per second"]& ),
+                InterpretationFunction->(RowBox[{"Quantity", "[", 
+                   RowBox[{#, ",", 
+                    FractionBox["\"Kilometers\"", "\"Seconds\""]}], 
+                   "]"}]& )]}], ")"}], "2"], " ", "/", 
+            RowBox[{"(", 
+             TemplateBox[{"1"},
+              "QuantityUnit",
+              DisplayFunction->(TooltipBox[
+                StyleBox[
+                 RowBox[{#, "\[InvisibleSpace]", 
+                   StyleBox[
+                    RowBox[{" ", 
+                    StyleBox["\"G\"", Italic, StripOnInput -> False]}], 
+                    "QuantityUnitTraditionalInput"]}], ShowStringCharacters -> 
+                 False], "Unit: Newtonian gravitational constants"]& ),
+              InterpretationFunction->(RowBox[{"Quantity", "[", 
+                 RowBox[{#, ",", "\"GravitationalConstant\""}], "]"}]& )], 
+             ")"}]}]}], "\[IndentingNewLine]", ",", 
+          TemplateBox[{"1"},
+           "QuantityUnit",
+           DisplayFunction->(TooltipBox[
+             StyleBox[
+              RowBox[{#, "\[InvisibleSpace]", 
+                StyleBox[
+                 RowBox[{" ", 
+                   SubscriptBox[
+                    StyleBox["\"M\"", Italic, StripOnInput -> False], 
+                    "\"\[CircleDot]\""]}], "QuantityUnitTraditionalInput"]}], 
+              ShowStringCharacters -> False], "Unit: solar masses"]& ),
+           InterpretationFunction->(RowBox[{"Quantity", "[", 
+              RowBox[{#, ",", "\"SolarMass\""}], "]"}]& )]}], "]"}], ")"}]}], 
+      ")"}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"i", ",", "8"}], "}"}], ",", "0", ",", "100", ",", "0.001"}], 
+    "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"j", ",", "220"}], "}"}], ",", "100", ",", "300", ",", "1"}], 
+    "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"m", ",", "5"}], "}"}], ",", "0", ",", "100", ",", "0.001"}], 
+    "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.598071926821958*^9, 3.598071945701618*^9}, {
+   3.598071997857033*^9, 3.5980723160014877`*^9}, {3.598072357347247*^9, 
+   3.5980723592659693`*^9}, {3.598072744317905*^9, 3.598072810349306*^9}, {
+   3.598072850775063*^9, 3.598072920891906*^9}, {3.5980729661880608`*^9, 
+   3.598072967200509*^9}, {3.5980829078702393`*^9, 3.598082929922748*^9}, {
+   3.6094092434365396`*^9, 3.6094093155017633`*^9}, {3.610348758686062*^9, 
+   3.6103487826228933`*^9}, {3.610355413583191*^9, 3.610355443010306*^9}, {
+   3.61036145110131*^9, 3.610361453753126*^9}, {3.6103615280545387`*^9, 
+   3.6103615496359653`*^9}, 3.6103616251975527`*^9, {3.6103616826662407`*^9, 
+   3.610361768359062*^9}, {3.610361928662314*^9, 3.6103621455299683`*^9}, {
+   3.6103622794944572`*^9, 3.610362299132175*^9}, {3.61036233562103*^9, 
+   3.610362455720179*^9}, {3.6103625283797503`*^9, 3.610362528727128*^9}, {
+   3.610362737076486*^9, 3.6103627386421337`*^9}, {3.610362777105427*^9, 
+   3.610362811552515*^9}, {3.610362873849098*^9, 3.610362893597959*^9}, {
+   3.6103629971101017`*^9, 3.610363013943035*^9}, {3.6103630947728653`*^9, 
+   3.610363110548114*^9}, {3.61036315290687*^9, 3.6103633344623337`*^9}, {
+   3.610363373966651*^9, 3.6103634132644787`*^9}, {3.610363646329261*^9, 
+   3.6103637578266077`*^9}, {3.6103637886595173`*^9, 3.610363789782977*^9}, {
+   3.610363842786059*^9, 3.6103642419614897`*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`i$$ = 8, $CellContext`j$$ = 
+    220, $CellContext`m$$ = 5, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`i$$], 8}, 0, 100, 0.001}, {{
+       Hold[$CellContext`j$$], 220}, 100, 300, 1}, {{
+       Hold[$CellContext`m$$], 5}, 0, 100, 0.001}}, Typeset`size$$ = {
+    208., {38.125, 43.875}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = True, $CellContext`i$717317$$ = 
+    0, $CellContext`j$717318$$ = 0, $CellContext`m$717319$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`i$$ = 8, $CellContext`j$$ = 
+        220, $CellContext`m$$ = 5}, "ControllerVariables" :> {
+        Hold[$CellContext`i$$, $CellContext`i$717317$$, 0], 
+        Hold[$CellContext`j$$, $CellContext`j$717318$$, 0], 
+        Hold[$CellContext`m$$, $CellContext`m$717319$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> Grid[
+        Join[{{"Distance:", $CellContext`i$$ Quantity[1, "Kiloparsecs"]}, {
+          "Velocity:", $CellContext`j$$ 
+           Quantity[1, "Kilometers"/"Seconds"]}, {
+          "Cluster Mass:", $CellContext`m$$ Quantity[100000, "SolarMass"]}}, 
+         ({{"Galactic Mass:", #}, {
+          "Tidel Radius:", $CellContext`i$$ 
+           Quantity[
+            1000, "Parsecs"] ((($CellContext`m$$ 
+               Quantity[100000, "SolarMass"])/3)/#)^(1/3)}}& )[
+          
+          UnitConvert[$CellContext`i$$ 
+           Quantity[
+            1, "Kiloparsecs"] (($CellContext`j$$ 
+              Quantity[1, "Kilometers"/"Seconds"])^2/Quantity[
+            1, "GravitationalConstant"]), 
+           Quantity[1, "SolarMass"]]]]], 
+      "Specifications" :> {{{$CellContext`i$$, 8}, 0, 100, 
+         0.001}, {{$CellContext`j$$, 220}, 100, 300, 
+         1}, {{$CellContext`m$$, 5}, 0, 100, 0.001}}, "Options" :> {}, 
+      "DefaultOptions" :> {}],
+     ImageSizeCache->{253., {125., 130.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{{3.598072896905307*^9, 3.598072921409816*^9}, 
+   3.59807297249481*^9, {3.598082909396151*^9, 3.598082930597086*^9}, {
+   3.6094092460211363`*^9, 3.609409315848221*^9}, {3.6103487681714993`*^9, 
+   3.610348783043623*^9}, 3.6103554394435062`*^9, 3.610361557029264*^9, {
+   3.610361625940727*^9, 3.6103616536539392`*^9}, 3.6103617566874733`*^9, 
+   3.610362305743762*^9, 3.610362460952425*^9, 3.610362529887532*^9, {
+   3.6103627288186398`*^9, 3.610362739499332*^9}, {3.610362779296219*^9, 
+   3.610362812425044*^9}, {3.610362862963553*^9, 3.610362900341959*^9}, 
+   3.610363037195053*^9, {3.6103631042139063`*^9, 3.610363113007269*^9}, 
+   3.610363159594104*^9, {3.6103632433067293`*^9, 3.610363271424746*^9}, 
+   3.610363335525448*^9, 3.610363402204886*^9, {3.610363692303472*^9, 
+   3.610363753384817*^9}, {3.610363807665324*^9, 3.610363827154481*^9}, {
+   3.6103638593081017`*^9, 3.6103638676846323`*^9}, {3.610364068780807*^9, 
+   3.610364116367777*^9}, 3.610364170276483*^9, {3.6103642257931423`*^9, 
+   3.6103642427996807`*^9}}]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{740, 792},
+WindowMargins->{{330, Automatic}, {-78, Automatic}},
+FrontEndVersion->"9.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (January 25, \
+2013)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[579, 22, 93, 1, 92, "Title"],
+Cell[675, 25, 108, 1, 51, "Subtitle"],
+Cell[CellGroupData[{
+Cell[808, 30, 8709, 196, 180, "Input"],
+Cell[9520, 228, 3739, 70, 272, "Output"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

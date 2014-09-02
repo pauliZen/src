@@ -1,0 +1,22 @@
+<package>
+   <job id="vbs">
+      <script language="VBScript">
+	If WScript.Arguments.length =0 Then
+  		Set objShell = CreateObject("Shell.Application")
+   		objShell.ShellExecute "wscript.exe", Chr(34) & _
+  		WScript.ScriptFullName & Chr(34) & " uac", "", "runas", 1
+	Else
+		Set objFSO = CreateObject("Scripting.FileSystemObject")
+		If objFSO.FileExists("C:\Windows\System32\drivers\etc\hostsipv6") Then
+			objFSO.MoveFile "C:\Windows\System32\drivers\etc\hosts" , "C:\Windows\System32\drivers\etc\hostsipv4"
+			objFSO.MoveFile "C:\Windows\System32\drivers\etc\hostsipv6" , "C:\Windows\System32\drivers\etc\hosts"
+			Wscript.Echo "IpV4->IpV6"
+		ElseIf objFSO.FileExists("C:\Windows\System32\drivers\etc\hostsipv4") Then
+			objFSO.MoveFile "C:\Windows\System32\drivers\etc\hosts" , "C:\Windows\System32\drivers\etc\hostsipv6"
+			objFSO.MoveFile "C:\Windows\System32\drivers\etc\hostsipv4" , "C:\Windows\System32\drivers\etc\hosts"
+			Wscript.Echo "IpV6->IpV4"
+		End If	
+	End If
+      </script>
+   </job>
+</package>

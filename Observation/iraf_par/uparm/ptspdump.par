@@ -1,0 +1,7 @@
+infiles,s,a,"@Urefstarmag.lst",,,"Input apphot/daophot databases(s)"
+fields,s,a,"image flux",,,"Fields to be extracted"
+expr,s,a,"yes",,,"Boolean expression"
+headers,b,h,no,,,"Print field headers?"
+parameters,b,h,yes,,,"Print parameters?"
+inlist,*struct,h,"",,,
+mode,s,h,"ql",,,

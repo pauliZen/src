@@ -1,0 +1,95 @@
+data 1:1 101/src_grp.pi
+data 2:2 102/src_grp.pi
+data 3:3 103/src_grp.pi
+data 4:4 104/src_grp.pi
+data 5:5 105/src_grp.pi
+data 6:6 106/src_grp.pi
+data 7:7 107/src_grp.pi
+data 8:8 108/src_grp.pi
+data 9:9 109/src_grp.pi
+data 10:10 110/src_grp.pi
+data 11:11 111/src_grp.pi
+data 12:12 112/src_grp.pi
+data 13:13 113/src_grp.pi
+data 14:14 114/src_grp.pi
+data 15:15 115/src_grp.pi
+data 16:16 116/src_grp.pi
+data 17:17 117/src_grp.pi
+data 18:18 118/src_grp.pi
+data 19:19 119/src_grp.pi
+data 20:20 120/src_grp.pi
+data 21:21 121/src_grp.pi
+data 22:22 122/src_grp.pi
+data 23:23 123/src_grp.pi
+data 24:24 124/src_grp.pi
+data 25:25 125/src_grp.pi
+data 26:26 126/src_grp.pi
+data 27:27 127/src_grp.pi
+data 28:28 128/src_grp.pi
+data 29:29 129/src_grp.pi
+data 30:30 130/src_grp.pi
+
+ignore 1:0.-.7 
+ignore 2:0.-.7 
+ignore 3:0.-.7 
+ignore 4:0.-.7 
+ignore 5:0.-.7 
+ignore 6:0.-.7 
+ignore 7:0.-.7 
+ignore 8:0.-.7 
+ignore 9:0.-.7 
+ignore 10:0.-.7 
+ignore 11:0.-.7 
+ignore 12:0.-.7 
+ignore 13:0.-.7 
+ignore 14:0.-.7 
+ignore 15:0.-.7 
+ignore 16:0.-.7 
+ignore 17:0.-.7 
+ignore 18:0.-.7 
+ignore 19:0.-.7 
+ignore 20:0.-.7 
+ignore 21:0.-.7 
+ignore 22:0.-.7 
+ignore 23:0.-.7 
+ignore 24:0.-.7 
+ignore 25:0.-.7 
+ignore 26:0.-.7 
+ignore 27:0.-.7 
+ignore 28:0.-.7 
+ignore 29:0.-.7 
+ignore 30:0.-.7 
+
+ignore 1: 7.-**
+ignore 2: 7.-**
+ignore 3: 7.-**
+ignore 4: 7.-**
+ignore 5: 7.-**
+ignore 6: 7.-**
+ignore 7: 7.-**
+ignore 8: 7.-**
+ignore 9: 7.-**
+ignore 10: 7.-**
+ignore 11: 7.-**
+ignore 12: 7.-**
+ignore 13: 7.-**
+ignore 14: 7.-**
+ignore 15: 7.-**
+ignore 16: 7.-**
+ignore 17: 7.-**
+ignore 18: 7.-**
+ignore 19: 7.-**
+ignore 20: 7.-**
+ignore 21: 7.-**
+ignore 22: 7.-**
+ignore 23: 7.-**
+ignore 24: 7.-**
+ignore 25: 7.-**
+ignore 26: 7.-**
+ignore 27: 7.-**
+ignore 28: 7.-**
+ignore 29: 7.-**
+ignore 30: 7.-**
+
+
+method leven 1000 0.01

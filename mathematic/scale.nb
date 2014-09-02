@@ -1,0 +1,124 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 9.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[      3328,        114]
+NotebookOptionsPosition[      2857,         93]
+NotebookOutlinePosition[      3211,        109]
+CellTagsIndexPosition[      3168,        106]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"G", "=", 
+   RowBox[{"6.67*^-11", 
+    SuperscriptBox["m", "3"], 
+    SuperscriptBox["kg", 
+     RowBox[{"-", "1"}]], 
+    SuperscriptBox["s", 
+     RowBox[{"-", "2"}]]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"M", "=", 
+   RowBox[{"1*^9", "Msun"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Msun", "=", 
+   RowBox[{"1.98855*^30", "kg"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"r", "=", 
+   RowBox[{"1", "kpc"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"kpc", "=", 
+   RowBox[{"3.08567758*^19", "m"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"v", "=", 
+  SqrtBox[
+   RowBox[{"G", " ", 
+    RowBox[{"M", " ", "/", "r"}]}]]}], "\[IndentingNewLine]", 
+ RowBox[{"t", "=", 
+  RowBox[{
+   SqrtBox[
+    FractionBox[
+     SuperscriptBox["r", "3"], 
+     RowBox[{"G", " ", "M"}]]], "/.", 
+   RowBox[{"s", "\[Rule]", 
+    RowBox[{
+     FractionBox["1", 
+      RowBox[{"365", "*", "24", "*", "3600", "*", "1*^6"}]], 
+     "Myr"}]}]}]}]}], "Input",
+ CellChangeTimes->{{3.579060279929482*^9, 3.5790602902159758`*^9}, {
+  3.579060375444862*^9, 3.579060491656188*^9}, {3.57906054265446*^9, 
+  3.579060546805875*^9}, {3.579060712132832*^9, 3.5790607241647243`*^9}, {
+  3.579060758351736*^9, 3.579060807147386*^9}}],
+
+Cell[BoxData[
+ RowBox[{"65562.55986953169`", " ", 
+  SqrtBox[
+   FractionBox[
+    SuperscriptBox["m", "2"], 
+    SuperscriptBox["s", "2"]]]}]], "Output",
+ CellChangeTimes->{3.579060493145974*^9, 3.57906054755229*^9, 
+  3.579060606542697*^9, 3.579060725377055*^9, 3.579060808155156*^9}],
+
+Cell[BoxData[
+ RowBox[{"14.924096067249096`", " ", 
+  SqrtBox[
+   SuperscriptBox["Myr", "2"]]}]], "Output",
+ CellChangeTimes->{3.579060493145974*^9, 3.57906054755229*^9, 
+  3.579060606542697*^9, 3.579060725377055*^9, 3.5790608081580563`*^9}]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{"Clear", "[", 
+  RowBox[{"G", ",", "M", ",", "Msun", ",", "r", ",", "kpc", ",", "v"}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.579060535003615*^9, 3.579060538004689*^9}, {
+  3.579060593320025*^9, 3.5790606045447807`*^9}}],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.579060741833563*^9, 3.579060756343707*^9}}],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.579060769369787*^9, 3.579060770559453*^9}}]
+},
+WindowSize->{740, 688},
+WindowMargins->{{4, Automatic}, {Automatic, 4}},
+FrontEndVersion->"9.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (January 25, \
+2013)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[579, 22, 1291, 39, 183, "Input"],
+Cell[1873, 63, 285, 7, 69, "Output"],
+Cell[2161, 72, 241, 5, 40, "Output"]
+}, Open  ]],
+Cell[2417, 80, 246, 5, 28, "Input"],
+Cell[2666, 87, 92, 1, 28, "Input"],
+Cell[2761, 90, 92, 1, 28, "Input"]
+}
+]
+*)
+
+(* End of internal cache information *)
+

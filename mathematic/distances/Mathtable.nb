@@ -1,0 +1,239 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 8.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[      7265,        230]
+NotebookOptionsPosition[      6637,        202]
+NotebookOutlinePosition[      6996,        218]
+CellTagsIndexPosition[      6953,        215]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Integration", "Title",
+ CellChangeTimes->{{3.54863787227076*^9, 3.548637883366233*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["Code", "Subsection",
+ CellChangeTimes->{{3.548637886470809*^9, 3.54863790395015*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"t1", ":=", 
+   RowBox[{"Grid", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+        "\"\<\!\(\*SubsuperscriptBox[\(\[Integral]\), \(0\), FractionBox[\(\
+\[Pi]\), \(2\)]]\)(Sin[x]\!\(\*SuperscriptBox[\()\), \
+\(n\)]\)\[DifferentialD]x\>\"", ",", 
+         RowBox[{"Simplify", "[", 
+          RowBox[{
+           RowBox[{
+            SubsuperscriptBox["\[Integral]", "0", 
+             FractionBox["\[Pi]", "2"]], 
+            RowBox[{
+             SuperscriptBox[
+              RowBox[{"(", 
+               RowBox[{"Sin", "[", "x", "]"}], ")"}], "n"], 
+             RowBox[{"\[DifferentialD]", "x"}]}]}], ",", 
+           RowBox[{"n", ">", "0"}]}], "]"}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+        "\"\<\!\(\*SubsuperscriptBox[\(\[Integral]\), \(0\), FractionBox[\(\
+\[Pi]\), \(2\)]]\)(Cos[x]\!\(\*SuperscriptBox[\()\), \
+\(n\)]\)\[DifferentialD]x\>\"", ",", 
+         RowBox[{"Simplify", "[", 
+          RowBox[{
+           RowBox[{
+            SubsuperscriptBox["\[Integral]", "0", 
+             FractionBox["\[Pi]", "2"]], 
+            RowBox[{
+             SuperscriptBox[
+              RowBox[{"(", 
+               RowBox[{"Cos", "[", "x", "]"}], ")"}], "n"], 
+             RowBox[{"\[DifferentialD]", "x"}]}]}], ",", 
+           RowBox[{"n", ">", "0"}]}], "]"}]}], "}"}]}], "}"}], ",", 
+     RowBox[{"Frame", "\[Rule]", "All"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"t2", ":=", 
+   RowBox[{"Grid", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"{", "\"\<Name\>\"", "}"}], "~", "Join", "~", 
+        RowBox[{"Table", "[", 
+         RowBox[{"i", ",", 
+          RowBox[{"{", 
+           RowBox[{"i", ",", "1", ",", "10"}], "}"}]}], "]"}]}], ",", 
+       RowBox[{
+        RowBox[{"{", "\"\<Gamma[1/2+n/2]\>\"", "}"}], "~", "Join", "~", 
+        RowBox[{"Table", "[", 
+         RowBox[{
+          RowBox[{"Gamma", "[", 
+           RowBox[{
+            RowBox[{"1", "/", "2"}], "+", 
+            RowBox[{"i", "/", "2"}]}], "]"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"i", ",", "1", ",", "10"}], "}"}]}], "]"}]}], ",", 
+       RowBox[{
+        RowBox[{"{", "\"\<Gamma[1+n/2]\>\"", "}"}], "~", "Join", "~", 
+        RowBox[{"Table", "[", 
+         RowBox[{
+          RowBox[{"Gamma", "[", 
+           RowBox[{"1", "+", 
+            RowBox[{"i", "/", "2"}]}], "]"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"i", ",", "1", ",", "10"}], "}"}]}], "]"}]}]}], "}"}], ",", 
+     RowBox[{"Frame", "\[Rule]", "All"}]}], "]"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.548637406927742*^9, 3.548637607488346*^9}, {
+  3.548637755447133*^9, 3.548637827464196*^9}, {3.548637916554552*^9, 
+  3.54863793784172*^9}}]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Table", "Subsection",
+ CellChangeTimes->{{3.5486379246606703`*^9, 3.548637943628705*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{"t1", "\[IndentingNewLine]", "t2"}], "Input",
+ CellChangeTimes->{{3.5486379469037523`*^9, 3.548637949030328*^9}}],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {"\<\"\\!\\(\\*SubsuperscriptBox[\\(\[Integral]\\), \\(0\\), FractionBox[\
+\\(\[Pi]\\), \\(2\\)]]\\)(Sin[x]\\!\\(\\*SuperscriptBox[\\()\\), \\(n\\)]\\)\
+\[DifferentialD]x\"\>", 
+     FractionBox[
+      RowBox[{
+       SqrtBox["\[Pi]"], " ", 
+       RowBox[{"Gamma", "[", 
+        FractionBox[
+         RowBox[{"1", "+", "n"}], "2"], "]"}]}], 
+      RowBox[{"2", " ", 
+       RowBox[{"Gamma", "[", 
+        RowBox[{"1", "+", 
+         FractionBox["n", "2"]}], "]"}]}]]},
+    {"\<\"\\!\\(\\*SubsuperscriptBox[\\(\[Integral]\\), \\(0\\), FractionBox[\
+\\(\[Pi]\\), \\(2\\)]]\\)(Cos[x]\\!\\(\\*SuperscriptBox[\\()\\), \\(n\\)]\\)\
+\[DifferentialD]x\"\>", 
+     FractionBox[
+      RowBox[{
+       SqrtBox["\[Pi]"], " ", 
+       RowBox[{"Gamma", "[", 
+        FractionBox[
+         RowBox[{"1", "+", "n"}], "2"], "]"}]}], 
+      RowBox[{"2", " ", 
+       RowBox[{"Gamma", "[", 
+        RowBox[{"1", "+", 
+         FractionBox["n", "2"]}], "]"}]}]]}
+   },
+   AutoDelete->False,
+   GridBoxFrame->{"Columns" -> {{True}}, "Rows" -> {{True}}},
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+  "Grid"]], "Output",
+ CellChangeTimes->{
+  3.548637431223958*^9, {3.548637469183354*^9, 3.548637491550157*^9}, 
+   3.5486375264347477`*^9, {3.548637571514439*^9, 3.548637608016234*^9}, 
+   3.548637830538245*^9, 3.548637952069846*^9}],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {"\<\"Name\"\>", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"},
+    {"\<\"Gamma[1/2+n/2]\"\>", "1", 
+     FractionBox[
+      SqrtBox["\[Pi]"], "2"], "1", 
+     FractionBox[
+      RowBox[{"3", " ", 
+       SqrtBox["\[Pi]"]}], "4"], "2", 
+     FractionBox[
+      RowBox[{"15", " ", 
+       SqrtBox["\[Pi]"]}], "8"], "6", 
+     FractionBox[
+      RowBox[{"105", " ", 
+       SqrtBox["\[Pi]"]}], "16"], "24", 
+     FractionBox[
+      RowBox[{"945", " ", 
+       SqrtBox["\[Pi]"]}], "32"]},
+    {"\<\"Gamma[1+n/2]\"\>", 
+     FractionBox[
+      SqrtBox["\[Pi]"], "2"], "1", 
+     FractionBox[
+      RowBox[{"3", " ", 
+       SqrtBox["\[Pi]"]}], "4"], "2", 
+     FractionBox[
+      RowBox[{"15", " ", 
+       SqrtBox["\[Pi]"]}], "8"], "6", 
+     FractionBox[
+      RowBox[{"105", " ", 
+       SqrtBox["\[Pi]"]}], "16"], "24", 
+     FractionBox[
+      RowBox[{"945", " ", 
+       SqrtBox["\[Pi]"]}], "32"], "120"}
+   },
+   AutoDelete->False,
+   GridBoxFrame->{"Columns" -> {{True}}, "Rows" -> {{True}}},
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+  "Grid"]], "Output",
+ CellChangeTimes->{
+  3.548637431223958*^9, {3.548637469183354*^9, 3.548637491550157*^9}, 
+   3.5486375264347477`*^9, {3.548637571514439*^9, 3.548637608016234*^9}, 
+   3.548637830538245*^9, 3.5486379520742893`*^9}]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{740, 691},
+WindowMargins->{{Automatic, 306}, {Automatic, -918}},
+FrontEndVersion->"8.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (November 6, \
+2010)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[579, 22, 93, 1, 76, "Title"],
+Cell[CellGroupData[{
+Cell[697, 27, 91, 1, 34, "Subsection"],
+Cell[791, 30, 2787, 75, 137, "Input"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[3615, 110, 95, 1, 26, "Subsection"],
+Cell[CellGroupData[{
+Cell[3735, 115, 127, 1, 43, "Input"],
+Cell[3865, 118, 1379, 36, 105, "Output"],
+Cell[5247, 156, 1350, 41, 95, "Output"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

@@ -1,0 +1,109 @@
+d4305840BIASi000.fit[4160,4096][ushort]:               bias
+d4305840BIASi001.fit[4160,4096][ushort]:               bias
+d4305840BIASi002.fit[4160,4096][ushort]:               bias
+d4305840BIASi003.fit[4160,4096][ushort]:               bias
+d4305840BIASi004.fit[4160,4096][ushort]:               bias
+d4305840BIASi005.fit[4160,4096][ushort]:               bias
+d4305840BIASi006.fit[4160,4096][ushort]:               bias
+d4305840BIASi007.fit[4160,4096][ushort]:               bias
+d4305840BIASi008.fit[4160,4096][ushort]:               bias
+d4305840BIASi009.fit[4160,4096][ushort]:               bias
+d4305841BIASm115.fit[4160,4096][ushort]:               bias
+d4305841BIASm116.fit[4160,4096][ushort]:               bias
+d4305841BIASm117.fit[4160,4096][ushort]:               bias
+d4305841BIASm118.fit[4160,4096][ushort]:               bias
+d4305841BIASm119.fit[4160,4096][ushort]:               bias
+d4305841C001d057.fit[364,300][ushort]:            HD19445
+d4305841C001d058.fit[364,300][ushort]:            HD19445
+d4305841C001d069.fit[364,300][ushort]:            HD19445
+d4305841C001d070.fit[364,300][ushort]:            HD19445
+d4305841C001i055.fit[364,300][ushort]:            HD19445
+d4305841C001i056.fit[364,300][ushort]:            HD19445
+d4305841C001i071.fit[364,300][ushort]:            HD19445
+d4305841C001i072.fit[364,300][ushort]:            HD19445
+d4305841C001i077.fit[364,300][ushort]:     HD19445HD19445
+d4305841C001i078.fit[364,300][ushort]:     HD19445HD19445
+d4305841C001i079.fit[364,300][ushort]:     HD19445HD19445
+d4305841C001m059.fit[364,300][ushort]:            HD19445
+d4305841C001m060.fit[364,300][ushort]:            HD19445
+d4305841C001m061.fit[364,300][ushort]:            HD19445
+d4305841C001m080.fit[364,300][ushort]:     HD19445HD19445
+d4305841C001m081.fit[364,300][ushort]:     HD19445HD19445
+d4305841C001m082.fit[364,300][ushort]:     HD19445HD19445
+d4305841FLATc010.fit[4160,4096][ushort]:               bias
+d4305841FLATc011.fit[4160,4096][ushort]:               bias
+d4305841FLATc012.fit[4160,4096][ushort]:               bias
+d4305841FLATd097.fit[4160,4096][ushort]:       flat d 4540a
+d4305841FLATd098.fit[4160,4096][ushort]:       flat d 4540a
+d4305841FLATd099.fit[4160,4096][ushort]:       flat d 4540a
+d4305841FLATd102.fit[4160,4096][ushort]:       flat d 4540a
+d4305841FLATd103.fit[4160,4096][ushort]:       flat d 4540a
+d4305841FLATd104.fit[4160,4096][ushort]:       flat d 4540a
+d4305841FLATd105.fit[4160,4096][ushort]:       flat d 4540a
+d4305841FLATd106.fit[4160,4096][ushort]:       flat d 4540a
+d4305841FLATd109.fit[4160,4096][ushort]:       flat d 4540a
+d4305841FLATd110.fit[4160,4096][ushort]:       flat d 4540a
+d4305841FLATd111.fit[4160,4096][ushort]:       flat d 4540a
+d4305841FLATd112.fit[4160,4096][ushort]:       flat d 4540a
+d4305841FLATi013.fit[4160,4096][ushort]:           twilight
+d4305841FLATi014.fit[4160,4096][ushort]:           twilight
+d4305841FLATi015.fit[4160,4096][ushort]:           twilight
+d4305841FLATm120.fit[4160,4096][ushort]:       flat m 8020a
+d4305841FLATm121.fit[4160,4096][ushort]:       flat m 8020a
+d4305841FLATm122.fit[4160,4096][ushort]:       flat m 8020a
+d4305841FLATm123.fit[4160,4096][ushort]:       flat m 8020a
+d4305841FLATm124.fit[4160,4096][ushort]:       flat m 8020a
+d4305841FLATm125.fit[4160,4096][ushort]:       flat m 8020a
+d4305841FLATm126.fit[4160,4096][ushort]:       flat m 8020a
+d4305841FLATm127.fit[4160,4096][ushort]:       flat m 8020a
+d4305841Polei054.fit[4160,4096][ushort]:         North-Pole
+d4305841T717f016.fit[4160,4096][ushort]:            NGC5474
+d4305841T717i017.fit[4160,4096][ushort]:            NGC5474
+d4305841U020m062.fit[4160,4096][ushort]:        0200HRfield
+d4305841U020m063.fit[4160,4096][ushort]:        0200HRfield
+d4305841U020m064.fit[4160,4096][ushort]:        0200HRfield
+d4305841U021d066.fit[4160,4096][ushort]:        0230HRfield
+d4305841U021d067.fit[4160,4096][ushort]:        0230HRfield
+d4305841U021d068.fit[4160,4096][ushort]:        0230HRfield
+d4305841U021i073.fit[4160,4096][ushort]:        0230HRfield
+d4305841U021i074.fit[4160,4096][ushort]:        0230HRfield
+d4305841U021i075.fit[4160,4096][ushort]:        0230HRfield
+d4305841U021i076.fit[4160,4096][ushort]:        0230HRfield
+d4305841U021m065.fit[4160,4096][ushort]:        0230HRfield
+d4305841U021m083.fit[4160,4096][ushort]:        0230HRfield
+d4305841U021m084.fit[4160,4096][ushort]:        0230HRfield
+d4305841UB02c019.fit[4160,4096][ushort]:       PKS_2251+158
+d4305841UB02g022.fit[4160,4096][ushort]:       PKS_2251+158
+d4305841UB02g024.fit[4160,4096][ushort]:       PKS_2251+158
+d4305841UB02g027.fit[4160,4096][ushort]:       PKS_2251+158
+d4305841UB02g030.fit[4160,4096][ushort]:       PKS_2251+158
+d4305841UB02g033.fit[4160,4096][ushort]:       PKS_2251+158
+d4305841UB02g036.fit[4160,4096][ushort]:       PKS_2251+158
+d4305841UB02g039.fit[4160,4096][ushort]:       PKS_2251+158
+d4305841UB02g042.fit[4160,4096][ushort]:       PKS_2251+158
+d4305841UB02g045.fit[4160,4096][ushort]:       PKS_2251+158
+d4305841UB02g048.fit[4160,4096][ushort]:       PKS_2251+158
+d4305841UB02g051.fit[4160,4096][ushort]:       PKS_2251+158
+d4305841UB02i020.fit[4160,4096][ushort]:       PKS_2251+158
+d4305841UB02i025.fit[4160,4096][ushort]:       PKS_2251+158
+d4305841UB02i028.fit[4160,4096][ushort]:       PKS_2251+158
+d4305841UB02i031.fit[4160,4096][ushort]:       PKS_2251+158
+d4305841UB02i034.fit[4160,4096][ushort]:       PKS_2251+158
+d4305841UB02i037.fit[4160,4096][ushort]:       PKS_2251+158
+d4305841UB02i040.fit[4160,4096][ushort]:       PKS_2251+158
+d4305841UB02i043.fit[4160,4096][ushort]:       PKS_2251+158
+d4305841UB02i046.fit[4160,4096][ushort]:       PKS_2251+158
+d4305841UB02i049.fit[4160,4096][ushort]:       PKS_2251+158
+d4305841UB02i052.fit[4160,4096][ushort]:       PKS_2251+158
+d4305841UB02k023.fit[4160,4096][ushort]:       PKS_2251+158
+d4305841UB02k026.fit[4160,4096][ushort]:       PKS_2251+158
+d4305841UB02k029.fit[4160,4096][ushort]:       PKS_2251+158
+d4305841UB02k032.fit[4160,4096][ushort]:       PKS_2251+158
+d4305841UB02k035.fit[4160,4096][ushort]:       PKS_2251+158
+d4305841UB02k038.fit[4160,4096][ushort]:       PKS_2251+158
+d4305841UB02k041.fit[4160,4096][ushort]:       PKS_2251+158
+d4305841UB02k044.fit[4160,4096][ushort]:       PKS_2251+158
+d4305841UB02k047.fit[4160,4096][ushort]:       PKS_2251+158
+d4305841UB02k050.fit[4160,4096][ushort]:       PKS_2251+158
+d4305841UB02k053.fit[4160,4096][ushort]:       PKS_2251+158
+d4305841UB02o021.fit[4160,4096][ushort]:       PKS_2251+158

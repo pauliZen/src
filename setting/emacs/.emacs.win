@@ -1,0 +1,123 @@
+(add-to-list 'load-path "~/.emacs.d/site-lisp")
+
+;;custom macro==============================================================
+(load-file "~/.emacs.macro")
+
+;; color-theme================================================================
+(add-to-list 'load-path "~/.emacs.d/site-lisp/color-theme-6.6.0")
+(require 'color-theme)
+(eval-after-load "color-theme"
+  '(progn
+     (color-theme-initialize)
+     (color-theme-billw)))
+
+;;directory================================================================
+(setq default-directory "~/")
+
+;;outline mode================================================================
+(setq default-major-mode 'outline-mode)
+(defun my-outline-mode-hook()
+  (define-key outline-mode-map "\C-c1" 'title1)
+  (define-key outline-mode-map "\C-c2" 'title2)
+  (define-key outline-mode-map "\C-c3" 'title3)
+  (define-key outline-mode-map "\C-c4" 'title4)
+  (define-key outline-mode-map "\C-c5" 'title5)
+  (define-key outline-mode-map "\C-c6" 'title6)
+  (define-key outline-mode-map "\C-c7" 'title7)
+  (define-key outline-mode-map "\C-c8" 'title8)
+  (define-key outline-mode-map "\C-c9" 'title9)
+)
+(add-hook 'outline-mode-hook 'my-outline-mode-hook)
+
+;;text mode================================================================
+(setq default-fill-column 80)
+(add-to-list 'auto-mode-alist '("\\.txt\\'" . outline-mode))
+
+;; abbreviations================================================================
+(setq-default abbrev-mode t)
+(read-abbrev-file "~/.abbrev_defs")
+(setq save-abbrevs t)
+
+;; password invisible================================================
+(add-hook 'comint-output-filter-functions
+   'comint-watch-for-password-prompt)
+
+;;;; CC-mode  http://cc-mode.sourceforge.net/====================
+(require 'cc-mode)
+(c-set-offset 'inline-open 0)
+(c-set-offset 'friend '-)
+(c-set-offset 'substatement-open 0)
+
+(defun my-c-mode-common-hook()
+  (setq tab-width 4 indent-tabs-mode nil)
+  (c-toggle-auto-hungry-state 1)
+  (define-key c-mode-base-map [(control \`)] 'hs-toggle-hiding)
+  (define-key c-mode-base-map "\C-x/" 'c-comment-title)
+  (setq c-macro-shrink-window-flag t)
+  (setq c-macro-preprocessor "cpp")
+  (setq c-macro-cppflags " ")
+  (setq c-macro-prompt-flag t)
+  (setq hs-minor-mode t)
+  (setq abbrev-mode t)
+)
+(add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
+
+;;fortran mode===============================================================
+(defun my-fortran-mode-hook()
+  (define-key fortran-mode-map "\C-x/" 'fortran-comment-title)
+  )
+(add-hook 'fortran-mode-hook 'my-fortran-mode-hook)
+
+;;compression-mode=========================================================
+(auto-compression-mode)
+
+;;emacs auto-add===========================================================
+(custom-set-variables
+  ;; custom-set-variables was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+; '(ecb-options-version "2.40")
+ '(inhibit-startup-screen t)
+ '(tex-dvi-print-command "dvips -t a4")
+ '(tool-bar-mode nil nil (tool-bar)))
+(custom-set-faces
+  ;; custom-set-faces was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+ )
+
+;;thumbs================================================================
+(autoload 'thumbs "thumbs" "Preview images in a directory." t)
+
+;;workspace
+(global-set-key "\C-xw" 'works)
+
+;;shell================================================================
+(global-set-key "\C-c\C-t" 'eshell)
+
+;;task windows================================================================
+(global-set-key "\C-xt" 'task)
+
+;;Maximized frames=========================================================
+ (defun my-maximized ()
+   (interactive)
+   (x-send-client-message
+    nil 0 nil "_NET_WM_STATE" 32
+    '(2 "_NET_WM_STATE_MAXIMIZED_HORZ" 0))
+   (interactive)
+   (x-send-client-message
+    nil 0 nil "_NET_WM_STATE" 32
+    '(2 "_NET_WM_STATE_MAXIMIZED_VERT" 0)))
+
+(global-set-key [(f11)] 'my-maximized)
+
+;;(run-with-idle-timer 0.1 nil 'my-maximized)
+
+;;(defun my-fullscreen ()
+;;         (interactive)
+;;         (set-frame-parameter nil 'fullscreen
+;;                              (if (frame-parameter nil 'fullscreen) nil 'fullboth)))
+
+(put 'scroll-left 'disabled nil)
