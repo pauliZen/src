@@ -42,7 +42,7 @@ int main(int argc, char **argv) {
       fscanf(fin,"%d",&frac0[i][0]);
       fscanf(fin,"%d",&frac0[i][1]);
     }
-    for (int i=0;i<15;i++) {
+    for (int i=0;i<3;i++) {
       fscanf(fin,"%d",&type);
       for (int j=0;j<11;j++) fscanf(fin,"%d",&sfrac[j]);
       for (int j=0;j<11;j++) fscanf(fin,"%d",&pfrac[j]);

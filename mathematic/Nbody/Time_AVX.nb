@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       157,          7]
-NotebookDataLength[    325450,       7198]
-NotebookOptionsPosition[    324606,       7165]
-NotebookOutlinePosition[    324961,       7181]
-CellTagsIndexPosition[    324918,       7178]
+NotebookDataLength[    470321,      10186]
+NotebookOptionsPosition[    469374,      10150]
+NotebookOutlinePosition[    469714,      10165]
+CellTagsIndexPosition[    469671,      10162]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -46,6 +46,16 @@ Cell[BoxData[
      "\"\<table\>\""}], "]"}]}], ";"}]], "Input",
  CellChangeTimes->{{3.608399281713003*^9, 3.608399294921287*^9}}],
 
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Data", "=", 
+   RowBox[{"Import", "[", 
+    RowBox[{
+    "\"\<C:\\\\Users\\\\lwang\\\\Documents\\\\Dropbox\\\\Datas\\\\NBPrf\\\\1M_\
+hyd\\\\ntime.dat\>\"", ",", "\"\<table\>\""}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{
+  3.6193479488581567`*^9, {3.61934804230344*^9, 3.619348052613901*^9}}],
+
 Cell[CellGroupData[{
 
 Cell[BoxData[
@@ -69,106 +79,90 @@ Cell[BoxData[
  RowBox[{"{", 
   RowBox[{
    RowBox[{"{", 
-    RowBox[{"1", ",", "\<\"Ver.\"\>"}], "}"}], ",", 
+    RowBox[{"1", ",", "\<\"PE\"\>"}], "}"}], ",", 
    RowBox[{"{", 
-    RowBox[{"2", ",", "\<\"PE\"\>"}], "}"}], ",", 
+    RowBox[{"2", ",", "\<\"N\"\>"}], "}"}], ",", 
    RowBox[{"{", 
-    RowBox[{"3", ",", "\<\"N\"\>"}], "}"}], ",", 
+    RowBox[{"3", ",", "\<\"Total\"\>"}], "}"}], ",", 
    RowBox[{"{", 
-    RowBox[{"4", ",", "\<\"Total\"\>"}], "}"}], ",", 
+    RowBox[{"4", ",", "\<\"Inti.\"\>"}], "}"}], ",", 
    RowBox[{"{", 
-    RowBox[{"5", ",", "\<\"Initial\"\>"}], "}"}], ",", 
+    RowBox[{"5", ",", "\<\"Intgrt\"\>"}], "}"}], ",", 
    RowBox[{"{", 
-    RowBox[{"6", ",", "\<\"Intgerate\"\>"}], "}"}], ",", 
+    RowBox[{"6", ",", "\<\"Reg.\"\>"}], "}"}], ",", 
    RowBox[{"{", 
-    RowBox[{"7", ",", "\<\"Reg.Int.\"\>"}], "}"}], ",", 
+    RowBox[{"7", ",", "\<\"Irr.\"\>"}], "}"}], ",", 
    RowBox[{"{", 
-    RowBox[{"8", ",", "\<\"Irr.Int.\"\>"}], "}"}], ",", 
+    RowBox[{"8", ",", "\<\"Pred.\"\>"}], "}"}], ",", 
    RowBox[{"{", 
-    RowBox[{"9", ",", "\<\"Init.B.List\"\>"}], "}"}], ",", 
+    RowBox[{"9", ",", "\<\"Init.B.\"\>"}], "}"}], ",", 
    RowBox[{"{", 
-    RowBox[{"10", ",", "\<\"NewT\"\>"}], "}"}], ",", 
+    RowBox[{"10", ",", "\<\"Mdot\"\>"}], "}"}], ",", 
    RowBox[{"{", 
-    RowBox[{"11", ",", "\<\"ttcopyx\"\>"}], "}"}], ",", 
+    RowBox[{"11", ",", "\<\"Move\"\>"}], "}"}], ",", 
    RowBox[{"{", 
-    RowBox[{"12", ",", "\<\"Mdot\"\>"}], "}"}], ",", 
+    RowBox[{"12", ",", "\<\"Comm.I.\"\>"}], "}"}], ",", 
    RowBox[{"{", 
-    RowBox[{"13", ",", "\<\"Move\"\>"}], "}"}], ",", 
+    RowBox[{"13", ",", "\<\"Comm.R.\"\>"}], "}"}], ",", 
    RowBox[{"{", 
-    RowBox[{"14", ",", "\<\"Irr.Comm.\"\>"}], "}"}], ",", 
+    RowBox[{"14", ",", "\<\"Send.I.\"\>"}], "}"}], ",", 
    RowBox[{"{", 
-    RowBox[{"15", ",", "\<\"Reg.Comm.\"\>"}], "}"}], ",", 
+    RowBox[{"15", ",", "\<\"Send.R.\"\>"}], "}"}], ",", 
    RowBox[{"{", 
-    RowBox[{"16", ",", "\<\"KS.Total\"\>"}], "}"}], ",", 
+    RowBox[{"16", ",", "\<\"KS\"\>"}], "}"}], ",", 
    RowBox[{"{", 
     RowBox[{"17", ",", "\<\"Adjust\"\>"}], "}"}], ",", 
    RowBox[{"{", 
-    RowBox[{"18", ",", "\<\"Adj.Comm.\"\>"}], "}"}], ",", 
+    RowBox[{"18", ",", "\<\"Barr.\"\>"}], "}"}], ",", 
    RowBox[{"{", 
-    RowBox[{"19", ",", "\<\"GPU.Send\"\>"}], "}"}], ",", 
+    RowBox[{"19", ",", "\<\"Barr.I.\"\>"}], "}"}], ",", 
    RowBox[{"{", 
-    RowBox[{"20", ",", "\<\"GPU.S\"\>"}], "}"}], ",", 
+    RowBox[{"20", ",", "\<\"Barr.R.\"\>"}], "}"}], ",", 
    RowBox[{"{", 
-    RowBox[{"21", ",", "\<\"GPU.P\"\>"}], "}"}], ",", 
+    RowBox[{"21", ",", "\<\"Reg.GPU.S\"\>"}], "}"}], ",", 
    RowBox[{"{", 
-    RowBox[{"22", ",", "\<\"GPU.Calc\"\>"}], "}"}], ",", 
+    RowBox[{"22", ",", "\<\"Reg.GPU.P\"\>"}], "}"}], ",", 
    RowBox[{"{", 
-    RowBox[{"23", ",", "\<\"Predict\"\>"}], "}"}], ",", 
+    RowBox[{"23", ",", "\<\"Comm.Adj.\"\>"}], "}"}], ",", 
    RowBox[{"{", 
-    RowBox[{"24", ",", "\<\"NBint\"\>"}], "}"}], ",", 
+    RowBox[{"24", ",", "\<\"Mdot.Fic.\"\>"}], "}"}], ",", 
    RowBox[{"{", 
-    RowBox[{"25", ",", "\<\"Irr.Send\"\>"}], "}"}], ",", 
+    RowBox[{"25", ",", "\<\"Mdot.Fc.\"\>"}], "}"}], ",", 
    RowBox[{"{", 
-    RowBox[{"26", ",", "\<\"Barrier\"\>"}], "}"}], ",", 
+    RowBox[{"26", ",", "\<\"Mdot.Pot.\"\>"}], "}"}], ",", 
    RowBox[{"{", 
-    RowBox[{"27", ",", "\<\"Bar.Irr.\"\>"}], "}"}], ",", 
+    RowBox[{"27", ",", "\<\"Mdot.EC.\"\>"}], "}"}], ",", 
    RowBox[{"{", 
-    RowBox[{"28", ",", "\<\"Bar.Reg.\"\>"}], "}"}], ",", 
+    RowBox[{"28", ",", "\<\"Sort.B.\"\>"}], "}"}], ",", 
    RowBox[{"{", 
-    RowBox[{"29", ",", "\<\"ttfic\"\>"}], "}"}], ",", 
+    RowBox[{"29", ",", "\<\"KS.Init.B\"\>"}], "}"}], ",", 
    RowBox[{"{", 
-    RowBox[{"30", ",", "\<\"ttfc\"\>"}], "}"}], ",", 
+    RowBox[{"30", ",", "\<\"KS.Int.S\"\>"}], "}"}], ",", 
    RowBox[{"{", 
-    RowBox[{"31", ",", "\<\"ttpotg\"\>"}], "}"}], ",", 
+    RowBox[{"31", ",", "\<\"KS.Int.P\"\>"}], "}"}], ",", 
    RowBox[{"{", 
-    RowBox[{"32", ",", "\<\"ttpot\"\>"}], "}"}], ",", 
+    RowBox[{"32", ",", "\<\"KS.Comm.\"\>"}], "}"}], ",", 
    RowBox[{"{", 
-    RowBox[{"33", ",", "\<\"ttecor\"\>"}], "}"}], ",", 
+    RowBox[{"33", ",", "\<\"KS.Barr.\"\>"}], "}"}], ",", 
    RowBox[{"{", 
-    RowBox[{"34", ",", "\<\"ttprei\"\>"}], "}"}], ",", 
+    RowBox[{"34", ",", "\<\"KS.Move\"\>"}], "}"}], ",", 
    RowBox[{"{", 
-    RowBox[{"35", ",", "\<\"ttpreall\"\>"}], "}"}], ",", 
+    RowBox[{"35", ",", "\<\"KS.Cmb.\"\>"}], "}"}], ",", 
    RowBox[{"{", 
-    RowBox[{"36", ",", "\<\"xtsub1\"\>"}], "}"}], ",", 
+    RowBox[{"36", ",", "\<\"KS.Insert\"\>"}], "}"}], ",", 
    RowBox[{"{", 
-    RowBox[{"37", ",", "\<\"xtsub2\"\>"}], "}"}], ",", 
+    RowBox[{"37", ",", "\<\"KS.Init.\"\>"}], "}"}], ",", 
    RowBox[{"{", 
-    RowBox[{"38", ",", "\<\"KS.B.List\"\>"}], "}"}], ",", 
+    RowBox[{"38", ",", "\<\"KS.Term.\"\>"}], "}"}], ",", 
    RowBox[{"{", 
-    RowBox[{"39", ",", "\<\"KS.Int.S\"\>"}], "}"}], ",", 
+    RowBox[{"39", ",", "\<\"Hiar.\"\>"}], "}"}], ",", 
    RowBox[{"{", 
-    RowBox[{"40", ",", "\<\"KS.Int.P\"\>"}], "}"}], ",", 
+    RowBox[{"40", ",", "\<\"xtsub1\"\>"}], "}"}], ",", 
    RowBox[{"{", 
-    RowBox[{"41", ",", "\<\"KS.Comm.\"\>"}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{"42", ",", "\<\"KS.Bar.\"\>"}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{"43", ",", "\<\"KS.Move\"\>"}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{"44", ",", "\<\"KS.Comb.\"\>"}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{"45", ",", "\<\"KS.Insert\"\>"}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{"46", ",", "\<\"KS.Init\"\>"}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{"47", ",", "\<\"KS.Term\"\>"}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{"48", ",", "\<\"Tri.Qua.Chain\"\>"}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{"49", ",", "\<\"KS.Int.\"\>"}], "}"}]}], "}"}]], "Output",
+    RowBox[{"41", ",", "\<\"xtsub2\"\>"}], "}"}]}], "}"}]], "Output",
  CellChangeTimes->{3.608374038912725*^9, 3.60837546714607*^9, 
   3.6083757157714567`*^9, 3.608379519124537*^9, 3.6083921675780907`*^9, 
-  3.60839225321834*^9, 3.608396974620615*^9}]
+  3.60839225321834*^9, 3.608396974620615*^9, 3.6193480589733353`*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -2825,7 +2819,7 @@ wNOSsol8SfK/9e5JwGgC/79kLSnpPUj1v7Qj+nkfCf2/RinVqQ==
    3.6083922556692457`*^9, 3.608392428906158*^9, 3.608392493117856*^9, 
    3.608392541714542*^9, {3.608396990587016*^9, 3.6083969987931423`*^9}, {
    3.608399382544619*^9, 3.6083993882795877`*^9}}]
-}, Open  ]],
+}, Closed]],
 
 Cell[CellGroupData[{
 
@@ -5372,10 +5366,7 @@ wHcLwKg9ZfK/aYrG5vnx/r8UrpmUwV/1v+LkcpTU9/y/Yi3Vkg==
          RowBox[{#2, ",", "After"}], "]"}]}], "]"}]& )]], "Output",
  CellChangeTimes->{{3.6083994346596813`*^9, 3.608399457302956*^9}, {
    3.6083995200301847`*^9, 3.608399549070067*^9}, 3.608461681841509*^9}]
-}, Open  ]],
-
-Cell[BoxData[""], "Input",
- CellChangeTimes->{{3.6083769480800953`*^9, 3.608376952350278*^9}}],
+}, Closed]],
 
 Cell[CellGroupData[{
 
@@ -7161,12 +7152,3005 @@ ja7xv+gjJ+rA0vC/rBSX/crT/7/jXgIAX7nzvykoMSejHf6/E2lZMMpz9r9H
          RowBox[{#2, ",", "After"}], "]"}]}], "]"}]& )]], "Output",
  CellChangeTimes->{{3.608397091422083*^9, 3.608397114988756*^9}, {
   3.608397152373034*^9, 3.608397171896781*^9}}]
-}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"PieChart", "[", 
+    RowBox[{
+     RowBox[{"Data", "[", 
+      RowBox[{"[", 
+       RowBox[{"2", ",", "#"}], "]"}], "]"}], ",", 
+     RowBox[{"ChartLegends", "\[Rule]", 
+      RowBox[{"Data", "[", 
+       RowBox[{"[", 
+        RowBox[{"1", ",", "#"}], "]"}], "]"}]}], ",", 
+     RowBox[{"ChartStyle", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+       "Black", ",", "Red", ",", "Green", ",", "Yellow", ",", "White", ",", 
+        "Blue", ",", "Orange", ",", "Purple", ",", "Gray", ",", "Cyan", ",", 
+        "Magenta", ",", "Brown", ",", "Pink", ",", "LightRed", ",", 
+        "LightBlue", ",", "LightYellow", ",", "LightBrown", ",", 
+        "LightGreen"}], "}"}]}], ",", 
+     RowBox[{"ImageSize", "\[Rule]", "300"}]}], "]"}], "&"}], "@", 
+  RowBox[{"{", 
+   RowBox[{
+   "6", ",", "7", ",", "8", ",", "9", ",", "10", ",", "17", ",", "11", ",", 
+    "12", ",", "13", ",", "14", ",", "15", ",", "18", ",", "29", ",", "30", 
+    ",", "31", ",", "32", ",", "37", ",", "38"}], "}"}]}]], "Input",
+ CellChangeTimes->{{3.608399438391941*^9, 3.6083994562854137`*^9}, {
+   3.608399518597815*^9, 3.608399548276744*^9}, {3.608461679190596*^9, 
+   3.608461680918668*^9}, {3.6193481024697466`*^9, 3.6193481234680104`*^9}, 
+   3.619348159278438*^9, {3.619348204258932*^9, 3.619348302097336*^9}, {
+   3.6193483449680758`*^9, 3.6193483788856373`*^9}}],
+
+Cell[BoxData[
+ TemplateBox[{GraphicsBox[{{}, {}, 
+     DynamicModuleBox[{
+      DynamicChart`click$7519$7731 = False, DynamicChart`click$7522$7731 = 
+       False, DynamicChart`click$7525$7731 = False, 
+       DynamicChart`click$7528$7731 = False, DynamicChart`click$7531$7731 = 
+       False, DynamicChart`click$7534$7731 = False, 
+       DynamicChart`click$7537$7731 = False, DynamicChart`click$7540$7731 = 
+       False, DynamicChart`click$7543$7731 = False, 
+       DynamicChart`click$7546$7731 = False, DynamicChart`click$7549$7731 = 
+       False, DynamicChart`click$7552$7731 = False, 
+       DynamicChart`click$7555$7731 = False, DynamicChart`click$7558$7731 = 
+       False, DynamicChart`click$7561$7731 = False, 
+       DynamicChart`click$7564$7731 = False, DynamicChart`click$7567$7731 = 
+       False}, {{
+        Directive[
+         RGBColor[0.5, 0.5, 1.], 
+         EdgeForm[
+          Directive[
+           GrayLevel[0], 
+           Opacity[0.5]]]], {{{{{
+             Directive[
+              RGBColor[0.982864, 0.7431472, 0.3262672]], {{
+               Directive[
+                EdgeForm[
+                 Directive[
+                  GrayLevel[0], 
+                  Opacity[0.5]]], 
+                GrayLevel[0]], 
+               GeometricTransformationBox[
+                TagBox[
+                 TagBox[
+                  TooltipBox[
+                   TagBox[
+                    DynamicBox[{
+                    FEPrivate`If[
+                    CurrentValue["MouseOver"], 
+                    EdgeForm[{
+                    GrayLevel[0.5], 
+                    AbsoluteThickness[2.5], 
+                    Opacity[0.66]}], {}, {}], 
+                    
+                    DiskBox[{0, 0}, 1., {2.51020902983203, 
+                    3.141592653589793}]}], StatusArea[#, 247.19]& , 
+                    TagBoxNote -> "247.19"], 
+                   StyleBox["247.19`", {
+                    GrayLevel[0], FontFamily -> "Arial"}, StripOnInput -> 
+                    False]], Annotation[#, 
+                   Style[247.19, {
+                    GrayLevel[0], FontFamily -> "Arial"}], "Tooltip"]& ], 
+                 
+                 EventHandlerTag[{
+                  "MouseClicked" :> 
+                   FEPrivate`Set[DynamicChart`click$7519$7731, 
+                    FEPrivate`Not[DynamicChart`click$7519$7731]], 
+                   PassEventsDown -> True, PassEventsDown -> Automatic, 
+                   PassEventsUp -> True}]], 
+                Dynamic[
+                 If[
+                 DynamicChart`click$7519$7731, {{{1., 0}, {
+                    0, 1.}}, {-0.19011636333775397`, 0.06209483385296333}}, {{
+                  1, 0}, {0, 1}}, {{1, 0}, {0, 1}}], 
+                 TrackedSymbols :> {DynamicChart`click$7519$7731}]]}, {
+               Directive[
+                EdgeForm[
+                 Directive[
+                  GrayLevel[0], 
+                  Opacity[0.5]]], 
+                RGBColor[1, 0, 0]], 
+               GeometricTransformationBox[
+                TagBox[
+                 TagBox[
+                  TooltipBox[
+                   TagBox[
+                    DynamicBox[{
+                    FEPrivate`If[
+                    CurrentValue["MouseOver"], 
+                    EdgeForm[{
+                    GrayLevel[0.5], 
+                    AbsoluteThickness[2.5], 
+                    Opacity[0.66]}], {}, {}], 
+                    
+                    DiskBox[{0, 0}, 1., {1.3765588266182749`, 
+                    2.51020902983203}]}], StatusArea[#, 443.83]& , TagBoxNote -> 
+                    "443.83"], 
+                   StyleBox["443.83`", {
+                    GrayLevel[0], FontFamily -> "Arial"}, StripOnInput -> 
+                    False]], Annotation[#, 
+                   Style[443.83, {
+                    GrayLevel[0], FontFamily -> "Arial"}], "Tooltip"]& ], 
+                 
+                 EventHandlerTag[{
+                  "MouseClicked" :> 
+                   FEPrivate`Set[DynamicChart`click$7522$7731, 
+                    FEPrivate`Not[DynamicChart`click$7522$7731]], 
+                   PassEventsDown -> True, PassEventsDown -> Automatic, 
+                   PassEventsUp -> True}]], 
+                Dynamic[
+                 If[
+                 DynamicChart`click$7522$7731, {{{1., 0}, {
+                    0, 1.}}, {-0.07280534204311298, 0.18627770175194167`}}, {{
+                  1, 0}, {0, 1}}, {{1, 0}, {0, 1}}], 
+                 TrackedSymbols :> {DynamicChart`click$7522$7731}]]}, {
+               Directive[
+                EdgeForm[
+                 Directive[
+                  GrayLevel[0], 
+                  Opacity[0.5]]], 
+                RGBColor[0, 1, 0]], 
+               GeometricTransformationBox[
+                TagBox[
+                 TagBox[
+                  TooltipBox[
+                   TagBox[
+                    DynamicBox[{
+                    FEPrivate`If[
+                    CurrentValue["MouseOver"], 
+                    EdgeForm[{
+                    GrayLevel[0.5], 
+                    AbsoluteThickness[2.5], 
+                    Opacity[0.66]}], {}, {}], 
+                    
+                    DiskBox[{0, 0}, 1., {1.2893058447518355`, 
+                    1.3765588266182749`}]}], StatusArea[#, 34.16]& , 
+                    TagBoxNote -> "34.16"], 
+                   StyleBox["34.16`", {
+                    GrayLevel[0], FontFamily -> "Arial"}, StripOnInput -> 
+                    False]], Annotation[#, 
+                   Style[34.16, {
+                    GrayLevel[0], FontFamily -> "Arial"}], "Tooltip"]& ], 
+                 
+                 EventHandlerTag[{
+                  "MouseClicked" :> 
+                   FEPrivate`Set[DynamicChart`click$7525$7731, 
+                    FEPrivate`Not[DynamicChart`click$7525$7731]], 
+                   PassEventsDown -> True, PassEventsDown -> Automatic, 
+                   PassEventsUp -> True}]], 
+                Dynamic[
+                 If[
+                 DynamicChart`click$7525$7731, {{{1., 0}, {0, 1.}}, {
+                   0.04712545983845336, 0.19436869870175683`}}, {{1, 0}, {0, 
+                  1}}, {{1, 0}, {0, 1}}], 
+                 TrackedSymbols :> {DynamicChart`click$7525$7731}]]}, {
+               Directive[
+                EdgeForm[
+                 Directive[
+                  GrayLevel[0], 
+                  Opacity[0.5]]], 
+                RGBColor[1, 1, 0]], 
+               GeometricTransformationBox[
+                TagBox[
+                 TagBox[
+                  TooltipBox[
+                   TagBox[
+                    DynamicBox[{
+                    FEPrivate`If[
+                    CurrentValue["MouseOver"], 
+                    EdgeForm[{
+                    GrayLevel[0.5], 
+                    AbsoluteThickness[2.5], 
+                    Opacity[0.66]}], {}, {}], 
+                    
+                    DiskBox[{0, 0}, 1., {1.0084666949797327`, 
+                    1.2893058447518355`}]}], StatusArea[#, 109.95]& , 
+                    TagBoxNote -> "109.95"], 
+                   StyleBox["109.95`", {
+                    GrayLevel[0], FontFamily -> "Arial"}, StripOnInput -> 
+                    False]], Annotation[#, 
+                   Style[109.95, {
+                    GrayLevel[0], FontFamily -> "Arial"}], "Tooltip"]& ], 
+                 
+                 EventHandlerTag[{
+                  "MouseClicked" :> 
+                   FEPrivate`Set[DynamicChart`click$7528$7731, 
+                    FEPrivate`Not[DynamicChart`click$7528$7731]], 
+                   PassEventsDown -> True, PassEventsDown -> Automatic, 
+                   PassEventsUp -> True}]], 
+                Dynamic[
+                 If[
+                 DynamicChart`click$7528$7731, {{{1., 0}, {0, 1.}}, {
+                   0.08190075200737351, 0.1824616858976884}}, {{1, 0}, {0, 
+                  1}}, {{1, 0}, {0, 1}}], 
+                 TrackedSymbols :> {DynamicChart`click$7528$7731}]]}, {
+               Directive[
+                EdgeForm[
+                 Directive[
+                  GrayLevel[0], 
+                  Opacity[0.5]]], 
+                GrayLevel[1]], 
+               GeometricTransformationBox[
+                TagBox[
+                 TagBox[
+                  TooltipBox[
+                   TagBox[
+                    DynamicBox[{
+                    FEPrivate`If[
+                    CurrentValue["MouseOver"], 
+                    EdgeForm[{
+                    GrayLevel[0.5], 
+                    AbsoluteThickness[2.5], 
+                    Opacity[0.66]}], {}, {}], 
+                    
+                    DiskBox[{0, 0}, 1., {0.9744186197959022, 
+                    1.0084666949797327`}]}], StatusArea[#, 13.33]& , 
+                    TagBoxNote -> "13.33"], 
+                   StyleBox["13.33`", {
+                    GrayLevel[0], FontFamily -> "Arial"}, StripOnInput -> 
+                    False]], Annotation[#, 
+                   Style[13.33, {
+                    GrayLevel[0], FontFamily -> "Arial"}], "Tooltip"]& ], 
+                 
+                 EventHandlerTag[{
+                  "MouseClicked" :> 
+                   FEPrivate`Set[DynamicChart`click$7531$7731, 
+                    FEPrivate`Not[DynamicChart`click$7531$7731]], 
+                   PassEventsDown -> True, PassEventsDown -> Automatic, 
+                   PassEventsUp -> True}]], 
+                Dynamic[
+                 If[
+                 DynamicChart`click$7531$7731, {{{1., 0}, {0, 1.}}, {
+                   0.10949663819247929`, 0.16736333596264533`}}, {{1, 0}, {0, 
+                  1}}, {{1, 0}, {0, 1}}], 
+                 TrackedSymbols :> {DynamicChart`click$7531$7731}]]}, {}, {
+               Directive[
+                EdgeForm[
+                 Directive[
+                  GrayLevel[0], 
+                  Opacity[0.5]]], 
+                RGBColor[1, 0.5, 0]], 
+               GeometricTransformationBox[
+                TagBox[
+                 TagBox[
+                  TooltipBox[
+                   TagBox[
+                    DynamicBox[{
+                    FEPrivate`If[
+                    CurrentValue["MouseOver"], 
+                    EdgeForm[{
+                    GrayLevel[0.5], 
+                    AbsoluteThickness[2.5], 
+                    Opacity[0.66]}], {}, {}], 
+                    
+                    DiskBox[{0, 0}, 1., {0.4906192259047337, 
+                    0.9744186197959022}]}], StatusArea[#, 189.41]& , 
+                    TagBoxNote -> "189.41"], 
+                   StyleBox["189.41`", {
+                    GrayLevel[0], FontFamily -> "Arial"}, StripOnInput -> 
+                    False]], Annotation[#, 
+                   Style[189.41, {
+                    GrayLevel[0], FontFamily -> "Arial"}], "Tooltip"]& ], 
+                 
+                 EventHandlerTag[{
+                  "MouseClicked" :> 
+                   FEPrivate`Set[DynamicChart`click$7534$7731, 
+                    FEPrivate`Not[DynamicChart`click$7534$7731]], 
+                   PassEventsDown -> True, PassEventsDown -> Automatic, 
+                   PassEventsUp -> True}]], 
+                Dynamic[
+                 If[
+                 DynamicChart`click$7534$7731, {{{1., 0}, {0, 1.}}, {
+                   0.1486984493810438, 0.1337489108429417}}, {{1, 0}, {0, 
+                  1}}, {{1, 0}, {0, 1}}], 
+                 TrackedSymbols :> {DynamicChart`click$7534$7731}]]}, {
+               Directive[
+                EdgeForm[
+                 Directive[
+                  GrayLevel[0], 
+                  Opacity[0.5]]], 
+                RGBColor[0.5, 0, 0.5]], 
+               GeometricTransformationBox[
+                TagBox[
+                 TagBox[
+                  TooltipBox[
+                   TagBox[
+                    DynamicBox[{
+                    FEPrivate`If[
+                    CurrentValue["MouseOver"], 
+                    EdgeForm[{
+                    GrayLevel[0.5], 
+                    AbsoluteThickness[2.5], 
+                    Opacity[0.66]}], {}, {}], 
+                    
+                    DiskBox[{0, 0}, 1., {0.3451805611660017, 
+                    0.4906192259047337}]}], StatusArea[#, 56.94]& , 
+                    TagBoxNote -> "56.94"], 
+                   StyleBox["56.94`", {
+                    GrayLevel[0], FontFamily -> "Arial"}, StripOnInput -> 
+                    False]], Annotation[#, 
+                   Style[56.94, {
+                    GrayLevel[0], FontFamily -> "Arial"}], "Tooltip"]& ], 
+                 
+                 EventHandlerTag[{
+                  "MouseClicked" :> 
+                   FEPrivate`Set[DynamicChart`click$7537$7731, 
+                    FEPrivate`Not[DynamicChart`click$7537$7731]], 
+                   PassEventsDown -> True, PassEventsDown -> Automatic, 
+                   PassEventsUp -> True}]], 
+                Dynamic[
+                 If[
+                 DynamicChart`click$7537$7731, {{{1., 0}, {0, 1.}}, {
+                   0.18278865329636063`, 0.08116839425603335}}, {{1, 0}, {0, 
+                  1}}, {{1, 0}, {0, 1}}], 
+                 TrackedSymbols :> {DynamicChart`click$7537$7731}]]}, {
+               Directive[
+                EdgeForm[
+                 Directive[
+                  GrayLevel[0], 
+                  Opacity[0.5]]], 
+                GrayLevel[0.5]], 
+               GeometricTransformationBox[
+                TagBox[
+                 TagBox[
+                  TooltipBox[
+                   TagBox[
+                    DynamicBox[{
+                    FEPrivate`If[
+                    CurrentValue["MouseOver"], 
+                    EdgeForm[{
+                    GrayLevel[0.5], 
+                    AbsoluteThickness[2.5], 
+                    Opacity[0.66]}], {}, {}], 
+                    
+                    DiskBox[{0, 0}, 1., {0.19281989464571136`, 
+                    0.3451805611660017}]}], StatusArea[#, 59.65]& , 
+                    TagBoxNote -> "59.65"], 
+                   StyleBox["59.65`", {
+                    GrayLevel[0], FontFamily -> "Arial"}, StripOnInput -> 
+                    False]], Annotation[#, 
+                   Style[59.65, {
+                    GrayLevel[0], FontFamily -> "Arial"}], "Tooltip"]& ], 
+                 
+                 EventHandlerTag[{
+                  "MouseClicked" :> 
+                   FEPrivate`Set[DynamicChart`click$7540$7731, 
+                    FEPrivate`Not[DynamicChart`click$7540$7731]], 
+                   PassEventsDown -> True, PassEventsDown -> Automatic, 
+                   PassEventsUp -> True}]], 
+                Dynamic[
+                 If[
+                 DynamicChart`click$7540$7731, {{{1., 0}, {0, 1.}}, {
+                   0.1928074170605428, 0.05315355045941821}}, {{1, 0}, {0, 
+                  1}}, {{1, 0}, {0, 1}}], 
+                 TrackedSymbols :> {DynamicChart`click$7540$7731}]]}, {
+               Directive[
+                EdgeForm[
+                 Directive[
+                  GrayLevel[0], 
+                  Opacity[0.5]]], 
+                RGBColor[0, 1, 1]], 
+               GeometricTransformationBox[
+                TagBox[
+                 TagBox[
+                  TooltipBox[
+                   TagBox[
+                    DynamicBox[{
+                    FEPrivate`If[
+                    CurrentValue["MouseOver"], 
+                    EdgeForm[{
+                    GrayLevel[0.5], 
+                    AbsoluteThickness[2.5], 
+                    Opacity[0.66]}], {}, {}], 
+                    
+                    DiskBox[{0, 0}, 1., {-0.0007407308179532279, 
+                    0.19281989464571136`}]}], StatusArea[#, 75.78]& , 
+                    TagBoxNote -> "75.78"], 
+                   StyleBox["75.78`", {
+                    GrayLevel[0], FontFamily -> "Arial"}, StripOnInput -> 
+                    False]], Annotation[#, 
+                   Style[75.78, {
+                    GrayLevel[0], FontFamily -> "Arial"}], "Tooltip"]& ], 
+                 
+                 EventHandlerTag[{
+                  "MouseClicked" :> 
+                   FEPrivate`Set[DynamicChart`click$7543$7731, 
+                    FEPrivate`Not[DynamicChart`click$7543$7731]], 
+                   PassEventsDown -> True, PassEventsDown -> Automatic, 
+                   PassEventsUp -> True}]], 
+                Dynamic[
+                 If[
+                 DynamicChart`click$7543$7731, {{{1., 0}, {0, 1.}}, {
+                   0.19907834860948576`, 0.019178402303634868`}}, {{1, 0}, {0,
+                   1}}, {{1, 0}, {0, 1}}], 
+                 TrackedSymbols :> {DynamicChart`click$7543$7731}]]}, {
+               Directive[
+                EdgeForm[
+                 Directive[
+                  GrayLevel[0], 
+                  Opacity[0.5]]], 
+                RGBColor[1, 0, 1]], 
+               GeometricTransformationBox[
+                TagBox[
+                 TagBox[
+                  TooltipBox[
+                   TagBox[
+                    DynamicBox[{
+                    FEPrivate`If[
+                    CurrentValue["MouseOver"], 
+                    EdgeForm[{
+                    GrayLevel[0.5], 
+                    AbsoluteThickness[2.5], 
+                    Opacity[0.66]}], {}, {}], 
+                    
+                    DiskBox[{0, 0}, 
+                    1., {-0.062425728244022594`, -0.0007407308179532279}]}], 
+                    StatusArea[#, 24.15]& , TagBoxNote -> "24.15"], 
+                   StyleBox["24.15`", {
+                    GrayLevel[0], FontFamily -> "Arial"}, StripOnInput -> 
+                    False]], Annotation[#, 
+                   Style[24.15, {
+                    GrayLevel[0], FontFamily -> "Arial"}], "Tooltip"]& ], 
+                 
+                 EventHandlerTag[{
+                  "MouseClicked" :> 
+                   FEPrivate`Set[DynamicChart`click$7546$7731, 
+                    FEPrivate`Not[DynamicChart`click$7546$7731]], 
+                   PassEventsDown -> True, PassEventsDown -> Automatic, 
+                   PassEventsUp -> True}]], 
+                Dynamic[
+                 If[
+                 DynamicChart`click$7546$7731, {{{1., 0}, {0, 1.}}, {
+                   0.1999002582526888, -0.006315595815782263}}, {{1, 0}, {0, 
+                  1}}, {{1, 0}, {0, 1}}], 
+                 TrackedSymbols :> {DynamicChart`click$7546$7731}]]}, {
+               Directive[
+                EdgeForm[
+                 Directive[
+                  GrayLevel[0], 
+                  Opacity[0.5]]], 
+                RGBColor[0.6, 0.4, 0.2]], 
+               GeometricTransformationBox[
+                TagBox[
+                 TagBox[
+                  TooltipBox[
+                   TagBox[
+                    DynamicBox[{
+                    FEPrivate`If[
+                    CurrentValue["MouseOver"], 
+                    EdgeForm[{
+                    GrayLevel[0.5], 
+                    AbsoluteThickness[2.5], 
+                    Opacity[0.66]}], {}, {}], 
+                    
+                    DiskBox[{0, 0}, 
+                    1., {-0.2618355729253148, -0.062425728244022594`}]}], 
+                    StatusArea[#, 78.07]& , TagBoxNote -> "78.07"], 
+                   StyleBox["78.07`", {
+                    GrayLevel[0], FontFamily -> "Arial"}, StripOnInput -> 
+                    False]], Annotation[#, 
+                   Style[78.07, {
+                    GrayLevel[0], FontFamily -> "Arial"}], "Tooltip"]& ], 
+                 
+                 EventHandlerTag[{
+                  "MouseClicked" :> 
+                   FEPrivate`Set[DynamicChart`click$7549$7731, 
+                    FEPrivate`Not[DynamicChart`click$7549$7731]], 
+                   PassEventsDown -> True, PassEventsDown -> Automatic, 
+                   PassEventsUp -> True}]], 
+                Dynamic[
+                 If[
+                 DynamicChart`click$7549$7731, {{{1., 0}, {0, 1.}}, {
+                   0.19737711827185023`, -0.03228425595704583}}, {{1, 0}, {0, 
+                  1}}, {{1, 0}, {0, 1}}], 
+                 TrackedSymbols :> {DynamicChart`click$7549$7731}]]}, {
+               Directive[
+                EdgeForm[
+                 Directive[
+                  GrayLevel[0], 
+                  Opacity[0.5]]], 
+                RGBColor[1, 0.5, 0.5]], 
+               GeometricTransformationBox[
+                TagBox[
+                 TagBox[
+                  TooltipBox[
+                   TagBox[
+                    DynamicBox[{
+                    FEPrivate`If[
+                    CurrentValue["MouseOver"], 
+                    EdgeForm[{
+                    GrayLevel[0.5], 
+                    AbsoluteThickness[2.5], 
+                    Opacity[0.66]}], {}, {}], 
+                    
+                    DiskBox[{0, 0}, 
+                    1., {-1.01416265954537, -0.2618355729253148}]}], 
+                    StatusArea[#, 294.54]& , TagBoxNote -> "294.54"], 
+                   StyleBox["294.54`", {
+                    GrayLevel[0], FontFamily -> "Arial"}, StripOnInput -> 
+                    False]], Annotation[#, 
+                   Style[294.54, {
+                    GrayLevel[0], FontFamily -> "Arial"}], "Tooltip"]& ], 
+                 
+                 EventHandlerTag[{
+                  "MouseClicked" :> 
+                   FEPrivate`Set[DynamicChart`click$7552$7731, 
+                    FEPrivate`Not[DynamicChart`click$7552$7731]], 
+                   PassEventsDown -> True, PassEventsDown -> Automatic, 
+                   PassEventsUp -> True}]], 
+                Dynamic[
+                 If[
+                 DynamicChart`click$7552$7731, {{{1., 0}, {0, 1.}}, {
+                   0.1606578140281809, -0.11911786932146846`}}, {{1, 0}, {0, 
+                  1}}, {{1, 0}, {0, 1}}], 
+                 TrackedSymbols :> {DynamicChart`click$7552$7731}]]}, {
+               Directive[
+                EdgeForm[
+                 Directive[
+                  GrayLevel[0], 
+                  Opacity[0.5]]], 
+                RGBColor[1, 0.85, 0.85]], 
+               GeometricTransformationBox[
+                TagBox[
+                 TagBox[
+                  TooltipBox[
+                   TagBox[
+                    DynamicBox[{
+                    FEPrivate`If[
+                    CurrentValue["MouseOver"], 
+                    EdgeForm[{
+                    GrayLevel[0.5], 
+                    AbsoluteThickness[2.5], 
+                    Opacity[0.66]}], {}, {}], 
+                    
+                    DiskBox[{0, 0}, 
+                    1., {-2.9583767171354696`, -1.01416265954537}]}], 
+                    StatusArea[#, 761.17]& , TagBoxNote -> "761.17"], 
+                   StyleBox["761.17`", {
+                    GrayLevel[0], FontFamily -> "Arial"}, StripOnInput -> 
+                    False]], Annotation[#, 
+                   Style[761.17, {
+                    GrayLevel[0], FontFamily -> "Arial"}], "Tooltip"]& ], 
+                 
+                 EventHandlerTag[{
+                  "MouseClicked" :> 
+                   FEPrivate`Set[DynamicChart`click$7555$7731, 
+                    FEPrivate`Not[DynamicChart`click$7555$7731]], 
+                   PassEventsDown -> True, PassEventsDown -> Automatic, 
+                   PassEventsUp -> True}]], 
+                Dynamic[
+                 If[
+                 DynamicChart`click$7555$7731, {{{1., 0}, {
+                    0, 1.}}, {-0.08072461321472738, -0.18298507267351802`}}, \
+{{1, 0}, {0, 1}}, {{1, 0}, {0, 1}}], 
+                 TrackedSymbols :> {DynamicChart`click$7555$7731}]]}, {
+               Directive[
+                EdgeForm[
+                 Directive[
+                  GrayLevel[0], 
+                  Opacity[0.5]]], 
+                RGBColor[0.87, 0.94, 1]], 
+               GeometricTransformationBox[
+                TagBox[
+                 TagBox[
+                  TooltipBox[
+                   TagBox[
+                    DynamicBox[{
+                    FEPrivate`If[
+                    CurrentValue["MouseOver"], 
+                    EdgeForm[{
+                    GrayLevel[0.5], 
+                    AbsoluteThickness[2.5], 
+                    Opacity[0.66]}], {}, {}], 
+                    
+                    DiskBox[{0, 0}, 
+                    1., {-2.9623357956452168`, -2.9583767171354696`}]}], 
+                    StatusArea[#, 1.55]& , TagBoxNote -> "1.55"], 
+                   StyleBox["1.55`", {
+                    GrayLevel[0], FontFamily -> "Arial"}, StripOnInput -> 
+                    False]], Annotation[#, 
+                   Style[1.55, {
+                    GrayLevel[0], FontFamily -> "Arial"}], "Tooltip"]& ], 
+                 
+                 EventHandlerTag[{
+                  "MouseClicked" :> 
+                   FEPrivate`Set[DynamicChart`click$7558$7731, 
+                    FEPrivate`Not[DynamicChart`click$7558$7731]], 
+                   PassEventsDown -> True, PassEventsDown -> Automatic, 
+                   PassEventsUp -> True}]], 
+                Dynamic[
+                 If[
+                 DynamicChart`click$7558$7731, {{{1., 0}, {
+                    0, 1.}}, {-0.19672431783825786`, -0.03604917157261875}}, \
+{{1, 0}, {0, 1}}, {{1, 0}, {0, 1}}], 
+                 TrackedSymbols :> {DynamicChart`click$7558$7731}]]}, {
+               Directive[
+                EdgeForm[
+                 Directive[
+                  GrayLevel[0], 
+                  Opacity[0.5]]], 
+                RGBColor[1, 1, 0.85]], 
+               GeometricTransformationBox[
+                TagBox[
+                 TagBox[
+                  TooltipBox[
+                   TagBox[
+                    DynamicBox[{
+                    FEPrivate`If[
+                    CurrentValue["MouseOver"], 
+                    EdgeForm[{
+                    GrayLevel[0.5], 
+                    AbsoluteThickness[2.5], 
+                    Opacity[0.66]}], {}, {}], 
+                    
+                    DiskBox[{0, 0}, 
+                    1., {-2.96606499217698, -2.9623357956452168`}]}], 
+                    StatusArea[#, 1.46]& , TagBoxNote -> "1.46"], 
+                   StyleBox["1.46`", {
+                    GrayLevel[0], FontFamily -> "Arial"}, StripOnInput -> 
+                    False]], Annotation[#, 
+                   Style[1.46, {
+                    GrayLevel[0], FontFamily -> "Arial"}], "Tooltip"]& ], 
+                 
+                 EventHandlerTag[{
+                  "MouseClicked" :> 
+                   FEPrivate`Set[DynamicChart`click$7561$7731, 
+                    FEPrivate`Not[DynamicChart`click$7561$7731]], 
+                   PassEventsDown -> True, PassEventsDown -> Automatic, 
+                   PassEventsUp -> True}]], 
+                Dynamic[
+                 If[
+                 DynamicChart`click$7561$7731, {{{1., 0}, {
+                    0, 1.}}, {-0.19686144193547292`, \
+-0.035292671747636666`}}, {{1, 0}, {0, 1}}, {{1, 0}, {0, 1}}], 
+                 TrackedSymbols :> {DynamicChart`click$7561$7731}]]}, {
+               Directive[
+                EdgeForm[
+                 Directive[
+                  GrayLevel[0], 
+                  Opacity[0.5]]], 
+                RGBColor[0.94, 0.91, 0.88]], 
+               GeometricTransformationBox[
+                TagBox[
+                 TagBox[
+                  TooltipBox[
+                   TagBox[
+                    DynamicBox[{
+                    FEPrivate`If[
+                    CurrentValue["MouseOver"], 
+                    EdgeForm[{
+                    GrayLevel[0.5], 
+                    AbsoluteThickness[2.5], 
+                    Opacity[0.66]}], {}, {}], 
+                    
+                    DiskBox[{0, 0}, 
+                    1., {-3.125679712224807, -2.96606499217698}]}], 
+                    StatusArea[#, 62.49]& , TagBoxNote -> "62.49"], 
+                   StyleBox["62.49`", {
+                    GrayLevel[0], FontFamily -> "Arial"}, StripOnInput -> 
+                    False]], Annotation[#, 
+                   Style[62.49, {
+                    GrayLevel[0], FontFamily -> "Arial"}], "Tooltip"]& ], 
+                 
+                 EventHandlerTag[{
+                  "MouseClicked" :> 
+                   FEPrivate`Set[DynamicChart`click$7564$7731, 
+                    FEPrivate`Not[DynamicChart`click$7564$7731]], 
+                   PassEventsDown -> True, PassEventsDown -> Automatic, 
+                   PassEventsUp -> True}]], 
+                Dynamic[
+                 If[
+                 DynamicChart`click$7564$7731, {{{1., 0}, {
+                    0, 
+                    1.}}, {-0.1990844617527088, -0.019114839487535062`}}, {{1,
+                   0}, {0, 1}}, {{1, 0}, {0, 1}}], 
+                 TrackedSymbols :> {DynamicChart`click$7564$7731}]]}, {
+               Directive[
+                EdgeForm[
+                 Directive[
+                  GrayLevel[0], 
+                  Opacity[0.5]]], 
+                RGBColor[0.88, 1, 0.88]], 
+               GeometricTransformationBox[
+                TagBox[
+                 TagBox[
+                  TooltipBox[
+                   TagBox[
+                    DynamicBox[{
+                    FEPrivate`If[
+                    CurrentValue["MouseOver"], 
+                    EdgeForm[{
+                    GrayLevel[0.5], 
+                    AbsoluteThickness[2.5], 
+                    Opacity[0.66]}], {}, {}], 
+                    
+                    DiskBox[{0, 0}, 
+                    1., {-3.141592653589793, -3.125679712224807}]}], 
+                    StatusArea[#, 6.23]& , TagBoxNote -> "6.23"], 
+                   StyleBox["6.23`", {
+                    GrayLevel[0], FontFamily -> "Arial"}, StripOnInput -> 
+                    False]], Annotation[#, 
+                   Style[6.23, {
+                    GrayLevel[0], FontFamily -> "Arial"}], "Tooltip"]& ], 
+                 
+                 EventHandlerTag[{
+                  "MouseClicked" :> 
+                   FEPrivate`Set[DynamicChart`click$7567$7731, 
+                    FEPrivate`Not[DynamicChart`click$7567$7731]], 
+                   PassEventsDown -> True, PassEventsDown -> Automatic, 
+                   PassEventsUp -> True}]], 
+                Dynamic[
+                 If[
+                 DynamicChart`click$7567$7731, {{{1., 0}, {
+                    0, 1.}}, {-0.19999366949082428`, \
+-0.0015912773469596527`}}, {{1, 0}, {0, 1}}, {{1, 0}, {0, 1}}], 
+                 TrackedSymbols :> {
+                  DynamicChart`click$7567$7731}]]}}}}}, {}}, {{}}}}, {{{{
+           GeometricTransformationBox[
+            TagBox[
+             TagBox[
+              TooltipBox[
+               
+               TagBox[{{}, {}}, StatusArea[#, 247.19]& , TagBoxNote -> 
+                "247.19"], 
+               StyleBox["247.19`", {
+                 GrayLevel[0], FontFamily -> "Arial"}, StripOnInput -> 
+                False]], Annotation[#, 
+               Style[247.19, {
+                 GrayLevel[0], FontFamily -> "Arial"}], "Tooltip"]& ], 
+             
+             EventHandlerTag[{
+              "MouseClicked" :> FEPrivate`Set[DynamicChart`click$7519$7731, 
+                 FEPrivate`Not[DynamicChart`click$7519$7731]], PassEventsDown -> 
+               True, PassEventsDown -> Automatic, PassEventsUp -> True}]], 
+            Dynamic[
+             If[
+             DynamicChart`click$7519$7731, {{{1., 0}, {
+                0, 1.}}, {-0.19011636333775397`, 0.06209483385296333}}, {{1, 
+              0}, {0, 1}}, {{1, 0}, {0, 1}}], 
+             TrackedSymbols :> {DynamicChart`click$7519$7731}]], 
+           GeometricTransformationBox[
+            TagBox[
+             TagBox[
+              TooltipBox[
+               
+               TagBox[{{}, {}}, StatusArea[#, 443.83]& , TagBoxNote -> 
+                "443.83"], 
+               StyleBox["443.83`", {
+                 GrayLevel[0], FontFamily -> "Arial"}, StripOnInput -> 
+                False]], Annotation[#, 
+               Style[443.83, {
+                 GrayLevel[0], FontFamily -> "Arial"}], "Tooltip"]& ], 
+             
+             EventHandlerTag[{
+              "MouseClicked" :> FEPrivate`Set[DynamicChart`click$7522$7731, 
+                 FEPrivate`Not[DynamicChart`click$7522$7731]], PassEventsDown -> 
+               True, PassEventsDown -> Automatic, PassEventsUp -> True}]], 
+            Dynamic[
+             If[
+             DynamicChart`click$7522$7731, {{{1., 0}, {
+                0, 1.}}, {-0.07280534204311298, 0.18627770175194167`}}, {{1, 
+              0}, {0, 1}}, {{1, 0}, {0, 1}}], 
+             TrackedSymbols :> {DynamicChart`click$7522$7731}]], 
+           GeometricTransformationBox[
+            TagBox[
+             TagBox[
+              TooltipBox[
+               
+               TagBox[{{}, {}}, StatusArea[#, 34.16]& , TagBoxNote -> 
+                "34.16"], 
+               StyleBox["34.16`", {
+                 GrayLevel[0], FontFamily -> "Arial"}, StripOnInput -> 
+                False]], Annotation[#, 
+               Style[34.16, {
+                 GrayLevel[0], FontFamily -> "Arial"}], "Tooltip"]& ], 
+             
+             EventHandlerTag[{
+              "MouseClicked" :> FEPrivate`Set[DynamicChart`click$7525$7731, 
+                 FEPrivate`Not[DynamicChart`click$7525$7731]], PassEventsDown -> 
+               True, PassEventsDown -> Automatic, PassEventsUp -> True}]], 
+            Dynamic[
+             If[
+             DynamicChart`click$7525$7731, {{{1., 0}, {0, 1.}}, {
+               0.04712545983845336, 0.19436869870175683`}}, {{1, 0}, {0, 
+              1}}, {{1, 0}, {0, 1}}], 
+             TrackedSymbols :> {DynamicChart`click$7525$7731}]], 
+           GeometricTransformationBox[
+            TagBox[
+             TagBox[
+              TooltipBox[
+               
+               TagBox[{{}, {}}, StatusArea[#, 109.95]& , TagBoxNote -> 
+                "109.95"], 
+               StyleBox["109.95`", {
+                 GrayLevel[0], FontFamily -> "Arial"}, StripOnInput -> 
+                False]], Annotation[#, 
+               Style[109.95, {
+                 GrayLevel[0], FontFamily -> "Arial"}], "Tooltip"]& ], 
+             
+             EventHandlerTag[{
+              "MouseClicked" :> FEPrivate`Set[DynamicChart`click$7528$7731, 
+                 FEPrivate`Not[DynamicChart`click$7528$7731]], PassEventsDown -> 
+               True, PassEventsDown -> Automatic, PassEventsUp -> True}]], 
+            Dynamic[
+             If[
+             DynamicChart`click$7528$7731, {{{1., 0}, {0, 1.}}, {
+               0.08190075200737351, 0.1824616858976884}}, {{1, 0}, {0, 1}}, {{
+              1, 0}, {0, 1}}], 
+             TrackedSymbols :> {DynamicChart`click$7528$7731}]], 
+           GeometricTransformationBox[
+            TagBox[
+             TagBox[
+              TooltipBox[
+               
+               TagBox[{{}, {}}, StatusArea[#, 13.33]& , TagBoxNote -> 
+                "13.33"], 
+               StyleBox["13.33`", {
+                 GrayLevel[0], FontFamily -> "Arial"}, StripOnInput -> 
+                False]], Annotation[#, 
+               Style[13.33, {
+                 GrayLevel[0], FontFamily -> "Arial"}], "Tooltip"]& ], 
+             EventHandlerTag[{
+              "MouseClicked" :> FEPrivate`Set[DynamicChart`click$7531$7731, 
+                 FEPrivate`Not[DynamicChart`click$7531$7731]], PassEventsDown -> 
+               True, PassEventsDown -> Automatic, PassEventsUp -> True}]], 
+            Dynamic[
+             If[
+             DynamicChart`click$7531$7731, {{{1., 0}, {0, 1.}}, {
+               0.10949663819247929`, 0.16736333596264533`}}, {{1, 0}, {0, 
+              1}}, {{1, 0}, {0, 1}}], 
+             TrackedSymbols :> {DynamicChart`click$7531$7731}]], {}, 
+           GeometricTransformationBox[
+            TagBox[
+             TagBox[
+              TooltipBox[
+               
+               TagBox[{{}, {}}, StatusArea[#, 189.41]& , TagBoxNote -> 
+                "189.41"], 
+               StyleBox["189.41`", {
+                 GrayLevel[0], FontFamily -> "Arial"}, StripOnInput -> 
+                False]], Annotation[#, 
+               Style[189.41, {
+                 GrayLevel[0], FontFamily -> "Arial"}], "Tooltip"]& ], 
+             
+             EventHandlerTag[{
+              "MouseClicked" :> FEPrivate`Set[DynamicChart`click$7534$7731, 
+                 FEPrivate`Not[DynamicChart`click$7534$7731]], PassEventsDown -> 
+               True, PassEventsDown -> Automatic, PassEventsUp -> True}]], 
+            Dynamic[
+             If[
+             DynamicChart`click$7534$7731, {{{1., 0}, {0, 1.}}, {
+               0.1486984493810438, 0.1337489108429417}}, {{1, 0}, {0, 1}}, {{
+              1, 0}, {0, 1}}], 
+             TrackedSymbols :> {DynamicChart`click$7534$7731}]], 
+           GeometricTransformationBox[
+            TagBox[
+             TagBox[
+              TooltipBox[
+               
+               TagBox[{{}, {}}, StatusArea[#, 56.94]& , TagBoxNote -> 
+                "56.94"], 
+               StyleBox["56.94`", {
+                 GrayLevel[0], FontFamily -> "Arial"}, StripOnInput -> 
+                False]], Annotation[#, 
+               Style[56.94, {
+                 GrayLevel[0], FontFamily -> "Arial"}], "Tooltip"]& ], 
+             
+             EventHandlerTag[{
+              "MouseClicked" :> FEPrivate`Set[DynamicChart`click$7537$7731, 
+                 FEPrivate`Not[DynamicChart`click$7537$7731]], PassEventsDown -> 
+               True, PassEventsDown -> Automatic, PassEventsUp -> True}]], 
+            Dynamic[
+             If[
+             DynamicChart`click$7537$7731, {{{1., 0}, {0, 1.}}, {
+               0.18278865329636063`, 0.08116839425603335}}, {{1, 0}, {0, 
+              1}}, {{1, 0}, {0, 1}}], 
+             TrackedSymbols :> {DynamicChart`click$7537$7731}]], 
+           GeometricTransformationBox[
+            TagBox[
+             TagBox[
+              TooltipBox[
+               
+               TagBox[{{}, {}}, StatusArea[#, 59.65]& , TagBoxNote -> 
+                "59.65"], 
+               StyleBox["59.65`", {
+                 GrayLevel[0], FontFamily -> "Arial"}, StripOnInput -> 
+                False]], Annotation[#, 
+               Style[59.65, {
+                 GrayLevel[0], FontFamily -> "Arial"}], "Tooltip"]& ], 
+             
+             EventHandlerTag[{
+              "MouseClicked" :> FEPrivate`Set[DynamicChart`click$7540$7731, 
+                 FEPrivate`Not[DynamicChart`click$7540$7731]], PassEventsDown -> 
+               True, PassEventsDown -> Automatic, PassEventsUp -> True}]], 
+            Dynamic[
+             If[
+             DynamicChart`click$7540$7731, {{{1., 0}, {0, 1.}}, {
+               0.1928074170605428, 0.05315355045941821}}, {{1, 0}, {0, 1}}, {{
+              1, 0}, {0, 1}}], 
+             TrackedSymbols :> {DynamicChart`click$7540$7731}]], 
+           GeometricTransformationBox[
+            TagBox[
+             TagBox[
+              TooltipBox[
+               
+               TagBox[{{}, {}}, StatusArea[#, 75.78]& , TagBoxNote -> 
+                "75.78"], 
+               StyleBox["75.78`", {
+                 GrayLevel[0], FontFamily -> "Arial"}, StripOnInput -> 
+                False]], Annotation[#, 
+               Style[75.78, {
+                 GrayLevel[0], FontFamily -> "Arial"}], "Tooltip"]& ], 
+             
+             EventHandlerTag[{
+              "MouseClicked" :> FEPrivate`Set[DynamicChart`click$7543$7731, 
+                 FEPrivate`Not[DynamicChart`click$7543$7731]], PassEventsDown -> 
+               True, PassEventsDown -> Automatic, PassEventsUp -> True}]], 
+            Dynamic[
+             If[
+             DynamicChart`click$7543$7731, {{{1., 0}, {0, 1.}}, {
+               0.19907834860948576`, 0.019178402303634868`}}, {{1, 0}, {0, 
+              1}}, {{1, 0}, {0, 1}}], 
+             TrackedSymbols :> {DynamicChart`click$7543$7731}]], 
+           GeometricTransformationBox[
+            TagBox[
+             TagBox[
+              TooltipBox[
+               
+               TagBox[{{}, {}}, StatusArea[#, 24.15]& , TagBoxNote -> 
+                "24.15"], 
+               StyleBox["24.15`", {
+                 GrayLevel[0], FontFamily -> "Arial"}, StripOnInput -> 
+                False]], Annotation[#, 
+               Style[24.15, {
+                 GrayLevel[0], FontFamily -> "Arial"}], "Tooltip"]& ], 
+             
+             EventHandlerTag[{
+              "MouseClicked" :> FEPrivate`Set[DynamicChart`click$7546$7731, 
+                 FEPrivate`Not[DynamicChart`click$7546$7731]], PassEventsDown -> 
+               True, PassEventsDown -> Automatic, PassEventsUp -> True}]], 
+            Dynamic[
+             If[
+             DynamicChart`click$7546$7731, {{{1., 0}, {0, 1.}}, {
+               0.1999002582526888, -0.006315595815782263}}, {{1, 0}, {0, 
+              1}}, {{1, 0}, {0, 1}}], 
+             TrackedSymbols :> {DynamicChart`click$7546$7731}]], 
+           GeometricTransformationBox[
+            TagBox[
+             TagBox[
+              TooltipBox[
+               
+               TagBox[{{}, {}}, StatusArea[#, 78.07]& , TagBoxNote -> 
+                "78.07"], 
+               StyleBox["78.07`", {
+                 GrayLevel[0], FontFamily -> "Arial"}, StripOnInput -> 
+                False]], Annotation[#, 
+               Style[78.07, {
+                 GrayLevel[0], FontFamily -> "Arial"}], "Tooltip"]& ], 
+             
+             EventHandlerTag[{
+              "MouseClicked" :> FEPrivate`Set[DynamicChart`click$7549$7731, 
+                 FEPrivate`Not[DynamicChart`click$7549$7731]], PassEventsDown -> 
+               True, PassEventsDown -> Automatic, PassEventsUp -> True}]], 
+            Dynamic[
+             If[
+             DynamicChart`click$7549$7731, {{{1., 0}, {0, 1.}}, {
+               0.19737711827185023`, -0.03228425595704583}}, {{1, 0}, {0, 
+              1}}, {{1, 0}, {0, 1}}], 
+             TrackedSymbols :> {DynamicChart`click$7549$7731}]], 
+           GeometricTransformationBox[
+            TagBox[
+             TagBox[
+              TooltipBox[
+               
+               TagBox[{{}, {}}, StatusArea[#, 294.54]& , TagBoxNote -> 
+                "294.54"], 
+               StyleBox["294.54`", {
+                 GrayLevel[0], FontFamily -> "Arial"}, StripOnInput -> 
+                False]], Annotation[#, 
+               Style[294.54, {
+                 GrayLevel[0], FontFamily -> "Arial"}], "Tooltip"]& ], 
+             
+             EventHandlerTag[{
+              "MouseClicked" :> FEPrivate`Set[DynamicChart`click$7552$7731, 
+                 FEPrivate`Not[DynamicChart`click$7552$7731]], PassEventsDown -> 
+               True, PassEventsDown -> Automatic, PassEventsUp -> True}]], 
+            Dynamic[
+             If[
+             DynamicChart`click$7552$7731, {{{1., 0}, {0, 1.}}, {
+               0.1606578140281809, -0.11911786932146846`}}, {{1, 0}, {0, 
+              1}}, {{1, 0}, {0, 1}}], 
+             TrackedSymbols :> {DynamicChart`click$7552$7731}]], 
+           GeometricTransformationBox[
+            TagBox[
+             TagBox[
+              TooltipBox[
+               
+               TagBox[{{}, {}}, StatusArea[#, 761.17]& , TagBoxNote -> 
+                "761.17"], 
+               StyleBox["761.17`", {
+                 GrayLevel[0], FontFamily -> "Arial"}, StripOnInput -> 
+                False]], Annotation[#, 
+               Style[761.17, {
+                 GrayLevel[0], FontFamily -> "Arial"}], "Tooltip"]& ], 
+             
+             EventHandlerTag[{
+              "MouseClicked" :> FEPrivate`Set[DynamicChart`click$7555$7731, 
+                 FEPrivate`Not[DynamicChart`click$7555$7731]], PassEventsDown -> 
+               True, PassEventsDown -> Automatic, PassEventsUp -> True}]], 
+            Dynamic[
+             If[
+             DynamicChart`click$7555$7731, {{{1., 0}, {
+                0, 1.}}, {-0.08072461321472738, -0.18298507267351802`}}, {{1, 
+              0}, {0, 1}}, {{1, 0}, {0, 1}}], 
+             TrackedSymbols :> {DynamicChart`click$7555$7731}]], 
+           GeometricTransformationBox[
+            TagBox[
+             TagBox[
+              TooltipBox[
+               TagBox[{{}, {}}, StatusArea[#, 1.55]& , TagBoxNote -> "1.55"], 
+               
+               StyleBox["1.55`", {
+                 GrayLevel[0], FontFamily -> "Arial"}, StripOnInput -> 
+                False]], Annotation[#, 
+               Style[1.55, {
+                 GrayLevel[0], FontFamily -> "Arial"}], "Tooltip"]& ], 
+             
+             EventHandlerTag[{
+              "MouseClicked" :> FEPrivate`Set[DynamicChart`click$7558$7731, 
+                 FEPrivate`Not[DynamicChart`click$7558$7731]], PassEventsDown -> 
+               True, PassEventsDown -> Automatic, PassEventsUp -> True}]], 
+            Dynamic[
+             If[
+             DynamicChart`click$7558$7731, {{{1., 0}, {
+                0, 1.}}, {-0.19672431783825786`, -0.03604917157261875}}, {{1, 
+              0}, {0, 1}}, {{1, 0}, {0, 1}}], 
+             TrackedSymbols :> {DynamicChart`click$7558$7731}]], 
+           GeometricTransformationBox[
+            TagBox[
+             TagBox[
+              TooltipBox[
+               TagBox[{{}, {}}, StatusArea[#, 1.46]& , TagBoxNote -> "1.46"], 
+               
+               StyleBox["1.46`", {
+                 GrayLevel[0], FontFamily -> "Arial"}, StripOnInput -> 
+                False]], Annotation[#, 
+               Style[1.46, {
+                 GrayLevel[0], FontFamily -> "Arial"}], "Tooltip"]& ], 
+             
+             EventHandlerTag[{
+              "MouseClicked" :> FEPrivate`Set[DynamicChart`click$7561$7731, 
+                 FEPrivate`Not[DynamicChart`click$7561$7731]], PassEventsDown -> 
+               True, PassEventsDown -> Automatic, PassEventsUp -> True}]], 
+            Dynamic[
+             If[
+             DynamicChart`click$7561$7731, {{{1., 0}, {
+                0, 1.}}, {-0.19686144193547292`, -0.035292671747636666`}}, {{
+              1, 0}, {0, 1}}, {{1, 0}, {0, 1}}], 
+             TrackedSymbols :> {DynamicChart`click$7561$7731}]], 
+           GeometricTransformationBox[
+            TagBox[
+             TagBox[
+              TooltipBox[
+               TagBox[{{}, {}}, StatusArea[#, 62.49]& , TagBoxNote -> 
+                "62.49"], 
+               StyleBox["62.49`", {
+                 GrayLevel[0], FontFamily -> "Arial"}, StripOnInput -> 
+                False]], Annotation[#, 
+               Style[62.49, {
+                 GrayLevel[0], FontFamily -> "Arial"}], "Tooltip"]& ], 
+             
+             EventHandlerTag[{
+              "MouseClicked" :> FEPrivate`Set[DynamicChart`click$7564$7731, 
+                 FEPrivate`Not[DynamicChart`click$7564$7731]], PassEventsDown -> 
+               True, PassEventsDown -> Automatic, PassEventsUp -> True}]], 
+            Dynamic[
+             If[
+             DynamicChart`click$7564$7731, {{{1., 0}, {
+                0, 1.}}, {-0.1990844617527088, -0.019114839487535062`}}, {{1, 
+              0}, {0, 1}}, {{1, 0}, {0, 1}}], 
+             TrackedSymbols :> {DynamicChart`click$7564$7731}]], 
+           GeometricTransformationBox[
+            TagBox[
+             TagBox[
+              TooltipBox[
+               TagBox[{{}, {}}, StatusArea[#, 6.23]& , TagBoxNote -> "6.23"], 
+               
+               StyleBox["6.23`", {
+                 GrayLevel[0], FontFamily -> "Arial"}, StripOnInput -> 
+                False]], Annotation[#, 
+               Style[6.23, {
+                 GrayLevel[0], FontFamily -> "Arial"}], "Tooltip"]& ], 
+             
+             EventHandlerTag[{
+              "MouseClicked" :> FEPrivate`Set[DynamicChart`click$7567$7731, 
+                 FEPrivate`Not[DynamicChart`click$7567$7731]], PassEventsDown -> 
+               True, PassEventsDown -> Automatic, PassEventsUp -> True}]], 
+            Dynamic[
+             If[
+             DynamicChart`click$7567$7731, {{{1., 0}, {
+                0, 1.}}, {-0.19999366949082428`, -0.0015912773469596527`}}, {{
+              1, 0}, {0, 1}}, {{1, 0}, {0, 1}}], 
+             TrackedSymbols :> {DynamicChart`click$7567$7731}]]}, {}}}, {}}}, 
+      DynamicModuleValues :> {}], {{{}, {}}}, {{{{}, {}, {}, {}}}, {}}}, {
+    ContentSelectable -> False, GridLinesStyle -> Directive[
+       GrayLevel[0.5, 0.4]], ImageSize -> 300, LabelStyle -> {
+       GrayLevel[0], FontFamily -> "Arial"}, 
+     PlotRange -> {{-1.2, 1.2}, {-1.2, 1.2}}, PlotRangePadding -> 
+     Scaled[0.02]}],FormBox[
+    FormBox[
+     TemplateBox[{
+      "\"Reg.\"", "\"Irr.\"", "\"Pred.\"", "\"Init.B.\"", "\"Mdot\"", 
+       "\"Adjust\"", "\"Move\"", "\"Comm.I.\"", "\"Comm.R.\"", "\"Send.I.\"", 
+       "\"Send.R.\"", "\"Barr.\"", "\"KS.Init.B\"", "\"KS.Int.S\"", 
+       "\"KS.Int.P\"", "\"KS.Comm.\"", "\"KS.Init.\"", "\"KS.Term.\""}, 
+      "SwatchLegend", DisplayFunction -> (FormBox[
+        StyleBox[
+         StyleBox[
+          PaneBox[
+           TagBox[
+            GridBox[{{
+               TagBox[
+                GridBox[{{
+                   GraphicsBox[{
+                    Directive[
+                    PointSize[0.5], 
+                    AbsoluteThickness[1.6], 
+                    EdgeForm[
+                    Directive[
+                    GrayLevel[0], 
+                    Opacity[0.5]]], 
+                    GrayLevel[0]], 
+                    RectangleBox[{0, 0}, {10, 10}, "RoundingRadius" -> 0]}, 
+                    AspectRatio -> Full, ImageSize -> {10, 10}, 
+                    PlotRangePadding -> None, ImagePadding -> Automatic, 
+                    BaselinePosition -> (Scaled[0.1] -> Baseline)], #}, {
+                   GraphicsBox[{
+                    Directive[
+                    PointSize[0.5], 
+                    AbsoluteThickness[1.6], 
+                    EdgeForm[
+                    Directive[
+                    GrayLevel[0], 
+                    Opacity[0.5]]], 
+                    RGBColor[1, 0, 0]], 
+                    RectangleBox[{0, 0}, {10, 10}, "RoundingRadius" -> 0]}, 
+                    AspectRatio -> Full, ImageSize -> {10, 10}, 
+                    PlotRangePadding -> None, ImagePadding -> Automatic, 
+                    BaselinePosition -> (Scaled[0.1] -> Baseline)], #2}, {
+                   GraphicsBox[{
+                    Directive[
+                    PointSize[0.5], 
+                    AbsoluteThickness[1.6], 
+                    EdgeForm[
+                    Directive[
+                    GrayLevel[0], 
+                    Opacity[0.5]]], 
+                    RGBColor[0, 1, 0]], 
+                    RectangleBox[{0, 0}, {10, 10}, "RoundingRadius" -> 0]}, 
+                    AspectRatio -> Full, ImageSize -> {10, 10}, 
+                    PlotRangePadding -> None, ImagePadding -> Automatic, 
+                    BaselinePosition -> (Scaled[0.1] -> Baseline)], #3}, {
+                   GraphicsBox[{
+                    Directive[
+                    PointSize[0.5], 
+                    AbsoluteThickness[1.6], 
+                    EdgeForm[
+                    Directive[
+                    GrayLevel[0], 
+                    Opacity[0.5]]], 
+                    RGBColor[1, 1, 0]], 
+                    RectangleBox[{0, 0}, {10, 10}, "RoundingRadius" -> 0]}, 
+                    AspectRatio -> Full, ImageSize -> {10, 10}, 
+                    PlotRangePadding -> None, ImagePadding -> Automatic, 
+                    BaselinePosition -> (Scaled[0.1] -> Baseline)], #4}, {
+                   GraphicsBox[{
+                    Directive[
+                    PointSize[0.5], 
+                    AbsoluteThickness[1.6], 
+                    EdgeForm[
+                    Directive[
+                    GrayLevel[0], 
+                    Opacity[0.5]]], 
+                    GrayLevel[1]], 
+                    RectangleBox[{0, 0}, {10, 10}, "RoundingRadius" -> 0]}, 
+                    AspectRatio -> Full, ImageSize -> {10, 10}, 
+                    PlotRangePadding -> None, ImagePadding -> Automatic, 
+                    BaselinePosition -> (Scaled[0.1] -> Baseline)], #5}, {
+                   GraphicsBox[{
+                    Directive[
+                    PointSize[0.5], 
+                    AbsoluteThickness[1.6], 
+                    EdgeForm[
+                    Directive[
+                    GrayLevel[0], 
+                    Opacity[0.5]]], 
+                    RGBColor[0, 0, 1]], 
+                    RectangleBox[{0, 0}, {10, 10}, "RoundingRadius" -> 0]}, 
+                    AspectRatio -> Full, ImageSize -> {10, 10}, 
+                    PlotRangePadding -> None, ImagePadding -> Automatic, 
+                    BaselinePosition -> (Scaled[0.1] -> Baseline)], #6}, {
+                   GraphicsBox[{
+                    Directive[
+                    PointSize[0.5], 
+                    AbsoluteThickness[1.6], 
+                    EdgeForm[
+                    Directive[
+                    GrayLevel[0], 
+                    Opacity[0.5]]], 
+                    RGBColor[1, 0.5, 0]], 
+                    RectangleBox[{0, 0}, {10, 10}, "RoundingRadius" -> 0]}, 
+                    AspectRatio -> Full, ImageSize -> {10, 10}, 
+                    PlotRangePadding -> None, ImagePadding -> Automatic, 
+                    BaselinePosition -> (Scaled[0.1] -> Baseline)], #7}, {
+                   GraphicsBox[{
+                    Directive[
+                    PointSize[0.5], 
+                    AbsoluteThickness[1.6], 
+                    EdgeForm[
+                    Directive[
+                    GrayLevel[0], 
+                    Opacity[0.5]]], 
+                    RGBColor[0.5, 0, 0.5]], 
+                    RectangleBox[{0, 0}, {10, 10}, "RoundingRadius" -> 0]}, 
+                    AspectRatio -> Full, ImageSize -> {10, 10}, 
+                    PlotRangePadding -> None, ImagePadding -> Automatic, 
+                    BaselinePosition -> (Scaled[0.1] -> Baseline)], #8}, {
+                   GraphicsBox[{
+                    Directive[
+                    PointSize[0.5], 
+                    AbsoluteThickness[1.6], 
+                    EdgeForm[
+                    Directive[
+                    GrayLevel[0], 
+                    Opacity[0.5]]], 
+                    GrayLevel[0.5]], 
+                    RectangleBox[{0, 0}, {10, 10}, "RoundingRadius" -> 0]}, 
+                    AspectRatio -> Full, ImageSize -> {10, 10}, 
+                    PlotRangePadding -> None, ImagePadding -> Automatic, 
+                    BaselinePosition -> (Scaled[0.1] -> Baseline)], #9}, {
+                   GraphicsBox[{
+                    Directive[
+                    PointSize[0.5], 
+                    AbsoluteThickness[1.6], 
+                    EdgeForm[
+                    Directive[
+                    GrayLevel[0], 
+                    Opacity[0.5]]], 
+                    RGBColor[0, 1, 1]], 
+                    RectangleBox[{0, 0}, {10, 10}, "RoundingRadius" -> 0]}, 
+                    AspectRatio -> Full, ImageSize -> {10, 10}, 
+                    PlotRangePadding -> None, ImagePadding -> Automatic, 
+                    BaselinePosition -> (Scaled[0.1] -> Baseline)], #10}}, 
+                 GridBoxAlignment -> {
+                  "Columns" -> {Center, Left}, "Rows" -> {{Baseline}}}, 
+                 AutoDelete -> False, 
+                 GridBoxDividers -> {
+                  "Columns" -> {{False}}, "Rows" -> {{False}}}, 
+                 GridBoxItemSize -> {"Columns" -> {{All}}, "Rows" -> {{All}}},
+                  GridBoxSpacings -> {
+                  "Columns" -> {{0.5}}, "Rows" -> {{0.5}}}], "Grid"], 
+               TagBox[
+                GridBox[{{
+                   GraphicsBox[{
+                    Directive[
+                    PointSize[0.5], 
+                    AbsoluteThickness[1.6], 
+                    EdgeForm[
+                    Directive[
+                    GrayLevel[0], 
+                    Opacity[0.5]]], 
+                    RGBColor[1, 0, 1]], 
+                    RectangleBox[{0, 0}, {10, 10}, "RoundingRadius" -> 0]}, 
+                    AspectRatio -> Full, ImageSize -> {10, 10}, 
+                    PlotRangePadding -> None, ImagePadding -> Automatic, 
+                    BaselinePosition -> (Scaled[0.1] -> Baseline)], #11}, {
+                   GraphicsBox[{
+                    Directive[
+                    PointSize[0.5], 
+                    AbsoluteThickness[1.6], 
+                    EdgeForm[
+                    Directive[
+                    GrayLevel[0], 
+                    Opacity[0.5]]], 
+                    RGBColor[0.6, 0.4, 0.2]], 
+                    RectangleBox[{0, 0}, {10, 10}, "RoundingRadius" -> 0]}, 
+                    AspectRatio -> Full, ImageSize -> {10, 10}, 
+                    PlotRangePadding -> None, ImagePadding -> Automatic, 
+                    BaselinePosition -> (Scaled[0.1] -> Baseline)], #12}, {
+                   GraphicsBox[{
+                    Directive[
+                    PointSize[0.5], 
+                    AbsoluteThickness[1.6], 
+                    EdgeForm[
+                    Directive[
+                    GrayLevel[0], 
+                    Opacity[0.5]]], 
+                    RGBColor[1, 0.5, 0.5]], 
+                    RectangleBox[{0, 0}, {10, 10}, "RoundingRadius" -> 0]}, 
+                    AspectRatio -> Full, ImageSize -> {10, 10}, 
+                    PlotRangePadding -> None, ImagePadding -> Automatic, 
+                    BaselinePosition -> (Scaled[0.1] -> Baseline)], #13}, {
+                   GraphicsBox[{
+                    Directive[
+                    PointSize[0.5], 
+                    AbsoluteThickness[1.6], 
+                    EdgeForm[
+                    Directive[
+                    GrayLevel[0], 
+                    Opacity[0.5]]], 
+                    RGBColor[1, 0.85, 0.85]], 
+                    RectangleBox[{0, 0}, {10, 10}, "RoundingRadius" -> 0]}, 
+                    AspectRatio -> Full, ImageSize -> {10, 10}, 
+                    PlotRangePadding -> None, ImagePadding -> Automatic, 
+                    BaselinePosition -> (Scaled[0.1] -> Baseline)], #14}, {
+                   GraphicsBox[{
+                    Directive[
+                    PointSize[0.5], 
+                    AbsoluteThickness[1.6], 
+                    EdgeForm[
+                    Directive[
+                    GrayLevel[0], 
+                    Opacity[0.5]]], 
+                    RGBColor[0.87, 0.94, 1]], 
+                    RectangleBox[{0, 0}, {10, 10}, "RoundingRadius" -> 0]}, 
+                    AspectRatio -> Full, ImageSize -> {10, 10}, 
+                    PlotRangePadding -> None, ImagePadding -> Automatic, 
+                    BaselinePosition -> (Scaled[0.1] -> Baseline)], #15}, {
+                   GraphicsBox[{
+                    Directive[
+                    PointSize[0.5], 
+                    AbsoluteThickness[1.6], 
+                    EdgeForm[
+                    Directive[
+                    GrayLevel[0], 
+                    Opacity[0.5]]], 
+                    RGBColor[1, 1, 0.85]], 
+                    RectangleBox[{0, 0}, {10, 10}, "RoundingRadius" -> 0]}, 
+                    AspectRatio -> Full, ImageSize -> {10, 10}, 
+                    PlotRangePadding -> None, ImagePadding -> Automatic, 
+                    BaselinePosition -> (Scaled[0.1] -> Baseline)], #16}, {
+                   GraphicsBox[{
+                    Directive[
+                    PointSize[0.5], 
+                    AbsoluteThickness[1.6], 
+                    EdgeForm[
+                    Directive[
+                    GrayLevel[0], 
+                    Opacity[0.5]]], 
+                    RGBColor[0.94, 0.91, 0.88]], 
+                    RectangleBox[{0, 0}, {10, 10}, "RoundingRadius" -> 0]}, 
+                    AspectRatio -> Full, ImageSize -> {10, 10}, 
+                    PlotRangePadding -> None, ImagePadding -> Automatic, 
+                    BaselinePosition -> (Scaled[0.1] -> Baseline)], #17}, {
+                   GraphicsBox[{
+                    Directive[
+                    PointSize[0.5], 
+                    AbsoluteThickness[1.6], 
+                    EdgeForm[
+                    Directive[
+                    GrayLevel[0], 
+                    Opacity[0.5]]], 
+                    RGBColor[0.88, 1, 0.88]], 
+                    RectangleBox[{0, 0}, {10, 10}, "RoundingRadius" -> 0]}, 
+                    AspectRatio -> Full, ImageSize -> {10, 10}, 
+                    PlotRangePadding -> None, ImagePadding -> Automatic, 
+                    BaselinePosition -> (Scaled[0.1] -> Baseline)], #18}}, 
+                 GridBoxAlignment -> {
+                  "Columns" -> {Center, Left}, "Rows" -> {{Baseline}}}, 
+                 AutoDelete -> False, 
+                 GridBoxDividers -> {
+                  "Columns" -> {{False}}, "Rows" -> {{False}}}, 
+                 GridBoxItemSize -> {"Columns" -> {{All}}, "Rows" -> {{All}}},
+                  GridBoxSpacings -> {
+                  "Columns" -> {{0.5}}, "Rows" -> {{0.5}}}], "Grid"]}}, 
+             GridBoxAlignment -> {"Columns" -> {{Left}}, "Rows" -> {{Top}}}, 
+             AutoDelete -> False, 
+             GridBoxItemSize -> {
+              "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+             GridBoxSpacings -> {"Columns" -> {{1}}, "Rows" -> {{0}}}], 
+            "Grid"], Alignment -> Left, AppearanceElements -> None, 
+           ImageMargins -> {{5, 5}, {5, 5}}, ImageSizeAction -> 
+           "ResizeToFit"], LineIndent -> 0, StripOnInput -> False], {
+         FontFamily -> "Arial", 
+          GrayLevel[0]}, Background -> Automatic, StripOnInput -> False], 
+        TraditionalForm]& ), 
+      InterpretationFunction :> (RowBox[{"SwatchLegend", "[", 
+         RowBox[{
+           RowBox[{"{", 
+             RowBox[{
+               RowBox[{"Directive", "[", 
+                 RowBox[{
+                   RowBox[{"EdgeForm", "[", 
+                    RowBox[{"Directive", "[", 
+                    RowBox[{
+                    InterpretationBox[
+                    ButtonBox[
+                    TooltipBox[
+                    RowBox[{
+                    GraphicsBox[{{
+                    GrayLevel[0], 
+                    RectangleBox[{0, 0}]}, {
+                    GrayLevel[0], 
+                    RectangleBox[{1, -1}]}, {
+                    GrayLevel[0], 
+                    RectangleBox[{0, -1}, {2, 1}]}}, AspectRatio -> 1, Frame -> 
+                    True, FrameStyle -> GrayLevel[0.], FrameTicks -> None, 
+                    PlotRangePadding -> None, ImageSize -> 
+                    Dynamic[{Automatic, 1.35 CurrentValue["FontCapHeight"]/
+                    AbsoluteCurrentValue[Magnification]}]], 
+                    "\[InvisibleSpace]"}], "GrayLevel[0]"], Appearance -> 
+                    None, BaseStyle -> {}, BaselinePosition -> Baseline, 
+                    DefaultBaseStyle -> {}, ButtonFunction :> 
+                    With[{Typeset`box$ = EvaluationBox[]}, 
+                    If[
+                    Not[
+                    AbsoluteCurrentValue["Deployed"]], 
+                    SelectionMove[Typeset`box$, All, Expression]; 
+                    FrontEnd`Private`$ColorSelectorInitialAlpha = 1; 
+                    FrontEnd`Private`$ColorSelectorInitialColor = 
+                    GrayLevel[0]; 
+                    FrontEnd`Private`$ColorSelectorUseMakeBoxes = True; 
+                    MathLink`CallFrontEnd[
+                    FrontEnd`AttachCell[Typeset`box$, 
+                    FrontEndResource["GrayLevelColorValueSelector"], {
+                    0, {Left, Bottom}}, {Left, Top}, 
+                    "ClosingActions" -> {
+                    "SelectionDeparture", "ParentChanged", 
+                    "EvaluatorQuit"}]]]], BaseStyle -> Inherited, Evaluator -> 
+                    Automatic, Method -> "Preemptive"], 
+                    GrayLevel[0], Editable -> False, Selectable -> False], 
+                    ",", 
+                    RowBox[{"Opacity", "[", "0.5`", "]"}]}], "]"}], "]"}], 
+                   ",", 
+                   InterpretationBox[
+                    ButtonBox[
+                    TooltipBox[
+                    RowBox[{
+                    GraphicsBox[{{
+                    GrayLevel[0], 
+                    RectangleBox[{0, 0}]}, {
+                    GrayLevel[0], 
+                    RectangleBox[{1, -1}]}, {
+                    GrayLevel[0], 
+                    RectangleBox[{0, -1}, {2, 1}]}}, AspectRatio -> 1, Frame -> 
+                    True, FrameStyle -> GrayLevel[0.], FrameTicks -> None, 
+                    PlotRangePadding -> None, ImageSize -> 
+                    Dynamic[{
+                    Automatic, 1.35 CurrentValue["FontCapHeight"]/
+                    AbsoluteCurrentValue[Magnification]}]], 
+                    "\[InvisibleSpace]"}], "GrayLevel[0]"], Appearance -> 
+                    None, BaseStyle -> {}, BaselinePosition -> Baseline, 
+                    DefaultBaseStyle -> {}, ButtonFunction :> 
+                    With[{Typeset`box$ = EvaluationBox[]}, 
+                    If[
+                    Not[
+                    AbsoluteCurrentValue["Deployed"]], 
+                    SelectionMove[Typeset`box$, All, Expression]; 
+                    FrontEnd`Private`$ColorSelectorInitialAlpha = 1; 
+                    FrontEnd`Private`$ColorSelectorInitialColor = 
+                    GrayLevel[0]; 
+                    FrontEnd`Private`$ColorSelectorUseMakeBoxes = True; 
+                    MathLink`CallFrontEnd[
+                    FrontEnd`AttachCell[Typeset`box$, 
+                    FrontEndResource["GrayLevelColorValueSelector"], {
+                    0, {Left, Bottom}}, {Left, Top}, 
+                    "ClosingActions" -> {
+                    "SelectionDeparture", "ParentChanged", 
+                    "EvaluatorQuit"}]]]], BaseStyle -> Inherited, Evaluator -> 
+                    Automatic, Method -> "Preemptive"], 
+                    GrayLevel[0], Editable -> False, Selectable -> False]}], 
+                 "]"}], ",", 
+               RowBox[{"Directive", "[", 
+                 RowBox[{
+                   RowBox[{"EdgeForm", "[", 
+                    RowBox[{"Directive", "[", 
+                    RowBox[{
+                    InterpretationBox[
+                    ButtonBox[
+                    TooltipBox[
+                    RowBox[{
+                    GraphicsBox[{{
+                    GrayLevel[0], 
+                    RectangleBox[{0, 0}]}, {
+                    GrayLevel[0], 
+                    RectangleBox[{1, -1}]}, {
+                    GrayLevel[0], 
+                    RectangleBox[{0, -1}, {2, 1}]}}, AspectRatio -> 1, Frame -> 
+                    True, FrameStyle -> GrayLevel[0.], FrameTicks -> None, 
+                    PlotRangePadding -> None, ImageSize -> 
+                    Dynamic[{Automatic, 1.35 CurrentValue["FontCapHeight"]/
+                    AbsoluteCurrentValue[Magnification]}]], 
+                    "\[InvisibleSpace]"}], "GrayLevel[0]"], Appearance -> 
+                    None, BaseStyle -> {}, BaselinePosition -> Baseline, 
+                    DefaultBaseStyle -> {}, ButtonFunction :> 
+                    With[{Typeset`box$ = EvaluationBox[]}, 
+                    If[
+                    Not[
+                    AbsoluteCurrentValue["Deployed"]], 
+                    SelectionMove[Typeset`box$, All, Expression]; 
+                    FrontEnd`Private`$ColorSelectorInitialAlpha = 1; 
+                    FrontEnd`Private`$ColorSelectorInitialColor = 
+                    GrayLevel[0]; 
+                    FrontEnd`Private`$ColorSelectorUseMakeBoxes = True; 
+                    MathLink`CallFrontEnd[
+                    FrontEnd`AttachCell[Typeset`box$, 
+                    FrontEndResource["GrayLevelColorValueSelector"], {
+                    0, {Left, Bottom}}, {Left, Top}, 
+                    "ClosingActions" -> {
+                    "SelectionDeparture", "ParentChanged", 
+                    "EvaluatorQuit"}]]]], BaseStyle -> Inherited, Evaluator -> 
+                    Automatic, Method -> "Preemptive"], 
+                    GrayLevel[0], Editable -> False, Selectable -> False], 
+                    ",", 
+                    RowBox[{"Opacity", "[", "0.5`", "]"}]}], "]"}], "]"}], 
+                   ",", 
+                   InterpretationBox[
+                    ButtonBox[
+                    TooltipBox[
+                    RowBox[{
+                    GraphicsBox[{{
+                    GrayLevel[0], 
+                    RectangleBox[{0, 0}]}, {
+                    GrayLevel[0], 
+                    RectangleBox[{1, -1}]}, {
+                    RGBColor[1, 0, 0], 
+                    RectangleBox[{0, -1}, {2, 1}]}}, AspectRatio -> 1, Frame -> 
+                    True, FrameStyle -> RGBColor[0.6666666666666666, 0., 0.], 
+                    FrameTicks -> None, PlotRangePadding -> None, ImageSize -> 
+                    Dynamic[{
+                    Automatic, 1.35 CurrentValue["FontCapHeight"]/
+                    AbsoluteCurrentValue[Magnification]}]], 
+                    "\[InvisibleSpace]"}], "RGBColor[1, 0, 0]"], Appearance -> 
+                    None, BaseStyle -> {}, BaselinePosition -> Baseline, 
+                    DefaultBaseStyle -> {}, ButtonFunction :> 
+                    With[{Typeset`box$ = EvaluationBox[]}, 
+                    If[
+                    Not[
+                    AbsoluteCurrentValue["Deployed"]], 
+                    SelectionMove[Typeset`box$, All, Expression]; 
+                    FrontEnd`Private`$ColorSelectorInitialAlpha = 1; 
+                    FrontEnd`Private`$ColorSelectorInitialColor = 
+                    RGBColor[1, 0, 0]; 
+                    FrontEnd`Private`$ColorSelectorUseMakeBoxes = True; 
+                    MathLink`CallFrontEnd[
+                    FrontEnd`AttachCell[Typeset`box$, 
+                    FrontEndResource["RGBColorValueSelector"], {
+                    0, {Left, Bottom}}, {Left, Top}, 
+                    "ClosingActions" -> {
+                    "SelectionDeparture", "ParentChanged", 
+                    "EvaluatorQuit"}]]]], BaseStyle -> Inherited, Evaluator -> 
+                    Automatic, Method -> "Preemptive"], 
+                    RGBColor[1, 0, 0], Editable -> False, Selectable -> 
+                    False]}], "]"}], ",", 
+               RowBox[{"Directive", "[", 
+                 RowBox[{
+                   RowBox[{"EdgeForm", "[", 
+                    RowBox[{"Directive", "[", 
+                    RowBox[{
+                    InterpretationBox[
+                    ButtonBox[
+                    TooltipBox[
+                    RowBox[{
+                    GraphicsBox[{{
+                    GrayLevel[0], 
+                    RectangleBox[{0, 0}]}, {
+                    GrayLevel[0], 
+                    RectangleBox[{1, -1}]}, {
+                    GrayLevel[0], 
+                    RectangleBox[{0, -1}, {2, 1}]}}, AspectRatio -> 1, Frame -> 
+                    True, FrameStyle -> GrayLevel[0.], FrameTicks -> None, 
+                    PlotRangePadding -> None, ImageSize -> 
+                    Dynamic[{Automatic, 1.35 CurrentValue["FontCapHeight"]/
+                    AbsoluteCurrentValue[Magnification]}]], 
+                    "\[InvisibleSpace]"}], "GrayLevel[0]"], Appearance -> 
+                    None, BaseStyle -> {}, BaselinePosition -> Baseline, 
+                    DefaultBaseStyle -> {}, ButtonFunction :> 
+                    With[{Typeset`box$ = EvaluationBox[]}, 
+                    If[
+                    Not[
+                    AbsoluteCurrentValue["Deployed"]], 
+                    SelectionMove[Typeset`box$, All, Expression]; 
+                    FrontEnd`Private`$ColorSelectorInitialAlpha = 1; 
+                    FrontEnd`Private`$ColorSelectorInitialColor = 
+                    GrayLevel[0]; 
+                    FrontEnd`Private`$ColorSelectorUseMakeBoxes = True; 
+                    MathLink`CallFrontEnd[
+                    FrontEnd`AttachCell[Typeset`box$, 
+                    FrontEndResource["GrayLevelColorValueSelector"], {
+                    0, {Left, Bottom}}, {Left, Top}, 
+                    "ClosingActions" -> {
+                    "SelectionDeparture", "ParentChanged", 
+                    "EvaluatorQuit"}]]]], BaseStyle -> Inherited, Evaluator -> 
+                    Automatic, Method -> "Preemptive"], 
+                    GrayLevel[0], Editable -> False, Selectable -> False], 
+                    ",", 
+                    RowBox[{"Opacity", "[", "0.5`", "]"}]}], "]"}], "]"}], 
+                   ",", 
+                   InterpretationBox[
+                    ButtonBox[
+                    TooltipBox[
+                    RowBox[{
+                    GraphicsBox[{{
+                    GrayLevel[0], 
+                    RectangleBox[{0, 0}]}, {
+                    GrayLevel[0], 
+                    RectangleBox[{1, -1}]}, {
+                    RGBColor[0, 1, 0], 
+                    RectangleBox[{0, -1}, {2, 1}]}}, AspectRatio -> 1, Frame -> 
+                    True, FrameStyle -> RGBColor[0., 0.6666666666666666, 0.], 
+                    FrameTicks -> None, PlotRangePadding -> None, ImageSize -> 
+                    Dynamic[{
+                    Automatic, 1.35 CurrentValue["FontCapHeight"]/
+                    AbsoluteCurrentValue[Magnification]}]], 
+                    "\[InvisibleSpace]"}], "RGBColor[0, 1, 0]"], Appearance -> 
+                    None, BaseStyle -> {}, BaselinePosition -> Baseline, 
+                    DefaultBaseStyle -> {}, ButtonFunction :> 
+                    With[{Typeset`box$ = EvaluationBox[]}, 
+                    If[
+                    Not[
+                    AbsoluteCurrentValue["Deployed"]], 
+                    SelectionMove[Typeset`box$, All, Expression]; 
+                    FrontEnd`Private`$ColorSelectorInitialAlpha = 1; 
+                    FrontEnd`Private`$ColorSelectorInitialColor = 
+                    RGBColor[0, 1, 0]; 
+                    FrontEnd`Private`$ColorSelectorUseMakeBoxes = True; 
+                    MathLink`CallFrontEnd[
+                    FrontEnd`AttachCell[Typeset`box$, 
+                    FrontEndResource["RGBColorValueSelector"], {
+                    0, {Left, Bottom}}, {Left, Top}, 
+                    "ClosingActions" -> {
+                    "SelectionDeparture", "ParentChanged", 
+                    "EvaluatorQuit"}]]]], BaseStyle -> Inherited, Evaluator -> 
+                    Automatic, Method -> "Preemptive"], 
+                    RGBColor[0, 1, 0], Editable -> False, Selectable -> 
+                    False]}], "]"}], ",", 
+               RowBox[{"Directive", "[", 
+                 RowBox[{
+                   RowBox[{"EdgeForm", "[", 
+                    RowBox[{"Directive", "[", 
+                    RowBox[{
+                    InterpretationBox[
+                    ButtonBox[
+                    TooltipBox[
+                    RowBox[{
+                    GraphicsBox[{{
+                    GrayLevel[0], 
+                    RectangleBox[{0, 0}]}, {
+                    GrayLevel[0], 
+                    RectangleBox[{1, -1}]}, {
+                    GrayLevel[0], 
+                    RectangleBox[{0, -1}, {2, 1}]}}, AspectRatio -> 1, Frame -> 
+                    True, FrameStyle -> GrayLevel[0.], FrameTicks -> None, 
+                    PlotRangePadding -> None, ImageSize -> 
+                    Dynamic[{Automatic, 1.35 CurrentValue["FontCapHeight"]/
+                    AbsoluteCurrentValue[Magnification]}]], 
+                    "\[InvisibleSpace]"}], "GrayLevel[0]"], Appearance -> 
+                    None, BaseStyle -> {}, BaselinePosition -> Baseline, 
+                    DefaultBaseStyle -> {}, ButtonFunction :> 
+                    With[{Typeset`box$ = EvaluationBox[]}, 
+                    If[
+                    Not[
+                    AbsoluteCurrentValue["Deployed"]], 
+                    SelectionMove[Typeset`box$, All, Expression]; 
+                    FrontEnd`Private`$ColorSelectorInitialAlpha = 1; 
+                    FrontEnd`Private`$ColorSelectorInitialColor = 
+                    GrayLevel[0]; 
+                    FrontEnd`Private`$ColorSelectorUseMakeBoxes = True; 
+                    MathLink`CallFrontEnd[
+                    FrontEnd`AttachCell[Typeset`box$, 
+                    FrontEndResource["GrayLevelColorValueSelector"], {
+                    0, {Left, Bottom}}, {Left, Top}, 
+                    "ClosingActions" -> {
+                    "SelectionDeparture", "ParentChanged", 
+                    "EvaluatorQuit"}]]]], BaseStyle -> Inherited, Evaluator -> 
+                    Automatic, Method -> "Preemptive"], 
+                    GrayLevel[0], Editable -> False, Selectable -> False], 
+                    ",", 
+                    RowBox[{"Opacity", "[", "0.5`", "]"}]}], "]"}], "]"}], 
+                   ",", 
+                   InterpretationBox[
+                    ButtonBox[
+                    TooltipBox[
+                    RowBox[{
+                    GraphicsBox[{{
+                    GrayLevel[0], 
+                    RectangleBox[{0, 0}]}, {
+                    GrayLevel[0], 
+                    RectangleBox[{1, -1}]}, {
+                    RGBColor[1, 1, 0], 
+                    RectangleBox[{0, -1}, {2, 1}]}}, AspectRatio -> 1, Frame -> 
+                    True, FrameStyle -> 
+                    RGBColor[0.6666666666666666, 0.6666666666666666, 0.], 
+                    FrameTicks -> None, PlotRangePadding -> None, ImageSize -> 
+                    Dynamic[{
+                    Automatic, 1.35 CurrentValue["FontCapHeight"]/
+                    AbsoluteCurrentValue[Magnification]}]], 
+                    "\[InvisibleSpace]"}], "RGBColor[1, 1, 0]"], Appearance -> 
+                    None, BaseStyle -> {}, BaselinePosition -> Baseline, 
+                    DefaultBaseStyle -> {}, ButtonFunction :> 
+                    With[{Typeset`box$ = EvaluationBox[]}, 
+                    If[
+                    Not[
+                    AbsoluteCurrentValue["Deployed"]], 
+                    SelectionMove[Typeset`box$, All, Expression]; 
+                    FrontEnd`Private`$ColorSelectorInitialAlpha = 1; 
+                    FrontEnd`Private`$ColorSelectorInitialColor = 
+                    RGBColor[1, 1, 0]; 
+                    FrontEnd`Private`$ColorSelectorUseMakeBoxes = True; 
+                    MathLink`CallFrontEnd[
+                    FrontEnd`AttachCell[Typeset`box$, 
+                    FrontEndResource["RGBColorValueSelector"], {
+                    0, {Left, Bottom}}, {Left, Top}, 
+                    "ClosingActions" -> {
+                    "SelectionDeparture", "ParentChanged", 
+                    "EvaluatorQuit"}]]]], BaseStyle -> Inherited, Evaluator -> 
+                    Automatic, Method -> "Preemptive"], 
+                    RGBColor[1, 1, 0], Editable -> False, Selectable -> 
+                    False]}], "]"}], ",", 
+               RowBox[{"Directive", "[", 
+                 RowBox[{
+                   RowBox[{"EdgeForm", "[", 
+                    RowBox[{"Directive", "[", 
+                    RowBox[{
+                    InterpretationBox[
+                    ButtonBox[
+                    TooltipBox[
+                    RowBox[{
+                    GraphicsBox[{{
+                    GrayLevel[0], 
+                    RectangleBox[{0, 0}]}, {
+                    GrayLevel[0], 
+                    RectangleBox[{1, -1}]}, {
+                    GrayLevel[0], 
+                    RectangleBox[{0, -1}, {2, 1}]}}, AspectRatio -> 1, Frame -> 
+                    True, FrameStyle -> GrayLevel[0.], FrameTicks -> None, 
+                    PlotRangePadding -> None, ImageSize -> 
+                    Dynamic[{Automatic, 1.35 CurrentValue["FontCapHeight"]/
+                    AbsoluteCurrentValue[Magnification]}]], 
+                    "\[InvisibleSpace]"}], "GrayLevel[0]"], Appearance -> 
+                    None, BaseStyle -> {}, BaselinePosition -> Baseline, 
+                    DefaultBaseStyle -> {}, ButtonFunction :> 
+                    With[{Typeset`box$ = EvaluationBox[]}, 
+                    If[
+                    Not[
+                    AbsoluteCurrentValue["Deployed"]], 
+                    SelectionMove[Typeset`box$, All, Expression]; 
+                    FrontEnd`Private`$ColorSelectorInitialAlpha = 1; 
+                    FrontEnd`Private`$ColorSelectorInitialColor = 
+                    GrayLevel[0]; 
+                    FrontEnd`Private`$ColorSelectorUseMakeBoxes = True; 
+                    MathLink`CallFrontEnd[
+                    FrontEnd`AttachCell[Typeset`box$, 
+                    FrontEndResource["GrayLevelColorValueSelector"], {
+                    0, {Left, Bottom}}, {Left, Top}, 
+                    "ClosingActions" -> {
+                    "SelectionDeparture", "ParentChanged", 
+                    "EvaluatorQuit"}]]]], BaseStyle -> Inherited, Evaluator -> 
+                    Automatic, Method -> "Preemptive"], 
+                    GrayLevel[0], Editable -> False, Selectable -> False], 
+                    ",", 
+                    RowBox[{"Opacity", "[", "0.5`", "]"}]}], "]"}], "]"}], 
+                   ",", 
+                   InterpretationBox[
+                    ButtonBox[
+                    TooltipBox[
+                    RowBox[{
+                    GraphicsBox[{{
+                    GrayLevel[0], 
+                    RectangleBox[{0, 0}]}, {
+                    GrayLevel[0], 
+                    RectangleBox[{1, -1}]}, {
+                    GrayLevel[1], 
+                    RectangleBox[{0, -1}, {2, 1}]}}, AspectRatio -> 1, Frame -> 
+                    True, FrameStyle -> GrayLevel[0.6666666666666666], 
+                    FrameTicks -> None, PlotRangePadding -> None, ImageSize -> 
+                    Dynamic[{
+                    Automatic, 1.35 CurrentValue["FontCapHeight"]/
+                    AbsoluteCurrentValue[Magnification]}]], 
+                    "\[InvisibleSpace]"}], "GrayLevel[1]"], Appearance -> 
+                    None, BaseStyle -> {}, BaselinePosition -> Baseline, 
+                    DefaultBaseStyle -> {}, ButtonFunction :> 
+                    With[{Typeset`box$ = EvaluationBox[]}, 
+                    If[
+                    Not[
+                    AbsoluteCurrentValue["Deployed"]], 
+                    SelectionMove[Typeset`box$, All, Expression]; 
+                    FrontEnd`Private`$ColorSelectorInitialAlpha = 1; 
+                    FrontEnd`Private`$ColorSelectorInitialColor = 
+                    GrayLevel[1]; 
+                    FrontEnd`Private`$ColorSelectorUseMakeBoxes = True; 
+                    MathLink`CallFrontEnd[
+                    FrontEnd`AttachCell[Typeset`box$, 
+                    FrontEndResource["GrayLevelColorValueSelector"], {
+                    0, {Left, Bottom}}, {Left, Top}, 
+                    "ClosingActions" -> {
+                    "SelectionDeparture", "ParentChanged", 
+                    "EvaluatorQuit"}]]]], BaseStyle -> Inherited, Evaluator -> 
+                    Automatic, Method -> "Preemptive"], 
+                    GrayLevel[1], Editable -> False, Selectable -> False]}], 
+                 "]"}], ",", 
+               RowBox[{"Directive", "[", 
+                 RowBox[{
+                   RowBox[{"EdgeForm", "[", 
+                    RowBox[{"Directive", "[", 
+                    RowBox[{
+                    InterpretationBox[
+                    ButtonBox[
+                    TooltipBox[
+                    RowBox[{
+                    GraphicsBox[{{
+                    GrayLevel[0], 
+                    RectangleBox[{0, 0}]}, {
+                    GrayLevel[0], 
+                    RectangleBox[{1, -1}]}, {
+                    GrayLevel[0], 
+                    RectangleBox[{0, -1}, {2, 1}]}}, AspectRatio -> 1, Frame -> 
+                    True, FrameStyle -> GrayLevel[0.], FrameTicks -> None, 
+                    PlotRangePadding -> None, ImageSize -> 
+                    Dynamic[{Automatic, 1.35 CurrentValue["FontCapHeight"]/
+                    AbsoluteCurrentValue[Magnification]}]], 
+                    "\[InvisibleSpace]"}], "GrayLevel[0]"], Appearance -> 
+                    None, BaseStyle -> {}, BaselinePosition -> Baseline, 
+                    DefaultBaseStyle -> {}, ButtonFunction :> 
+                    With[{Typeset`box$ = EvaluationBox[]}, 
+                    If[
+                    Not[
+                    AbsoluteCurrentValue["Deployed"]], 
+                    SelectionMove[Typeset`box$, All, Expression]; 
+                    FrontEnd`Private`$ColorSelectorInitialAlpha = 1; 
+                    FrontEnd`Private`$ColorSelectorInitialColor = 
+                    GrayLevel[0]; 
+                    FrontEnd`Private`$ColorSelectorUseMakeBoxes = True; 
+                    MathLink`CallFrontEnd[
+                    FrontEnd`AttachCell[Typeset`box$, 
+                    FrontEndResource["GrayLevelColorValueSelector"], {
+                    0, {Left, Bottom}}, {Left, Top}, 
+                    "ClosingActions" -> {
+                    "SelectionDeparture", "ParentChanged", 
+                    "EvaluatorQuit"}]]]], BaseStyle -> Inherited, Evaluator -> 
+                    Automatic, Method -> "Preemptive"], 
+                    GrayLevel[0], Editable -> False, Selectable -> False], 
+                    ",", 
+                    RowBox[{"Opacity", "[", "0.5`", "]"}]}], "]"}], "]"}], 
+                   ",", 
+                   InterpretationBox[
+                    ButtonBox[
+                    TooltipBox[
+                    RowBox[{
+                    GraphicsBox[{{
+                    GrayLevel[0], 
+                    RectangleBox[{0, 0}]}, {
+                    GrayLevel[0], 
+                    RectangleBox[{1, -1}]}, {
+                    RGBColor[0, 0, 1], 
+                    RectangleBox[{0, -1}, {2, 1}]}}, AspectRatio -> 1, Frame -> 
+                    True, FrameStyle -> RGBColor[0., 0., 0.6666666666666666], 
+                    FrameTicks -> None, PlotRangePadding -> None, ImageSize -> 
+                    Dynamic[{
+                    Automatic, 1.35 CurrentValue["FontCapHeight"]/
+                    AbsoluteCurrentValue[Magnification]}]], 
+                    "\[InvisibleSpace]"}], "RGBColor[0, 0, 1]"], Appearance -> 
+                    None, BaseStyle -> {}, BaselinePosition -> Baseline, 
+                    DefaultBaseStyle -> {}, ButtonFunction :> 
+                    With[{Typeset`box$ = EvaluationBox[]}, 
+                    If[
+                    Not[
+                    AbsoluteCurrentValue["Deployed"]], 
+                    SelectionMove[Typeset`box$, All, Expression]; 
+                    FrontEnd`Private`$ColorSelectorInitialAlpha = 1; 
+                    FrontEnd`Private`$ColorSelectorInitialColor = 
+                    RGBColor[0, 0, 1]; 
+                    FrontEnd`Private`$ColorSelectorUseMakeBoxes = True; 
+                    MathLink`CallFrontEnd[
+                    FrontEnd`AttachCell[Typeset`box$, 
+                    FrontEndResource["RGBColorValueSelector"], {
+                    0, {Left, Bottom}}, {Left, Top}, 
+                    "ClosingActions" -> {
+                    "SelectionDeparture", "ParentChanged", 
+                    "EvaluatorQuit"}]]]], BaseStyle -> Inherited, Evaluator -> 
+                    Automatic, Method -> "Preemptive"], 
+                    RGBColor[0, 0, 1], Editable -> False, Selectable -> 
+                    False]}], "]"}], ",", 
+               RowBox[{"Directive", "[", 
+                 RowBox[{
+                   RowBox[{"EdgeForm", "[", 
+                    RowBox[{"Directive", "[", 
+                    RowBox[{
+                    InterpretationBox[
+                    ButtonBox[
+                    TooltipBox[
+                    RowBox[{
+                    GraphicsBox[{{
+                    GrayLevel[0], 
+                    RectangleBox[{0, 0}]}, {
+                    GrayLevel[0], 
+                    RectangleBox[{1, -1}]}, {
+                    GrayLevel[0], 
+                    RectangleBox[{0, -1}, {2, 1}]}}, AspectRatio -> 1, Frame -> 
+                    True, FrameStyle -> GrayLevel[0.], FrameTicks -> None, 
+                    PlotRangePadding -> None, ImageSize -> 
+                    Dynamic[{Automatic, 1.35 CurrentValue["FontCapHeight"]/
+                    AbsoluteCurrentValue[Magnification]}]], 
+                    "\[InvisibleSpace]"}], "GrayLevel[0]"], Appearance -> 
+                    None, BaseStyle -> {}, BaselinePosition -> Baseline, 
+                    DefaultBaseStyle -> {}, ButtonFunction :> 
+                    With[{Typeset`box$ = EvaluationBox[]}, 
+                    If[
+                    Not[
+                    AbsoluteCurrentValue["Deployed"]], 
+                    SelectionMove[Typeset`box$, All, Expression]; 
+                    FrontEnd`Private`$ColorSelectorInitialAlpha = 1; 
+                    FrontEnd`Private`$ColorSelectorInitialColor = 
+                    GrayLevel[0]; 
+                    FrontEnd`Private`$ColorSelectorUseMakeBoxes = True; 
+                    MathLink`CallFrontEnd[
+                    FrontEnd`AttachCell[Typeset`box$, 
+                    FrontEndResource["GrayLevelColorValueSelector"], {
+                    0, {Left, Bottom}}, {Left, Top}, 
+                    "ClosingActions" -> {
+                    "SelectionDeparture", "ParentChanged", 
+                    "EvaluatorQuit"}]]]], BaseStyle -> Inherited, Evaluator -> 
+                    Automatic, Method -> "Preemptive"], 
+                    GrayLevel[0], Editable -> False, Selectable -> False], 
+                    ",", 
+                    RowBox[{"Opacity", "[", "0.5`", "]"}]}], "]"}], "]"}], 
+                   ",", 
+                   InterpretationBox[
+                    ButtonBox[
+                    TooltipBox[
+                    RowBox[{
+                    GraphicsBox[{{
+                    GrayLevel[0], 
+                    RectangleBox[{0, 0}]}, {
+                    GrayLevel[0], 
+                    RectangleBox[{1, -1}]}, {
+                    RGBColor[1, 0.5, 0], 
+                    RectangleBox[{0, -1}, {2, 1}]}}, AspectRatio -> 1, Frame -> 
+                    True, FrameStyle -> 
+                    RGBColor[0.6666666666666666, 0.33333333333333337`, 0.], 
+                    FrameTicks -> None, PlotRangePadding -> None, ImageSize -> 
+                    Dynamic[{
+                    Automatic, 1.35 CurrentValue["FontCapHeight"]/
+                    AbsoluteCurrentValue[Magnification]}]], 
+                    "\[InvisibleSpace]"}], "RGBColor[1, 0.5, 0]"], Appearance -> 
+                    None, BaseStyle -> {}, BaselinePosition -> Baseline, 
+                    DefaultBaseStyle -> {}, ButtonFunction :> 
+                    With[{Typeset`box$ = EvaluationBox[]}, 
+                    If[
+                    Not[
+                    AbsoluteCurrentValue["Deployed"]], 
+                    SelectionMove[Typeset`box$, All, Expression]; 
+                    FrontEnd`Private`$ColorSelectorInitialAlpha = 1; 
+                    FrontEnd`Private`$ColorSelectorInitialColor = 
+                    RGBColor[1, 0.5, 0]; 
+                    FrontEnd`Private`$ColorSelectorUseMakeBoxes = True; 
+                    MathLink`CallFrontEnd[
+                    FrontEnd`AttachCell[Typeset`box$, 
+                    FrontEndResource["RGBColorValueSelector"], {
+                    0, {Left, Bottom}}, {Left, Top}, 
+                    "ClosingActions" -> {
+                    "SelectionDeparture", "ParentChanged", 
+                    "EvaluatorQuit"}]]]], BaseStyle -> Inherited, Evaluator -> 
+                    Automatic, Method -> "Preemptive"], 
+                    RGBColor[1, 0.5, 0], Editable -> False, Selectable -> 
+                    False]}], "]"}], ",", 
+               RowBox[{"Directive", "[", 
+                 RowBox[{
+                   RowBox[{"EdgeForm", "[", 
+                    RowBox[{"Directive", "[", 
+                    RowBox[{
+                    InterpretationBox[
+                    ButtonBox[
+                    TooltipBox[
+                    RowBox[{
+                    GraphicsBox[{{
+                    GrayLevel[0], 
+                    RectangleBox[{0, 0}]}, {
+                    GrayLevel[0], 
+                    RectangleBox[{1, -1}]}, {
+                    GrayLevel[0], 
+                    RectangleBox[{0, -1}, {2, 1}]}}, AspectRatio -> 1, Frame -> 
+                    True, FrameStyle -> GrayLevel[0.], FrameTicks -> None, 
+                    PlotRangePadding -> None, ImageSize -> 
+                    Dynamic[{Automatic, 1.35 CurrentValue["FontCapHeight"]/
+                    AbsoluteCurrentValue[Magnification]}]], 
+                    "\[InvisibleSpace]"}], "GrayLevel[0]"], Appearance -> 
+                    None, BaseStyle -> {}, BaselinePosition -> Baseline, 
+                    DefaultBaseStyle -> {}, ButtonFunction :> 
+                    With[{Typeset`box$ = EvaluationBox[]}, 
+                    If[
+                    Not[
+                    AbsoluteCurrentValue["Deployed"]], 
+                    SelectionMove[Typeset`box$, All, Expression]; 
+                    FrontEnd`Private`$ColorSelectorInitialAlpha = 1; 
+                    FrontEnd`Private`$ColorSelectorInitialColor = 
+                    GrayLevel[0]; 
+                    FrontEnd`Private`$ColorSelectorUseMakeBoxes = True; 
+                    MathLink`CallFrontEnd[
+                    FrontEnd`AttachCell[Typeset`box$, 
+                    FrontEndResource["GrayLevelColorValueSelector"], {
+                    0, {Left, Bottom}}, {Left, Top}, 
+                    "ClosingActions" -> {
+                    "SelectionDeparture", "ParentChanged", 
+                    "EvaluatorQuit"}]]]], BaseStyle -> Inherited, Evaluator -> 
+                    Automatic, Method -> "Preemptive"], 
+                    GrayLevel[0], Editable -> False, Selectable -> False], 
+                    ",", 
+                    RowBox[{"Opacity", "[", "0.5`", "]"}]}], "]"}], "]"}], 
+                   ",", 
+                   InterpretationBox[
+                    ButtonBox[
+                    TooltipBox[
+                    RowBox[{
+                    GraphicsBox[{{
+                    GrayLevel[0], 
+                    RectangleBox[{0, 0}]}, {
+                    GrayLevel[0], 
+                    RectangleBox[{1, -1}]}, {
+                    RGBColor[0.5, 0, 0.5], 
+                    RectangleBox[{0, -1}, {2, 1}]}}, AspectRatio -> 1, Frame -> 
+                    True, FrameStyle -> 
+                    RGBColor[0.33333333333333337`, 0., 0.33333333333333337`], 
+                    FrameTicks -> None, PlotRangePadding -> None, ImageSize -> 
+                    Dynamic[{
+                    Automatic, 1.35 CurrentValue["FontCapHeight"]/
+                    AbsoluteCurrentValue[Magnification]}]], 
+                    "\[InvisibleSpace]"}], "RGBColor[0.5, 0, 0.5]"], 
+                    Appearance -> None, BaseStyle -> {}, BaselinePosition -> 
+                    Baseline, DefaultBaseStyle -> {}, ButtonFunction :> 
+                    With[{Typeset`box$ = EvaluationBox[]}, 
+                    If[
+                    Not[
+                    AbsoluteCurrentValue["Deployed"]], 
+                    SelectionMove[Typeset`box$, All, Expression]; 
+                    FrontEnd`Private`$ColorSelectorInitialAlpha = 1; 
+                    FrontEnd`Private`$ColorSelectorInitialColor = 
+                    RGBColor[0.5, 0, 0.5]; 
+                    FrontEnd`Private`$ColorSelectorUseMakeBoxes = True; 
+                    MathLink`CallFrontEnd[
+                    FrontEnd`AttachCell[Typeset`box$, 
+                    FrontEndResource["RGBColorValueSelector"], {
+                    0, {Left, Bottom}}, {Left, Top}, 
+                    "ClosingActions" -> {
+                    "SelectionDeparture", "ParentChanged", 
+                    "EvaluatorQuit"}]]]], BaseStyle -> Inherited, Evaluator -> 
+                    Automatic, Method -> "Preemptive"], 
+                    RGBColor[0.5, 0, 0.5], Editable -> False, Selectable -> 
+                    False]}], "]"}], ",", 
+               RowBox[{"Directive", "[", 
+                 RowBox[{
+                   RowBox[{"EdgeForm", "[", 
+                    RowBox[{"Directive", "[", 
+                    RowBox[{
+                    InterpretationBox[
+                    ButtonBox[
+                    TooltipBox[
+                    RowBox[{
+                    GraphicsBox[{{
+                    GrayLevel[0], 
+                    RectangleBox[{0, 0}]}, {
+                    GrayLevel[0], 
+                    RectangleBox[{1, -1}]}, {
+                    GrayLevel[0], 
+                    RectangleBox[{0, -1}, {2, 1}]}}, AspectRatio -> 1, Frame -> 
+                    True, FrameStyle -> GrayLevel[0.], FrameTicks -> None, 
+                    PlotRangePadding -> None, ImageSize -> 
+                    Dynamic[{Automatic, 1.35 CurrentValue["FontCapHeight"]/
+                    AbsoluteCurrentValue[Magnification]}]], 
+                    "\[InvisibleSpace]"}], "GrayLevel[0]"], Appearance -> 
+                    None, BaseStyle -> {}, BaselinePosition -> Baseline, 
+                    DefaultBaseStyle -> {}, ButtonFunction :> 
+                    With[{Typeset`box$ = EvaluationBox[]}, 
+                    If[
+                    Not[
+                    AbsoluteCurrentValue["Deployed"]], 
+                    SelectionMove[Typeset`box$, All, Expression]; 
+                    FrontEnd`Private`$ColorSelectorInitialAlpha = 1; 
+                    FrontEnd`Private`$ColorSelectorInitialColor = 
+                    GrayLevel[0]; 
+                    FrontEnd`Private`$ColorSelectorUseMakeBoxes = True; 
+                    MathLink`CallFrontEnd[
+                    FrontEnd`AttachCell[Typeset`box$, 
+                    FrontEndResource["GrayLevelColorValueSelector"], {
+                    0, {Left, Bottom}}, {Left, Top}, 
+                    "ClosingActions" -> {
+                    "SelectionDeparture", "ParentChanged", 
+                    "EvaluatorQuit"}]]]], BaseStyle -> Inherited, Evaluator -> 
+                    Automatic, Method -> "Preemptive"], 
+                    GrayLevel[0], Editable -> False, Selectable -> False], 
+                    ",", 
+                    RowBox[{"Opacity", "[", "0.5`", "]"}]}], "]"}], "]"}], 
+                   ",", 
+                   InterpretationBox[
+                    ButtonBox[
+                    TooltipBox[
+                    RowBox[{
+                    GraphicsBox[{{
+                    GrayLevel[0], 
+                    RectangleBox[{0, 0}]}, {
+                    GrayLevel[0], 
+                    RectangleBox[{1, -1}]}, {
+                    GrayLevel[0.5], 
+                    RectangleBox[{0, -1}, {2, 1}]}}, AspectRatio -> 1, Frame -> 
+                    True, FrameStyle -> GrayLevel[0.33333333333333337`], 
+                    FrameTicks -> None, PlotRangePadding -> None, ImageSize -> 
+                    Dynamic[{
+                    Automatic, 1.35 CurrentValue["FontCapHeight"]/
+                    AbsoluteCurrentValue[Magnification]}]], 
+                    "\[InvisibleSpace]"}], "GrayLevel[0.5]"], Appearance -> 
+                    None, BaseStyle -> {}, BaselinePosition -> Baseline, 
+                    DefaultBaseStyle -> {}, ButtonFunction :> 
+                    With[{Typeset`box$ = EvaluationBox[]}, 
+                    If[
+                    Not[
+                    AbsoluteCurrentValue["Deployed"]], 
+                    SelectionMove[Typeset`box$, All, Expression]; 
+                    FrontEnd`Private`$ColorSelectorInitialAlpha = 1; 
+                    FrontEnd`Private`$ColorSelectorInitialColor = 
+                    GrayLevel[0.5]; 
+                    FrontEnd`Private`$ColorSelectorUseMakeBoxes = True; 
+                    MathLink`CallFrontEnd[
+                    FrontEnd`AttachCell[Typeset`box$, 
+                    FrontEndResource["GrayLevelColorValueSelector"], {
+                    0, {Left, Bottom}}, {Left, Top}, 
+                    "ClosingActions" -> {
+                    "SelectionDeparture", "ParentChanged", 
+                    "EvaluatorQuit"}]]]], BaseStyle -> Inherited, Evaluator -> 
+                    Automatic, Method -> "Preemptive"], 
+                    GrayLevel[0.5], Editable -> False, Selectable -> False]}],
+                  "]"}], ",", 
+               RowBox[{"Directive", "[", 
+                 RowBox[{
+                   RowBox[{"EdgeForm", "[", 
+                    RowBox[{"Directive", "[", 
+                    RowBox[{
+                    InterpretationBox[
+                    ButtonBox[
+                    TooltipBox[
+                    RowBox[{
+                    GraphicsBox[{{
+                    GrayLevel[0], 
+                    RectangleBox[{0, 0}]}, {
+                    GrayLevel[0], 
+                    RectangleBox[{1, -1}]}, {
+                    GrayLevel[0], 
+                    RectangleBox[{0, -1}, {2, 1}]}}, AspectRatio -> 1, Frame -> 
+                    True, FrameStyle -> GrayLevel[0.], FrameTicks -> None, 
+                    PlotRangePadding -> None, ImageSize -> 
+                    Dynamic[{Automatic, 1.35 CurrentValue["FontCapHeight"]/
+                    AbsoluteCurrentValue[Magnification]}]], 
+                    "\[InvisibleSpace]"}], "GrayLevel[0]"], Appearance -> 
+                    None, BaseStyle -> {}, BaselinePosition -> Baseline, 
+                    DefaultBaseStyle -> {}, ButtonFunction :> 
+                    With[{Typeset`box$ = EvaluationBox[]}, 
+                    If[
+                    Not[
+                    AbsoluteCurrentValue["Deployed"]], 
+                    SelectionMove[Typeset`box$, All, Expression]; 
+                    FrontEnd`Private`$ColorSelectorInitialAlpha = 1; 
+                    FrontEnd`Private`$ColorSelectorInitialColor = 
+                    GrayLevel[0]; 
+                    FrontEnd`Private`$ColorSelectorUseMakeBoxes = True; 
+                    MathLink`CallFrontEnd[
+                    FrontEnd`AttachCell[Typeset`box$, 
+                    FrontEndResource["GrayLevelColorValueSelector"], {
+                    0, {Left, Bottom}}, {Left, Top}, 
+                    "ClosingActions" -> {
+                    "SelectionDeparture", "ParentChanged", 
+                    "EvaluatorQuit"}]]]], BaseStyle -> Inherited, Evaluator -> 
+                    Automatic, Method -> "Preemptive"], 
+                    GrayLevel[0], Editable -> False, Selectable -> False], 
+                    ",", 
+                    RowBox[{"Opacity", "[", "0.5`", "]"}]}], "]"}], "]"}], 
+                   ",", 
+                   InterpretationBox[
+                    ButtonBox[
+                    TooltipBox[
+                    RowBox[{
+                    GraphicsBox[{{
+                    GrayLevel[0], 
+                    RectangleBox[{0, 0}]}, {
+                    GrayLevel[0], 
+                    RectangleBox[{1, -1}]}, {
+                    RGBColor[0, 1, 1], 
+                    RectangleBox[{0, -1}, {2, 1}]}}, AspectRatio -> 1, Frame -> 
+                    True, FrameStyle -> 
+                    RGBColor[0., 0.6666666666666666, 0.6666666666666666], 
+                    FrameTicks -> None, PlotRangePadding -> None, ImageSize -> 
+                    Dynamic[{
+                    Automatic, 1.35 CurrentValue["FontCapHeight"]/
+                    AbsoluteCurrentValue[Magnification]}]], 
+                    "\[InvisibleSpace]"}], "RGBColor[0, 1, 1]"], Appearance -> 
+                    None, BaseStyle -> {}, BaselinePosition -> Baseline, 
+                    DefaultBaseStyle -> {}, ButtonFunction :> 
+                    With[{Typeset`box$ = EvaluationBox[]}, 
+                    If[
+                    Not[
+                    AbsoluteCurrentValue["Deployed"]], 
+                    SelectionMove[Typeset`box$, All, Expression]; 
+                    FrontEnd`Private`$ColorSelectorInitialAlpha = 1; 
+                    FrontEnd`Private`$ColorSelectorInitialColor = 
+                    RGBColor[0, 1, 1]; 
+                    FrontEnd`Private`$ColorSelectorUseMakeBoxes = True; 
+                    MathLink`CallFrontEnd[
+                    FrontEnd`AttachCell[Typeset`box$, 
+                    FrontEndResource["RGBColorValueSelector"], {
+                    0, {Left, Bottom}}, {Left, Top}, 
+                    "ClosingActions" -> {
+                    "SelectionDeparture", "ParentChanged", 
+                    "EvaluatorQuit"}]]]], BaseStyle -> Inherited, Evaluator -> 
+                    Automatic, Method -> "Preemptive"], 
+                    RGBColor[0, 1, 1], Editable -> False, Selectable -> 
+                    False]}], "]"}], ",", 
+               RowBox[{"Directive", "[", 
+                 RowBox[{
+                   RowBox[{"EdgeForm", "[", 
+                    RowBox[{"Directive", "[", 
+                    RowBox[{
+                    InterpretationBox[
+                    ButtonBox[
+                    TooltipBox[
+                    RowBox[{
+                    GraphicsBox[{{
+                    GrayLevel[0], 
+                    RectangleBox[{0, 0}]}, {
+                    GrayLevel[0], 
+                    RectangleBox[{1, -1}]}, {
+                    GrayLevel[0], 
+                    RectangleBox[{0, -1}, {2, 1}]}}, AspectRatio -> 1, Frame -> 
+                    True, FrameStyle -> GrayLevel[0.], FrameTicks -> None, 
+                    PlotRangePadding -> None, ImageSize -> 
+                    Dynamic[{Automatic, 1.35 CurrentValue["FontCapHeight"]/
+                    AbsoluteCurrentValue[Magnification]}]], 
+                    "\[InvisibleSpace]"}], "GrayLevel[0]"], Appearance -> 
+                    None, BaseStyle -> {}, BaselinePosition -> Baseline, 
+                    DefaultBaseStyle -> {}, ButtonFunction :> 
+                    With[{Typeset`box$ = EvaluationBox[]}, 
+                    If[
+                    Not[
+                    AbsoluteCurrentValue["Deployed"]], 
+                    SelectionMove[Typeset`box$, All, Expression]; 
+                    FrontEnd`Private`$ColorSelectorInitialAlpha = 1; 
+                    FrontEnd`Private`$ColorSelectorInitialColor = 
+                    GrayLevel[0]; 
+                    FrontEnd`Private`$ColorSelectorUseMakeBoxes = True; 
+                    MathLink`CallFrontEnd[
+                    FrontEnd`AttachCell[Typeset`box$, 
+                    FrontEndResource["GrayLevelColorValueSelector"], {
+                    0, {Left, Bottom}}, {Left, Top}, 
+                    "ClosingActions" -> {
+                    "SelectionDeparture", "ParentChanged", 
+                    "EvaluatorQuit"}]]]], BaseStyle -> Inherited, Evaluator -> 
+                    Automatic, Method -> "Preemptive"], 
+                    GrayLevel[0], Editable -> False, Selectable -> False], 
+                    ",", 
+                    RowBox[{"Opacity", "[", "0.5`", "]"}]}], "]"}], "]"}], 
+                   ",", 
+                   InterpretationBox[
+                    ButtonBox[
+                    TooltipBox[
+                    RowBox[{
+                    GraphicsBox[{{
+                    GrayLevel[0], 
+                    RectangleBox[{0, 0}]}, {
+                    GrayLevel[0], 
+                    RectangleBox[{1, -1}]}, {
+                    RGBColor[1, 0, 1], 
+                    RectangleBox[{0, -1}, {2, 1}]}}, AspectRatio -> 1, Frame -> 
+                    True, FrameStyle -> 
+                    RGBColor[0.6666666666666666, 0., 0.6666666666666666], 
+                    FrameTicks -> None, PlotRangePadding -> None, ImageSize -> 
+                    Dynamic[{
+                    Automatic, 1.35 CurrentValue["FontCapHeight"]/
+                    AbsoluteCurrentValue[Magnification]}]], 
+                    "\[InvisibleSpace]"}], "RGBColor[1, 0, 1]"], Appearance -> 
+                    None, BaseStyle -> {}, BaselinePosition -> Baseline, 
+                    DefaultBaseStyle -> {}, ButtonFunction :> 
+                    With[{Typeset`box$ = EvaluationBox[]}, 
+                    If[
+                    Not[
+                    AbsoluteCurrentValue["Deployed"]], 
+                    SelectionMove[Typeset`box$, All, Expression]; 
+                    FrontEnd`Private`$ColorSelectorInitialAlpha = 1; 
+                    FrontEnd`Private`$ColorSelectorInitialColor = 
+                    RGBColor[1, 0, 1]; 
+                    FrontEnd`Private`$ColorSelectorUseMakeBoxes = True; 
+                    MathLink`CallFrontEnd[
+                    FrontEnd`AttachCell[Typeset`box$, 
+                    FrontEndResource["RGBColorValueSelector"], {
+                    0, {Left, Bottom}}, {Left, Top}, 
+                    "ClosingActions" -> {
+                    "SelectionDeparture", "ParentChanged", 
+                    "EvaluatorQuit"}]]]], BaseStyle -> Inherited, Evaluator -> 
+                    Automatic, Method -> "Preemptive"], 
+                    RGBColor[1, 0, 1], Editable -> False, Selectable -> 
+                    False]}], "]"}], ",", 
+               RowBox[{"Directive", "[", 
+                 RowBox[{
+                   RowBox[{"EdgeForm", "[", 
+                    RowBox[{"Directive", "[", 
+                    RowBox[{
+                    InterpretationBox[
+                    ButtonBox[
+                    TooltipBox[
+                    RowBox[{
+                    GraphicsBox[{{
+                    GrayLevel[0], 
+                    RectangleBox[{0, 0}]}, {
+                    GrayLevel[0], 
+                    RectangleBox[{1, -1}]}, {
+                    GrayLevel[0], 
+                    RectangleBox[{0, -1}, {2, 1}]}}, AspectRatio -> 1, Frame -> 
+                    True, FrameStyle -> GrayLevel[0.], FrameTicks -> None, 
+                    PlotRangePadding -> None, ImageSize -> 
+                    Dynamic[{Automatic, 1.35 CurrentValue["FontCapHeight"]/
+                    AbsoluteCurrentValue[Magnification]}]], 
+                    "\[InvisibleSpace]"}], "GrayLevel[0]"], Appearance -> 
+                    None, BaseStyle -> {}, BaselinePosition -> Baseline, 
+                    DefaultBaseStyle -> {}, ButtonFunction :> 
+                    With[{Typeset`box$ = EvaluationBox[]}, 
+                    If[
+                    Not[
+                    AbsoluteCurrentValue["Deployed"]], 
+                    SelectionMove[Typeset`box$, All, Expression]; 
+                    FrontEnd`Private`$ColorSelectorInitialAlpha = 1; 
+                    FrontEnd`Private`$ColorSelectorInitialColor = 
+                    GrayLevel[0]; 
+                    FrontEnd`Private`$ColorSelectorUseMakeBoxes = True; 
+                    MathLink`CallFrontEnd[
+                    FrontEnd`AttachCell[Typeset`box$, 
+                    FrontEndResource["GrayLevelColorValueSelector"], {
+                    0, {Left, Bottom}}, {Left, Top}, 
+                    "ClosingActions" -> {
+                    "SelectionDeparture", "ParentChanged", 
+                    "EvaluatorQuit"}]]]], BaseStyle -> Inherited, Evaluator -> 
+                    Automatic, Method -> "Preemptive"], 
+                    GrayLevel[0], Editable -> False, Selectable -> False], 
+                    ",", 
+                    RowBox[{"Opacity", "[", "0.5`", "]"}]}], "]"}], "]"}], 
+                   ",", 
+                   InterpretationBox[
+                    ButtonBox[
+                    TooltipBox[
+                    RowBox[{
+                    GraphicsBox[{{
+                    GrayLevel[0], 
+                    RectangleBox[{0, 0}]}, {
+                    GrayLevel[0], 
+                    RectangleBox[{1, -1}]}, {
+                    RGBColor[0.6, 0.4, 0.2], 
+                    RectangleBox[{0, -1}, {2, 1}]}}, AspectRatio -> 1, Frame -> 
+                    True, FrameStyle -> 
+                    RGBColor[0.4, 0.2666666666666667, 0.13333333333333336`], 
+                    FrameTicks -> None, PlotRangePadding -> None, ImageSize -> 
+                    Dynamic[{
+                    Automatic, 1.35 CurrentValue["FontCapHeight"]/
+                    AbsoluteCurrentValue[Magnification]}]], 
+                    "\[InvisibleSpace]"}], "RGBColor[0.6, 0.4, 0.2]"], 
+                    Appearance -> None, BaseStyle -> {}, BaselinePosition -> 
+                    Baseline, DefaultBaseStyle -> {}, ButtonFunction :> 
+                    With[{Typeset`box$ = EvaluationBox[]}, 
+                    If[
+                    Not[
+                    AbsoluteCurrentValue["Deployed"]], 
+                    SelectionMove[Typeset`box$, All, Expression]; 
+                    FrontEnd`Private`$ColorSelectorInitialAlpha = 1; 
+                    FrontEnd`Private`$ColorSelectorInitialColor = 
+                    RGBColor[0.6, 0.4, 0.2]; 
+                    FrontEnd`Private`$ColorSelectorUseMakeBoxes = True; 
+                    MathLink`CallFrontEnd[
+                    FrontEnd`AttachCell[Typeset`box$, 
+                    FrontEndResource["RGBColorValueSelector"], {
+                    0, {Left, Bottom}}, {Left, Top}, 
+                    "ClosingActions" -> {
+                    "SelectionDeparture", "ParentChanged", 
+                    "EvaluatorQuit"}]]]], BaseStyle -> Inherited, Evaluator -> 
+                    Automatic, Method -> "Preemptive"], 
+                    RGBColor[0.6, 0.4, 0.2], Editable -> False, Selectable -> 
+                    False]}], "]"}], ",", 
+               RowBox[{"Directive", "[", 
+                 RowBox[{
+                   RowBox[{"EdgeForm", "[", 
+                    RowBox[{"Directive", "[", 
+                    RowBox[{
+                    InterpretationBox[
+                    ButtonBox[
+                    TooltipBox[
+                    RowBox[{
+                    GraphicsBox[{{
+                    GrayLevel[0], 
+                    RectangleBox[{0, 0}]}, {
+                    GrayLevel[0], 
+                    RectangleBox[{1, -1}]}, {
+                    GrayLevel[0], 
+                    RectangleBox[{0, -1}, {2, 1}]}}, AspectRatio -> 1, Frame -> 
+                    True, FrameStyle -> GrayLevel[0.], FrameTicks -> None, 
+                    PlotRangePadding -> None, ImageSize -> 
+                    Dynamic[{Automatic, 1.35 CurrentValue["FontCapHeight"]/
+                    AbsoluteCurrentValue[Magnification]}]], 
+                    "\[InvisibleSpace]"}], "GrayLevel[0]"], Appearance -> 
+                    None, BaseStyle -> {}, BaselinePosition -> Baseline, 
+                    DefaultBaseStyle -> {}, ButtonFunction :> 
+                    With[{Typeset`box$ = EvaluationBox[]}, 
+                    If[
+                    Not[
+                    AbsoluteCurrentValue["Deployed"]], 
+                    SelectionMove[Typeset`box$, All, Expression]; 
+                    FrontEnd`Private`$ColorSelectorInitialAlpha = 1; 
+                    FrontEnd`Private`$ColorSelectorInitialColor = 
+                    GrayLevel[0]; 
+                    FrontEnd`Private`$ColorSelectorUseMakeBoxes = True; 
+                    MathLink`CallFrontEnd[
+                    FrontEnd`AttachCell[Typeset`box$, 
+                    FrontEndResource["GrayLevelColorValueSelector"], {
+                    0, {Left, Bottom}}, {Left, Top}, 
+                    "ClosingActions" -> {
+                    "SelectionDeparture", "ParentChanged", 
+                    "EvaluatorQuit"}]]]], BaseStyle -> Inherited, Evaluator -> 
+                    Automatic, Method -> "Preemptive"], 
+                    GrayLevel[0], Editable -> False, Selectable -> False], 
+                    ",", 
+                    RowBox[{"Opacity", "[", "0.5`", "]"}]}], "]"}], "]"}], 
+                   ",", 
+                   InterpretationBox[
+                    ButtonBox[
+                    TooltipBox[
+                    RowBox[{
+                    GraphicsBox[{{
+                    GrayLevel[0], 
+                    RectangleBox[{0, 0}]}, {
+                    GrayLevel[0], 
+                    RectangleBox[{1, -1}]}, {
+                    RGBColor[1, 0.5, 0.5], 
+                    RectangleBox[{0, -1}, {2, 1}]}}, AspectRatio -> 1, Frame -> 
+                    True, FrameStyle -> 
+                    RGBColor[
+                    0.6666666666666666, 0.33333333333333337`, 
+                    0.33333333333333337`], FrameTicks -> None, 
+                    PlotRangePadding -> None, ImageSize -> 
+                    Dynamic[{
+                    Automatic, 1.35 CurrentValue["FontCapHeight"]/
+                    AbsoluteCurrentValue[Magnification]}]], 
+                    "\[InvisibleSpace]"}], "RGBColor[1, 0.5, 0.5]"], 
+                    Appearance -> None, BaseStyle -> {}, BaselinePosition -> 
+                    Baseline, DefaultBaseStyle -> {}, ButtonFunction :> 
+                    With[{Typeset`box$ = EvaluationBox[]}, 
+                    If[
+                    Not[
+                    AbsoluteCurrentValue["Deployed"]], 
+                    SelectionMove[Typeset`box$, All, Expression]; 
+                    FrontEnd`Private`$ColorSelectorInitialAlpha = 1; 
+                    FrontEnd`Private`$ColorSelectorInitialColor = 
+                    RGBColor[1, 0.5, 0.5]; 
+                    FrontEnd`Private`$ColorSelectorUseMakeBoxes = True; 
+                    MathLink`CallFrontEnd[
+                    FrontEnd`AttachCell[Typeset`box$, 
+                    FrontEndResource["RGBColorValueSelector"], {
+                    0, {Left, Bottom}}, {Left, Top}, 
+                    "ClosingActions" -> {
+                    "SelectionDeparture", "ParentChanged", 
+                    "EvaluatorQuit"}]]]], BaseStyle -> Inherited, Evaluator -> 
+                    Automatic, Method -> "Preemptive"], 
+                    RGBColor[1, 0.5, 0.5], Editable -> False, Selectable -> 
+                    False]}], "]"}], ",", 
+               RowBox[{"Directive", "[", 
+                 RowBox[{
+                   RowBox[{"EdgeForm", "[", 
+                    RowBox[{"Directive", "[", 
+                    RowBox[{
+                    InterpretationBox[
+                    ButtonBox[
+                    TooltipBox[
+                    RowBox[{
+                    GraphicsBox[{{
+                    GrayLevel[0], 
+                    RectangleBox[{0, 0}]}, {
+                    GrayLevel[0], 
+                    RectangleBox[{1, -1}]}, {
+                    GrayLevel[0], 
+                    RectangleBox[{0, -1}, {2, 1}]}}, AspectRatio -> 1, Frame -> 
+                    True, FrameStyle -> GrayLevel[0.], FrameTicks -> None, 
+                    PlotRangePadding -> None, ImageSize -> 
+                    Dynamic[{Automatic, 1.35 CurrentValue["FontCapHeight"]/
+                    AbsoluteCurrentValue[Magnification]}]], 
+                    "\[InvisibleSpace]"}], "GrayLevel[0]"], Appearance -> 
+                    None, BaseStyle -> {}, BaselinePosition -> Baseline, 
+                    DefaultBaseStyle -> {}, ButtonFunction :> 
+                    With[{Typeset`box$ = EvaluationBox[]}, 
+                    If[
+                    Not[
+                    AbsoluteCurrentValue["Deployed"]], 
+                    SelectionMove[Typeset`box$, All, Expression]; 
+                    FrontEnd`Private`$ColorSelectorInitialAlpha = 1; 
+                    FrontEnd`Private`$ColorSelectorInitialColor = 
+                    GrayLevel[0]; 
+                    FrontEnd`Private`$ColorSelectorUseMakeBoxes = True; 
+                    MathLink`CallFrontEnd[
+                    FrontEnd`AttachCell[Typeset`box$, 
+                    FrontEndResource["GrayLevelColorValueSelector"], {
+                    0, {Left, Bottom}}, {Left, Top}, 
+                    "ClosingActions" -> {
+                    "SelectionDeparture", "ParentChanged", 
+                    "EvaluatorQuit"}]]]], BaseStyle -> Inherited, Evaluator -> 
+                    Automatic, Method -> "Preemptive"], 
+                    GrayLevel[0], Editable -> False, Selectable -> False], 
+                    ",", 
+                    RowBox[{"Opacity", "[", "0.5`", "]"}]}], "]"}], "]"}], 
+                   ",", 
+                   InterpretationBox[
+                    ButtonBox[
+                    TooltipBox[
+                    RowBox[{
+                    GraphicsBox[{{
+                    GrayLevel[0], 
+                    RectangleBox[{0, 0}]}, {
+                    GrayLevel[0], 
+                    RectangleBox[{1, -1}]}, {
+                    RGBColor[1, 0.85, 0.85], 
+                    RectangleBox[{0, -1}, {2, 1}]}}, AspectRatio -> 1, Frame -> 
+                    True, FrameStyle -> 
+                    RGBColor[
+                    0.6666666666666666, 0.5666666666666667, 
+                    0.5666666666666667], FrameTicks -> None, PlotRangePadding -> 
+                    None, ImageSize -> 
+                    Dynamic[{
+                    Automatic, 1.35 CurrentValue["FontCapHeight"]/
+                    AbsoluteCurrentValue[Magnification]}]], 
+                    "\[InvisibleSpace]"}], "RGBColor[1, 0.85, 0.85]"], 
+                    Appearance -> None, BaseStyle -> {}, BaselinePosition -> 
+                    Baseline, DefaultBaseStyle -> {}, ButtonFunction :> 
+                    With[{Typeset`box$ = EvaluationBox[]}, 
+                    If[
+                    Not[
+                    AbsoluteCurrentValue["Deployed"]], 
+                    SelectionMove[Typeset`box$, All, Expression]; 
+                    FrontEnd`Private`$ColorSelectorInitialAlpha = 1; 
+                    FrontEnd`Private`$ColorSelectorInitialColor = 
+                    RGBColor[1, 0.85, 0.85]; 
+                    FrontEnd`Private`$ColorSelectorUseMakeBoxes = True; 
+                    MathLink`CallFrontEnd[
+                    FrontEnd`AttachCell[Typeset`box$, 
+                    FrontEndResource["RGBColorValueSelector"], {
+                    0, {Left, Bottom}}, {Left, Top}, 
+                    "ClosingActions" -> {
+                    "SelectionDeparture", "ParentChanged", 
+                    "EvaluatorQuit"}]]]], BaseStyle -> Inherited, Evaluator -> 
+                    Automatic, Method -> "Preemptive"], 
+                    RGBColor[1, 0.85, 0.85], Editable -> False, Selectable -> 
+                    False]}], "]"}], ",", 
+               RowBox[{"Directive", "[", 
+                 RowBox[{
+                   RowBox[{"EdgeForm", "[", 
+                    RowBox[{"Directive", "[", 
+                    RowBox[{
+                    InterpretationBox[
+                    ButtonBox[
+                    TooltipBox[
+                    RowBox[{
+                    GraphicsBox[{{
+                    GrayLevel[0], 
+                    RectangleBox[{0, 0}]}, {
+                    GrayLevel[0], 
+                    RectangleBox[{1, -1}]}, {
+                    GrayLevel[0], 
+                    RectangleBox[{0, -1}, {2, 1}]}}, AspectRatio -> 1, Frame -> 
+                    True, FrameStyle -> GrayLevel[0.], FrameTicks -> None, 
+                    PlotRangePadding -> None, ImageSize -> 
+                    Dynamic[{Automatic, 1.35 CurrentValue["FontCapHeight"]/
+                    AbsoluteCurrentValue[Magnification]}]], 
+                    "\[InvisibleSpace]"}], "GrayLevel[0]"], Appearance -> 
+                    None, BaseStyle -> {}, BaselinePosition -> Baseline, 
+                    DefaultBaseStyle -> {}, ButtonFunction :> 
+                    With[{Typeset`box$ = EvaluationBox[]}, 
+                    If[
+                    Not[
+                    AbsoluteCurrentValue["Deployed"]], 
+                    SelectionMove[Typeset`box$, All, Expression]; 
+                    FrontEnd`Private`$ColorSelectorInitialAlpha = 1; 
+                    FrontEnd`Private`$ColorSelectorInitialColor = 
+                    GrayLevel[0]; 
+                    FrontEnd`Private`$ColorSelectorUseMakeBoxes = True; 
+                    MathLink`CallFrontEnd[
+                    FrontEnd`AttachCell[Typeset`box$, 
+                    FrontEndResource["GrayLevelColorValueSelector"], {
+                    0, {Left, Bottom}}, {Left, Top}, 
+                    "ClosingActions" -> {
+                    "SelectionDeparture", "ParentChanged", 
+                    "EvaluatorQuit"}]]]], BaseStyle -> Inherited, Evaluator -> 
+                    Automatic, Method -> "Preemptive"], 
+                    GrayLevel[0], Editable -> False, Selectable -> False], 
+                    ",", 
+                    RowBox[{"Opacity", "[", "0.5`", "]"}]}], "]"}], "]"}], 
+                   ",", 
+                   InterpretationBox[
+                    ButtonBox[
+                    TooltipBox[
+                    RowBox[{
+                    GraphicsBox[{{
+                    GrayLevel[0], 
+                    RectangleBox[{0, 0}]}, {
+                    GrayLevel[0], 
+                    RectangleBox[{1, -1}]}, {
+                    RGBColor[0.87, 0.94, 1], 
+                    RectangleBox[{0, -1}, {2, 1}]}}, AspectRatio -> 1, Frame -> 
+                    True, FrameStyle -> 
+                    RGBColor[
+                    0.5800000000000001, 0.6266666666666667, 
+                    0.6666666666666666], FrameTicks -> None, PlotRangePadding -> 
+                    None, ImageSize -> 
+                    Dynamic[{
+                    Automatic, 1.35 CurrentValue["FontCapHeight"]/
+                    AbsoluteCurrentValue[Magnification]}]], 
+                    "\[InvisibleSpace]"}], "RGBColor[0.87, 0.94, 1]"], 
+                    Appearance -> None, BaseStyle -> {}, BaselinePosition -> 
+                    Baseline, DefaultBaseStyle -> {}, ButtonFunction :> 
+                    With[{Typeset`box$ = EvaluationBox[]}, 
+                    If[
+                    Not[
+                    AbsoluteCurrentValue["Deployed"]], 
+                    SelectionMove[Typeset`box$, All, Expression]; 
+                    FrontEnd`Private`$ColorSelectorInitialAlpha = 1; 
+                    FrontEnd`Private`$ColorSelectorInitialColor = 
+                    RGBColor[0.87, 0.94, 1]; 
+                    FrontEnd`Private`$ColorSelectorUseMakeBoxes = True; 
+                    MathLink`CallFrontEnd[
+                    FrontEnd`AttachCell[Typeset`box$, 
+                    FrontEndResource["RGBColorValueSelector"], {
+                    0, {Left, Bottom}}, {Left, Top}, 
+                    "ClosingActions" -> {
+                    "SelectionDeparture", "ParentChanged", 
+                    "EvaluatorQuit"}]]]], BaseStyle -> Inherited, Evaluator -> 
+                    Automatic, Method -> "Preemptive"], 
+                    RGBColor[0.87, 0.94, 1], Editable -> False, Selectable -> 
+                    False]}], "]"}], ",", 
+               RowBox[{"Directive", "[", 
+                 RowBox[{
+                   RowBox[{"EdgeForm", "[", 
+                    RowBox[{"Directive", "[", 
+                    RowBox[{
+                    InterpretationBox[
+                    ButtonBox[
+                    TooltipBox[
+                    RowBox[{
+                    GraphicsBox[{{
+                    GrayLevel[0], 
+                    RectangleBox[{0, 0}]}, {
+                    GrayLevel[0], 
+                    RectangleBox[{1, -1}]}, {
+                    GrayLevel[0], 
+                    RectangleBox[{0, -1}, {2, 1}]}}, AspectRatio -> 1, Frame -> 
+                    True, FrameStyle -> GrayLevel[0.], FrameTicks -> None, 
+                    PlotRangePadding -> None, ImageSize -> 
+                    Dynamic[{Automatic, 1.35 CurrentValue["FontCapHeight"]/
+                    AbsoluteCurrentValue[Magnification]}]], 
+                    "\[InvisibleSpace]"}], "GrayLevel[0]"], Appearance -> 
+                    None, BaseStyle -> {}, BaselinePosition -> Baseline, 
+                    DefaultBaseStyle -> {}, ButtonFunction :> 
+                    With[{Typeset`box$ = EvaluationBox[]}, 
+                    If[
+                    Not[
+                    AbsoluteCurrentValue["Deployed"]], 
+                    SelectionMove[Typeset`box$, All, Expression]; 
+                    FrontEnd`Private`$ColorSelectorInitialAlpha = 1; 
+                    FrontEnd`Private`$ColorSelectorInitialColor = 
+                    GrayLevel[0]; 
+                    FrontEnd`Private`$ColorSelectorUseMakeBoxes = True; 
+                    MathLink`CallFrontEnd[
+                    FrontEnd`AttachCell[Typeset`box$, 
+                    FrontEndResource["GrayLevelColorValueSelector"], {
+                    0, {Left, Bottom}}, {Left, Top}, 
+                    "ClosingActions" -> {
+                    "SelectionDeparture", "ParentChanged", 
+                    "EvaluatorQuit"}]]]], BaseStyle -> Inherited, Evaluator -> 
+                    Automatic, Method -> "Preemptive"], 
+                    GrayLevel[0], Editable -> False, Selectable -> False], 
+                    ",", 
+                    RowBox[{"Opacity", "[", "0.5`", "]"}]}], "]"}], "]"}], 
+                   ",", 
+                   InterpretationBox[
+                    ButtonBox[
+                    TooltipBox[
+                    RowBox[{
+                    GraphicsBox[{{
+                    GrayLevel[0], 
+                    RectangleBox[{0, 0}]}, {
+                    GrayLevel[0], 
+                    RectangleBox[{1, -1}]}, {
+                    RGBColor[1, 1, 0.85], 
+                    RectangleBox[{0, -1}, {2, 1}]}}, AspectRatio -> 1, Frame -> 
+                    True, FrameStyle -> 
+                    RGBColor[
+                    0.6666666666666666, 0.6666666666666666, 
+                    0.5666666666666667], FrameTicks -> None, PlotRangePadding -> 
+                    None, ImageSize -> 
+                    Dynamic[{
+                    Automatic, 1.35 CurrentValue["FontCapHeight"]/
+                    AbsoluteCurrentValue[Magnification]}]], 
+                    "\[InvisibleSpace]"}], "RGBColor[1, 1, 0.85]"], 
+                    Appearance -> None, BaseStyle -> {}, BaselinePosition -> 
+                    Baseline, DefaultBaseStyle -> {}, ButtonFunction :> 
+                    With[{Typeset`box$ = EvaluationBox[]}, 
+                    If[
+                    Not[
+                    AbsoluteCurrentValue["Deployed"]], 
+                    SelectionMove[Typeset`box$, All, Expression]; 
+                    FrontEnd`Private`$ColorSelectorInitialAlpha = 1; 
+                    FrontEnd`Private`$ColorSelectorInitialColor = 
+                    RGBColor[1, 1, 0.85]; 
+                    FrontEnd`Private`$ColorSelectorUseMakeBoxes = True; 
+                    MathLink`CallFrontEnd[
+                    FrontEnd`AttachCell[Typeset`box$, 
+                    FrontEndResource["RGBColorValueSelector"], {
+                    0, {Left, Bottom}}, {Left, Top}, 
+                    "ClosingActions" -> {
+                    "SelectionDeparture", "ParentChanged", 
+                    "EvaluatorQuit"}]]]], BaseStyle -> Inherited, Evaluator -> 
+                    Automatic, Method -> "Preemptive"], 
+                    RGBColor[1, 1, 0.85], Editable -> False, Selectable -> 
+                    False]}], "]"}], ",", 
+               RowBox[{"Directive", "[", 
+                 RowBox[{
+                   RowBox[{"EdgeForm", "[", 
+                    RowBox[{"Directive", "[", 
+                    RowBox[{
+                    InterpretationBox[
+                    ButtonBox[
+                    TooltipBox[
+                    RowBox[{
+                    GraphicsBox[{{
+                    GrayLevel[0], 
+                    RectangleBox[{0, 0}]}, {
+                    GrayLevel[0], 
+                    RectangleBox[{1, -1}]}, {
+                    GrayLevel[0], 
+                    RectangleBox[{0, -1}, {2, 1}]}}, AspectRatio -> 1, Frame -> 
+                    True, FrameStyle -> GrayLevel[0.], FrameTicks -> None, 
+                    PlotRangePadding -> None, ImageSize -> 
+                    Dynamic[{Automatic, 1.35 CurrentValue["FontCapHeight"]/
+                    AbsoluteCurrentValue[Magnification]}]], 
+                    "\[InvisibleSpace]"}], "GrayLevel[0]"], Appearance -> 
+                    None, BaseStyle -> {}, BaselinePosition -> Baseline, 
+                    DefaultBaseStyle -> {}, ButtonFunction :> 
+                    With[{Typeset`box$ = EvaluationBox[]}, 
+                    If[
+                    Not[
+                    AbsoluteCurrentValue["Deployed"]], 
+                    SelectionMove[Typeset`box$, All, Expression]; 
+                    FrontEnd`Private`$ColorSelectorInitialAlpha = 1; 
+                    FrontEnd`Private`$ColorSelectorInitialColor = 
+                    GrayLevel[0]; 
+                    FrontEnd`Private`$ColorSelectorUseMakeBoxes = True; 
+                    MathLink`CallFrontEnd[
+                    FrontEnd`AttachCell[Typeset`box$, 
+                    FrontEndResource["GrayLevelColorValueSelector"], {
+                    0, {Left, Bottom}}, {Left, Top}, 
+                    "ClosingActions" -> {
+                    "SelectionDeparture", "ParentChanged", 
+                    "EvaluatorQuit"}]]]], BaseStyle -> Inherited, Evaluator -> 
+                    Automatic, Method -> "Preemptive"], 
+                    GrayLevel[0], Editable -> False, Selectable -> False], 
+                    ",", 
+                    RowBox[{"Opacity", "[", "0.5`", "]"}]}], "]"}], "]"}], 
+                   ",", 
+                   InterpretationBox[
+                    ButtonBox[
+                    TooltipBox[
+                    RowBox[{
+                    GraphicsBox[{{
+                    GrayLevel[0], 
+                    RectangleBox[{0, 0}]}, {
+                    GrayLevel[0], 
+                    RectangleBox[{1, -1}]}, {
+                    RGBColor[0.94, 0.91, 0.88], 
+                    RectangleBox[{0, -1}, {2, 1}]}}, AspectRatio -> 1, Frame -> 
+                    True, FrameStyle -> 
+                    RGBColor[
+                    0.6266666666666667, 0.6066666666666667, 
+                    0.5866666666666667], FrameTicks -> None, PlotRangePadding -> 
+                    None, ImageSize -> 
+                    Dynamic[{
+                    Automatic, 1.35 CurrentValue["FontCapHeight"]/
+                    AbsoluteCurrentValue[Magnification]}]], 
+                    "\[InvisibleSpace]"}], "RGBColor[0.94, 0.91, 0.88]"], 
+                    Appearance -> None, BaseStyle -> {}, BaselinePosition -> 
+                    Baseline, DefaultBaseStyle -> {}, ButtonFunction :> 
+                    With[{Typeset`box$ = EvaluationBox[]}, 
+                    If[
+                    Not[
+                    AbsoluteCurrentValue["Deployed"]], 
+                    SelectionMove[Typeset`box$, All, Expression]; 
+                    FrontEnd`Private`$ColorSelectorInitialAlpha = 1; 
+                    FrontEnd`Private`$ColorSelectorInitialColor = 
+                    RGBColor[0.94, 0.91, 0.88]; 
+                    FrontEnd`Private`$ColorSelectorUseMakeBoxes = True; 
+                    MathLink`CallFrontEnd[
+                    FrontEnd`AttachCell[Typeset`box$, 
+                    FrontEndResource["RGBColorValueSelector"], {
+                    0, {Left, Bottom}}, {Left, Top}, 
+                    "ClosingActions" -> {
+                    "SelectionDeparture", "ParentChanged", 
+                    "EvaluatorQuit"}]]]], BaseStyle -> Inherited, Evaluator -> 
+                    Automatic, Method -> "Preemptive"], 
+                    RGBColor[0.94, 0.91, 0.88], Editable -> False, Selectable -> 
+                    False]}], "]"}], ",", 
+               RowBox[{"Directive", "[", 
+                 RowBox[{
+                   RowBox[{"EdgeForm", "[", 
+                    RowBox[{"Directive", "[", 
+                    RowBox[{
+                    InterpretationBox[
+                    ButtonBox[
+                    TooltipBox[
+                    RowBox[{
+                    GraphicsBox[{{
+                    GrayLevel[0], 
+                    RectangleBox[{0, 0}]}, {
+                    GrayLevel[0], 
+                    RectangleBox[{1, -1}]}, {
+                    GrayLevel[0], 
+                    RectangleBox[{0, -1}, {2, 1}]}}, AspectRatio -> 1, Frame -> 
+                    True, FrameStyle -> GrayLevel[0.], FrameTicks -> None, 
+                    PlotRangePadding -> None, ImageSize -> 
+                    Dynamic[{Automatic, 1.35 CurrentValue["FontCapHeight"]/
+                    AbsoluteCurrentValue[Magnification]}]], 
+                    "\[InvisibleSpace]"}], "GrayLevel[0]"], Appearance -> 
+                    None, BaseStyle -> {}, BaselinePosition -> Baseline, 
+                    DefaultBaseStyle -> {}, ButtonFunction :> 
+                    With[{Typeset`box$ = EvaluationBox[]}, 
+                    If[
+                    Not[
+                    AbsoluteCurrentValue["Deployed"]], 
+                    SelectionMove[Typeset`box$, All, Expression]; 
+                    FrontEnd`Private`$ColorSelectorInitialAlpha = 1; 
+                    FrontEnd`Private`$ColorSelectorInitialColor = 
+                    GrayLevel[0]; 
+                    FrontEnd`Private`$ColorSelectorUseMakeBoxes = True; 
+                    MathLink`CallFrontEnd[
+                    FrontEnd`AttachCell[Typeset`box$, 
+                    FrontEndResource["GrayLevelColorValueSelector"], {
+                    0, {Left, Bottom}}, {Left, Top}, 
+                    "ClosingActions" -> {
+                    "SelectionDeparture", "ParentChanged", 
+                    "EvaluatorQuit"}]]]], BaseStyle -> Inherited, Evaluator -> 
+                    Automatic, Method -> "Preemptive"], 
+                    GrayLevel[0], Editable -> False, Selectable -> False], 
+                    ",", 
+                    RowBox[{"Opacity", "[", "0.5`", "]"}]}], "]"}], "]"}], 
+                   ",", 
+                   InterpretationBox[
+                    ButtonBox[
+                    TooltipBox[
+                    RowBox[{
+                    GraphicsBox[{{
+                    GrayLevel[0], 
+                    RectangleBox[{0, 0}]}, {
+                    GrayLevel[0], 
+                    RectangleBox[{1, -1}]}, {
+                    RGBColor[0.88, 1, 0.88], 
+                    RectangleBox[{0, -1}, {2, 1}]}}, AspectRatio -> 1, Frame -> 
+                    True, FrameStyle -> 
+                    RGBColor[
+                    0.5866666666666667, 0.6666666666666666, 
+                    0.5866666666666667], FrameTicks -> None, PlotRangePadding -> 
+                    None, ImageSize -> 
+                    Dynamic[{
+                    Automatic, 1.35 CurrentValue["FontCapHeight"]/
+                    AbsoluteCurrentValue[Magnification]}]], 
+                    "\[InvisibleSpace]"}], "RGBColor[0.88, 1, 0.88]"], 
+                    Appearance -> None, BaseStyle -> {}, BaselinePosition -> 
+                    Baseline, DefaultBaseStyle -> {}, ButtonFunction :> 
+                    With[{Typeset`box$ = EvaluationBox[]}, 
+                    If[
+                    Not[
+                    AbsoluteCurrentValue["Deployed"]], 
+                    SelectionMove[Typeset`box$, All, Expression]; 
+                    FrontEnd`Private`$ColorSelectorInitialAlpha = 1; 
+                    FrontEnd`Private`$ColorSelectorInitialColor = 
+                    RGBColor[0.88, 1, 0.88]; 
+                    FrontEnd`Private`$ColorSelectorUseMakeBoxes = True; 
+                    MathLink`CallFrontEnd[
+                    FrontEnd`AttachCell[Typeset`box$, 
+                    FrontEndResource["RGBColorValueSelector"], {
+                    0, {Left, Bottom}}, {Left, Top}, 
+                    "ClosingActions" -> {
+                    "SelectionDeparture", "ParentChanged", 
+                    "EvaluatorQuit"}]]]], BaseStyle -> Inherited, Evaluator -> 
+                    Automatic, Method -> "Preemptive"], 
+                    RGBColor[0.88, 1, 0.88], Editable -> False, Selectable -> 
+                    False]}], "]"}]}], "}"}], ",", 
+           RowBox[{"{", 
+             
+             RowBox[{#, ",", #2, ",", #3, ",", #4, ",", #5, ",", #6, ",", #7, 
+               ",", #8, ",", #9, ",", #10, ",", #11, ",", #12, ",", #13, 
+               ",", #14, ",", #15, ",", #16, ",", #17, ",", #18}], "}"}], ",", 
+           RowBox[{"LabelStyle", "\[Rule]", 
+             RowBox[{"{", 
+               RowBox[{
+                 InterpretationBox[
+                  ButtonBox[
+                   TooltipBox[
+                    RowBox[{
+                    GraphicsBox[{{
+                    GrayLevel[0], 
+                    RectangleBox[{0, 0}]}, {
+                    GrayLevel[0], 
+                    RectangleBox[{1, -1}]}, {
+                    GrayLevel[0], 
+                    RectangleBox[{0, -1}, {2, 1}]}}, AspectRatio -> 1, Frame -> 
+                    True, FrameStyle -> GrayLevel[0.], FrameTicks -> None, 
+                    PlotRangePadding -> None, ImageSize -> 
+                    Dynamic[{
+                    Automatic, 1.35 CurrentValue["FontCapHeight"]/
+                    AbsoluteCurrentValue[Magnification]}]], 
+                    "\[InvisibleSpace]"}], "GrayLevel[0]"], Appearance -> 
+                   None, BaseStyle -> {}, BaselinePosition -> Baseline, 
+                   DefaultBaseStyle -> {}, ButtonFunction :> 
+                   With[{Typeset`box$ = EvaluationBox[]}, 
+                    If[
+                    Not[
+                    AbsoluteCurrentValue["Deployed"]], 
+                    SelectionMove[Typeset`box$, All, Expression]; 
+                    FrontEnd`Private`$ColorSelectorInitialAlpha = 1; 
+                    FrontEnd`Private`$ColorSelectorInitialColor = 
+                    GrayLevel[0]; 
+                    FrontEnd`Private`$ColorSelectorUseMakeBoxes = True; 
+                    MathLink`CallFrontEnd[
+                    FrontEnd`AttachCell[Typeset`box$, 
+                    FrontEndResource["GrayLevelColorValueSelector"], {
+                    0, {Left, Bottom}}, {Left, Top}, 
+                    "ClosingActions" -> {
+                    "SelectionDeparture", "ParentChanged", 
+                    "EvaluatorQuit"}]]]], BaseStyle -> Inherited, Evaluator -> 
+                   Automatic, Method -> "Preemptive"], 
+                  GrayLevel[0], Editable -> False, Selectable -> False], ",", 
+                 
+                 RowBox[{"FontFamily", "\[Rule]", "\"Arial\""}]}], "}"}]}], 
+           ",", 
+           RowBox[{"LegendLayout", "\[Rule]", "\"Column\""}], ",", 
+           RowBox[{"LegendMarkers", "\[Rule]", 
+             RowBox[{"{", 
+               RowBox[{"{", 
+                 
+                 RowBox[{
+                  "None", ",", "None", ",", "None", ",", "None", ",", "None", 
+                   ",", "None", ",", "None", ",", "None", ",", "None", ",", 
+                   "None", ",", "None", ",", "None", ",", "None", ",", "None",
+                    ",", "None", ",", "None", ",", "None", ",", "None"}], 
+                 "}"}], "}"}]}]}], "]"}]& ), Editable -> True], 
+     TraditionalForm], TraditionalForm]},
+  "Legended",
+  DisplayFunction->(GridBox[{{
+      TagBox[
+       ItemBox[
+        PaneBox[
+         TagBox[#, "SkipImageSizeLevel"], Alignment -> {Center, Baseline}, 
+         BaselinePosition -> Baseline], DefaultBaseStyle -> "Labeled"], 
+       "SkipImageSizeLevel"], 
+      ItemBox[#2, DefaultBaseStyle -> "LabeledLabel"]}}, 
+    GridBoxAlignment -> {"Columns" -> {{Center}}, "Rows" -> {{Center}}}, 
+    AutoDelete -> False, GridBoxItemSize -> Automatic, 
+    BaselinePosition -> {1, 1}]& ),
+  Editable->True,
+  InterpretationFunction->(RowBox[{"Legended", "[", 
+     RowBox[{#, ",", 
+       RowBox[{"Placed", "[", 
+         RowBox[{#2, ",", "After"}], "]"}]}], "]"}]& )]], "Output",
+ CellChangeTimes->{
+  3.6193481246242723`*^9, 3.6193481675441008`*^9, 3.619348206555793*^9, 
+   3.61934831420684*^9, {3.6193483463430295`*^9, 3.6193483797606473`*^9}}]
+}, {2}]]
 },
-WindowSize->{1440, 793},
+WindowSize->{1278, 675},
 WindowMargins->{{0, Automatic}, {Automatic, 0}},
-FrontEndVersion->"9.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (January 25, \
-2013)",
+FrontEndVersion->"10.0 for Microsoft Windows (64-bit) (July 1, 2014)",
 StyleDefinitions->"Default.nb"
 ]
 (* End of Notebook Content *)
@@ -7180,26 +10164,30 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[557, 20, 329, 8, 28, "Input"],
-Cell[889, 30, 275, 7, 28, "Input"],
-Cell[1167, 39, 279, 7, 28, "Input"],
+Cell[557, 20, 329, 8, 31, "Input"],
+Cell[889, 30, 275, 7, 31, "Input"],
+Cell[1167, 39, 279, 7, 31, "Input"],
+Cell[1449, 48, 332, 8, 31, "Input"],
 Cell[CellGroupData[{
-Cell[1471, 50, 528, 15, 28, "Input"],
-Cell[2002, 67, 3843, 103, 97, "Output"]
+Cell[1806, 60, 528, 15, 31, "Input"],
+Cell[2337, 77, 3264, 87, 92, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[5882, 175, 3009, 57, 63, "Input"],
-Cell[8894, 234, 118857, 2592, 517, "Output"]
-}, Open  ]],
+Cell[5638, 169, 3009, 57, 72, "Input"],
+Cell[8650, 228, 118857, 2592, 517, "Output"]
+}, Closed]],
 Cell[CellGroupData[{
-Cell[127788, 2831, 1538, 38, 63, "Input"],
-Cell[129329, 2871, 114326, 2502, 351, "Output"]
-}, Open  ]],
-Cell[243670, 5376, 94, 1, 28, "Input"],
+Cell[127544, 2825, 1538, 38, 66, "Input"],
+Cell[129085, 2865, 114326, 2502, 317, "Output"]
+}, Closed]],
 Cell[CellGroupData[{
-Cell[243789, 5381, 1510, 38, 63, "Input"],
-Cell[245302, 5421, 79288, 1741, 317, "Output"]
-}, Open  ]]
+Cell[243448, 5372, 1510, 38, 66, "Input"],
+Cell[244961, 5412, 79288, 1741, 317, "Output"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[324286, 7158, 1387, 30, 66, "Input"],
+Cell[325676, 7190, 143685, 2957, 317, "Output"]
+}, {2}]]
 }
 ]
 *)

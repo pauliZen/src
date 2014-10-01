@@ -5,8 +5,7 @@
 *       -------------------
 *
       INCLUDE 'common6.h'
-      REAL*8  RAN2, zcrit
-      common /ssewl/ zcrit
+      REAL*8  RAN2
 *
 *
 *       Initialize the portable random number generator (range: 0 to 1).
@@ -22,7 +21,6 @@
 *
 *       Read IMF parameters, # primordials, Z-abundance, epoch & HR interval.
       READ (5,*) ALPHAS, BODY1, BODYN, NBIN0, NHI0, ZMET, EPOCH0, DTPLOT
-     &     ,zcrit
       IF (N + 2*NBIN0 + 2*NHI0.GE.NMAX - 2) THEN
           WRITE (6,2)  N, NBIN0, NHI0
     2     FORMAT (' FATAL ERROR!    BAD INPUT    N NBIN0 NHI0 ',I7,2I6)

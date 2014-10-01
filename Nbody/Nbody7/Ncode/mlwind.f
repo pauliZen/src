@@ -2,8 +2,7 @@
       real*8 FUNCTION mlwind(kw,lum,r,mt,mc,rl,z)
       implicit none
       integer kw
-      real*8 lum,r,mt,mc,rl,z,zcrit
-      common /ssewl/ zcrit
+      real*8 lum,r,mt,mc,rl,z
       real*8 dml,dms,dmt,p0,x,mew,lum0,kap,neta,bwind
       parameter(lum0=7.0d+04,kap=-0.5d0)
       parameter(neta=0.5d0)
@@ -22,7 +21,7 @@
       endif
       if(kw.ge.2.and.kw.le.9)then
 * 'Reimers' mass loss
-         dml = neta*4.0d-13*r*lum/mt*(1+z/zcrit)
+         dml = neta*4.0d-13*r*lum/mt
 * Check for any tidally enhanced mass loss in binary systems (optional): 
 * see Tout & Eggleton, MNRAS, 1988, 231, 823.  
          if(rl.gt.0.d0) dml = dml*(1.d0 + bwind*(MIN(0.5d0,(r/rl)))**6)

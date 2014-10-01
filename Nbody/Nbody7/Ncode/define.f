@@ -71,7 +71,7 @@
 *
 *       APO     Separation between the perturber and Sun.
 *       ECC     Eccentricity of orbit (=1 for parabolic encounter).
-*       DMIN    Minimum distance of approach (pericentre).
+*       DMIN    Minimum distance of approach of perturber (pericentre).
 *       SCALE   Perturber mass scale factor (=1 for Msun).
 *
 *        if (kz(5).eq.4)

@@ -36,8 +36,7 @@ export HUGETLB_MORECORE=yes
 #	    SHLIB_PATH=$SHLIB_PATH:$i/test/
 #	    LIBPATH=$LIBPATH:$i/test/
 #scisoft
-[ -d /scisoft/bin ] && export SCISOFT_IGNORE_SELINUX_WARNING=1 && . /scisoft/bin/Setup.bash
-[ -e /usr/bin/gnuplot ] && alias gnuplot='/usr/bin/gnuplot'
+#[ -d /scisoft/bin ] && export SCISOFT_IGNORE_SELINUX_WARNING=1 && . /scisoft/bin/Setup.bash
 #mit-scheme
 [ -d /opt/mit-scheme ] && PATH=$PATH:/opt/mit-scheme/bin && LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/mit-scheme/lib
 #libgd

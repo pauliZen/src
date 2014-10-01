@@ -1,22 +1,24 @@
-set term postscript landscape enhanced color "Text" 16
-set output 'data.ps'
+set term png 
+#set term postscript landscape enhanced color "Text" 16
+suffix='png'
+set output 'data.'.suffix
 
-set zeroaxis
-set grid
-set pointsize 1.0
-set mxtics 10
-set mytics 10
+#set zeroaxis
+#set grid
+#set pointsize 1.0
+#set mxtics 10
+#set mytics 10
 set macro
 #set key autotitle columnhead
 
-rscale = 9.385
-tscale = 0.622
-mscale = 474603.0
-vscale = 14.756
+rscale = 5.0
+tscale = 1.0
+mscale = 7.49825
+vscale = 2.539
 
-filename = 'lagr'
-#jump = "every ::1"
-jump = ""
+filename = 'lagr.7'
+jump = "every ::1"
+#jump = ""
 
 ####---------------macro 12 columns----------------
 colu12 = "u (column(x)*xscale):(column(1+shift)*yscale)   t columnhead(1+shift) w l lt 1 lw 4, \
@@ -64,13 +66,13 @@ colu19 = "u (column(x)*xscale):(column(1+shift)*yscale)   t columnhead(1+shift) 
            '' u (column(x)*xscale):(column(10+shift)*yscale)  t columnhead(10+shift) w l lt 1 lw 1, \
            '' u (column(x)*xscale):(column(11+shift)*yscale)  t columnhead(11+shift) w l lt 2 lw 1, \
            '' u (column(x)*xscale):(column(12+shift)*yscale)  t columnhead(12+shift) w l lt 3 lw 1, \
-           '' u (column(x)*xscale):(column(13+shift)*yscale)  t columnhead(13+shift) w l lt 4 lw 1"
-#           '' u (column(x)*xscale):(column(14+shift)*yscale)  t columnhead(14+shift) w l lt 5 lw 1, \
-#           '' u (column(x)*xscale):(column(15+shift)*yscale)  t columnhead(15+shift) w l lt 6 lw 1, \
-#           '' u (column(x)*xscale):(column(16+shift)*yscale)  t columnhead(16+shift) w l lt 7 lw 1, \
-#           '' u (column(x)*xscale):(column(17+shift)*yscale)  t columnhead(17+shift) w l lt 8 lw 1, \
-#           '' u (column(x)*xscale):(column(18+shift)*yscale)  t columnhead(18+shift) w l lt 9 lw 1, \
-#           '' u (column(x)*xscale):(column(19+shift)*yscale)  t columnhead(19+shift) w l lt 1 lw 6"
+           '' u (column(x)*xscale):(column(13+shift)*yscale)  t columnhead(13+shift) w l lt 4 lw 1, \
+           '' u (column(x)*xscale):(column(14+shift)*yscale)  t columnhead(14+shift) w l lt 5 lw 1, \
+           '' u (column(x)*xscale):(column(15+shift)*yscale)  t columnhead(15+shift) w l lt 6 lw 1, \
+           '' u (column(x)*xscale):(column(16+shift)*yscale)  t columnhead(16+shift) w l lt 7 lw 1, \
+           '' u (column(x)*xscale):(column(17+shift)*yscale)  t columnhead(17+shift) w l lt 8 lw 1, \
+           '' u (column(x)*xscale):(column(18+shift)*yscale)  t columnhead(18+shift) w l lt 9 lw 1, \
+           '' u (column(x)*xscale):(column(19+shift)*yscale)  t columnhead(19+shift) w l lt 1 lw 6"
 
 ####---------------macro 18 columns----------------
 colu_sqrt18 = "u (column(x)*xscale):(sqrt(column(1+shift))*yscale)   t columnhead(1+shift) w l lt 1 lw 4, \
@@ -153,7 +155,7 @@ colu_r_sqrt12 = "u (1/column(x)*xscale):(sqrt(column(1+shift))*yscale)   t colum
            '' u (1/column(x)*xscale):(sqrt(column(11+shift))*yscale)  t columnhead(11+shift) w l lt 2 lw 1"
 
 ####---------------plot lagr----------------------
-
+set output 'lagr.'.suffix
 set ylabel 'R_{lagr} [pc]'
 set xlabel 't [Myr]'
 set autoscale
@@ -167,11 +169,12 @@ yscale = rscale
 plot filename @jump @colu19
 
 ####---------------plot s,lagr----------------------
+set output 'slagr.'.suffix
 
 set ylabel 'R_{s,lagr} [pc]'
 set xlabel 't [Myr]'
 set autoscale
-set logscale y 10
+#set logscale y 10
 set nologscale x
 x = 1
 shift = 20
@@ -181,11 +184,12 @@ yscale = rscale
 plot filename @jump @colu18
 
 ####---------------plot b,lagr----------------------
+set output 'blagr.'.suffix
 
 set ylabel 'R_{s,lagr} [pc]'
 set xlabel 't [Myr]'
 set autoscale
-set logscale y 10
+#set logscale y 10
 set nologscale x
 x = 1
 shift = 38
@@ -195,6 +199,7 @@ yscale = rscale
 plot filename @jump @colu18
 
 ####---------------plot AVMASS------------------
+set output 'avemass.'.suffix
 set ylabel '<M> [M_{sun}]'
 set xlabel 't [Myr]'
 set autoscale
@@ -208,6 +213,7 @@ yscale = mscale
 plot filename @jump @colu19
 
 ####---------------plot NPARTC------------------
+set output 'npart.'.suffix
 set ylabel 'NPART'
 set xlabel 't [Myr]'
 set autoscale
@@ -221,6 +227,7 @@ yscale = 1
 plot filename @jump @colu19
 
 ####---------------plot Vx------------------
+set output 'vx.'.suffix
 set ylabel '<V_x> [km/s]'
 set xlabel 't [Myr]'
 set autoscale
@@ -234,6 +241,7 @@ yscale = vscale
 plot filename @jump @colu19
 
 ####---------------plot Vy------------------
+set output 'vy.'.suffix
 set ylabel '<V_y> [km/s]'
 set xlabel 't [Myr]'
 set autoscale
@@ -247,6 +255,7 @@ yscale = vscale
 plot filename @jump @colu19
 
 ####---------------plot Vz------------------
+set output 'vz.'.suffix
 set ylabel '<V_z> [km/s]'
 set xlabel 't [Myr]'
 set autoscale
@@ -260,6 +269,7 @@ yscale = vscale
 plot filename @jump @colu19
 
 ####---------------plot V------------------
+set output 'v.'.suffix
 set ylabel '<V> [km/s]'
 set xlabel 't [Myr]'
 set autoscale
@@ -273,6 +283,7 @@ yscale = vscale
 plot filename @jump @colu19
 
 ####---------------plot Vr------------------
+set output 'vr'.suffix
 set ylabel '<V_r> [km/s]'
 set xlabel 't [Myr]'
 set autoscale
@@ -286,6 +297,7 @@ yscale = vscale
 plot filename @jump @colu19
 
 ####---------------plot Vt------------------
+set output 'vt.'.suffix
 set ylabel '<V_T> [km/s]'
 set xlabel 't [Myr]'
 set autoscale
@@ -299,6 +311,7 @@ yscale = vscale
 plot filename @jump @colu19
 
 ####---------------plot Sigma--------------------
+set output 'sigma.'.suffix
 set ylabel '\Sigma [km/s]'
 set xlabel 't [Myr]'
 set nologscale y
@@ -311,6 +324,7 @@ yscale = vscale
 plot filename @jump @colu_sqrt19
 
 ####---------------plot Sigma_r--------------------
+set output 'sigmar.'.suffix
 set ylabel '\Sigma_{r} [km/s]'
 set xlabel 't [Myr]'
 set nologscale y
@@ -323,6 +337,7 @@ yscale = vscale
 plot filename @jump @colu_sqrt19
 
 ####---------------plot Sigma_t------------------
+set output 'sigmat.'.suffix
 set ylabel '\Sigma_{T} [km/s]'
 set xlabel 't [Myr]'
 set nologscale y
@@ -335,6 +350,7 @@ yscale = vscale
 plot filename @jump @colu_sqrt19
 
 ####---------------plot VROT------------------
+set output 'vrot.'.suffix
 set ylabel 'V_{ROT} [km/s]'
 set xlabel 't [Myr]'
 set nologscale y

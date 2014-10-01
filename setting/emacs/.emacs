@@ -32,9 +32,12 @@
 ;;Custom function=======================================================
 ;;======================================================================
 
+;;exit-recursive-edit
+(global-set-key "\C-xj" 'exit-recursive-edit)
+
 ;;overwrite-mode
-(global-set-key [f12] 'overwrite-mode)
-		 
+(global-set-key "\C-x\C-j" 'overwrite-mode)
+
 ;; Maximum frame========================================================
 (defun maximize-frame () 
   (interactive)
@@ -128,11 +131,11 @@ e.g. Sunday, September 17, 2000."
 ;;======================================================================
 
 ;;slime=================================================================
-;(add-to-list 'load-path "/opt/slime/")  ; your SLIME directory
-;(setq inferior-lisp-program "/usr/local/bin/sbcl") ; your Lisp system
-;(require 'slime)
-;(slime-setup '(slime-repl))
-;(global-set-key "\C-cl" 'slime)
+(add-to-list 'load-path "/opt/slime/")  ; your SLIME directory
+(setq inferior-lisp-program "/usr/local/bin/sbcl") ; your Lisp system
+(require 'slime)
+(slime-setup '(slime-repl))
+(global-set-key "\C-cl" 'slime)
 
 ;;;;indent-complete---------------------------------------------
 ;; (defun my-indent-or-complete-lisp ()
@@ -534,3 +537,9 @@ e.g. Sunday, September 17, 2000."
       (byte-compile-file (buffer-file-name))))
 (add-hook 'after-save-hook 'auto-compile)
  
+(custom-set-faces
+  ;; custom-set-faces was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+ '(default ((t (:inherit nil :stipple nil :background "black" :foreground "cornsilk" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 97 :width normal :foundry "unknown" :family "DejaVu Sans Mono")))))

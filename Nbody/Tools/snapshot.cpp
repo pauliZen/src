@@ -62,25 +62,30 @@ bool ismaller_r(ndata a, ndata b) {
   return dot(a.x)<dot(b.x);
 }
 
+//Lagrangian radii fraction==========================//
+const float fraction[18]={0.001,0.003,0.005,0.01,0.03,0.05,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,0.95,0.99,1.0};
+
 int main(int argc, char *argv[]){
     
   //initial arguments=================================//
-  pars_initial init(".calcmloss_config");
+  pars_initial init(".snapshot_config");
   init.add("time","time of snapshot file","0.0");
   init.add("out","output file name","data");
   init.add("off","offset for first line",(int)1);
   init.add("nmax","maximum particle number",(int)1000000);
   init.add("semi","semi-major axis[AU] upper limit",(double)50);
-  init.add("format","1: Snapshot for projection, 2: Snapshot for MOCCA",(int)1);
+  init.add("format","1: Snapshot for projection, generate lagrangian radii, 2: Snapshot for MOCCA",(int)1);
   init.add("bin","0: without binaries, 1: with binaries",(int)1);
+  init.add("datapath","nbody data path","./");
   init.initial(argc,argv);
 
   std::string time=init.gets("time");
   const bool bflag=init.geti("bin");
+  std::string datapath=init.gets("datapath");
 
   //m,x,v data========================================//
   FILE *sin;
-  if ( (sin = fopen(("conf.3_"+time).c_str(),"r")) == NULL) {
+  if ( (sin = fopen((datapath+"/conf.3_"+time).c_str(),"r")) == NULL) {
     fprintf(stderr,"Error: Cannot open input file %s.\n",("conf.3_"+time).c_str());
     return 0;
   }
@@ -130,7 +135,7 @@ int main(int argc, char *argv[]){
 
   //Single star evolution data========================//
   FILE *sein;
-  if ( (sein = fopen(("sev.83_"+time).c_str(),"r")) == NULL) {
+  if ( (sein = fopen((datapath+"/sev.83_"+time).c_str(),"r")) == NULL) {
     fprintf(stderr,"Error: Cannot open input file %s.\n.",("sev.83_"+time).c_str());
     return 0;
   }
@@ -182,7 +187,7 @@ int main(int argc, char *argv[]){
   if(bflag) {
     //KS binary star evolution data=====================//
     FILE *bein;
-    if ( (bein = fopen(("bev.82_"+time).c_str(),"r")) == NULL) {
+    if ( (bein = fopen((datapath+"/bev.82_"+time).c_str(),"r")) == NULL) {
       fprintf(stderr,"Error: Cannot open input file %s.\n.",("bev.82_"+time).c_str());
       return 0;
     }
@@ -225,7 +230,7 @@ int main(int argc, char *argv[]){
 
     //KS binary data====================================//
     FILE *bin;
-    if ( (bin = fopen(("bdat.9_"+time).c_str(),"r")) == NULL) {
+    if ( (bin = fopen((datapath+"/bdat.9_"+time).c_str(),"r")) == NULL) {
       fprintf(stderr,"Error: Cannot open input file %s.\n.",("bdat.9_"+time).c_str());
       return 0;
     }
@@ -243,8 +248,9 @@ int main(int argc, char *argv[]){
       fscanf(bin,"%d %d %lg %lg %lg %lg %lg %lg %lg %lg %d %d %lg %lg %lg %d %lg %d",&name[0],&name[1],&m[0],&m[1],&E,&ecc,&p,&a,&rcm,&vcm,&k1,&k2,&zn,&rp,&step1,&ncm,&ecm,&kcm);
       if (feof(bin)) break;
       if (bedat[name[0]].name!=name[0]||bedat[name[0]].name2!=name[1]) {
-        fprintf(stderr,"Error, bev name[0] = %d, name[1] = %d have empty data %d %d\n",name[0],name[1],bedat[name[0]].name,bedat[name[1]].name);
-        return 0;
+        fprintf(stderr,"Warning! bev name[0] = %d, name[1] = %d have empty data %d %d\n",name[0],name[1],bedat[name[0]].name,bedat[name[1]].name);
+        //        return 0;
+        continue;
       }
       if (data[name[0]].name!=name[0]||data[name[1]].name!=name[1]||data[ncm].name!=ncm) {
         fprintf(stderr,"Error, conf.3 name[0] = %d, name[1] = %d, ncm= %d have empty data %d %d %d\n",name[0],name[1],ncm,data[name[0]].name,data[name[1]].name,data[ncm].name);
@@ -268,7 +274,7 @@ int main(int argc, char *argv[]){
 
     //Wide binary data==================================//
     FILE *bwin;
-    if ( (bwin = fopen(("bwdat.19_"+time).c_str(),"r")) == NULL) {
+    if ( (bwin = fopen((datapath+"/bwdat.19_"+time).c_str(),"r")) == NULL) {
       fprintf(stderr,"Error: Cannot open input file %s.\n.",("bwdat.19_"+time).c_str());
       return 0;
     }
@@ -344,9 +350,21 @@ int main(int argc, char *argv[]){
   if(init.geti("format")==1) {
     //output IO=========================================//
     FILE *out;
+    FILE *lout;
     if ( (out = fopen((init.gets("out")+"_"+time).c_str(),"w")) == NULL) {
       fprintf(stderr,"Error: Cannot open input file %s.\n",(init.gets("out")+"_"+time).c_str());
       return 0;
+    }
+    if ( (lout = fopen((init.gets("out")+"_lagr").c_str(),"a")) == NULL) {
+      fprintf(stdout,"No %s file found, try to create new\n",(init.gets("out")+"_lagr").c_str());
+      if ( (lout = fopen((init.gets("out")+"_lagr").c_str(),"w")) == NULL) {
+        fprintf(stderr,"Error: Cannot open input file %s.\n",(init.gets("out")+"_lagr").c_str());
+        return 0;
+      }
+      fprintf(lout,"Time[NB] M_tot[M*] M_stot[M*] M_btot[M*]");
+      for (int i=0;i<18;i++)
+        fprintf(lout," %g",fraction[i]);
+      fprintf(lout,"\n");
     }
 
     //Sort data by distance to cluster center===========//
@@ -354,7 +372,16 @@ int main(int argc, char *argv[]){
     std::sort(dat,&dat[ntt],ismaller_r);
 
     printf("Output data\n");
-    for(int i=0;i<ntt;i++) 
+    double countmass=0.;
+    double cbmass=0.;
+    int bicount=0;
+    int lagri=0;
+    double mttot=mstot+mbtot;
+    double nbfrac[18]={};
+    double mbfrac[18]={};
+    double rlagr[18]={};
+    int lcount[18]={};
+    for(int i=0;i<ntt;i++) {
       fprintf(out,"%lg %lg %lg %lg %lg %lg %lg %lg %lg %lg %lg %lg %lg %lg %lg %lg %lg %lg %d %d %lg %lg %lg %lg %lg %lg %lg %lg\n",
               dat[i].x1[0]*par->rbar, dat[i].x1[1]*par->rbar, dat[i].x1[2]*par->rbar,
               dat[i].v1[0]*par->rbar, dat[i].v1[1]*par->rbar, dat[i].v1[2]*par->rbar,
@@ -364,8 +391,30 @@ int main(int argc, char *argv[]){
               dat[i].k1, dat[i].k2, dat[i].a, dat[i].e,
               dat[i].x[0]*par->rbar, dat[i].x[1]*par->rbar, dat[i].x[2]*par->rbar,
               dat[i].v[0]*par->rbar, dat[i].v[1]*par->rbar, dat[i].v[2]*par->rbar);
-
+      countmass +=dat[i].m1+dat[i].m2;
+      if(dat[i].m2>0.){
+        cbmass +=dat[i].m1+dat[i].m2;
+        bicount++;
+      }
+      if(countmass>fraction[lagri]*mttot) {
+        nbfrac[lagri] = (float)bicount/(float)i;
+        mbfrac[lagri] = cbmass/countmass;
+        rlagr[lagri] = std::sqrt(dot(dat[i].x));
+        lcount[lagri] = i;
+        lagri++;
+        if(lagri>18) printf("Warning!: Lagrangian radii counter larger than 18!, i=%d, mttot=%lg, countmass=%lg\n",i,mttot,countmass);
+      }
+    }
+    fprintf(lout,"%s %lg %lg %lg",time.c_str(),mttot,mstot,mbtot);
+    for(int i=0;i<18;i++) {
+      fprintf(lout," %lg",rlagr[i]);
+      fprintf(lout," %d",lcount[i]);
+      fprintf(lout," %lg",nbfrac[i]);
+      fprintf(lout," %lg",mbfrac[i]);
+    }
+    fprintf(lout,"\n");
     fclose(out);
+    fclose(lout);
   }
   else if(init.geti("format")==2) {
     if(bflag) {

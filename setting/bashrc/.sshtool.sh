@@ -179,7 +179,8 @@ function sscp()
 	esac
     done
     hostn=`findip -f -P $iname`
-    hostport=""
+    hostport=`findip -f -p $iname|awk '{print $2}'`
+    [[ `echo x$hostport` != "x" ]] &&  hostport="-P "$hostport
     if [ `echo $hostn|egrep -c "\-P"` -gt 0 ]; then
 	hostn=`findip -f -P $iname|awk '{print $3}'`
 	hostport=`findip -f -P $iname|awk '{print $1" "$2}'`

@@ -88,15 +88,15 @@ int main(int argc, char *argv[])
     std::string tfrac[11]={"0.1","2.1","15.9","50","84.1","97.55","99.8","10","25","75","90"};
     std::string t0label[5]={"S-A","S-M","S-P","P-A","P-M"};
     int mask[11]={10,10,30,50,150,220,250,0,0,0,0};
-    if(init.getb("draw_count")==1) {
+    if(init.geti("draw_count")==1) {
       for (int i=0;i<11;i++) {
         MultiDraw(tc,dir,("fscount_"+tfrac[i]+fig),parslist,"log10((ns+nb)/rbar**3):ns:sfrac["+to<std::string>(i)+"]:ns",legend_rf,"Log(N_{s,b}/R_{vir}^{3})","N_{SCE,"+tfrac[i]+"%}",init.gets("selection")+"&&sfrac[6]>0","",1,1.7,5.3,1,0,mask[i],0,0,0.8);
         MultiDraw(tc,dir,("fpcount_"+tfrac[i]+fig),parslist,"log10((ns+nb)/rbar**3):ns:pfrac["+to<std::string>(i)+"]:ns",legend_rf,"Log(N_{s,b}/R_{vir}^{3})","N_{PCE,"+tfrac[i]+"%}",init.gets("selection")+"&&pfrac[6]>0","",1,1.7,5.3,1,0,mask[i],0,0,0.8);
       }
     }
-    if(init.getb("draw_count")==2) {
+    if(init.geti("draw_count")==2) {
       for (int i=0;i<5;i++) {
-        MultiDraw(tc,dir,("frac0c_"+t0label[i]+fig),parslist,"log10((ns+nb)/rbar**3):ns:frac0["+to<std::string>(i)+"][0]:frac0["+to<std::string>(i)+"][1]",legend_rf,"Log(N_{s,b}/R_{vir}^{3})","N_{0,"+t0label[i]+"}",init.gets("selection")+"&&type==1","",1,1.7,5.3,1,0,1000,0,1,0.8);
+        MultiDraw(tc,dir,("frac0c_"+t0label[i]+fig),parslist,"log10((ns+nb)/rbar**3):ns:frac0["+to<std::string>(i)+"][0]:frac0["+to<std::string>(i)+"][1]",legend_rf,"Log(N_{s,b}/R_{vir}^{3})","N_{0,"+t0label[i]+"}",init.gets("selection")+"&&type==1","",1,1.7,5.3,1,0,1000,0,1,0.8,true,false);
       }
     }
   }

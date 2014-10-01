@@ -1,20 +1,26 @@
 .KEEP_STATE:
 #suggested by Keigo Nitadori 11/06/08.
-FFLAGS = -O3 -Wall -ffast-math
-#FFLAGS += -O3 -fbounds-check
+#FFLAGS = -O3 -Wall -ffast-math
+FFLAGS += -O3 -fbounds-check -fbacktrace
 #FFLAGS = -O3 -pg
-CFLAGS = -O3
 #FFLAGS = -O3
 #FC = f77
 #LD = f77
 FC = gfortran
 LD = gfortran -lstdc++ -fopenmp
+CC = g++ 
+ROOTCFLAGS      =$(shell root-config  --cflags)
+ROOTGLIBS       =$(shell root-config  --glibs)
+CPPFLAGS += $(ROOTCFLAGS) $(ROOTGLIBS) 
+#EXTRALIBS       +=-lSpectrum -fpermissive
+#EXTRALIBS	+=-I${shell echo ~}/include -L${shell echo ~}/lib -linitial
+
 
 VPATH = ../Chain:../Nchain:../Ncode
 
-LSOURCE= adjust.f 
+CSOURCE= bdata.cpp ce.cpp
 
-SOURCE = \
+SOURCE = adjust.f \
 nbody6.f assess.f bindat.f binev.f binout.f binpop.f \
 block.f bodies.f brake.f brake2.f brake3.f bsetid.f chaos0.f \
 chaos.f check.f checkl.f chrect.f clint.f cloud.f cloud0.f \
@@ -56,13 +62,15 @@ ycopy.f ysave.f \
 absorb.f chaos2.f chdata.f chfind.f chfirr.f chinit.f chlist.f chmod.f \
 chpert.f chpot.f chterm.f expel2.f fchain.f ghost.f giant2.f kcpert.f \
 reduce.f reinit.f renew.f setsys.f tchain.f xcpred.f xtpert.f \
-brake4.f ksrot.f deform2.f expand2.f circ.f spinup.f
+brake4.f ksrot.f deform2.f expand2.f circ.f spinup.f thijs_planets.f \
+findroot.f
 
+COBJECTS = $(CSOURCE:.cpp=.o)
 
 OBJECTS = $(SOURCE:.f=.o)
 
-nbody6:	$(OBJECTS)
-	$(LD) $(FFLAGS) $(OBJECTS) -o nbody6
+nbody6:	$(OBJECTS) $(COBJECTS)
+	$(LD) $(FFLAGS) $(OBJECTS) $(COBJECTS) $(CPPFLAGS) -o nbody6
 
 print:
 	@- \rm -f NBODY6.TEXT

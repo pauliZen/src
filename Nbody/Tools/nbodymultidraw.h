@@ -75,7 +75,7 @@ std::string selpars(std::string &selpar, std::string seltype, std::string selran
 }
 
 template <class T>
-void MultiDraw(T *ntree, std::string dir, std::string figname, std::string parsfile, const std::string varexp, Float_t *pleg, const std::string xtitle="", const std::string ytitle="", const std::string selection = "", const std::string title="NULL",bool xfix=0, Double_t xmin=0, Double_t xmax=0, bool yfix=0, Double_t ymin=0, Double_t ymax=0, bool xerr=1, bool yerr=1, Float_t marksize=0)
+void MultiDraw(T *ntree, std::string dir, std::string figname, std::string parsfile, const std::string varexp, Float_t *pleg, const std::string xtitle="", const std::string ytitle="", const std::string selection = "", const std::string title="NULL",bool xfix=0, Double_t xmin=0, Double_t xmax=0, bool yfix=0, Double_t ymin=0, Double_t ymax=0, bool xerr=1, bool yerr=1, Float_t marksize=0, bool tl1=true, bool tl2=true)
 {
   labelinit();
   std::ifstream pl(parsfile.c_str());
@@ -191,7 +191,7 @@ void MultiDraw(T *ntree, std::string dir, std::string figname, std::string parsf
               h[markerindex]->SetMarkerStyle(d2+20);
               h[markerindex]->SetMarkerColor(1);
               if (marksize) h[markerindex]->SetMarkerSize(marksize);
-              tl->AddEntry(h[markerindex],label1.c_str(),"p");
+              if(tl1) tl->AddEntry(h[markerindex],label1.c_str(),"p");
               drawflag[d2]=true;
             }
             mh->Add(h[d2index]);
@@ -213,11 +213,11 @@ void MultiDraw(T *ntree, std::string dir, std::string figname, std::string parsf
           }
           h[d1eindex]=new TGraphErrors;
           h[d1eindex]->SetLineColor(idd);
-          tl->AddEntry(h[d1eindex],label0.c_str(),"l");
+          if(tl2) tl->AddEntry(h[d1eindex],label0.c_str(),"l");
         }
       }
       mh->Draw("AP");
-      tl->Draw("same");
+      if(tl1||tl2) tl->Draw("same");
       tl->SetFillStyle(0);
       tl->SetFillColor(0);
       tl->SetLineStyle(0);
@@ -235,6 +235,7 @@ void MultiDraw(T *ntree, std::string dir, std::string figname, std::string parsf
         mh->SetMinimum(ymin);
         mh->SetMaximum(ymax);
       }
+      mh->GetYaxis()->SetTitleOffset(1.2);
       c1.Print((dir+selpar+"_"+selval[s]+"_"+figname).c_str());
       c1.Clear();
     }

@@ -3,7 +3,7 @@ drawv4=1
 drawv42000=0
 drawsample=0
 drawselect='0 0 0 0 0 0 0 0 1'
-fitrootname='new2_'
+fitrootname='new3_'
 
 figdir='/home/lwang/Dropbox/Datas/Planets/'
 
