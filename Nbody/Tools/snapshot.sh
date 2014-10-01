@@ -1,11 +1,10 @@
-echo "dirlist output_datapath output_prefix"
-read dirlist datapath output
-
-[ -e $dirlist ] || return
+#!bin/bash
+echo 'dirlist datapath=data output_prefix=data'
+dirlist=dirlist
+datapath=data
+output_prefix=data
 lst=`cat $dirlist`
-
 [ -d $datapath ] || mkdir $datapath
-
 for i in $lst
 do
     ls $i/conf.3_*|cut -d'_' -f2|sort -n >tmplist

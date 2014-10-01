@@ -34,3 +34,19 @@ Icon
 # Files that might appear on external disk
 .Spotlight-V100
 .Trashes
+
+#emacs file
+*~
+\#*\#
+
+#binary file
+*.exe
+*.out
+
+#unknown file
+*.
+
+#object file
+*.o
+*.so
+*.a
