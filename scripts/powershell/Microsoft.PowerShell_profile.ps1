@@ -1,5 +1,9 @@
 # set profile name
-# New-Variable sprof c:/Users/lwang/Documents/GitHub/src/scripts/powershell/Microsoft.PowerShell_profile.ps1
+New-Variable -Name sprof -Value c:/Users/lwang/Documents/GitHub/src/scripts/powershell/Microsoft.PowerShell_profile.ps1 -Scope Global
+New-Variable -Name data -Value C:\Users\lwang\OneDrive\Documents\Datas -Scope Global
+New-Variable -Name src -Value C:\Users\lwang\Documents\GitHub\src -Scope Global
+New-Variable -Name code -Value C:\Users\lwang\Documents\code -Scope Global
+New-Variable -Name writing -Value C:\Users\lwang\OneDrive\Documents\Writing -Scope Global
 
 # awk
 if (test-path "C:\Program Files (x86)\gawk-3.1.6-1\bin")
@@ -38,3 +42,20 @@ Clear-Host
 # list only name
 # function l {Get-Childitem -name}
 
+# proxy switcher
+Function global:set-proxy ($x)
+{
+    $varPath=¡±HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings¡±
+    if($x -eq "on")
+    {      
+        set-itemproperty -path $varPath proxyenable -value 1
+        set-itemproperty -path $varPath proxyhttp1.1 -value 0
+        set-itemproperty -path $varPath proxyserver -value "127.0.0.1:8087"
+        set-itemproperty -path $varPath ProxyOverride -value "<local>"
+    }
+    else
+    {
+        set-itemproperty -path $varPath proxyenable -value 0
+        set-itemproperty -path $varPath proxyhttp1.1 -value 1
+    }
+}
