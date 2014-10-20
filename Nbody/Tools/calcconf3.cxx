@@ -142,15 +142,18 @@ int main(int argc, char *argv[]){
     int nnow=0; //Total number now 
     int nbinds=0; //Strong bound number
     int nbindw=0; //Weak bound number
-    int ntid=0; //<2 r_tid number
+    int ntid=0; //r_tid number
+    int ntid2=0; //<2 r_tid number
     double Mnow=0; //Total mass now
     double Minit=0; //Total mass initial
     double Mbindsn=0;   //Total strong bound mass now    
     double Mbindwn=0;   //Total weak bound mass now      
-    double Mtidn=0;   //Total mass <2 r_tid now          
+    double Mtidn=0;   //Total mass <r_tid now
+    double Mtid2n=0;   //Total mass <2 r_tid now          
     double Mbindsi=0;   //Total strong bound mass initial
     double Mbindwi=0;   //Total weak bound mass initial  
-    double Mtidi=0;   //Total mass <2 r_tid initial      
+    double Mtidi=0;   //Total mass r_tid initial
+    double Mtid2i=0;   //Total mass <2 r_tid initial      
     FILE *fout;
     if ( (fout = fopen(init.gets("outmloss").c_str(),"a+")) == NULL) {
       fprintf(stderr,"Error: Cannot open input file %s.\n",init.gets("outmloss").c_str());
@@ -166,10 +169,16 @@ int main(int argc, char *argv[]){
         Mnow +=msol;
         nnow++;
         Minit +=mass0[data[j].name];
-        if(distance(data[j].x)<2*rtid) {
-          Mtidn +=msol;
-          ntid++;
-          Mtidi +=mass0[data[j].name];
+        double curd=distance(data[j].x);
+        if(curd<2*rtid) {
+          Mtid2n +=msol;
+          ntid2++;
+          Mtid2i +=mass0[data[j].name];
+          if (curd<rtid) {
+            Mtidn +=msol;
+            ntid++;
+            Mtidi +=mass0[data[j].name];
+          }
         }
         float ekin=0.5*distance(data[j].v);
         if(ekin<data[j].phi) {
@@ -185,9 +194,9 @@ int main(int argc, char *argv[]){
       }
       else printf("Warning!: %d name %d <=0 or >ntot %d\n",j,data[j].name,n0tot);
     }
-    if(ttot==0.) fprintf(fout,"N_{now} N_{s,bind} N_{w,bind} N_{tid} M_{now} M_{init} M_{now,s,bind} M_{now,w,bind} M_{now,tid} M_{init,s,bind} M_{init,w,bind} M_{init,tid}\n");
+    if(ttot==0.) fprintf(fout,"Time[Myr] R_{tid}[pc] M_{now} M_{init} N_{now} M_{now,s,bind} M_{init,s,bind} N_{s,bind}  M_{now,w,bind} M_{init,w,bind} N_{w,bind} M_{now,tid} M_{init,tid} N_{tid} M_{now,2*tid} M_{init,2*tid} N_{2*tid} \n");
     fprintf(fout,
-            "%g %g %g %g %d %g %g %d %g %g %d %g %g %d\n",
+            "%g %g %g %g %d %g %g %d %g %g %d %g %g %d %g %g %d\n",
             ttot,
             rtid*par->rbar,
             Mnow,
@@ -201,7 +210,10 @@ int main(int argc, char *argv[]){
             nbindw,
             Mtidn,
             Mtidi,
-            ntid);
+            ntid,
+            Mtid2n,
+            Mtid2i,
+            ntid2);
     fclose(fout);
   }
 
