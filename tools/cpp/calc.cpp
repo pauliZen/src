@@ -59,7 +59,7 @@ int main(int argc, char* argv[])
     string index=tostring(i);
     tablepars.add(("value"+index).c_str(),"parameters",0.0);
   }
-  tablepars.initial(argc,argv,1,0);
+  tablepars.initial(argc,argv,0,0);
 
   //Help==============================================//
   string option=tablepars.get<string>("opt");
