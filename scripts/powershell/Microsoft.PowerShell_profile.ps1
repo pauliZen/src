@@ -10,6 +10,9 @@ New-Variable -Name writing -Value C:\Users\lwang\OneDrive\Documents\Writing -Sco
 
 New-Variable -Name nbtools -Value ${src}\Nbody\Tools -Scope Global
 
+#python
+if (test-path "C:\Python27")
+{$env:PATH="$env:PATH;C:\Python27"}
 # gnuwin32
 if (test-path "C:\Program Files (x86)\GnuWin32\bin")
 {$env:PATH="$env:PATH;C:\Program Files (x86)\GnuWin32\bin"}
