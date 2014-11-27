@@ -162,7 +162,7 @@ function ssync()
     hostn=`findip -f -iu $sydestname`
     if [ $sydirect = 0 ] ; then
 #	rsync -lvu --rsh="ssh $iport" $deleteopt $opt ~/$rdir$tardir `findip -f -iu $sydestname`:$rdir
-	rsync -lvu --rsh="ssh $iport" $deleteopt $opt $sfile $hostn:$rdir
+	rsync -lvu --rsh="ssh $iport" $deleteopt $opt $sfile $hostn:$tfile
     else
 	sfilepath=""
 	for i in $sfile; do sfilepath=$sfilepath' '$hostn:$i; done;
