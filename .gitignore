@@ -50,3 +50,4 @@ Icon
 *.o
 *.so
 *.a
+*.gch
