@@ -146,7 +146,7 @@ function ssync()
 #	    -list) echo 'Target List: '`ls -m ~/Dropbox`;break;;
 	    -h) shift;sydestname=$1;shift;;
 	    -d) sydirect=1;shift;;
-	    -o) shift;opt=$1;shift;;
+	    -o) shift;opt=$opt$1;shift;;
 	    -del) deleteopt="--delete";shift;;
 	    -r) opt="-r "$opt;shift;;
 #	    -s) shift;tardir=$1;rdir="Dropbox/";shift;;
