@@ -43,7 +43,12 @@ export HUGETLB_MORECORE=yes
 [ -d /opt/libgd ] && LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/libgd/lib && PATH=$PATH:/opt/libgd/bin
 #nemo
 [ -d /opt/nemo ] && PATH=$PATH:/opt/nemo/bin
+#intel
+#[ -d /opt/intel/bin ] && source /opt/intel/bin/compilervars.sh intel64
 #open
 alias go='gnome-open'
 #rotate screen
 #xrandr -o left,right
+
+#ipython notebook
+alias ipynb='ipython notebook --profile=nbserver 1>~/data/connect/ipython.notebook.log 2>&1 &'

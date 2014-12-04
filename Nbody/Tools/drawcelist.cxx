@@ -35,6 +35,9 @@ static nbodyvfit* vfit;
 
 typedef void (*FitFill) (TF1 *nfit,const Int_t &id);
 
+const double yoffset=1.2;
+const double fontsize=0.04;
+
 //Maxwell distribution==============================//
 Double_t MBdist(Double_t *v, Double_t *par)
 {
@@ -136,7 +139,7 @@ void draw_dist_fun(Float_t *plegend, Int_t bins, Float_t xmin, Float_t xmax, Flo
   if (fit_flag&&vfit==0) vfit=new nbodyvfit(fittreename,init.gets("fitroot"),0);
   else if (fit_flag) vfit->Switch(fittreename);
   //==================================================//
-  TCanvas c1;
+  TCanvas c1("c1","c1");
   tcl.Draw(">>tlist",drawopt&&opt2,"entrylist");
   TEntryList *tel=(TEntryList*)gDirectory->Get("tlist");
   tcl.fchain->SetEntryList(tel);
@@ -153,7 +156,11 @@ void draw_dist_fun(Float_t *plegend, Int_t bins, Float_t xmin, Float_t xmax, Flo
     tf[i]=new TH1F((foldername+si).c_str(),(title+si).c_str(),bins,xmin,xmax);
     tf[i]->SetXTitle(xtitle.c_str());
     tf[i]->SetYTitle(ytitle.c_str());
-    tf[i]->GetYaxis()->SetTitleOffset(1.2);
+    tf[i]->GetYaxis()->SetTitleOffset(yoffset);
+    tf[i]->GetXaxis()->SetTitleSize(fontsize);
+    tf[i]->GetYaxis()->SetTitleSize(fontsize);
+    tf[i]->GetXaxis()->SetLabelSize(fontsize);
+    tf[i]->GetYaxis()->SetLabelSize(fontsize);
     tf[i]->SetLineColor(id%10?id:id+10);
     tf[i]->SetTitle("");
     tf[i]->SetStats(0);
@@ -235,7 +242,7 @@ void draw_vs_fun(Float_t *plegend, Float_t xmin, Float_t xmax, Float_t ymin, Flo
   tm->SetTitle((title+";"+xtitle+";"+ytitle).c_str());
   TCut opt2=exdrawopt.c_str();
   TLegend *tl=new TLegend(plegend[0],plegend[1],plegend[2],plegend[3]);
-  TCanvas c1;
+  TCanvas c1("c1","c1");
   if (foldername=="") foldername=xtitle+"_"+ytitle;
   tl->SetFillColor(0);
   tl->SetLineColor(0);
@@ -372,7 +379,11 @@ void draw_vs_fun(Float_t *plegend, Float_t xmin, Float_t xmax, Float_t ymin, Flo
   tl->Draw();
   gPad->Modified();
   tm->GetXaxis()->SetLimits(xmin,xmax);
-  tm->GetYaxis()->SetTitleOffset(1.2);
+  tm->GetYaxis()->SetTitleOffset(yoffset);
+  tm->GetXaxis()->SetTitleSize(fontsize);
+  tm->GetYaxis()->SetTitleSize(fontsize);
+  tm->GetXaxis()->SetLabelSize(fontsize);
+  tm->GetYaxis()->SetLabelSize(fontsize);
   tm->SetMaximum(ymax);
   tm->SetMinimum(ymin);
 
@@ -650,7 +661,7 @@ void draw_hist_count(Float_t *plegend, std::string foldername="")
     cpfrac0[i][1] = sqrt(cpfrac0[i][1]);
   }
     
-  TCanvas c1;
+  TCanvas c1("c1","c1");
   TH1I **th=new TH1I*[3];
   TH1I **thb=new TH1I*[3];
   TH1I **thp=new TH1I*[3];
@@ -706,8 +717,13 @@ void draw_hist_count(Float_t *plegend, std::string foldername="")
       th[i]->SetLineColor(colorid);
       th[i]->SetFillColor(0);
       th[i]->SetTitle("");
-      th[i]->SetYTitle("Events Number");
-      th[i]->SetXTitle("N_{c,s}[Counts/star]");
+      th[i]->SetYTitle("encounter number per star");
+      th[i]->SetXTitle("number of stars");
+      th[i]->GetYaxis()->SetTitleOffset(yoffset);
+      th[i]->GetXaxis()->SetTitleSize(fontsize);
+      th[i]->GetYaxis()->SetTitleSize(fontsize);
+      th[i]->GetXaxis()->SetLabelSize(fontsize);
+      th[i]->GetYaxis()->SetLabelSize(fontsize);
       th[i]->SetStats(0);
       th[i]->SetMaximum(10000);
       tl->AddEntry(th[i],labels[0][i].c_str());
@@ -800,10 +816,15 @@ void draw_hist_count(Float_t *plegend, std::string foldername="")
       Int_t colorid=(i+1)%10?i+1:i+11;
       thp[i]->SetLineColor(colorid);
       thp[i]->SetFillColor(0);
-      thp[i]->SetLineStyle(2);
+      //      thp[i]->SetLineStyle(2);
       thp[i]->SetTitle("");
-      thp[i]->SetYTitle("Events Number");
-      thp[i]->SetXTitle("N_{c,p}[Counts/star]");
+      thp[i]->SetYTitle("encounter number per planet");
+      thp[i]->SetXTitle("number of planets");
+      thp[i]->GetYaxis()->SetTitleOffset(yoffset);
+      thp[i]->GetXaxis()->SetTitleSize(fontsize);
+      thp[i]->GetYaxis()->SetTitleSize(fontsize);
+      thp[i]->GetXaxis()->SetLabelSize(fontsize);
+      thp[i]->GetYaxis()->SetLabelSize(fontsize);
       thp[i]->SetStats(0);
       thp[i]->SetMaximum(10000);
       tlp->AddEntry(thp[i],labels[1][i].c_str());
@@ -916,14 +937,14 @@ int main(int argc, char* argv[])
   Float_t legend_lnf[4]={0.13,0.5,0.23,0.89};
   Float_t legend_rnf[4]={0.75,0.5,0.89,0.89};
   Float_t legend_rf[4]={0.79,0.49,0.89,0.89};
-  if (init.getb("draw_bip_dist")) draw_dist_fun<Double_t>(legend_lnf,100,0,1000,0,0,tcl.bip[1],tcl.b_bip,"b(AU)","EC Number","Impact parameter distribution",200,"","b",1,"bfit",0, 0,"linearf",LinearFill);
-  if (init.getb("draw_peri_dist")) draw_dist_fun<Double_t>(legend_lnf,100,0,1000,0,0,tcl.peri[1],tcl.b_peri,"p(AU)","EC Number", "Periastron distribution",200,"","p",1,"pfit",0, 0,"linearf",LinearFill);
-  if (init.getb("draw_t_dist")) draw_dist_fun<Double_t>(legend_rnf,100,0.1,2.5,0,7000,tcl.t[1],tcl.b_t,"Log10[t(Myr)]","EC Number", "Encounter time distribution",20,"","t",1,"tfit",1,0,"Gausf",GausFill);
-  if (init.getb("draw_vinf_dist")) draw_dist_fun<Double_t>(legend_rnf,100,0,10,0.5,0,tcl.vinf[1],tcl.b_vinf,"v_{#infty}(km/s)","EC Number","Imcoming velocity distribution",100,"vinf[1]<=10&&vinf[1]>=0","vinf",1,"vinffit",0, 1,"maxf",MBFill);
-  if (init.getb("draw_vp_dist")) draw_dist_fun<Double_t>(legend_rnf,100,0,10,0.5,0,tcl.vp[1],tcl.b_vp,"v_{p}(km/s)","EC Number","Periastron velocity distribution",100,"vp[1]>=0&&vp[1]<=10","vp",1,"vpfit",0, 1,"maxfe",MBExFill);
+  if (init.getb("draw_bip_dist")) draw_dist_fun<Double_t>(legend_lnf,100,0,1000,0,0,tcl.bip[1],tcl.b_bip,"b [AU]","ecounter number","Impact parameter distribution",200,"","b",1,"bfit",0, 0,"linearf",LinearFill);
+  if (init.getb("draw_peri_dist")) draw_dist_fun<Double_t>(legend_lnf,100,0,1000,0,0,tcl.peri[1],tcl.b_peri,"p [AU]","encounter number", "Periastron distribution",200,"","p",1,"pfit",0, 0,"linearf",LinearFill);
+  if (init.getb("draw_t_dist")) draw_dist_fun<Double_t>(legend_rnf,100,0.1,2.5,0,7000,tcl.t[1],tcl.b_t,"log(t [Myr])","encounter number", "Encounter time distribution",20,"","t",1,"tfit",1,0,"Gausf",GausFill);
+  if (init.getb("draw_vinf_dist")) draw_dist_fun<Double_t>(legend_rnf,100,0,10,0.5,0,tcl.vinf[1],tcl.b_vinf,"v_{#infty} (km/s)","encounter number","Imcoming velocity distribution",100,"vinf[1]<=10&&vinf[1]>=0","vinf",1,"vinffit",0, 1,"maxf",MBFill);
+  if (init.getb("draw_vp_dist")) draw_dist_fun<Double_t>(legend_rnf,100,0,10,0.5,0,tcl.vp[1],tcl.b_vp,"v_{p} (km/s)","encounter number","Periastron velocity distribution",100,"vp[1]>=0&&vp[1]<=10","vp",1,"vpfit",0, 1,"maxfe",MBExFill);
   if (init.getb("draw_a_e")) draw_vs_fun<Double_t,Double_t>(legend_lnf,0,2,-10000,10000,0.1,tcl.ecc[1],tcl.semi[1],tcl.b_ecc,tcl.b_semi,"e","a(AU)","semi-major axis vs. eccentricity","semi[1]<10000&&semi[1]>-10000&&ecc[1]<2","a_e",init.geti("point_count"));
   if (init.getb("draw_vp_p")) draw_vs_fun<Double_t,Double_t>(legend_rf,0,1000,0,20,0.1,tcl.peri[1],tcl.vp[1],tcl.b_peri,tcl.b_vp,"p (AU)","v_{p} (km/s)","","vp[1]>0","vp_p",init.geti("point_count"));
-  if (init.getb("draw_vinf_b")) draw_vs_fun<Double_t,Double_t>(legend_rf,0,1000,0,20,0.1,tcl.bip[1],tcl.vinf[1],tcl.b_bip,tcl.b_vinf,"b(AU)","v_{#infty}(km/s)","Imcoming velocity vs. impact parameter","","vinf_b",init.geti("point_count"));
+  if (init.getb("draw_vinf_b")) draw_vs_fun<Double_t,Double_t>(legend_rf,0,1000,0,20,0.1,tcl.bip[1],tcl.vinf[1],tcl.b_bip,tcl.b_vinf,"b(AU)","v_{#infty} (km/s)","Imcoming velocity vs. impact parameter","","vinf_b",init.geti("point_count"));
   if (init.getb("draw_hist_count")) draw_hist_count(legend_rf);
   
   std::cout<<"All Finish\n";

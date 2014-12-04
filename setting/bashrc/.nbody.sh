@@ -11,6 +11,20 @@ function ntime()
     egrep -m 1 '\<PE +N' $1
     egrep -A 1 '\<PE +N' $1|sed '{/PE/d ; /--/d}'
 }
+
+function ntime_all()
+{
+    [ -e $1 ] || return
+    lst=`cat $1`
+#    egrep -m 1 '\<PE +N' `head -1 $1`
+#    [ -e ntime_tmp ] || rm -i ntime_tmp
+    for i in $lst
+    do
+#	egrep -A 1 '\<PE +N' $i|sed '{/PE/d ; /--/d}' >ntime_tmp
+	ntime $i
+    done
+}
+
 function radius()
 {
     egrep -m 1 '^\ +<R>' $1

@@ -17,19 +17,22 @@
 #include <TMultiGraph.h>
 #include <map>
 
+const double yoffset=1.2;
+const double fontsize=0.04;
+
 static std::map<std::string, std::string> labelmap;
 
 void labelinit(){
-  labelmap["rbar"]="R_{vir}";
-  labelmap["ns+nb"]="N_{s,b}";
+  labelmap["rbar"]="r_{vir}";
+  labelmap["ns+nb"]="N_{sb}";
   labelmap["ns"]="N_{s}";
   labelmap["np"]="N_{p}";
   labelmap["nb"]="N_{b}";
   labelmap["ns+nb+np"]="N_{s,b}+N_{p}";
-  labelmap["m1+10*p1=11"]="M_{s}=1, E_{j}=D";
-  labelmap["m1+10*p1=12"]="M_{s}=0.6, E_{j}=D";
-  labelmap["m1+10*p1=22"]="M_{s}=0.6, E_{j}=P";
-  labelmap["m1+10*p1=21"]="M_{s}=1, E_{j}=P";
+  labelmap["m1+10*p1=11"]="M_{s}=1, f_{ej}=D";
+  labelmap["m1+10*p1=12"]="M_{s}=0.6, f_{ej}=D";
+  labelmap["m1+10*p1=22"]="M_{s}=0.6, f_{ej}=P";
+  labelmap["m1+10*p1=21"]="M_{s}=1, f_{ej}=P";
   labelmap["m1+10*p1=0"]="Z";
   labelmap["type=1"]="S-S";
   labelmap["type=2"]="S-P";
@@ -114,7 +117,7 @@ void MultiDraw(T *ntree, std::string dir, std::string figname, std::string parsf
 #ifdef DEBUG
     std::cout<<"Build Canvas\n";
 #endif      
-    TCanvas c1;
+    TCanvas c1("c1","c1");
     TCut cutt=totlimit.c_str();
     TCut cuts,cut1,cut2;
     TCut cutp=selection.c_str();
@@ -235,7 +238,11 @@ void MultiDraw(T *ntree, std::string dir, std::string figname, std::string parsf
         mh->SetMinimum(ymin);
         mh->SetMaximum(ymax);
       }
-      mh->GetYaxis()->SetTitleOffset(1.2);
+      mh->GetYaxis()->SetTitleOffset(yoffset);
+      mh->GetXaxis()->SetTitleSize(fontsize);
+      mh->GetYaxis()->SetTitleSize(fontsize);
+      mh->GetXaxis()->SetLabelSize(fontsize);
+      mh->GetYaxis()->SetLabelSize(fontsize);
       c1.Print((dir+selpar+"_"+selval[s]+"_"+figname).c_str());
       c1.Clear();
     }
