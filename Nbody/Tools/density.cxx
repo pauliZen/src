@@ -1,3 +1,4 @@
+//Check data (m,x,y,z,vx,vy,vz) density profile or randomize the order of data
 #include <stdio.h>
 #include <cstdlib>
 #include <cassert>
@@ -6,6 +7,7 @@
 #include <cmath>
 #include <initial.h>
 #include <omp.h>
+#include <time.h>
 // #include <TGraph.h>
 // #include <TCanvas.h>
 #ifndef NAN_CHECK
@@ -15,6 +17,11 @@
 struct mr{
   double m;
   double r;
+};
+
+struct id{
+  int id;
+  int irand;
 };
 
 struct particle{
@@ -62,51 +69,69 @@ void particle_scanf(const char* name, particle *list, int count)
 }
 
 bool is_shorter (const mr& i,const mr& j) { return (i.r<j.r); }
+bool id_shorter (const id& i, const id& j) { return (i.irand<j.irand); }
 
 int main(int argc, char **argv) {
   pars_initial init(".density_config");
   init.add("input","data","fort.10");
   init.add("N","number",1000000);
-  init.add("output","file","rprof");
+  init.add("Opt","1. output density profile; 2. output new data with random order",1);
+  init.add("output","file","data");
   init.initial(argc,argv);
 
   int nt=init.geti("N");
+  int opt=init.geti("Opt");
   particle *N=new particle[nt];
   particle_scanf(init.gets("input").c_str(),N,nt);
-
-  mr *dr=new mr[nt];
-  double avr=0.;
-  for (int i=0;i<nt;i++) {
-    dr[i].r=sqrt(N[i].r[0]*N[i].r[0]+N[i].r[1]*N[i].r[1]+N[i].r[2]*N[i].r[2]);
-    avr +=dr[i].r;
-    dr[i].m=N[i].mass;
-  }
-  avr /=nt;
-
-  std::sort(dr,dr+nt,is_shorter);
-
-//   double *x=new double[nt];
-//   double *cm=new double[nt];
   
-  for (int i=1;i<nt;i++) {
-     dr[i].m +=dr[i-1].m;
-//     cm[i] = dr[i].m;
-//     x[i] = dr[i].r;
-  }
-
   FILE *out;
   if ( (out = fopen(init.gets("output").c_str(),"w")) == NULL) {
     fprintf(stderr,"Output cannot open\n");
     return 0;
   }
 
-  printf("Average R: %g\n",avr);
+  if(opt==1) {
+    mr *dr=new mr[nt];
+    double avr=0.;
+    for (int i=0;i<nt;i++) {
+      dr[i].r=sqrt(N[i].r[0]*N[i].r[0]+N[i].r[1]*N[i].r[1]+N[i].r[2]*N[i].r[2]);
+      avr +=dr[i].r;
+      dr[i].m=N[i].mass;
+    }
+    avr /=nt;
 
-  fprintf(out,"R, M\n");
-  for (int i=0; i<nt;i++) {
-    fprintf(out,"%g %g\n",dr[i].r,dr[i].m);
-  }
+    std::sort(dr,dr+nt,is_shorter);
+
+    //   double *x=new double[nt];
+    //   double *cm=new double[nt];
   
+    for (int i=1;i<nt;i++) {
+      dr[i].m +=dr[i-1].m;
+      //     cm[i] = dr[i].m;
+      //     x[i] = dr[i].r;
+    }
+    printf("Average R: %g\n",avr);
+
+    fprintf(out,"R, M\n");
+    for (int i=0; i<nt;i++) {
+      fprintf(out,"%g %g\n",dr[i].r,dr[i].m);
+    }
+  }
+  else {
+    srand(time(NULL));
+    id *in = new id[nt];
+    for (int i=0; i<nt; i++) {
+      in[i].irand = rand();
+      in[i].id = i;
+    }
+    std::sort(in,in+nt,id_shorter);
+    for (int i=0;i<nt;i++) {
+      int k = in[i].id;
+      fprintf(out,"%.16E %.16E %.16E %.16E %.16E %.16E %.16E\n", N[k].mass,N[k].r[0],N[k].r[1],N[k].r[2],N[k].v[0],N[k].v[1],N[k].v[2]);
+    }
+    
+  }
+    
 //   TCanvas c1;
 //   TGraph *h1=new TGraph(nt,x,cm);
 //   h1->SetTitle("mass profile;r;cum. mass");

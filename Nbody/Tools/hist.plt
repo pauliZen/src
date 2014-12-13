@@ -3,7 +3,7 @@ reset
 #set term png #output terminal and file
 #set output "histogram.png"
 set term postscript landscape enhanced color "Text" 16
-set output 'bin_358.ps'
+set output 'bin.ps'
 
 #set term x11
 
@@ -37,7 +37,7 @@ log_hist_plot= " set boxwidth binwidth; \
 #              set tics out nomirror; \
 #              plot file every ::igl u (hist(log10(column(col)*scale),width)):(1.0) smooth freq w boxes lc rgb\"green\" notitle "
 
-file = "bdat.358"  #filename
+file = "bdat"  #filename
 igl  = 4       #ignore lines
 n    = 100     #number of intervals
 scale = 1.0    #scaling of data

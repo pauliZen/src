@@ -196,7 +196,7 @@ void draw_dist_fun(Float_t *plegend, Int_t bins, Float_t xmin, Float_t xmax, Flo
       vfitfun(fit[i],id);
       fit[i]->SetLineColor(id%10?id:id+10);
       fit[i]->SetLineStyle(2);
-      tl->AddEntry(fit[i],(tlabel[id]+" fit").c_str());
+      //      tl->AddEntry(fit[i],(tlabel[id]+" fit").c_str());
     }
     if (i==0) tf[0]->Draw();
     else tf[i]->Draw("same");
