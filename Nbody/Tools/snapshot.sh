@@ -1,9 +1,10 @@
-#!bin/bash
 echo 'dirlist datapath=data output_prefix=data'
 dirlist=dirlist
-datapath=data
+datapath=data2
 output_prefix=data
+
 lst=`cat $dirlist`
+
 [ -d $datapath ] || mkdir $datapath
 for i in $lst
 do
@@ -13,6 +14,7 @@ do
     for j in $flst
     do 
 	time=$j
-	echo $i' '$j' '$output_prefix
+	echo $i' '$j
+	snapshot $time $datapath/$output_prefix 1 2000000 50 1 1 $i
     done
 done

@@ -2,7 +2,7 @@
 lst=`cat dirlist`
 offset=1
 nmax=1500000
-datapath=data
+datapath=lagr
 
 [ -d $datapath ] || mkdir $datapath
 [ -e $datapath/mloss ] && rm $datapath/mloss
@@ -18,10 +18,10 @@ do
     do
 	time=`echo $j|cut -d'_' -f2`
 	if [[ $isfirst == 'n' ]]; then
-	    calcconf3 $j $offset $nmax 0 -1.0 1 $datapath/mloss 1 $datapath/mm0_$time 1 $datapath/lagr_c 1 $datapath/den_$time $datapath/denb_$time 0
+	    calcconf3 $j $offset $nmax 0 -1.0 0 $datapath/mloss 0 $datapath/mm0_$time 1 $datapath/lagr_c 0 $datapath/den_$time $datapath/denb_$time 0
 	    isfirst='y'
 	else
-	    calcconf3 $j $offset $nmax 1 -1.0 1 $datapath/mloss 1 $datapath/mm0_$time 1 $datapath/lagr_c 1 $datapath/den_$time $datapath/denb_$time 0
+	    calcconf3 $j $offset $nmax 1 -1.0 0 $datapath/mloss 0 $datapath/mm0_$time 1 $datapath/lagr_c 0 $datapath/den_$time $datapath/denb_$time 0
 	fi
     done
 done
