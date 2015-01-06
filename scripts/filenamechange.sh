@@ -7,7 +7,7 @@ function replace_name()
 #	    -g) shift;rtimes=$1;shift;;
 	    -r) shift;originname=$1;shift;;
 	    -o) shift;oldchars=$1;shift;;
-	    -h) echo '-g [replace num] -r [search name] -o [old chars] -n [new chars]';return;;
+	    -h) echo '-r [search name] -o [old chars] [new chars]';return;;
 	    *) newname=$1;shift;;
 	esac
     done

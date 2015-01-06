@@ -20,7 +20,7 @@ int main(int argc, char *argv[])
   if (option=="hnps") configfile=".draw_hnps_config";
   else if (option=="tex") configfile=".draw_tex_config";
   
-  pars_initial ini(configfile);
+  pars_initial ini(configfile,opt.getnextargc());
   if (option=="hnps")
   {
     ini.add("figpath","Directory to store figures","/home/lwang/Dropbox/Datas/Planets/");
@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
     ini.add("texname","tex file name","cetable.tex");
     ini.add("configure","configure file, format: hnum, tnum, hlist, tlist","tex.config");
   }
-  ini.initial(argc,argv,opt.getnextargc());
+  ini.initial(argc,argv);
   
   if (option=="hnps") stp.Drawhps(ini.get<std::string>("figpath"),ini.get<std::string>("figname"),ini.get<std::string>("parlist"),ini.get<int>("option"));
   else if (option=="tex")

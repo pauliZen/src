@@ -1,6 +1,6 @@
 #draw figures for FFplanet paper
-draw_ce=0
-drawn_nsnp=1
+draw_ce=1
+drawn_nsnp=0
 drawn_p=0
 drawn_tf=0
 drawn_vp=0
@@ -16,8 +16,8 @@ if [ $draw_ce = 1 ]; then
     for i in $samplelist
     do
 	echo $i'_celist.root'>tmplist
-	figname=$i'_m1p1'
-	drawcelist tmplist $figdir $figname 0 1 1 1 1 0 1 0 0 'm1==1&&p1==1' sample_celist_vfit.root 100
+	figname=$i'_m1p2'
+	drawcelist tmplist $figdir $figname 0 1 1 1 1 0 1 0 0 'm1==1&&p1==2' sample_celist_vfit.root 100
     done
 fi
 
@@ -27,8 +27,8 @@ if [ $drawn_count = 1 ]; then
     for i in $samplelist
     do
 	echo $i'_celist.root'>tmplist
-	figname=$i'_m1p1'
-	drawcelist tmplist $figdir $figname 0 0 0 0 0 0 0 0 1 'm1==1&&p1==1' sample_celist_vfit.root 100
+	figname=$i'_m1p2'
+	drawcelist tmplist $figdir $figname 0 0 0 0 0 0 0 0 1 'm1==1&&p1==2' sample_celist_vfit.root 100
     done
     echo '2000_0.5_0.5_2v0_celist.root'>tmplist
     drawcelist tmplist $figdir '2000_0.5_0.5_2v0' 0 0 0 0 0 0 0 0 1 '1' sample_celist_vfit.root 100
@@ -48,7 +48,7 @@ if [ $drawn_nsnp = 1 ]; then
     fignameprefix='np1000m'
     filename='vfit_t'$fignameprefix'.lst'
     echo 'np==1000' >$filename
-    echo 'm1+10*p1 n 0 1 11' >>$filename
+    echo 'm1+10*p1 n 0 1 21' >>$filename
     echo $rline >>$filename
     echo 'ns+nb n 0 9 500 600 750 1000 1200 1500 2000 2400 3000' >>$filename
     drawvfit $figpath $fignameprefix'.'$format $filelist $filename $drawopt $drawlimit
@@ -57,14 +57,14 @@ if [ $drawn_nsnp = 1 ]; then
     filename='vfit_'$fignameprefix'.lst'
     echo 'np==1000' >$filename
     echo 'rbar d 0.001 1 0.5' >>$filename
-    echo 'm1+10*p1 n 0 4 11 12 21 22' >>$filename
+    echo 'm1+10*p1 n 0 4 0 11 12 22' >>$filename
     echo 'ns+nb n 0 9 500 600 750 1000 1200 1500 2000 2400 3000' >>$filename
     drawvfit $figpath $fignameprefix'.'$format $filelist $filename $drawopt $drawlimit
 
-    fignameprefix='m1p1'
+    fignameprefix='m1p2'
     filenameprefix='npfit_'$fignameprefix
     filename=$filenameprefix'.lst'
-    echo 'm1==1&&p1==1' >$filename
+    echo 'm1==1&&p1==2' >$filename
     echo 'rbar d 0.001 1 0.5' >>$filename
     echo 'ns+nb n 0 9 500 600 750 1000 1200 1500 2000 2400 3000' >>$filename
     echo 'np n 0 5 250 500 1000 2000 4000' >>$filename
@@ -97,10 +97,10 @@ drawopt='0 0 0 0 0 1 0 0'
 drawlimit='chi2<1000'
 filelist=celist.lst
 if [ $drawn_vp = 1 ]; then
-    fignameprefix='np1000m1p1'
+    fignameprefix='np1000m1p2'
     filenameprefix='vfit_t'$fignameprefix
     filename=$filenameprefix'.lst'
-    echo 'np==1000&&m1==1&&p1==1' >$filename
+    echo 'np==1000&&m1==1&&p1==2' >$filename
     echo 'rbar d 0.001 1 0.5' >>$filename
     echo 'ns+nb n 0 9 500 600 750 1000 1200 1500 2000 2400 3000' >>$filename
     echo 'type n 0 15 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15' >>$filename
@@ -121,7 +121,7 @@ if [ $drawn_tf = 1 ]; then
     echo '1' > $filename
     echo 'np n 0 1 1000' >>$filename
     echo 'type n 0 7 1 2 3 4 5 6 10' >>$filename
-    echo 'm1+10*p1 n 0 5 0 11 12 21 22' >>$filename
+    echo 'm1+10*p1 n 0 4 0 11 12 22' >>$filename
     drawvfit $figpath $fignameprefix'.'$format $filelist $filename $drawopt $drawlimit
 fi
 
@@ -134,7 +134,7 @@ if [ $drawn_step3 = 1 ]; then
     filename='step3_'$fignameprefix'.lst'
     echo 'np==1000' >$filename
     echo $rline >>$filename
-    echo 'm1+10*p1 n 0 4 11 12 21 22' >>$filename
+    echo 'm1+10*p1 n 0 4 0 11 12 22' >>$filename
     echo 'ns+nb n 0 9 500 600 750 1000 1200 1500 2000 2400 3000' >>$filename
     drawstep3 'hnps' 'step3.lst' $figpath $fignameprefix'.'$format $filename 0
 #    drawstep3 -l $figpath $fignameprefix'_r.'$format $filename 1
@@ -152,7 +152,7 @@ if [ $drawn_fcount = 1 ]; then
     echo '1' > $filename
     echo 'np n 0 1 1000' >>$filename
     echo 'type n 0 7 1 2 3 4 5 6 10' >>$filename
-    echo 'm1+10*p1 n 0 5 0 11 12 21 22' >>$filename
+    echo 'm1+10*p1 n 0 4 0 11 12 22' >>$filename
     drawvfit $figpath $fignameprefix'.'$format $filelist $filename $drawopt $drawlimit
 fi
 
@@ -164,6 +164,6 @@ if [ $drawn_fcount = 2 ]; then
     echo '1' > $filename
     echo 'np n 0 1 1000' >>$filename
     echo 'np n 0 1 1000' >>$filename
-    echo 'm1+10*p1 n 0 5 0 11 12 21 22' >>$filename
+    echo 'm1+10*p1 n 0 4 0 11 12 22' >>$filename
     drawvfit $figpath $fignameprefix'.'$format $filelist $filename $drawopt $drawlimit
 fi

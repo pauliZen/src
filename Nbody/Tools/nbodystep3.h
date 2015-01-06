@@ -289,8 +289,8 @@ void nbodystep3::MakeTexTable(std::string filename, int tnum, std::string* table
 void nbodystep3::Drawhps(std::string dir,std::string figname, std::string parsfile, int option)
 {
   Float_t ple[4]={0.12,0.45,0.33,0.89};
-  if (option==0) MultiDraw(this,dir,figname,parsfile,"hnst[0]:hnst[1]:hnpt[0]:hnpt[1]",ple,"t_{h,s}","t_{h,p}");
-  else if (option==1) MultiDraw(this,dir,figname,parsfile,"hnst[2]:hnst[3]:hnpt[2]:hnpt[3]",ple,"t_{h,s} / t_{t,s}","t_{h,p} / t_{t,p}");
+  if (option==0) MultiDraw(this,dir,figname,parsfile,"hnst[0]:hnst[1]:hnpt[0]:hnpt[1]",ple,"t_{hs}","t_{hp}","","",1,200.0,1000.0,1,0.0,800.0);
+  else if (option==1) MultiDraw(this,dir,figname,parsfile,"hnst[2]:hnst[3]:hnpt[2]:hnpt[3]",ple,"t_{hs} / t_{ts}","t_{hp} / t_{tp}","","");
   else {
     std::cerr<<"Error: option not right (now:"<<option<<"), please choose 0 or 1\n";
   }

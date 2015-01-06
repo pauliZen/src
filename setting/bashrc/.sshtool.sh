@@ -129,34 +129,44 @@ function serv()
 
 function ssync()
 {
-    syfin=0
+#    syfin=0
     sydirect=0
-    sydestname=0
+    sfile=""
+    tfile=""
+#    sydestname=0
     opt=""
     deleteopt=""
-    tardir="Datas"
-    rdir="Dropbox/"
-    until [ $syfin = 1 ];
+#    tardir="Datas"
+#    rdir="Dropbox/"
+    until [[ `echo $1` == '' ]]
+#    until [ $syfin = 1 ];
     do
 	case $1 in
-	    -h) echo 'servsync [-d(inverse direction)] [-del(--delete)] [-o rsync_option] [-s target_directory(in Dropbox -list to check)] server_name(lighter,kiaa,silk0,dragon)';break;;
-	    -list) echo 'Target List: '`ls -m ~/Dropbox`;break;;
+	    --help) echo 'servsync [-h hostname(lighter...)] [-d(inverse direction)] [-r(recursive)] [-del(--delete)] [-o rsync_option] sourcefiles targetfile';break;;
+#	    -list) echo 'Target List: '`ls -m ~/Dropbox`;break;;
+	    -h) shift;sydestname=$1;shift;;
 	    -d) sydirect=1;shift;;
-	    -o) shift;opt=$1;shift;;
+	    -o) shift;opt=$opt$1;shift;;
 	    -del) deleteopt="--delete";shift;;
-	    -s) shift;tardir=$1;rdir="Dropbox/";shift;;
-	    -t) shift;tardir=$1;rdir="";shift;;
-	    *) sydestname=$1;syfin=1;;
+	    -r) opt="-r "$opt;shift;;
+#	    -s) shift;tardir=$1;rdir="Dropbox/";shift;;
+#	    -t) shift;tardir=$1;rdir="";shift;;
+	    *) sfile=$sfile' '$tfile; tfile=$1; shift;;
+#	    *) sydestname=$1;syfin=1;;
 	esac
     done
     [ `egrep -c ip$sydestname= ~/.host_list` = 0 ] && echo "Server name "$sydestname" not found."&& return
     iport=`findip -p $sydestname`
     setportf $iport $sydestname
     iport=`findip -f -p $sydestname`
+    hostn=`findip -f -iu $sydestname`
     if [ $sydirect = 0 ] ; then
-	rsync -rlvu --rsh="ssh $iport" $deleteopt $opt ~/$rdir$tardir `findip -f -iu $sydestname`:$rdir
+#	rsync -lvu --rsh="ssh $iport" $deleteopt $opt ~/$rdir$tardir `findip -f -iu $sydestname`:$rdir
+	rsync -lvu --rsh="ssh $iport" $deleteopt $opt $sfile $hostn:$tfile
     else
-	rsync -rlvu --rsh="ssh $iport" $deleteopt $opt `findip -f -iu $sydestname`:$rdir$tardir ~/$rdir
+	sfilepath=""
+	for i in $sfile; do sfilepath=$sfilepath' '$hostn:$i; done;
+	rsync -lvu --rsh="ssh $iport" $deleteopt $opt $sfilepath $tfile
     fi
 }
 
