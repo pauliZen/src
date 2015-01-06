@@ -1,6 +1,7 @@
+#!/bin/bash
 #-Config-------------------------------
-ID=gtwsv14
-paswd=14vkiaa14
+ID=1101110160
+paswd=kiaalw515
 model=1       # 0: free; 1: global
 tcheckday=5m
 tchecknight=15m
@@ -44,10 +45,12 @@ function igconnecter()
 
 while [ -e connect.log ]
 do
+#    [ -e /tmp/$websaveglobal ] && rm -f /tmp/$websaveglobal
+#    [ -e /tmp/$websavefree ] && rm -f /tmp/$websavefree
     wget -q --tries=1 --timeout=$ttimeoutfree http://www.pku.edu.cn/ -O /tmp/$webpku &> /dev/null
     wget -q --tries=1 --timeout=$ttimeoutfree $webtestfree -O /tmp/$websavefree &> /dev/null
     wget -q --tries=1 --timeout=$ttimeoutglobal $webtestglobal -O /tmp/$websaveglobal &> /dev/null
-    wget -q --tries=1 --timeout=$ttimeoutglobal $webtestglobal2 -O /tmp/$websaveglobal &> /dev/null
+#    wget -q --tries=1 --timeout=$ttimeoutglobal $webtestglobal2 -O /tmp/$websaveglobal &> /dev/null
     if [ -s /tmp/$websaveglobal ];then
 	echo "connected now "`date`>>connect.log
 	rm -f /tmp/$websaveglobal
@@ -63,17 +66,17 @@ do
 	    rm -f /tmp/$websavefree
 	    if [ $model = 1 ]; then
 		igconnecter
-		sh ~/src/scripts/sendip.sh
+#		sh ~/src/scripts/sendip.sh
 	    fi
 	elif [ -s /tmp/$webpku ];then
 	    echo "no connection, try connect "`date`>>connect.log
 	    rm -f /tmp/$webpku
 	    igconnecter
-	    sh ~/src/scripts/sendip.sh
+#	    sh ~/src/scripts/sendip.sh
 	else
 	    echo "no internet, try ifup "`date`>>connect.log
 	    ifup eth0 >>connect.log
-	    sh ~/src/scripts/sendip.sh
+#	    sh ~/src/scripts/sendip.sh
 	fi
     fi
     logline=`wc -l connect.log|cut -d' ' -f1`
