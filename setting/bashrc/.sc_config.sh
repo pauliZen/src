@@ -1,3 +1,6 @@
+# Set color for terminal prefix
+export PS1="[\[\e[35m\]\u@\h\[\e[0m\]:\[\e[34m\]\w\[\e[0m\]]\$ "
+
 #emacs
 if [ `ls /usr/bin|egrep -c ^emacs[0-9\-]` -gt 0 ]; then
     emacsname=`ls /usr/bin|egrep ^emacs[0-9\-]|head -1`
@@ -52,3 +55,9 @@ alias go='gnome-open'
 
 #ipython notebook
 alias ipynb='ipython notebook --profile=nbserver 1>~/data/connect/ipython.notebook.log 2>&1 &'
+
+#du
+function dumh()
+{
+    du -h --max-depth=$1
+}
