@@ -147,7 +147,7 @@ function ssync()
 	    -h) shift;sydestname=$1;shift;;
 	    -d) sydirect=1;shift;;
 	    -o) shift;opt=$opt$1;shift;;
-	    -del) deleteopt="--delete";shift;;
+	    -del) opt=$opt" --delete";shift;;
 	    -r) opt="-r "$opt;shift;;
 #	    -s) shift;tardir=$1;rdir="Dropbox/";shift;;
 #	    -t) shift;tardir=$1;rdir="";shift;;
@@ -161,12 +161,12 @@ function ssync()
     iport=`findip -f -p $sydestname`
     hostn=`findip -f -iu $sydestname`
     if [ $sydirect = 0 ] ; then
-#	rsync -lvu --rsh="ssh $iport" $deleteopt $opt ~/$rdir$tardir `findip -f -iu $sydestname`:$rdir
-	rsync -lvu --rsh="ssh $iport" $deleteopt $opt $sfile $hostn:$tfile
+#	rsync -lvu --rsh="ssh $iport" $opt ~/$rdir$tardir `findip -f -iu $sydestname`:$rdir
+	rsync -lvu --rsh="ssh $iport" $opt $sfile $hostn:$tfile
     else
 	sfilepath=""
 	for i in $sfile; do sfilepath=$sfilepath' '$hostn:$i; done;
-	rsync -lvu --rsh="ssh $iport" $deleteopt $opt $sfilepath $tfile
+	rsync -lvu --rsh="ssh $iport" $opt $sfilepath $tfile
     fi
 }
 
