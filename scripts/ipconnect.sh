@@ -1,7 +1,11 @@
 #!/bin/bash
 #-Config-------------------------------
-ID=1101110160
-paswd=kiaalw515
+#ID=
+#paswd=
+if [ -e ipconnect_config ]; then
+    ID=`cat ipconnect_config|awk '{print $1}'`
+    paswd=`cat ipconnect_config|awk '{print $2}'`
+fi
 model=1       # 0: free; 1: global
 tcheckday=5m
 tchecknight=15m
