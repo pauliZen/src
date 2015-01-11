@@ -16,20 +16,20 @@ set macro
 f(x0,x) = x0/x
 
 ####---------------macro 5 columns----------------
-col7 = "u (column(x)*xscale):(column(1+shift)*yscale)   t columnhead(1+shift) w lp lc 1 lt 1 lw 4, \
-     '' u (column(x)*xscale):(column(2+shift)*yscale)   t columnhead(2+shift) w lp lc 2 lt 1 lw 4, \
-     '' u (column(x)*xscale):(column(3+shift)*yscale)   t columnhead(3+shift) w lp lc 3 lt 1 lw 4, \
-     '' u (column(x)*xscale):(column(4+shift)*yscale)   t columnhead(4+shift) w lp lc 4 lt 1 lw 4, \
-     '' u (column(x)*xscale):(column(5+shift)*yscale)   t columnhead(5+shift) w lp lc 5 lt 1 lw 4, \
-     '' u (column(x)*xscale):(column(6+shift)*yscale)   t columnhead(6+shift) w lp lc 6 lt 1 lw 4, \
-     '' u (column(x)*xscale):(column(7+shift)*yscale)   t columnhead(7+shift) w lp lc 7 lt 1 lw 4, \
-         f(word(offset,2)*yscale,x) t '' w l lt 2 lw 2, \
-         f(word(offset,3)*yscale,x) t '' w l lt 2 lw 2, \
-         f(word(offset,4)*yscale,x) t '' w l lt 2 lw 2, \
-         f(word(offset,5)*yscale,x) t '' w l lt 2 lw 2, \
-         f(word(offset,6)*yscale,x) t '' w l lt 2 lw 2, \
-         f(word(offset,7)*yscale,x) t '' w l lt 2 lw 2, \
-         f(word(offset,8)*yscale,x) t '' w l lt 2 lw 2"
+col7 = "u (column(x)*xscale):(column(1+shift)*yscale)   t columnhead(1+shift) w lp lc 1 lt 1 lw 6, \
+     '' u (column(x)*xscale):(column(2+shift)*yscale)   t columnhead(2+shift) w lp lc 2 lt 1 lw 6, \
+     '' u (column(x)*xscale):(column(3+shift)*yscale)   t columnhead(3+shift) w lp lc 3 lt 1 lw 6, \
+     '' u (column(x)*xscale):(column(4+shift)*yscale)   t columnhead(4+shift) w lp lc 4 lt 1 lw 6, \
+     '' u (column(x)*xscale):(column(5+shift)*yscale)   t columnhead(5+shift) w lp lc 5 lt 1 lw 6, \
+     '' u (column(x)*xscale):(column(6+shift)*yscale)   t columnhead(6+shift) w lp lc 6 lt 1 lw 6, \
+     '' u (column(x)*xscale):(column(7+shift)*yscale)   t columnhead(7+shift) w lp lc 7 lt 1 lw 6, \
+         f(word(offset,2)*yscale,x) t '' w l lc 7 lt 2 lw 2, \
+         f(word(offset,3)*yscale,x) t '' w l lc 7 lt 2 lw 2, \
+         f(word(offset,4)*yscale,x) t '' w l lc 7 lt 2 lw 2, \
+         f(word(offset,5)*yscale,x) t '' w l lc 7 lt 2 lw 2, \
+         f(word(offset,6)*yscale,x) t '' w l lc 7 lt 2 lw 2, \
+         f(word(offset,7)*yscale,x) t '' w l lc 7 lt 2 lw 2, \
+         f(word(offset,8)*yscale,x) t '' w l lc 7 lt 2 lw 2"
 
 
 x = 1
@@ -41,7 +41,7 @@ yscale = 1.0
 ####---------------plot total----------------------
 
 set zeroaxis
-set grid
+#set grid
 set pointsize 1.0
 set mxtics 10
 set mytics 10
@@ -81,7 +81,7 @@ plot [][2:100000] filename @col7
 reset
 
 set zeroaxis
-set grid
+#set grid
 set pointsize 1.0
 set mxtics 10
 set mytics 10
@@ -103,7 +103,7 @@ plot [][0.1:10000] filename @col7
 reset
 
 set zeroaxis
-set grid
+#set grid
 set pointsize 1.0
 set mxtics 10
 set mytics 10
