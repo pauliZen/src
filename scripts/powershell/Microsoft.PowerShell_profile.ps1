@@ -22,6 +22,9 @@ if (test-path "C:\Program Files (x86)\gnuplot\bin")
 # emacs
 if (test-path "C:\Program Files (x86)\emacs-24.3\bin")
 {$env:PATH="$env:PATH;C:\Program Files (x86)\emacs-24.3\bin"}
+# aspell
+if (test-path "C:\Program Files (x86)\Aspell\bin")
+{$env:PATH="$env:PATH;C:\Program Files (x86)\Aspell\bin"}
 # svn
 if (test-path "C:\Program Files (x86)\Apache-Subversion-1.8.10\bin")
 {$env:PATH="$env:PATH;C:\Program Files (x86)\Apache-Subversion-1.8.10\bin"}
