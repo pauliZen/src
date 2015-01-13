@@ -117,7 +117,7 @@ for j in path:
                     fout = open('bhdata/'+titlem, 'w')
                     for i in bhidxm:
                         # m1,m2,m3,xc,vc,a0,a1,e0,e1,p0,p1,k1,k2,k3
-                        fout.write('%d %d %d %.8e %.8e %.8e %.8e %.8e %.8e %.8e %.8e %.8e %.8e %.8e %.8e %.8e %.8e %.8e %d %d %d\n' % (bn1[i], bn2[i], bn3[i], mm1[i],mm2[i],mm3[i],mxc1[i],mxc2[i],mxc3[i],mvc1[i],mvc2[i],mvc3[i],ma0[i],ma1[i],me0[i],me1[i],mp0[i],mp1[i],mk1[i],mk2[i],mk3[i]))
+                        fout.write('%d %d %d %.8e %.8e %.8e %.8e %.8e %.8e %.8e %.8e %.8e %.8e %.8e %.8e %.8e %.8e %.8e %d %d %d\n' % (mn1[i], mn2[i], mn3[i], mm1[i],mm2[i],mm3[i],mxc1[i],mxc2[i],mxc3[i],mvc1[i],mvc2[i],mvc3[i],ma0[i],ma1[i],me0[i],me1[i],mp0[i],mp1[i],mk1[i],mk2[i],mk3[i]))
                     fout.close()
 
 fidxs.close()
