@@ -72,6 +72,9 @@ for i in path:
 #    r2 = np.append(ri2,rm2)
     idx = r2.argsort()
 
+    msblagr=np.zeros(rfrac.size)
+    nsblagr=np.zeros(rfrac.size)
+
     kk = 0
     kks = 0
     kkb = 0
@@ -104,6 +107,8 @@ for i in path:
 #            if (btt == r2[j]): 
 #                print "Inconsistence: inx=%d, j=%d, r2=%e, r2s=%e, " % (inx,j,btt,r2[j])
             bmass += mmb
+            msblagr[kks] += mmb
+            nsblagr[kks] += 1
             if (bmass >= rbmass[kkb]):
                 rblagr[kkb] = math.sqrt(r2[j])
                 nblagr[kkb] = ncb
@@ -124,11 +129,17 @@ for i in path:
             rlagr[kk] = math.sqrt(r2[j])
             nlagr[kk] = nc
             kk += 1
+            if (kk < rfrac.size-1 ):
+                if (nsblagr[kk+1] == 0):
+                    msblagr[kk+1] = msblagr[kk]
+                    nsblagr[kk+1] = nsblagr[kk]
             kk = min(kk,rfrac.size-1)
     kn = kk - 1
     while (kk < rfrac.size):
         rlagr[kk] = rlagr[kn]
         nlagr[kk] = nlagr[kn]
+        nsblagr[kk] = nsblagr[kn]
+        msblagr[kk] = msblagr[kn]
         kk += 1
     ksn = kks - 1
     while (kks < rfrac.size):
@@ -166,6 +177,10 @@ for i in path:
         print "%d " % nslagr[j],
     for j in range(rfrac.size): 
         print "%d " % nblagr[j],
+    for j in range(rfrac.size): 
+        print "%.8e " % msblagr[j],
+    for j in range(rfrac.size): 
+        print "%d " % nsblagr[j],
     print " " 
 
 #    fw.write(str(rlagr)+str(rslagr)+str(rblagr)+str(mlagr)+str(mslagr)+str(mblagr)+str(nlagr)+str(nslagr)+str(nblagr))
