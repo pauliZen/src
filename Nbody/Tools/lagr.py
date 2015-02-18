@@ -24,9 +24,9 @@ mblagr=np.zeros(rfrac.size)
 #fw = open('lagr.snap','a')
 
 print "Time[NB] ",
-for i in range(9):
+for i in range(11):
     for j in range(rfrac.size): 
-        print "%.8e " % rfrac[j],
+        print "%.2e " % rfrac[j],
 print " "
 
 for i in path:
@@ -107,8 +107,8 @@ for i in path:
 #            if (btt == r2[j]): 
 #                print "Inconsistence: inx=%d, j=%d, r2=%e, r2s=%e, " % (inx,j,btt,r2[j])
             bmass += mmb
-            msblagr[kks] += mmb
-            nsblagr[kks] += 1
+            msblagr[kk] += mmb
+            nsblagr[kk] += 1
             if (bmass >= rbmass[kkb]):
                 rblagr[kkb] = math.sqrt(r2[j])
                 nblagr[kkb] = ncb
@@ -129,10 +129,10 @@ for i in path:
             rlagr[kk] = math.sqrt(r2[j])
             nlagr[kk] = nc
             kk += 1
-            if (kk < rfrac.size-1 ):
-                if (nsblagr[kk+1] == 0):
-                    msblagr[kk+1] = msblagr[kk]
-                    nsblagr[kk+1] = nsblagr[kk]
+            if (kk < rfrac.size ):
+                if (nsblagr[kk] == 0):
+                    msblagr[kk] = msblagr[kk-1]
+                    nsblagr[kk] = nsblagr[kk-1]
             kk = min(kk,rfrac.size-1)
     kn = kk - 1
     while (kk < rfrac.size):
