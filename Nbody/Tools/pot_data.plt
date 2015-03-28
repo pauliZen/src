@@ -32,7 +32,7 @@ do for [i in tlst] {
 
 set term epscairo enhanced color dashed size 12,10 font ',22'
 
-tscale = 0.56
+tscale = 0.5506
 
 set output 'r_pot.eps'
 set key right bottom
