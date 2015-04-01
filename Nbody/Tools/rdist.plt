@@ -1,11 +1,11 @@
 #set term gif size 900,900 font ',22'
 set term pngcairo enhanced color dashed size 1200,1000 font ',22'
 
-suffix='png'
+suffix='log.png'
 
 set macro
 
-cplot="plot [0:100][] for [i=@range] word(tlst,i) u 1:@ncol:(ftime(i)) w l t '' lt 1 lc pal z, \
+cplot="plot [0.01:100][0.1:1000000] for [i=@range] word(tlst,i) u 1:@ncol:(ftime(i)) w l t '' lt 1 lc pal z, \
                word(tlst,1) u 1:@ncol w l t '0 Myr' lt 2 lc 0 lw 4.0"
 
 tlst=system("cat rdist.lst|cut -d ' ' -f1")
@@ -17,6 +17,8 @@ range = "2:25"
 set colorbox
 set cbrange [0.5:2500]
 set logscale zcb
+set logscale x 10
+set logscale y 10
 
 ftime(i) = 1000.0**((i-2.0)/20.0)*tscale
 
@@ -43,19 +45,19 @@ ncol = "4"
 
 #-------------------------------------------------------
 set output 'rdist_msm.'.suffix
-set ylabel 'Cumulative mass of main sequences (0.4-0.7 M_{sun})'
+set ylabel 'Cumulative mass of main sequence (0.4-0.7 M_{sun})'
 ncol = "5"
 @cplot
 
 #-------------------------------------------------------
 set output 'rdist_nmsh.'.suffix
-set ylabel 'Cumulative number of main sequences (0.7-100 M_{sun})'
+set ylabel 'Cumulative number of main sequence (0.7-100 M_{sun})'
 ncol = "6"
 @cplot
 
 #-------------------------------------------------------
 set output 'rdist_msh.'.suffix
-set ylabel 'Cumulative mass of main sequences (0.7-100 M_{sun})'
+set ylabel 'Cumulative mass of main sequence (0.7-100 M_{sun})'
 ncol = "7"
 @cplot
 
@@ -73,13 +75,13 @@ ncol = "9"
 	       
 #-------------------------------------------------------
 set output 'rdist_nrgb.'.suffix
-set ylabel 'Cumulative number of RGB'
+set ylabel 'Cumulative number of AGB'
 ncol = "14"
 @cplot
 
 #-------------------------------------------------------
 set output 'rdist_rgb.'.suffix
-set ylabel 'Cumulative mass of RGB'
+set ylabel 'Cumulative mass of AGB'
 ncol = "15"
 @cplot
 
