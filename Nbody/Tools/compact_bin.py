@@ -58,7 +58,7 @@ for j in path:
                     fidwd.write(title+'\n')
                     fout = open('bindat/'+title, 'w')
                     for i in wdidxb:
-                        # m1,m2,xc,vc,a,e,p,k1,k2,l1,l2,te1,te2,rs1,rs2
+                        # n1,n2,m1,m2,xc,vc,a,e,p,k1,k2,l1,l2,te1,te2,rs1,rs2
                         fout.write('%d %d %.8e %.8e %.8e %.8e %.8e %.8e %.8e %.8e %.8e %.8e %.8e %d %d %.8e %.8e %.8e %.8e %.8e %.8e\n' % (bn1[i], bn2[i], bm1[i], bm2[i], bxc1[i], bxc2[i], bxc3[i], bvc1[i], bvc2[i], bvc3[i], ba[i], be[i], bp[i], bk1[i], bk2[i], bl1[i], bl2[i], bt1[i], bt2[i], brs1[i], brs2[i]))
                     fout.close()
 
@@ -67,7 +67,7 @@ for j in path:
                     fidns.write(title+'\n')
                     fout = open('bindat/'+title, 'w')
                     for i in nsidxb:
-                        # m1,m2,xc,vc,a,e,p,k1,k2,l1,l2,te1,te2,rs1,rs2
+                        # n1,n2,m1,m2,xc,vc,a,e,p,k1,k2,l1,l2,te1,te2,rs1,rs2
                         fout.write('%d %d %.8e %.8e %.8e %.8e %.8e %.8e %.8e %.8e %.8e %.8e %.8e %d %d %.8e %.8e %.8e %.8e %.8e %.8e\n' % (bn1[i], bn2[i], bm1[i], bm2[i], bxc1[i], bxc2[i], bxc3[i], bvc1[i], bvc2[i], bvc3[i], ba[i], be[i], bp[i], bk1[i], bk2[i], bl1[i], bl2[i], bt1[i], bt2[i], brs1[i], brs2[i]))
                     fout.close()
 
@@ -76,7 +76,7 @@ for j in path:
                     fidbh.write(title+'\n')
                     fout = open('bindat/'+title, 'w')
                     for i in bhidxb:
-                        # m1,m2,xc,vc,a,e,p,k1,k2,l1,l2,te1,te2,rs1,rs2
+                        # n1,n2,m1,m2,xc,vc,a,e,p,k1,k2,l1,l2,te1,te2,rs1,rs2
                         fout.write('%d %d %.8e %.8e %.8e %.8e %.8e %.8e %.8e %.8e %.8e %.8e %.8e %d %d %.8e %.8e %.8e %.8e %.8e %.8e\n' % (bn1[i], bn2[i], bm1[i], bm2[i], bxc1[i], bxc2[i], bxc3[i], bvc1[i], bvc2[i], bvc3[i], ba[i], be[i], bp[i], bk1[i], bk2[i], bl1[i], bl2[i], bt1[i], bt2[i], brs1[i], brs2[i]))
                     fout.close()
                 
