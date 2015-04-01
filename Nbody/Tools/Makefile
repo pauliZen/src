@@ -14,7 +14,7 @@ CXX= g++ -O3 -Wall -fopenmp
 
 ## Library -------------------------------------------#
 MYCFLAGS =-I$(shell echo ~)/include
-EXTRALIBS    +=-L$(shell echo ~)/lib -linitial -lnb6out3
+EXTRALIBS    +=-L$(shell echo ~)/lib -linitial -lnb6out3 -lgpupot
 
 ### root lib----------------------------------------#
 ROOTCFLAGS              =$(shell root-config  --cflags)
@@ -63,11 +63,17 @@ install: $(shell uniq .mvlist)
 installh: $(HEADER)
 	$(foreach name, $(HEADER), ln -sf $(shell pwd)/$(name) $(HEADERDIR)/$(name);)
 
-installlib: libnb6out3
+installlib: libnb6out3 libgpupot
 	mv -f libnb6out3.so $(LIBDIR)/
+	mv -f libgpupot.so $(LIBDIR)/
 
 libnb6out3: nb6out3.h nb6out3.cxx
 	$(CXX) -shared -fPIC  nb6out3.cxx -o libnb6out3.so
+
+libgpupot: gpupot.cu cuda_pointer.h
+#	nvcc -O3 -arch=sm_30 -dc -Xcompiler '-Wall -D CUDA_5 -fPIC -I/usr/local/cuda/samples/common/inc' gpupot.cu -c -o gpupot.so
+	nvcc -O3 -Xcompiler '-Wall -D CUDA_5 -fPIC' -shared -o libgpupot.so gpupot.cu -I/usr/local/cuda/samples/common/inc
+#	g++ -O3 -shared -fPIC -Wl,-soname,gpupot.so gpupot.o -o gpupot.so -lcuda -lcudart -L/usr/local/cuda/lib64
 
 clean:
 	rm -f $(OBJECTS)
