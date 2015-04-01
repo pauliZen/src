@@ -1,6 +1,6 @@
 #set term pngcairo enhanced color dashed
 set term epscairo enhanced color dashed size 14,10 font ',24'
-#set term png
+#set term pngcairo enhanced color dashed size 1400,1000 font ',24'
 #set term postscript landscape enhanced color "Text" 16
 #set output 'data.py.ps'
 suffix='eps'
@@ -24,17 +24,29 @@ jump = "every ::1"
 #jump = ""
 
 ####---------------macro 5 columns----------------
-colu5 =  "u (column(x)*xscale):(column(1+shift)>0?column(1+shift)*yscale:9999999999)    t columnhead(1+shift)  w l lc 1 lt type lw 4, \
-       '' u (column(x)*xscale):(column(4+shift)>0?column(4+shift)*yscale:9999999999)    t columnhead(4+shift)  w l lc 2 lt type lw 4, \
-       '' u (column(x)*xscale):(column(7+shift)>0?column(7+shift)*yscale:9999999999)    t columnhead(7+shift)  w l lc 3 lt type lw 4, \
-       '' u (column(x)*xscale):(column(11+shift)>0?column(11+shift)*yscale:9999999999)   t columnhead(11+shift) w l lc 4 lt type lw 4, \
-       '' u (column(x)*xscale):(column(15+shift)>0?column(15+shift)*yscale:9999999999)   t columnhead(15+shift) w l lc 5 lt type lw 4"
+colu5 =  "u (column(x)*xscale):(column(1+shift)*yscale)    t columnhead(1+shift)  w l lc 1 lt type lw 4, \
+       '' u (column(x)*xscale):(column(4+shift)*yscale)    t columnhead(4+shift)  w l lc 2 lt type lw 4, \
+       '' u (column(x)*xscale):(column(7+shift)*yscale)    t columnhead(7+shift)  w l lc 3 lt type lw 4, \
+       '' u (column(x)*xscale):(column(11+shift)*yscale)   t columnhead(11+shift) w l lc 4 lt type lw 4, \
+       '' u (column(x)*xscale):(column(15+shift)*yscale)   t columnhead(15+shift) w l lc 5 lt type lw 4"
 
-colu52 =" u (column(x)*xscale):(column(1+shift2)>0?column(1+shift2)*yscale:9999999999)    t title2 w l lc 1 lt type2 lw 4, \
-       '' u (column(x)*xscale):(column(4+shift2)>0?column(4+shift2)*yscale:9999999999)    t '' w l lc 2 lt type2 lw 4, \
-       '' u (column(x)*xscale):(column(7+shift2)>0?column(7+shift2)*yscale:9999999999)    t '' w l lc 3 lt type2 lw 4, \
-       '' u (column(x)*xscale):(column(11+shift2)>0?column(11+shift2)*yscale:9999999999)   t '' w l lc 4 lt type2 lw 4, \
-       '' u (column(x)*xscale):(column(15+shift2)>0?column(15+shift2)*yscale:9999999999)   t '' w l lc 5 lt type2 lw 4"
+#colu5 =  "u (column(x)*xscale):((column(1+shift)>0.e-10)?column(1+shift)*yscale:1/0)    t columnhead(1+shift)  w l lc 1 lt type lw 4, \
+#       '' u (column(x)*xscale):((column(4+shift)>0.e-10)?column(4+shift)*yscale:1/0)    t columnhead(4+shift)  w l lc 2 lt type lw 4, \
+#       '' u (column(x)*xscale):((column(7+shift)>0.e-10)?column(7+shift)*yscale:1/0)    t columnhead(7+shift)  w l lc 3 lt type lw 4, \
+#       '' u (column(x)*xscale):((column(11+shift)>0.e-10)?column(11+shift)*yscale:1/0)   t columnhead(11+shift) w l lc 4 lt type lw 4, \
+#       '' u (column(x)*xscale):((column(15+shift)>0.e-10)?column(15+shift)*yscale:1/0)   t columnhead(15+shift) w l lc 5 lt type lw 4"
+
+colu52 =" u (column(x)*xscale):(column(1+shift2)*yscale)    t title2 w l lc 1 lt type2 lw 4, \
+       '' u (column(x)*xscale):(column(4+shift2)*yscale)    t '' w l lc 2 lt type2 lw 4, \
+       '' u (column(x)*xscale):(column(7+shift2)*yscale)    t '' w l lc 3 lt type2 lw 4, \
+       '' u (column(x)*xscale):(column(11+shift2)*yscale)   t '' w l lc 4 lt type2 lw 4, \
+       '' u (column(x)*xscale):(column(15+shift2)*yscale)   t '' w l lc 5 lt type2 lw 4"
+
+#colu52 =" u (column(x)*xscale):((column(1+shift2)>0.e-10)?column(1+shift2)*yscale:1/0)    t title2 w l lc 1 lt type2 lw 4, \
+#       '' u (column(x)*xscale):((column(4+shift2)>0.e-10)?column(4+shift2)*yscale:1/0)    t '' w l lc 2 lt type2 lw 4, \
+#       '' u (column(x)*xscale):((column(7+shift2)>0.e-10)?column(7+shift2)*yscale:1/0)    t '' w l lc 3 lt type2 lw 4, \
+#       '' u (column(x)*xscale):((column(11+shift2)>0.e-10)?column(11+shift2)*yscale:1/0)   t '' w l lc 4 lt type2 lw 4, \
+#       '' u (column(x)*xscale):((column(15+shift2)>0.e-10)?column(15+shift2)*yscale:1/0)   t '' w l lc 5 lt type2 lw 4"
 
 
 ####---------------macro 12 columns----------------
@@ -205,7 +217,7 @@ title2 = 'BH'
 xscale = tscale
 yscale = rscale
 xr=""
-yr="0:5"
+yr="2E-3:2E3"
 
 plot [@xr][@yr] filename @jump @colu5, \
                 '' @colu52
