@@ -96,7 +96,7 @@ int main(int argc, char *argv[])
     }
     if(init.geti("draw_count")==2) {
       for (int i=0;i<5;i++) {
-        MultiDraw(tc,dir,("frac0c_"+t0label[i]+fig),parslist,"log10((ns+nb)/rbar**3):ns:frac0["+to<std::string>(i)+"][0]:frac0["+to<std::string>(i)+"][1]",legend_rf,"log(N_{sb}/r_{vir}^{3} [pc^{-3}])","FFPs (no encounter)",init.gets("selection")+"&&type==1","",1,1.7,5.3,1,0,1000,0,1,0.8,true,false);
+        MultiDraw(tc,dir,("frac0c_"+t0label[i]+fig),parslist,"log10((ns+nb)/rbar**3):ns:frac0["+to<std::string>(i)+"][0]:frac0["+to<std::string>(i)+"][1]",legend_rf,"log(N_{sb}/r_{vir}^{3} [pc^{-3}])","FFPs without encounter",init.gets("selection")+"&&type==1","",1,1.7,5.3,1,0,1000,0,1,0.8,true,false);
       }
     }
   }

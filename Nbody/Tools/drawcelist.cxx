@@ -162,6 +162,7 @@ void draw_dist_fun(Float_t *plegend, Int_t bins, Float_t xmin, Float_t xmax, Flo
     tf[i]->GetXaxis()->SetLabelSize(fontsize);
     tf[i]->GetYaxis()->SetLabelSize(fontsize);
     tf[i]->SetLineColor(id%10?id:id+10);
+    tf[i]->SetLineWidth(id/2.0+0.5);
     tf[i]->SetTitle("");
     tf[i]->SetStats(0);
     tf[i]->SetMinimum(ymin);
@@ -195,6 +196,7 @@ void draw_dist_fun(Float_t *plegend, Int_t bins, Float_t xmin, Float_t xmax, Flo
       vfit->LoadData(tcl,tentry+tcl.fchain->GetTreeOffset()[treenum]);
       vfitfun(fit[i],id);
       fit[i]->SetLineColor(id%10?id:id+10);
+      fit[i]->SetLineWidth(id/2.0+0.5);
       fit[i]->SetLineStyle(2);
       //      tl->AddEntry(fit[i],(tlabel[id]+" fit").c_str());
     }
@@ -715,10 +717,11 @@ void draw_hist_count(Float_t *plegend, std::string foldername="")
 #endif      
       Int_t colorid=(i+1)%10?i+1:i+41;
       th[i]->SetLineColor(colorid);
+      th[i]->SetLineStyle(i+1);
       th[i]->SetFillColor(0);
       th[i]->SetTitle("");
-      th[i]->SetYTitle("encounter number per star");
-      th[i]->SetXTitle("number of stars");
+      th[i]->SetYTitle("number of stars");
+      th[i]->SetXTitle("encounter number per star");
       th[i]->GetYaxis()->SetTitleOffset(yoffset);
       th[i]->GetXaxis()->SetTitleSize(fontsize);
       th[i]->GetYaxis()->SetTitleSize(fontsize);
@@ -816,10 +819,10 @@ void draw_hist_count(Float_t *plegend, std::string foldername="")
       Int_t colorid=(i+1)%10?i+1:i+11;
       thp[i]->SetLineColor(colorid);
       thp[i]->SetFillColor(0);
-      //      thp[i]->SetLineStyle(2);
+      thp[i]->SetLineStyle(i+1);
       thp[i]->SetTitle("");
-      thp[i]->SetYTitle("encounter number per planet");
-      thp[i]->SetXTitle("number of planets");
+      thp[i]->SetYTitle("number of planets");
+      thp[i]->SetXTitle("encounter number per planet");
       thp[i]->GetYaxis()->SetTitleOffset(yoffset);
       thp[i]->GetXaxis()->SetTitleSize(fontsize);
       thp[i]->GetYaxis()->SetTitleSize(fontsize);

@@ -1,12 +1,12 @@
 #draw figures for FFplanet paper
-draw_ce=1
+draw_ce=0
 drawn_nsnp=0
 drawn_p=0
 drawn_tf=0
 drawn_vp=0
 drawn_step3=0
 drawn_count=0
-drawn_fcount=0
+drawn_fcount=1
 
 figdir='/home/lwang/Dropbox/Datas/Planets/'
 #2000_05_05_2v4_m1p1_(p/t/vinf/vp/vp_p).pdf-------------------------------#
