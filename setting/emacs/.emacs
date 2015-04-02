@@ -11,7 +11,7 @@
 (load-file "~/.emacs.macro")
 
 ;;directory=============================================================
-(setq default-directory "~/")
+;(setq default-directory "~/")
 
 ;;abbreviations=========================================================
 (setq-default abbrev-mode t)
