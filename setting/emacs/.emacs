@@ -18,9 +18,11 @@
 (read-abbrev-file "~/.abbrev_defs")
 (setq save-abbrevs t)
 
-;; ;;white space===========================================================
-(load-file "~/.emacs.d/site-lisp/whitespace.el")
-(load-file "~/.emacs.d/site-lisp/highlight-chars.el")
+;;;;white space===========================================================
+(load-file "~/.emacs.d/site-lisp/whitespace.elc")
+
+;;highlight-char========================================================
+(load-file "~/.emacs.d/site-lisp/highlight-chars.elc")
 ;; (setq whitespace-display-mappings
 ;;       '((tab-mark   ?\t   [?\xBB ?\t] [?\\ ?\t])
 ;; ;;	(space-mark   ?\    [?\xB7]     [?.])	; space
@@ -58,7 +60,7 @@ e.g. Sunday, September 17, 2000."
   (interactive)                 ; permit invocation in minibuffer
   (insert (format-time-string "%D")))
 
-;;Windows size
+;;Windows frame size====================================================
 (global-set-key "\M-]" 'enlarge-window-horizontally)
 (global-set-key "\M-[" 'shrink-window-horizontally)
 (global-set-key "\M-n" 'enlarge-window)
@@ -166,7 +168,7 @@ e.g. Sunday, September 17, 2000."
 		      (format "(swank:start-server %S)\n" port-file)))))
 
 
-;;sheme=================================================================
+;;scheme=================================================================
 (require 'xscheme)
 (global-set-key "\C-cs" 'run-scheme)
 
@@ -189,82 +191,17 @@ e.g. Sunday, September 17, 2000."
 ; (color-theme-billw)
 ; (kill-this-buffer)
 
-;;cedet=================================================================
-(load-file "~/.emacs.d/site-lisp/cedet-1.1/common/cedet.el")
-(semantic-load-enable-minimum-features)
-(semantic-load-enable-code-helpers)
-;(semantic-load-enable-guady-code-helpers)
-;(semantic-load-enable-excessive-code-helpers)
-;(semantic-load-enable-semantic-debugging-helpers)
-
-;;;;C/C++ include path------------------------------------------
-(defconst cedet-user-include-dirs
-  (list "."
-	".."
-	"../.."
-	"../include"
-	"/opt/root/include"
-	"~/include"
-	"/usr/include/sys"
-	"/usr/include/bits"))
-(require 'semantic-c nil 'noerror)
-(let ((include-dirs cedet-user-include-dirs))
-  (mapc (lambda (dir)
-          (semantic-add-system-include dir 'c++-mode)
-          (semantic-add-system-include dir 'c-mode))
-        include-dirs))
-
-;;;; code tag folding-------------------------------------------
-(require 'semantic-tag-folding nil 'noerror)
-(global-semantic-tag-folding-mode 1)
-;;;; key defination---------------------------------------------
-(global-set-key (kbd "C-?") 'global-semantic-tag-folding-mode)
-(define-key semantic-tag-folding-mode-map (kbd "C-c -") 'semantic-tag-folding-fold-block)
-(define-key semantic-tag-folding-mode-map (kbd "C-c =") 'semantic-tag-folding-show-block)
-(define-key semantic-tag-folding-mode-map (kbd "C--") 'semantic-tag-folding-fold-all)
-(define-key semantic-tag-folding-mode-map (kbd "C-=") 'semantic-tag-folding-show-all)
-
-;;;;code jump return--------------------------------------------
-(global-set-key "\C-cjb"
-	(lambda ()
-  (interactive)
-  (if (ring-empty-p (oref semantic-mru-bookmark-ring ring))
-      (error "Semantic Bookmark ring is currently empty"))
-  (let* ((ring (oref semantic-mru-bookmark-ring ring))
-	 (alist (semantic-mrub-ring-to-assoc-list ring))
-	 (first (cdr (car alist))))
-    (if (semantic-equivalent-tag-p (oref first tag)
-				   (semantic-current-tag))
-	(setq first (cdr (car (cdr alist)))))
-    (semantic-mrub-switch-tags first))))
-
-;;;;indent-complete---------------------------------------------
-(defun my-indent-or-complete (point)
-  (interactive "d")
-  (require 'imenu)
-  (if (looking-at "\\>")
-      (semantic-ia-complete-symbol-menu (point))
-    (if (looking-at "\\.\\|>")
-	(progn
-	  (forward-char 1)
-	  (semantic-ia-complete-symbol-menu (point))
-	  )
-      (indent-for-tab-command))
-    )
-  )
-
-;; (defun my-indent-or-hippie-expand
-;;   (if (looking-at "{")
-;;       (hippie-expand)
-;;     (indent-for-tab-command)))
-
 ;;dedicated-mode========================================================
-(load-file "~/.emacs.d/site-lisp/dedicated.el")
+(load-file "~/.emacs.d/site-lisp/dedicated.elc")
 (require 'dedicated)
 
 ;;thumbs================================================================
 (autoload 'thumbs "thumbs" "Preview images in a directory." t)
 
+;;cedet=================================================================
+(defun use-cedet()
+  (load-file "~/.emacs.d/site-lisp/cedet-mode.el")
+)
 ;;======================================================================
 ;;Language mode ========================================================
 ;;======================================================================
@@ -276,17 +213,15 @@ e.g. Sunday, September 17, 2000."
 (c-set-offset 'inline-open 0)
 (c-set-offset 'friend '-)
 (c-set-offset 'substatement-open 0)
-(load-file "~/.emacs.d/site-lisp/cuda_mode.el")
+(load-file "~/.emacs.d/site-lisp/cuda_mode.elc")
 
 (defun my-c-mode-common-hook()
   (setq tab-width 4 indent-tabs-mode nil)
   (define-key c-mode-base-map [(control \`)] 'hs-toggle-hiding)
-  (define-key c-mode-base-map [(tab)] 'my-indent-or-complete)
-  (define-key c-mode-base-map [(control tab)] 'semantic-ia-complete-symbol-menu)
   (define-key c-mode-base-map "\C-x/" 'c-comment-title)
-  (define-key c-mode-base-map [(control ?/)] 'c-comment-date)
-  (define-key c-mode-base-map "\C-cjj" 'semantic-ia-fast-jump)
   (define-key c-mode-base-map "\C-c/" 'c-debug-title)
+  (define-key c-mode-base-map [(control ?/)] 'c-comment-date)
+  (define-key c-mode-base-map [f12] 'use-cedet)
   (setq c-macro-shrink-window-flag t)
   (setq c-macro-preprocessor "cpp")
   (setq c-macro-cppflags " ")
@@ -352,7 +287,7 @@ e.g. Sunday, September 17, 2000."
 
 ;;GNUplot-mode==========================================================
 ;; load the file
-(load-file "~/.emacs.d/site-lisp/gnuplot-mode.el")
+(load-file "~/.emacs.d/site-lisp/gnuplot-mode.elc")
 ;(require 'gnuplot)
 
 ;; specify the gnuplot executable (if other than /usr/bin/gnuplot)
@@ -422,58 +357,6 @@ e.g. Sunday, September 17, 2000."
 ;(require 'xcscope) ;;xcscope
 ;(global-set-key "\C-xg" 'cscope-find-global-definition-no-prompting);; find global definition for the current position
 
-;;cedet=================================================================
-;      (autoload 'speedbar-frame-mode "speedbar" "Popup a speedbar frame" t)
-;      (autoload 'speedbar-get-focus "speedbar" "Jump to speedbar frame" t)
-;      (define-key-after (lookup-key global-map [menu-bar tools])
-;                 [speedbar]
-;                 '("Speedbar" .
-;                 speedbar-frame-mode)
-;                 [calendar])
-;(global-set-key [(f5)] 'speedbar)
-
-;; (setq semanticdb-search-system-databases t)
-;; (add-hook 'c-mode-common-hook
-;; 	  (lambda ()
-;; 	    (setq semanticdb-project-system-databases
-;; 		  (list (semanticdb-create-database
-;; 			 semanticdb-new-database-class
-;; 			 "/usr/include")))))
-
-;(require 'cedet)
-;(require 'semantic-ia)
-;(require 'semantic-gcc)
-;(setq-mode-local c-mode semanticdb-find-default-throttle
-;         '(project unloaded system recursive))
-;(require 'semanticdb)
-
-;; project root path
-;(setq semanticdb-project-roots 
-;	  (list
-;        (expand-file-name "/")))
-
-;(autoload 'senator-try-expand-semantic "senator")
-
-;(setq hippie-expand-try-functions-list
-;	  '(
-;		senator-try-expand-semantic
-;		try-expand-dabbrev
-;		try-expand-dabbrev-visible
-;		try-expand-dabbrev-all-buffers
-;		try-expand-dabbrev-from-kill
-;		try-expand-list
-;		try-expand-list-all-buffers
-;		try-expand-line
-;        try-expand-line-all-buffers
-;        try-complete-file-name-partially
-;        try-complete-file-name
-;	try-expand-whole-kill
-;       )
-;)
-
-;(global-set-key [(tab)] 'indent-for-tab-command)
-;(global-set-key "\M-/" 'hippie-expand)
-;(global-set-key "" 'semantic-ia-complete-symbol-menu);;右Ctrl+\ 自动补全menu
 
 ;;Latex mode==============================================================
 ;; (defun my-latex-mode-hook()
