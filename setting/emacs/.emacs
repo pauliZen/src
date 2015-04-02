@@ -68,7 +68,7 @@ e.g. Sunday, September 17, 2000."
 
 ;;Cua-mode==============================================================
 (cua-selection-mode t)
-;(global-set-key [f12] 'cua-mode)
+(global-set-key "\C-m" 'cua-set-rectangle-mark)
 
 ;;password invisible====================================================
 (add-hook 'comint-output-filter-functions
