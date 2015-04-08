@@ -186,7 +186,7 @@ plot filename @jump @colu18
 ####---------------plot b,lagr----------------------
 set output 'blagr.'.suffix
 
-set ylabel 'R_{s,lagr} [pc]'
+set ylabel 'R_{b,lagr} [pc]'
 set xlabel 't [Myr]'
 set autoscale
 #set logscale y 10
