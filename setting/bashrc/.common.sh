@@ -1,7 +1,7 @@
 #-------------environment------------#
 #Folder:
 [ -e ~/data ] && export data=~/data
-[ -e ~/src ] && export src=~/src
+#[ -e ~/src ] && export src=~/src
 [ -e ~/bin ] && export bin=~/bin
 
 #PATH
