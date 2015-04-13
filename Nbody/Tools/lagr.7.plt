@@ -1,4 +1,4 @@
-set term png 
+set term pngcairo dashed enhanced color
 #set term postscript landscape enhanced color "Text" 16
 suffix='png'
 set output 'data.'.suffix
@@ -19,6 +19,14 @@ vscale = 2.539
 filename = 'lagr.7'
 jump = "every ::1"
 #jump = ""
+
+#Plot range:
+trange=""
+rrange=""
+vrange=""
+mrange=""
+nrange=""
+srange=""
 
 ####---------------macro 12 columns----------------
 colu12 = "u (column(x)*xscale):(column(1+shift)*yscale)   t columnhead(1+shift) w l lt 1 lw 4, \
@@ -166,7 +174,7 @@ shift = 1
 xscale = tscale
 yscale = rscale
 
-plot filename @jump @colu19
+plot [@trange][@rrange] filename @jump @colu19
 
 ####---------------plot s,lagr----------------------
 set output 'slagr.'.suffix
@@ -181,7 +189,7 @@ shift = 20
 xscale = tscale
 yscale = rscale
 
-plot filename @jump @colu18
+plot [@trange][@rrange] filename @jump @colu18
 
 ####---------------plot b,lagr----------------------
 set output 'blagr.'.suffix
@@ -196,7 +204,7 @@ shift = 38
 xscale = tscale
 yscale = rscale
 
-plot filename @jump @colu18
+plot [@trange][@rrange] filename @jump @colu18
 
 ####---------------plot AVMASS------------------
 set output 'avemass.'.suffix
@@ -210,7 +218,7 @@ shift = 56
 xscale = tscale
 yscale = mscale
 
-plot filename @jump @colu19
+plot [@trange][@mrange] filename @jump @colu19
 
 ####---------------plot NPARTC------------------
 set output 'npart.'.suffix
@@ -224,7 +232,7 @@ shift = 75
 xscale = tscale
 yscale = 1
 
-plot filename @jump @colu19
+plot [@trange][@nrange] filename @jump @colu19
 
 ####---------------plot Vx------------------
 set output 'vx.'.suffix
@@ -238,7 +246,7 @@ shift = 94
 xscale = tscale
 yscale = vscale
 
-plot filename @jump @colu19
+plot [@trange][@vrange] filename @jump @colu19
 
 ####---------------plot Vy------------------
 set output 'vy.'.suffix
@@ -252,7 +260,7 @@ shift = 113
 xscale = tscale
 yscale = vscale
 
-plot filename @jump @colu19
+plot [@trange][@vrange] filename @jump @colu19
 
 ####---------------plot Vz------------------
 set output 'vz.'.suffix
@@ -266,7 +274,7 @@ shift = 132
 xscale = tscale
 yscale = vscale
 
-plot filename @jump @colu19
+plot [@trange][@vrange] filename @jump @colu19
 
 ####---------------plot V------------------
 set output 'v.'.suffix
@@ -280,10 +288,10 @@ shift = 151
 xscale = tscale
 yscale = vscale
 
-plot filename @jump @colu19
+plot [@trange][@vrange] filename @jump @colu19
 
 ####---------------plot Vr------------------
-set output 'vr'.suffix
+set output 'vr.'.suffix
 set ylabel '<V_r> [km/s]'
 set xlabel 't [Myr]'
 set autoscale
@@ -294,7 +302,7 @@ shift = 170
 xscale = tscale
 yscale = vscale
 
-plot filename @jump @colu19
+plot [@trange][@vrange] filename @jump @colu19
 
 ####---------------plot Vt------------------
 set output 'vt.'.suffix
@@ -308,7 +316,7 @@ shift = 189
 xscale = tscale
 yscale = vscale
 
-plot filename @jump @colu19
+plot [@trange][@vrange] filename @jump @colu19
 
 ####---------------plot Sigma--------------------
 set output 'sigma.'.suffix
@@ -321,7 +329,7 @@ shift = 208
 xscale = tscale
 yscale = vscale
 
-plot filename @jump @colu_sqrt19
+plot [@trange][@srange] filename @jump @colu_sqrt19
 
 ####---------------plot Sigma_r--------------------
 set output 'sigmar.'.suffix
@@ -334,7 +342,7 @@ shift = 227
 xscale = tscale
 yscale = vscale
 
-plot filename @jump @colu_sqrt19
+plot [@trange][@srange] filename @jump @colu_sqrt19
 
 ####---------------plot Sigma_t------------------
 set output 'sigmat.'.suffix
@@ -347,7 +355,7 @@ shift = 246
 xscale = tscale
 yscale = vscale
 
-plot filename @jump @colu_sqrt19
+plot [@trange][@srange] filename @jump @colu_sqrt19
 
 ####---------------plot VROT------------------
 set output 'vrot.'.suffix
@@ -360,5 +368,5 @@ shift = 265
 xscale = tscale
 yscale = vscale
 
-plot filename @jump @colu19
+plot [@trange][@vrange] filename @jump @colu19
 
