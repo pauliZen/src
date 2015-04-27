@@ -221,11 +221,12 @@ for i in path:
 
         rs2 = x1*x1 + x2*x2 + x3*x3
         rb2 = 0
+        r2 = rs2
 
         if (bflag): 
             tbmass = float(bm1.sum() + bm2.sum())
             rb2 = bxc1*bxc1 + bxc2*bxc2 + bxc3*bxc3
-            r2 = np.append(rs2,rb2)
+            r2 = np.append(r2,rb2)
 
         rm2 = 0
         if (mflag):
@@ -547,14 +548,15 @@ for i in path:
         vtslagr  = map(lambda x: math.sqrt(x[0]*x[0]+x[1]*x[1]+x[2]*x[2]), vtsave)
         vrotslagr= vrotslagr/rsmass
         #binary/merger
-        vxblagr  = vxblagr  /rbmass
-        vyblagr  = vyblagr  /rbmass
-        vzblagr  = vzblagr  /rbmass
-        vblagr   = map(math.sqrt,vxblagr*vxblagr + vyblagr*vyblagr + vzblagr*vzblagr)
-        vrblagr  = vrblagr  /rbmass
-        vtbave   = map(lambda x,y:x/y,vtbave,rbmass)
-        vtblagr  = map(lambda x: math.sqrt(x[0]*x[0]+x[1]*x[1]+x[2]*x[2]), vtbave)
-        vrotblagr= vrotblagr/rbmass
+        if(bflag):
+            vxblagr  = vxblagr  /rbmass
+            vyblagr  = vyblagr  /rbmass
+            vzblagr  = vzblagr  /rbmass
+            vblagr   = map(math.sqrt,vxblagr*vxblagr + vyblagr*vyblagr + vzblagr*vzblagr)
+            vrblagr  = vrblagr  /rbmass
+            vtbave   = map(lambda x,y:x/y,vtbave,rbmass)
+            vtblagr  = map(lambda x: math.sqrt(x[0]*x[0]+x[1]*x[1]+x[2]*x[2]), vtbave)
+            vrotblagr= vrotblagr/rbmass
     
 #   Loop again to get velocity dispersion
 #   counter for different R_lagr bins
@@ -737,13 +739,14 @@ for i in path:
         sigrotslagr= sigrotslagr/rsmass
         #binary/merger
 #        sigblagr   = sigblagr   /(rbmass*3.0)
-        sigxblagr  = sigxblagr  /rbmass
-        sigyblagr  = sigyblagr  /rbmass
-        sigzblagr  = sigzblagr  /rbmass
-        sigblagr   = sigxblagr + sigyblagr + sigzblagr
-        sigrblagr  = sigrblagr  /rbmass
-        sigtblagr  = sigtblagr  /rbmass
-        sigrotblagr= sigrotblagr/rbmass
+        if(bflag):
+            sigxblagr  = sigxblagr  /rbmass
+            sigyblagr  = sigyblagr  /rbmass
+            sigzblagr  = sigzblagr  /rbmass
+            sigblagr   = sigxblagr + sigyblagr + sigzblagr
+            sigrblagr  = sigrblagr  /rbmass
+            sigtblagr  = sigtblagr  /rbmass
+            sigrotblagr= sigrotblagr/rbmass
 
 
 #   Print data 
