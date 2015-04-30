@@ -1,7 +1,12 @@
 echo 'dirlist datapath=data output_prefix=data'
 dirlist=dirlist
-datapath=data2
+datapath=snap
 output_prefix=data
+offset=1  #binary format offset
+nmax=200000
+amax=50000  #maximum semi-major
+fflag=1   #1 for Fit transformation; 2 for MOCCA
+bflag=1   #1 for binary; 0 for no binary
 
 lst=`cat $dirlist`
 
@@ -14,7 +19,12 @@ do
     for j in $flst
     do 
 	time=$j
+	if [ $fflag -eq 2 ]; then
+	    output=$output_prefix"_"$time
+	else
+	    output=$output_prefix
+	fi
 	echo $i' '$j
-	snapshot $time $datapath/$output_prefix 1 2000000 50 1 1 $i
+	nb6++snapshot $time $datapath/$output $offset $nmax $amax $fflag $bflag $i
     done
 done
