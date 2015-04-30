@@ -11,11 +11,11 @@ set macro
 
 hist(x,width)=width*floor(x/width)+width/2.0
 
-hist_plot= " set boxwidth binwidth; \
-	plot file every ::igl using (hist(column(col),binwidth)):(scale) smooth freq with boxes notitle"
+#hist_plot= " set boxwidth binwidth; \
+#	plot file every ::igl using (hist(column(col),binwidth)):(scale) smooth freq with boxes notitle"
 
-log_hist_plot= " set boxwidth binwidth; \
-	plot file every ::igl using (hist(log10(column(col)*scale),binwidth)):(1.0) smooth freq with boxes notitle"
+#log_hist_plot= " set boxwidth binwidth; \
+#	plot file every ::igl using (hist(log10(column(col)*scale),binwidth)):(1.0) smooth freq with boxes notitle"
 
 # hist_plot = "width=(max-min)/n; \
 #              set xrange [min:max]; \
@@ -39,60 +39,82 @@ log_hist_plot= " set boxwidth binwidth; \
 
 file = "bdat"  #filename
 igl  = 4       #ignore lines
-n    = 100     #number of intervals
-scale = 1.0    #scaling of data
-binwidth = 0.1 #bin size
+#scale = 1.0    #scaling of data
+#n    = 100     #number of intervals
 #rscale=206205.*10.0  #AU
 
 #------------------ECC-----------------#
-col  = 6        #column number
-max  = 1.0      #max value
-min  = 0.       #min value
+#col  = 6        #column number
+#max  = 1.0      #max value8
+#min  = 0.       #min value
+#binwidth = 0.01  #bin size
 
+set grid
 set xlabel "Ecc"
-set ylabel "Frequency"
+set ylabel "Number"
+plot file every ::igl u (hist($6,0.01)):(1.0) smooth freq with boxes t ''
 
-@hist_plot
+#----------------M2/M1------------------#
+
+reset
+#set grid
+#set xlabel 'Log10(M1[M_{sun}])'
+#set ylabel 'M2/M1'
+#plot file every ::igl u ($4>$3?log10($4):log10($3)):($4>$3?$3/$4:$4/$3) t ''
+#set ylabel 'Log10(M2(M_{sun}])'
+#set logscale x
+#set logscale y
+#plot file every ::igl u ($4>$3?$4:$3):($4>$3?$3:$4) t ''
+set xlabel 'M2/M1 (M2<=M1)'
+set ylabel 'Number'
+plot file every ::igl u (hist($4>$3?$3/$4:$4/$3,0.1)):(1.0) smooth freq with boxes t 'All' lt 1 lc 1, \
+       '' every ::igl u ($4>=5||$3>=5?(hist($4>$3?$3/$4:$4/$3,0.1)):1/0):(1.0) smooth freq with boxes t 'M>=5 M_sun' lt 1 lc 2, \
+       '' every ::igl u ($4<5&&$3<5?(hist($4>$3?$3/$4:$4/$3,0.1)):1/0):(1.0) smooth freq with boxes t 'M<5 M_sun' lt 1 lc 3
 
 #------------------MASS1-----------------#
-col  = 3        #column number
-max  = 5.       #max value
-min  = 0.1      #min value
+# col  = 3        #column number
+# max  = 5.       #max value
+# min  = 0.1      #min value
 
-set xlabel "M1"
-set ylabel "Frequency"
+# set xlabel "M1"
+# set ylabel "Frequency"
 
-@log_hist_plot
+# @log_hist_plot
 
 #------------------MASS2-----------------#
-col  = 4        #column number
-max  = 5.       #max value
-min  = 0.1      #min value
+# col  = 4        #column number
+# max  = 5.       #max value
+# min  = 0.1      #min value
 
-set xlabel "M2"
-set ylabel "Frequency"
+# set xlabel "M2"
+# set ylabel "Frequency"
 
-@log_hist_plot
+# @log_hist_plot
 
 #-------------SEMI----------------#
-col  = 8        #column number
-max  = 3.       #max value
-min  = -3.      #min value
+#col  = 8        #column number
+#max  = 3.       #max value
+#min  = -3.      #min value
+reset
+set grid
+set xlabel "Log10(Semi[AU])"
+set ylabel "Number"
 
-set xlabel "Semi[AU]"
-set ylabel "Frequency"
-
-@log_hist_plot
+plot file every ::igl u (hist(log10($8),0.1)):(1.0) smooth freq with boxes t 'All' lt 1 lc 1, \
+       '' every ::igl u ($4>=5||$3>=5?hist(log10($8),0.1):1/0):(1.0) smooth freq with boxes t 'M>=5 M_sun' lt 1 lc 2, \
+       '' every ::igl u (($4<5&&$3<5)?hist(log10($8),0.1):1/0):(1.0) smooth freq with boxes t 'M<5 M_sun' lt 1 lc 3
 
 #-------------Period----------------#
-col  = 7        #column number
-max  = 3.
-min  = -3.
+#col  = 7        #column number
+#max  = 3.
+#min  = -3.
 
-set xlabel "Period[days]"
-set ylabel "Frequency"
+set xlabel "Log10(Period[days])"
+set ylabel "Number"
 
-@log_hist_plot
+plot file every ::igl u (hist(log10($7),0.1)):(1.0) smooth freq with boxes t 'All' lt 1 lc 1, \
+       '' every ::igl u ($4>=5||$3>=5?hist(log10($7),0.1):1/0):(1.0) smooth freq with boxes t 'M>=5 M_sun' lt 1 lc 2, \
+       '' every ::igl u ($4<5&&$3<5?hist(log10($7),0.1):1/0):(1.0) smooth freq with boxes t 'M<5 M_sun' lt 1 lc 3
 
 #--------------M1/M2------------------#
 # file = "bdat.9" #filename
