@@ -3,10 +3,16 @@
 # For average mass, binaries/mergers are resolved
 # For velocity and dispersion, binaries/mergers are not resolved.
 
-# if hdflag = false, read snapshot generate from snapshot.f (for MOCCA)
+# if hdflag = false, read snapshot generate from snapshot.f
+#  --fsnap  = false, snapshot for MOCCA
 #                    the snap.lst should only contain the time
 #                    filename for single data should be single_[time]
 #                             for binary data should be binary_[time]
+#                    bflag and scaling factors should be defined
+#  --fsnap  = true,  snapshot for Fit transformation
+#                    the snap.lst should only contain the time
+#                    filename prefix is defined in fpr, filename 
+#                    is [fpr][time]
 
 
 import numpy as np
@@ -17,8 +23,11 @@ from matplotlib.colors import BoundaryNorm
 from matplotlib.ticker import MaxNLocator
 
 # Custom options 
-hdflag = True
-# for snapshot case:
+hdflag = False
+# for snapshot case: Single snapshot file for Fit transformation
+fsnap = True
+fpr = 'data_'
+# for snaphsot case: MOCCA snapshot
 bflag = True
 rscale = 1.0
 mscale = 1.0
@@ -55,11 +64,12 @@ for i in path:
         s = 0
         if (hdflag):
             s = f.items()[kj][1]
-            kj += 1
 
             time = float(s.attrs['Time'])
         else:
-            time = i
+            time = float(i)
+
+        kj += 1
 
         # lagrangian radii
         rlagr=np.zeros(rfrac.size)
@@ -160,35 +170,6 @@ for i in path:
         v2 = 0
         v3 = 0
 
-        if (hdflag):
-            N_SINGLE = s.attrs['N_SINGLE']
-
-            t = np.array(s['TE'])
-            l = np.array(s['L'])
-            k = np.array(s['KW'])
-            mass = np.array(s['M'])
-            n = np.array(s['NAM'])
-            x1 = np.array(s['X1'])
-            x2 = np.array(s['X2'])
-            x3 = np.array(s['X3'])
-            v1 = np.array(s['V1'])
-            v2 = np.array(s['V2'])
-            v3 = np.array(s['V3'])
-     
-            bflag = 'Binaries' in map(lambda x:x[0], s.items())
-        else:
-            mass,x1,x2,x3,v1,v2,v3 = np.loadtxt('single_'+i,unpack=True)
-            if (mscale!=1.0):
-                mass = mass*mscale
-            if (rscale!=1.0):
-                x1 = x1*rscale
-                x2 = x2*rscale
-                x3 = x3*rscale
-            if (vscale!=1.0):
-                v1 = v1*vscale
-                v2 = v2*vscale
-                v3 = v3*vscale
-
         N_BINARY = 0
         b = 0
 
@@ -207,8 +188,24 @@ for i in path:
         bp = 0
 
         mflag = False
-        
+
         if (hdflag):
+            N_SINGLE = s.attrs['N_SINGLE']
+
+            t = np.array(s['TE'])
+            l = np.array(s['L'])
+            k = np.array(s['KW'])
+            mass = np.array(s['M'])
+            n = np.array(s['NAM'])
+            x1 = np.array(s['X1'])
+            x2 = np.array(s['X2'])
+            x3 = np.array(s['X3'])
+            v1 = np.array(s['V1'])
+            v2 = np.array(s['V2'])
+            v3 = np.array(s['V3'])
+     
+            bflag = 'Binaries' in map(lambda x:x[0], s.items())
+
             if (bflag):
                 b = s['Binaries']
                 N_BINARY = b.attrs['N_BINARY']
@@ -229,21 +226,63 @@ for i in path:
                     bflag = False
 
             mflag = 'Mergers' in map(lambda x:x[0], s.items())
+
         else:
-            if (bflag):
-                bm1,bm2,bxc1,bxc2,bxc3,bvc1,bvc2,bvc3 = np.loadtxt('binary_'+i,unpack=True)
-            if (mscale!=1.0):
-                bm1 = bm1*mscale
-                bm2 = bm2*mscale
-            if (rscale!=1.0):
-                bxc1 = bxc1*rscale
-                bxc2 = bxc2*rscale
-                bxc3 = bxc3*rscale
-            if (vscale!=1.0):
-                bvc1 = bvc1*vscale
-                bvc2 = bvc2*vscale
-                bvc3 = bvc3*vscale
-                
+            if (fsnap):
+                m1,m2,xc1,xc2,xc3,vc1,vc2,vc3 = np.loadtxt(fpr+i,unpack=True,usecols=(12,13,22,23,24,25,26,27))
+                mass = m1[m2==0]
+                N_SINGLE = mass.size
+                x1 = xc1[m2==0]
+                x2 = xc2[m2==0]
+                x3 = xc3[m2==0]
+                v1 = vc1[m2==0]
+                v2 = vc2[m2==0]
+                v3 = vc3[m2==0]
+
+                bm1 = m1[m2>0]
+                N_BINARY = bm1.size
+                if (N_BINARY>0):
+                    bflag = True
+                    bm2 = m2[m2>0]
+                    bxc1 = xc1[m2>0]
+                    bxc2 = xc2[m2>0]
+                    bxc3 = xc3[m2>0]
+                    bvc1 = vc1[m2>0]
+                    bvc2 = vc2[m2>0]
+                    bvc3 = vc3[m2>0]
+                else:
+                    bflag = False
+            else:
+                mass,x1,x2,x3,v1,v2,v3 = np.loadtxt(fpr+i+'_single.dat',unpack=True)
+                N_SINGLE = mass.size
+#                if (mscale!=1.0):
+#                    mass = mass*mscale
+                if (rscale!=1.0):
+                    x1 = x1*rscale
+                    x2 = x2*rscale
+                    x3 = x3*rscale
+                if (vscale!=1.0):
+                    v1 = v1*vscale
+                    v2 = v2*vscale
+                    v3 = v3*vscale
+        
+                if (bflag):
+                    bm1,bm2,bxc1,bxc2,bxc3,bvc1,bvc2,bvc3 = np.loadtxt(fpr+i+'_binary.dat',unpack=True,usecols=(2,3,4,5,6,7,8,9))
+                    N_BINARY = bm1.size
+                    if (N_BINARY>0):
+#                    if (mscale!=1.0):
+#                        bm1 = bm1*mscale
+#                        bm2 = bm2*mscale
+                        if (rscale!=1.0):
+                            bxc1 = bxc1*rscale
+                            bxc2 = bxc2*rscale
+                            bxc3 = bxc3*rscale
+                        if (vscale!=1.0):
+                            bvc1 = bvc1*vscale
+                            bvc2 = bvc2*vscale
+                            bvc3 = bvc3*vscale
+                    else:
+                        bflag=False
 
         N_MERGER = 0
         m = 0
@@ -333,9 +372,6 @@ for i in path:
         cmass = 0
         bmass = 0
         smass = 0
-
-#  Get time
-        time = float(s.attrs['Time'])
 
 #  Single and binary number
         N_SB = N_SINGLE + N_BINARY
@@ -946,7 +982,7 @@ for i in path:
         print " " 
 
 #   Close current snapshot
-    f.close()
+    if (hdflag): f.close()
 
 #    fw.write(str(rlagr)+str(rslagr)+str(rblagr)+str(mlagr)+str(mslagr)+str(mblagr)+str(nlagr)+str(nslagr)+str(nblagr))
 #fw.close()

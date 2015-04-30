@@ -2,23 +2,23 @@ import numpy as np
 import matplotlib.pyplot as plt
 import math
 
-filename='lagr.snap'
-outformat='.png'
+filename='lagr.data'
+outformat='.eps'
 tscale=1.0
 tmin=0.0
-tmax=50.0
+tmax=150.0
 
 rmin=0.0
-rmax=3.0
+rmax=20.0
 
 nmin=0
-nmax=50000
+nmax=10000
 
 vmin=-15.0
 vmax=15.0
 
 mmin=0.0
-mmax=15.0
+mmax=40.0
 
 smin=0.0
 smax=20.0
