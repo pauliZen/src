@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import math
 
-filename='lagr.data'
+filename='lagr.hdf'
 outformat='.eps'
 tscale=1.0
 tmin=0.0
@@ -28,6 +28,9 @@ mmmax=1.0
 
 nnmin=0.0
 nnmax=1.0
+
+bbmin=0.0
+bbmax=1.0
 
 f = open(filename,'r')
 title=f.readline()
@@ -66,7 +69,8 @@ tlabel=(r'$R_{lagr}$',r'$R_{lagr,s}$',r'$R_{lagr,b}$',
         r'$\langle \sigma_r \rangle$',r'$\langle \sigma_r \rangle_{s}$',r'$\langle \sigma_r \rangle_{b}$',
         r'$\langle \sigma_t \rangle$',r'$\langle \sigma_t \rangle_{s}$',r'$\langle \sigma_t \rangle_{b}$',
         r'$\langle v_{rot} \rangle$',r'$\langle v_{rot} \rangle_{s}$',r'$\langle v_{rot} \rangle_{b}$',
-        r'$\langle \sigma_{rot} \rangle$',r'$\langle \sigma_{rot} \rangle_{s}$',r'$\langle \sigma_{rot} \rangle_{b}$')
+        r'$\langle \sigma_{rot} \rangle$',r'$\langle \sigma_{rot} \rangle_{s}$',r'$\langle \sigma_{rot} \rangle_{b}$',
+        r'$M_{p,bin}/M$',r'$N_{p,bin}/N$',r'$M_{p,bin}/M_{bin}$',r'$N_{p,bin}/N_{bin}$')
 
 fname=('R_lagr','R_lagrs','R_lagrb',
         'M','M_s','M_b',
@@ -85,7 +89,9 @@ fname=('R_lagr','R_lagrs','R_lagrb',
         's_r','s_r_s','s_r_b',
         's_t','s_t_s','s_t_b',
         'v_rot','v_rot_s','v_rot_b',
-        's_rot','s_rot_s','s_rot_b')
+        's_rot','s_rot_s','s_rot_b',
+        'PM_bin_M','PN_bin_N',
+        'PMb_Mb','PNb_Nb')
 
 
 # direct ouput
@@ -107,28 +113,48 @@ for k in np.append(np.append(np.array(range(9)),np.array(range(18))+11),np.array
     plt.close(fig)
     
 # Mb/M
-fig = plt.figure(figsize=(8,6),dpi=300)
-plt.xlabel('Time[Myr]')
-plt.ylabel(tlabel[9])
-plt.xlim(tmin,tmax)
-plt.ylim(mmmin,mmmax)
-for i in range(nfrac):
-    plt.plot(data[:,0]*tscale,data[:,masks[i]+162]/(data[:,masks[i]+54]*data[:,masks[i]+108]),linestyles[i],label=title[masks[i]+shift],color=colors[i],markersize=1)
-plt.legend()
-plt.savefig(fname[9]+outformat)
-plt.close(fig)
+for k in np.array([9,53]):
+    shift = k*18
+    fig = plt.figure(figsize=(8,6),dpi=300)
+    plt.xlabel('Time[Myr]')
+    plt.ylabel(tlabel[k])
+    plt.xlim(tmin,tmax)
+    plt.ylim(mmmin,mmmax)
+    for i in range(nfrac):
+        plt.plot(data[:,0]*tscale,data[:,masks[i]+shift]/(data[:,masks[i]+54]*data[:,masks[i]+108]),linestyles[i],label=title[masks[i]+shift],color=colors[i],markersize=1)
+    plt.legend()
+    plt.savefig(fname[k]+outformat)
+    plt.close(fig)
+
 
 # Nb/N
-fig = plt.figure(figsize=(8,6),dpi=300)
-plt.xlabel('Time[Myr]')
-plt.ylabel(tlabel[10])
-plt.xlim(tmin,tmax)
-plt.ylim(nnmin,nnmax)
-for i in range(nfrac):
-    plt.plot(data[:,0]*tscale,data[:,masks[i]+180]/data[:,masks[i]+108],linestyles[i],label=title[masks[i]+shift],color=colors[i],markersize=1)
-plt.legend()
-plt.savefig(fname[10]+outformat)
-plt.close(fig)
+for k in np.array([10,54]):
+    shift = k*18
+    fig = plt.figure(figsize=(8,6),dpi=300)
+    plt.xlabel('Time[Myr]')
+    plt.ylabel(tlabel[k])
+    plt.xlim(tmin,tmax)
+    plt.ylim(nnmin,nnmax)
+    for i in range(nfrac):
+        plt.plot(data[:,0]*tscale,data[:,masks[i]+shift]/data[:,masks[i]+108],linestyles[i],label=title[masks[i]+shift],color=colors[i],markersize=1)
+    plt.legend()
+    plt.savefig(fname[k]+outformat)
+    plt.close(fig)
+
+# PMb/Mb, PNb/Nb
+for k in np.array([53,54]):
+    shift = k*18
+    s2 = (k-44)*18
+    fig = plt.figure(figsize=(8,6),dpi=300)
+    plt.xlabel('Time[Myr]')
+    plt.ylabel(tlabel[k+2])
+    plt.xlim(tmin,tmax)
+    plt.ylim(bbmin,bbmax)
+    for i in range(nfrac):
+        plt.plot(data[:,0]*tscale,data[:,masks[i]+shift]/data[:,masks[i]+s2],linestyles[i],label=title[masks[i]+shift],color=colors[i],markersize=1)
+    plt.legend()
+    plt.savefig(fname[k+2]+outformat)
+    plt.close(fig)
     
 # sqrt output
 for k in np.append(np.array(range(18))+29,np.array([50,51,52])):

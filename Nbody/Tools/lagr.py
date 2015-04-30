@@ -23,7 +23,7 @@ from matplotlib.colors import BoundaryNorm
 from matplotlib.ticker import MaxNLocator
 
 # Custom options 
-hdflag = False
+hdflag = True
 # for snapshot case: Single snapshot file for Fit transformation
 fsnap = True
 fpr = 'data_'
@@ -45,7 +45,7 @@ rfrac=np.array([0.001,0.003,0.005,0.01,0.03,0.05,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8
 print "## Time; 100 groups of data; offset %d " % rfrac.size
 
 print "Time[NB] ",
-for i in range(53):
+for i in range(55):
     for j in range(rfrac.size): 
         print "%.2e " % rfrac[j],
 print " "
@@ -156,6 +156,14 @@ for i in path:
         sigrotslagr=np.zeros(rfrac.size)
         sigrotblagr=np.zeros(rfrac.size)
 
+        #  Binary mass/number inside different R_lagr
+        msblagr=np.zeros(rfrac.size)
+        nsblagr=np.zeros(rfrac.size)
+
+        #  Primordial binary mass/number inside different R_lagr
+        mspblagr=np.zeros(rfrac.size)
+        nspblagr=np.zeros(rfrac.size)
+
         N_SINGLE = 0
 
         t = 0
@@ -186,6 +194,8 @@ for i in path:
         ba = 0
         be = 0
         bp = 0
+        bn1 = 0
+        bn2 = 0
 
         mflag = False
 
@@ -222,6 +232,8 @@ for i in path:
                     bp = np.array(b['P'])
                     bm1 = np.array(b['M1'])
                     bm2= np.array(b['M2'])
+                    bn1 = np.array(b['NAM1'])
+                    bn2 = np.array(b['NAM2'])
                 else:
                     bflag = False
 
@@ -229,7 +241,7 @@ for i in path:
 
         else:
             if (fsnap):
-                m1,m2,xc1,xc2,xc3,vc1,vc2,vc3 = np.loadtxt(fpr+i,unpack=True,usecols=(12,13,22,23,24,25,26,27))
+                m1,m2,xc1,xc2,xc3,vc1,vc2,vc3,n1,n2 = np.loadtxt(fpr+i,unpack=True,usecols=(12,13,22,23,24,25,26,27,28,29))
                 mass = m1[m2==0]
                 N_SINGLE = mass.size
                 x1 = xc1[m2==0]
@@ -250,6 +262,8 @@ for i in path:
                     bvc1 = vc1[m2>0]
                     bvc2 = vc2[m2>0]
                     bvc3 = vc3[m2>0]
+                    bn1  = n1[m2>0]
+                    bn2  = n2[m2>0]
                 else:
                     bflag = False
             else:
@@ -270,6 +284,8 @@ for i in path:
                     bm1,bm2,bxc1,bxc2,bxc3,bvc1,bvc2,bvc3 = np.loadtxt(fpr+i+'_binary.dat',unpack=True,usecols=(2,3,4,5,6,7,8,9))
                     N_BINARY = bm1.size
                     if (N_BINARY>0):
+                        bn1 = np.zeros(rfrac.size)
+                        bn2 = np.zeros(rfrac.size)
 #                    if (mscale!=1.0):
 #                        bm1 = bm1*mscale
 #                        bm2 = bm2*mscale
@@ -353,10 +369,6 @@ for i in path:
         
 #  Get distance sorting index
         idx = r2.argsort()
-
-#  Binary mass/number inside different R_lagr
-        msblagr=np.zeros(rfrac.size)
-        nsblagr=np.zeros(rfrac.size)
 
 # counter for different R_lagr bins
         kk = 0
@@ -492,6 +504,12 @@ for i in path:
                 msblagr[kk] += mmb[j]
                 nsblagr[kk] += 2
 
+                # primordial binareis
+                if (j<N_SB):
+                    if (abs(bn1[j-N_SINGLE]-bn2[j-N_SINGLE])==1):
+                        mspblagr[kk] += mmb[j]
+                        nspblagr[kk] += 2
+
                 # Go to next bin if mass reach the R_Lagr limit
                 if (bmass >= rbmass[kkb]):
                     # update mass
@@ -576,6 +594,9 @@ for i in path:
                     if (nsblagr[kk] == 0):
                         msblagr[kk] = msblagr[kk-1]
                         nsblagr[kk] = nsblagr[kk-1]
+                    if (nspblagr[kk] == 0):
+                        mspblagr[kk] = mspblagr[kk-1]
+                        nspblagr[kk] = nspblagr[kk-1]
                     # total counter
                     if (nlagr[kk] == 0):
                         vxlagr[kk] = vxlagr[kk-1]
@@ -595,6 +616,8 @@ for i in path:
             nlagr[kk] = nlagr[kn]
             nsblagr[kk] = nsblagr[kn]
             msblagr[kk] = msblagr[kn]
+            nspblagr[kk] = nspblagr[kn]
+            mspblagr[kk] = mspblagr[kn]
             vxlagr[kk] = vxlagr[kn]
             vylagr[kk] = vylagr[kn]
             vzlagr[kk] = vzlagr[kn]
@@ -979,6 +1002,12 @@ for i in path:
             print "%.8e " % sigrotslagr[j],
         for j in range(rfrac.size):
             print "%.8e " % sigrotblagr[j],
+        # Primordial Mb in R_lagr
+        for j in range(rfrac.size): 
+            print "%.8e " % mspblagr[j],
+        # Primrodial Nb in R_lagr
+        for j in range(rfrac.size): 
+            print "%d " % nspblagr[j],
         print " " 
 
 #   Close current snapshot
