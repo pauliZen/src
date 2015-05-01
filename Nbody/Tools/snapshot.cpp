@@ -1,4 +1,14 @@
 //transform bdat.9, bwdat.19, sev.83, bew.82 and conf.3 to specific format//
+//
+// Output option 1:
+// x1(1:3)[pc], v1(1:3)[km/s], x2(1:3)[pc], v2(1:3)[km/s], m1[M_sun], m2[M_sun], log10[L1[L_sun]), log10(L2[L_sun]), rs1[R_sun], rs2[R_sun], K1, K2, a[R_sun], eccentricity, xcm(1:3)[pc], vcm(1:3)[km/s]
+// Here L1/2 is luminosity, rs1/2 is stellar radius, a is semi-major axis.
+//   In binary case, x1/2,v1/2 are the two components positions and velocities, xcm, vcm are the center-of-mass positions and velocities.
+//   In single case, x1 and xcm are same, v1 and vcm are same. the data for *2 are zero
+//
+// Output option 2:
+//   single star data: mass[M_sun], x(1:3)[NB],v(1:3)[NB]
+//   binary star data: eccentricity, log10(a[R_sun]), mass1[M_sun], mass2[M_sun], xcm(1:3)[NB], vcm(1:3)[NB]
 
 #include <stdio.h>
 #include <cstring>
@@ -13,16 +23,16 @@
 
 //new data structure================================//
 struct ndata{
-  double x1[3],v1[3],x2[3],v2[3],m1,m2,L1,L2,rs1,rs2;  //x/v(1/2): binary component(1/2) or single star(1)[NB], m1/2: mass[Msub], L1/2, log10 luminocity[Lsun], rs1/2, star radius[R_sun]
-  int k1,k2; //k1/2: stellar type
+  double x1[3],v1[3],x2[3],v2[3],m1,m2,L1,L2,rs1,rs2;  //x/v(1/2): binary component(1/2) or single star(1)[NB], m1/2: mass[M_sun], L1/2: log10 luminocity[L_sun], rs1/2: star radius[R_sun]
+  int k1,k2,n1,n2; //k1/2: stellar type, n1/2: name
   double a,e,x[3],v[3]; //a: semi-major[R_sun], e: eccentricity, x/v: binary c.m. or single star[NB]
   ndata() {}
-  ndata(float a[3],float b[3],float c[3],float d[3],double p1,double p2,double p3,double p4,double p5,double p6,int p7,int p8,double p9,double p10,double p11[3],double p12[3]): m1(p1),m2(p2),L1(p3),L2(p4),rs1(p5),rs2(p6),k1(p7),k2(p8),a(p9),e(p10) {
+  ndata(int i1, int i2, float a[3],float b[3],float c[3],float d[3],double p1,double p2,double p3,double p4,double p5,double p6,int p7,int p8,double p9,double p10,double p11[3],double p12[3]): n1(i1),n2(i2),m1(p1),m2(p2),L1(p3),L2(p4),rs1(p5),rs2(p6),k1(p7),k2(p8),a(p9),e(p10) {
     x1[0]=a[0];    x1[1]=a[1];    x1[2]=a[2];    v1[0]=b[0];    v1[1]=b[1];    v1[2]=b[2];
     x2[0]=c[0];    x2[1]=c[1];    x2[2]=c[2];    v2[0]=d[0];    v2[1]=d[1];    v2[2]=d[2];
     x[0]=p11[0];   x[1]=p11[1];   x[2]=p11[2];   v[0]=p12[0];   v[1]=p12[1];   v[2]=p12[2];
   }
-  ndata(float a[3],float b[3],float c[3],float d[3],double p1,double p2,double p3,double p4,double p5,double p6,int p7,int p8,double p9,double p10,float p11[3],float p12[3]): m1(p1),m2(p2),L1(p3),L2(p4),rs1(p5),rs2(p6),k1(p7),k2(p8),a(p9),e(p10) {
+  ndata(int i1, int i2, float a[3],float b[3],float c[3],float d[3],double p1,double p2,double p3,double p4,double p5,double p6,int p7,int p8,double p9,double p10,float p11[3],float p12[3]): n1(i1),n2(i2),m1(p1),m2(p2),L1(p3),L2(p4),rs1(p5),rs2(p6),k1(p7),k2(p8),a(p9),e(p10) {
     x1[0]=a[0];    x1[1]=a[1];    x1[2]=a[2];    v1[0]=b[0];    v1[1]=b[1];    v1[2]=b[2];
     x2[0]=c[0];    x2[1]=c[1];    x2[2]=c[2];    v2[0]=d[0];    v2[1]=d[1];    v2[2]=d[2];
     x[0]=p11[0];   x[1]=p11[1];   x[2]=p11[2];   v[0]=p12[0];   v[1]=p12[1];   v[2]=p12[2];
@@ -260,7 +270,7 @@ int main(int argc, char *argv[]){
       mask[name[0]]=true;
       mask[name[1]]=true;
       dat[bcount] =
-        ndata(data[name[0]].x, data[name[0]].v, data[name[1]].x, data[name[1]].v, //x1,v1,x2,v2 
+        ndata(name[0],name[1],data[name[0]].x, data[name[0]].v, data[name[1]].x, data[name[1]].v, //x1,v1,x2,v2 
               m[0], m[1], bedat[name[0]].logL1, bedat[name[0]].logL2,     //mass1,mass2,logL1,logL2
               pow(10,bedat[name[0]].logR1), pow(10,bedat[name[0]].logR2), //Rs1, Rs2
               k1, k2, a*215.095, ecc, data[ncm].x, data[ncm].v);          //K1,K2,a,e,xcm,vcm      
@@ -312,7 +322,7 @@ int main(int argc, char *argv[]){
         v[i]=(m1*data[name[0]].v[i] + m2*data[name[1]].v[i])/(m1+m2);
       }
       dat[bcount+bwcount] =
-        ndata(data[name[0]].x, data[name[0]].v, data[name[1]].x, data[name[1]].v,//x1,v1,x2,v2
+        ndata(name[0],name[1],data[name[0]].x, data[name[0]].v, data[name[1]].x, data[name[1]].v,//x1,v1,x2,v2
               m[0], m[1], sedat[name[0]].logL, sedat[name[1]].logL,     //mass1,mass2,logL1,logL2 
               pow(10,sedat[name[0]].logR), pow(10,sedat[name[1]].logR), //Rs1, Rs2
               k1, k2, a*215.095, ecc, x, v);                            //K1,K2,a,e,xcm,vcm
@@ -333,7 +343,7 @@ int main(int argc, char *argv[]){
       float xzero[3]={};
       float vzero[3]={};
       dat[bcount+bwcount+scount] =
-        ndata(data[i].x, data[i].v, xzero, vzero, //x1,v1,x2,v2
+        ndata(data[i].name,0,data[i].x, data[i].v, xzero, vzero, //x1,v1,x2,v2
               data[i].mass*par->zmbar, 0.,  //mass1 mass2
               sedat[i].logL, 0.,           //logL1 logL2
               pow(10,sedat[i].logR), 0.,   //Rs1, Rs2
@@ -382,7 +392,7 @@ int main(int argc, char *argv[]){
     double rlagr[18]={};
     int lcount[18]={};
     for(int i=0;i<ntt;i++) {
-      fprintf(out,"%lg %lg %lg %lg %lg %lg %lg %lg %lg %lg %lg %lg %lg %lg %lg %lg %lg %lg %d %d %lg %lg %lg %lg %lg %lg %lg %lg\n",
+      fprintf(out,"%lg %lg %lg %lg %lg %lg %lg %lg %lg %lg %lg %lg %lg %lg %lg %lg %lg %lg %d %d %lg %lg %lg %lg %lg %lg %lg %lg %d %d\n",
               dat[i].x1[0]*par->rbar, dat[i].x1[1]*par->rbar, dat[i].x1[2]*par->rbar,
               dat[i].v1[0]*par->vstar, dat[i].v1[1]*par->vstar, dat[i].v1[2]*par->vstar,
               dat[i].x2[0]*par->rbar, dat[i].x2[1]*par->rbar, dat[i].x2[2]*par->rbar,
@@ -390,7 +400,8 @@ int main(int argc, char *argv[]){
               dat[i].m1, dat[i].m2, dat[i].L1, dat[i].L2, dat[i].rs1, dat[i].rs2,
               dat[i].k1, dat[i].k2, dat[i].a, dat[i].e,
               dat[i].x[0]*par->rbar, dat[i].x[1]*par->rbar, dat[i].x[2]*par->rbar,
-              dat[i].v[0]*par->vstar, dat[i].v[1]*par->vstar, dat[i].v[2]*par->vstar);
+              dat[i].v[0]*par->vstar, dat[i].v[1]*par->vstar, dat[i].v[2]*par->vstar,
+              dat[i].n1, dat[i].n2);
       countmass +=dat[i].m1+dat[i].m2;
       if(dat[i].m2>0.){
         cbmass +=dat[i].m1+dat[i].m2;
