@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import math
 
-filename='lagr.hdf'
+filename='lagr.hdf.new'
 outformat='.eps'
 tscale=1.0
 tmin=0.0
@@ -14,14 +14,14 @@ rmax=20.0
 nmin=0
 nmax=10000
 
-vmin=-15.0
-vmax=15.0
+vmin=-5.0
+vmax=5.0
 
 mmin=0.0
 mmax=40.0
 
 smin=0.0
-smax=20.0
+smax=5.0
 
 mmmin=0.0
 mmmax=1.0
@@ -40,17 +40,19 @@ f.close()
 #time,r,rs,rb,m,ms,mb,n,ns,nb,mm,nn,v,vs,vb,vx,vxs,vxb,vy,vys,vyb,vz,vzs,vzb,vr,vrs,vrb,vt,vts,vtb,s,ss,sb,sx,sxs,sxb,sy,sys,syb,sz,szs,szb,sr,srs,srb,st,sts,stb,vrot,vrots,vrotb,srot,srots,srotb=np.loadtxt(filename,skiprows=2,unpack=True)
 data=np.loadtxt(filename,skiprows=2,unpack=False)
 
-
 # full output
-nfrac=18
-colors     = ('b', 'g', 'r', 'c', 'm', 'y', 'k', 'b', 'g', 'r', 'c', 'm', 'y', 'k', 'b', 'g', 'r', 'c')
-linestyles = ('_', '_', '_', '_', '_', '_', '_', '-', '-', '-', '-', '-', '-', '-', '--', '--', '--', '--')
-masks=np.array(range(18))+1
+#ntot =18
+#nfrac=18
+#colors     = ('b', 'g', 'r', 'c', 'm', 'y', 'k', 'b', 'g', 'r', 'c', 'm', 'y', 'k', 'b', 'g', 'r', 'c')
+#linestyles = ('_', '_', '_', '_', '_', '_', '_', '-', '-', '-', '-', '-', '-', '-', '--', '--', '--', '--')
+#masks=np.array(range(18))+1
 # Only mark 7 to make clear plot
+ntot=8
 nfrac=7
 colors         = ('b', 'g', 'r', 'c', 'm', 'y', 'k')
 linestyles     = ('-', '-', '-', '-', '-', '-', '-')
-masks = np.array([  1,   4,   7,   9,  11,  13,  15])
+#masks = np.array([  1,   4,   7,   9,  11,  13,  15])
+masks = np.array([  1,   2,   3,   4,   5,   6,   7])
 # Label
 tlabel=(r'$R_{lagr}$',r'$R_{lagr,s}$',r'$R_{lagr,b}$',
         r'$\langle M \rangle$',r'$\langle M \rangle_{s}$',r'$\langle M \rangle_{b}$',
@@ -96,7 +98,7 @@ fname=('R_lagr','R_lagrs','R_lagrb',
 
 # direct ouput
 for k in np.append(np.append(np.array(range(9)),np.array(range(18))+11),np.array([47,48,49])):
-    shift = k*18
+    shift = k*ntot
     fig = plt.figure(figsize=(8,6),dpi=300)
     plt.xlabel('Time[Myr]')
     plt.ylabel(tlabel[k])
@@ -114,14 +116,14 @@ for k in np.append(np.append(np.array(range(9)),np.array(range(18))+11),np.array
     
 # Mb/M
 for k in np.array([9,53]):
-    shift = k*18
+    shift = k*ntot
     fig = plt.figure(figsize=(8,6),dpi=300)
     plt.xlabel('Time[Myr]')
     plt.ylabel(tlabel[k])
     plt.xlim(tmin,tmax)
     plt.ylim(mmmin,mmmax)
     for i in range(nfrac):
-        plt.plot(data[:,0]*tscale,data[:,masks[i]+shift]/(data[:,masks[i]+54]*data[:,masks[i]+108]),linestyles[i],label=title[masks[i]+shift],color=colors[i],markersize=1)
+        plt.plot(data[:,0]*tscale,data[:,masks[i]+shift]/(data[:,masks[i]+3*ntot]*data[:,masks[i]+6*ntot]),linestyles[i],label=title[masks[i]+shift],color=colors[i],markersize=1)
     plt.legend()
     plt.savefig(fname[k]+outformat)
     plt.close(fig)
@@ -129,22 +131,22 @@ for k in np.array([9,53]):
 
 # Nb/N
 for k in np.array([10,54]):
-    shift = k*18
+    shift = k*ntot
     fig = plt.figure(figsize=(8,6),dpi=300)
     plt.xlabel('Time[Myr]')
     plt.ylabel(tlabel[k])
     plt.xlim(tmin,tmax)
     plt.ylim(nnmin,nnmax)
     for i in range(nfrac):
-        plt.plot(data[:,0]*tscale,data[:,masks[i]+shift]/data[:,masks[i]+108],linestyles[i],label=title[masks[i]+shift],color=colors[i],markersize=1)
+        plt.plot(data[:,0]*tscale,data[:,masks[i]+shift]/data[:,masks[i]+6*ntot],linestyles[i],label=title[masks[i]+shift],color=colors[i],markersize=1)
     plt.legend()
     plt.savefig(fname[k]+outformat)
     plt.close(fig)
 
 # PMb/Mb, PNb/Nb
 for k in np.array([53,54]):
-    shift = k*18
-    s2 = (k-44)*18
+    shift = k*ntot
+    s2 = (k-44)*ntot
     fig = plt.figure(figsize=(8,6),dpi=300)
     plt.xlabel('Time[Myr]')
     plt.ylabel(tlabel[k+2])
@@ -158,7 +160,7 @@ for k in np.array([53,54]):
     
 # sqrt output
 for k in np.append(np.array(range(18))+29,np.array([50,51,52])):
-    shift = k*18
+    shift = k*ntot
     fig = plt.figure(figsize=(8,6),dpi=300)
     #plt.title('')
     plt.xlabel('Time[Myr]')

@@ -1,6 +1,4 @@
 # Lagrangian radii, average mass, number, velocity, radial/tangential velocity, velocity dispersion, radial/tangential velocity dispersion, x/y/z velocity dispersion, rotational velocity
-# Parameters are calculated from center to R_lagr
-# For average mass, binaries/mergers are resolved
 # For velocity and dispersion, binaries/mergers are not resolved.
 
 # if hdflag = false, read snapshot generate from snapshot.f
@@ -22,7 +20,8 @@ import math
 from matplotlib.colors import BoundaryNorm
 from matplotlib.ticker import MaxNLocator
 
-# Custom options 
+# Custom options
+# for HDF5 output
 hdflag = True
 # for snapshot case: Single snapshot file for Fit transformation
 fsnap = True
@@ -32,12 +31,21 @@ bflag = True
 rscale = 1.0
 mscale = 1.0
 vscale = 1.0
+# Whether calculate everything from center or between neighbor shells
+fshell = True
+# Whether resolve binaries for average mass calculation
+fbres = False
 
 fl = open('snap.lst','r')
 path = fl.read()
 path = path.splitlines()
 
-rfrac=np.array([0.001,0.003,0.005,0.01,0.03,0.05,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,0.95,0.99,1.0])
+#rfrac=np.array([0.001,0.003,0.005,0.01,0.03,0.05,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,0.95,0.99,1.0])
+# More useful fraction:
+rfrac=np.array([0.001,0.01,0.1,0.3,0.5,0.7,0.9,1.0])
+
+# Safe x/y function:
+fxovery = lambda x,y: 0.0 if float(y)==0.0 else x/y
 
 # Whether average from center to shell or between shells
 # flag_s = False
@@ -379,17 +387,31 @@ for i in path:
         nc = 0
         ncs = 0
         ncb = 0
+        #   Previous counter
+        ncprev = 0
+        ncsprev = 0
+        ncbprev = 0
 
 #   Mass counter
         cmass = 0
         bmass = 0
         smass = 0
+        #   Previous counter
+        mcprev = 0
+        mcsprev = 0
+        mcbprev = 0
 
 #  Single and binary number
         N_SB = N_SINGLE + N_BINARY
-
-#  Initialize the velocity vectors
+#  binary and merger
+        N_BM = N_BINARY + N_MERGER
+        # Resolved case
+        if (fbres): N_BM = N_BINARY*2 + N_MERGER*3
+#  Total number 
         N_TOT = N_SB + N_MERGER
+        # For total counter, unresolved and resolved case 
+        N_TOTR = N_BM + N_SINGLE
+#  Initialize the velocity vectors
         # velocity, x,y,z,r,t,rot
         vx = np.zeros(N_TOT)
         vy = np.zeros(N_TOT)
@@ -417,16 +439,21 @@ for i in path:
 
 #   Binary/merger case
             if (j>=N_SINGLE):
-                # increase total counter by one in binary case
-                nc += 1
-                # increase binary counter by two 
-                ncb += 2
+                # increase binary counter by one
+                ncb += 1
+                if (fbres):
+                    # increase total counter by one in binary case
+                    nc += 1
+                    # increase binary counter by one for resolved case
+                    ncb += 1
 #   Merger case
                 
                 if (j>=N_SB):
-                    # increase total counter by one in merger case
-                    nc += 1
-                    ncb += 1
+                    if (fbres):
+                        # increase total counter by one in merger case
+                        nc += 1
+                        # increase binary counter by one for resolved case
+                        ncb += 1
                     inx = j - N_SB
                     mmb[j] = mm1[inx]+mm2[inx]+mm3[inx]
                     vx[j] = mvc1[inx]
@@ -502,38 +529,47 @@ for i in path:
 
                 # increase mass/number counter for binaries in R_lagr
                 msblagr[kk] += mmb[j]
-                nsblagr[kk] += 2
+                nsblagr[kk] += 1
+                if (fbres): nsblagr[kk] += 1
 
                 # primordial binareis
                 if (j<N_SB):
                     if (abs(bn1[j-N_SINGLE]-bn2[j-N_SINGLE])==1):
                         mspblagr[kk] += mmb[j]
-                        nspblagr[kk] += 2
+                        nspblagr[kk] += 1
+                        if (fbres): nspblagr[kk] += 1
 
                 # Go to next bin if mass reach the R_Lagr limit
-                if (bmass >= rbmass[kkb]):
-                    # update mass
-                    rbmass[kkb] = bmass
-                    # Get R_lagr for binary
-                    rblagr[kkb] = ri
-                    # Get number for binary
-                    nblagr[kkb] = ncb
-                    # Increase bin index
-                    kkb += 1
-                    # initial next bins
-                    if (kkb < rfrac.size):
-                        if(nblagr[kkb] == 0):
-                            vxblagr[kkb] = vxblagr[kkb-1]
-                            vyblagr[kkb] = vyblagr[kkb-1]
-                            vzblagr[kkb] = vzblagr[kkb-1]
-                            vrblagr[kkb] = vrblagr[kkb-1]
-                            vtbave[kkb] = vtbave[kkb-1]
-                            vrotblagr[kkb] = vrotblagr[kkb-1]
+                if (kkb < rfrac.size):
+                    if ((bmass >= rbmass[kkb]) | ((kkb == rfrac.size-1) & (ncb == N_BM))):
+                        # update mass
+                        rbmass[kkb] = bmass
+                        # Get R_lagr for binary
+                        rblagr[kkb] = ri
+                        # Get number for binary
+                        nblagr[kkb] = ncb
+                        # For shell cases:
+                        if ((fshell) & (kkb>0)):
+                            rbmass[kkb] -= mcbprev
+                            nblagr[kkb] -= ncbprev
+                        mcbprev = bmass
+                        ncbprev = ncb
+                        # Increase bin index
+                        kkb += 1
+                        # initial next bins
+                        if (kkb < rfrac.size):
+                            if ((not fshell) & (nblagr[kkb] == 0)):
+                                vxblagr[kkb] = vxblagr[kkb-1]
+                                vyblagr[kkb] = vyblagr[kkb-1]
+                                vzblagr[kkb] = vzblagr[kkb-1]
+                                vrblagr[kkb] = vrblagr[kkb-1]
+                                vtbave[kkb] = vtbave[kkb-1]
+                                vrotblagr[kkb] = vrotblagr[kkb-1]
 ###########---debug--------------
 #                if(kkb > rfrac.size - 1): print j , ncb, N_BINARY, bmass, tbmass, rbmass[rfrac.size-1],time
 ###########---debug--------------
-                    # Avoid overflow of bin index
-                    kkb = min(kkb,rfrac.size-1)
+                        # Avoid overflow of bin index
+                        # kkb = min(kkb,rfrac.size-1)
             else:
                 # Add mass
                 smass += mmb[j]
@@ -547,26 +583,33 @@ for i in path:
                 vrotslagr[kks] += mmb[j]*vrot[j]
 
                 # Go to next bin if mass reach the R_lagr limit
-                if (smass >= rsmass[kks]):
-                    # update mass
-                    rsmass[kks] = smass
-                    # Get R_lagr for single
-                    rslagr[kks] = ri
-                    # Get number for single
-                    nslagr[kks] = ncs
-                    # increase bin index
-                    kks += 1
-                    # initial next bins
-                    if (kks < rfrac.size):
-                        if(nslagr[kks] == 0):
-                            vxslagr[kks] = vxslagr[kks-1]
-                            vyslagr[kks] = vyslagr[kks-1]
-                            vzslagr[kks] = vzslagr[kks-1]
-                            vrslagr[kks] = vrslagr[kks-1]
-                            vtsave[kks] = vtsave[kks-1]
-                            vrotslagr[kks] = vrotslagr[kks-1]
-                    # Avoid overflow of bin index
-                    kks = min(kks,rfrac.size-1)
+                if (kks < rfrac.size):
+                    if ((smass >= rsmass[kks]) | ((kks == rfrac.size-1) & (ncs == N_SINGLE))):
+                        # update mass
+                        rsmass[kks] = smass
+                        # Get R_lagr for single
+                        rslagr[kks] = ri
+                        # Get number for single
+                        nslagr[kks] = ncs
+                        # For shell cases:
+                        if ((fshell) & (kks>0)):
+                            rsmass[kks] -= mcsprev 
+                            nslagr[kks] -= ncsprev
+                        mcsprev = smass
+                        ncsprev = ncs
+                        # increase bin index
+                        kks += 1
+                        # initial next bins
+                        if (kks < rfrac.size):
+                            if((not fshell) & (nslagr[kks] == 0)):
+                                vxslagr[kks] = vxslagr[kks-1]
+                                vyslagr[kks] = vyslagr[kks-1]
+                                vzslagr[kks] = vzslagr[kks-1]
+                                vrslagr[kks] = vrslagr[kks-1]
+                                vtsave[kks] = vtsave[kks-1]
+                                vrotslagr[kks] = vrotslagr[kks-1]
+                        # Avoid overflow of bin index
+                        # kks = min(kks,rfrac.size-1)
             
 #   Go to next R_lagr if mass reach limit
             cmass += mmb[j]
@@ -579,110 +622,119 @@ for i in path:
             vrotlagr[kk] += mmb[j]*vrot[j]
 
 
-            if (cmass >= rmass[kk]):
-                # update mass
-                rmass[kk] = cmass
-                # Get R_lagr 
-                rlagr[kk] = ri
-                # Get number
-                nlagr[kk] = nc
-                # increase bin index
-                kk += 1
-                # Get initial value for next bin 
-                if (kk < rfrac.size ):
-                    # binary counter
-                    if (nsblagr[kk] == 0):
-                        msblagr[kk] = msblagr[kk-1]
-                        nsblagr[kk] = nsblagr[kk-1]
-                    if (nspblagr[kk] == 0):
-                        mspblagr[kk] = mspblagr[kk-1]
-                        nspblagr[kk] = nspblagr[kk-1]
-                    # total counter
-                    if (nlagr[kk] == 0):
-                        vxlagr[kk] = vxlagr[kk-1]
-                        vylagr[kk] = vylagr[kk-1]
-                        vzlagr[kk] = vzlagr[kk-1]
-                        vrlagr[kk] = vrlagr[kk-1]
-                        vtave[kk] = vtave[kk-1]
-                        vrotlagr[kk] = vrotlagr[kk-1]
-                # Avoid overflow of bin index
-                kk = min(kk,rfrac.size-1)
+            if (kk < rfrac.size):
+                if ((cmass >= rmass[kk]) | ((kk == rfrac.size-1) & (nc == N_TOTR))):
+                    # update mass
+                    rmass[kk] = cmass
+                    # Get R_lagr 
+                    rlagr[kk] = ri
+                    # Get number
+                    nlagr[kk] = nc
+                    # For shell cases:
+                    if ((fshell) & (kk>0)):
+                        rmass[kk] -= mcprev
+                        nlagr[kk] -= ncprev
+                    mcprev = cmass
+                    ncprev = nc
+                    # increase bin index
+                    kk += 1
+                    # Get initial value for next bin 
+                    if (kk < rfrac.size ):
+                        if (not fshell):
+                            # binary counter
+                            if (nsblagr[kk] == 0):
+                                msblagr[kk] = msblagr[kk-1]
+                                nsblagr[kk] = nsblagr[kk-1]
+                            if (nspblagr[kk] == 0):
+                                mspblagr[kk] = mspblagr[kk-1]
+                                nspblagr[kk] = nspblagr[kk-1]
+                            # total counter
+                            if (nlagr[kk] == 0):
+                                vxlagr[kk] = vxlagr[kk-1]
+                                vylagr[kk] = vylagr[kk-1]
+                                vzlagr[kk] = vzlagr[kk-1]
+                                vrlagr[kk] = vrlagr[kk-1]
+                                vtave[kk] = vtave[kk-1]
+                                vrotlagr[kk] = vrotlagr[kk-1]
+                    # Avoid overflow of bin index
+                    # kk = min(kk,rfrac.size-1)
 
 #   Fill empty bins with neighbor bin values
-#   Total
-        kn = kk - 1
-        while (kk < rfrac.size):
-            rlagr[kk] = rlagr[kn]
-            nlagr[kk] = nlagr[kn]
-            nsblagr[kk] = nsblagr[kn]
-            msblagr[kk] = msblagr[kn]
-            nspblagr[kk] = nspblagr[kn]
-            mspblagr[kk] = mspblagr[kn]
-            vxlagr[kk] = vxlagr[kn]
-            vylagr[kk] = vylagr[kn]
-            vzlagr[kk] = vzlagr[kn]
-            vrlagr[kk] = vrlagr[kn]
-            vtave[kk] = vtave[kn]
-            vrotlagr[kk] = vrotlagr[kn]
-            kk += 1
-#   Single
-        ksn = kks - 1
-        while (kks < rfrac.size):
-            rslagr[kks] = rslagr[ksn]
-            nslagr[kks] = nslagr[ksn]
-            vxslagr[kks] = vxslagr[ksn]
-            vyslagr[kks] = vyslagr[ksn]
-            vzslagr[kks] = vzslagr[ksn]
-            vrslagr[kks] = vrslagr[ksn]
-            vtsave[kks] = vtsave[ksn]
-            vrotslagr[kks] = vrotslagr[ksn]
-            kks += 1
-#   Binary + Merger
-        kbn = kkb - 1
-        while (kkb < rfrac.size):
-            rblagr[kkb] = rblagr[kbn]
-            nblagr[kkb] = nblagr[kbn]
-            vxblagr[kkb] = vxblagr[kbn]
-            vyblagr[kkb] = vyblagr[kbn]
-            vzblagr[kkb] = vzblagr[kbn]
-            vrblagr[kkb] = vrblagr[kbn]
-            vtbave[kkb] = vtbave[kbn]
-            vrotblagr[kkb] = vrotblagr[kbn]
-            kkb += 1
+        if (not fshell):
+            #   Total
+            kn = kk - 1
+            while (kk < rfrac.size):
+                rlagr[kk] = rlagr[kn]
+                nlagr[kk] = nlagr[kn]
+                nsblagr[kk] = nsblagr[kn]
+                msblagr[kk] = msblagr[kn]
+                nspblagr[kk] = nspblagr[kn]
+                mspblagr[kk] = mspblagr[kn]
+                vxlagr[kk] = vxlagr[kn]
+                vylagr[kk] = vylagr[kn]
+                vzlagr[kk] = vzlagr[kn]
+                vrlagr[kk] = vrlagr[kn]
+                vtave[kk] = vtave[kn]
+                vrotlagr[kk] = vrotlagr[kn]
+                kk += 1
+            #   Single
+            ksn = kks - 1
+            while (kks < rfrac.size):
+                rslagr[kks] = rslagr[ksn]
+                nslagr[kks] = nslagr[ksn]
+                vxslagr[kks] = vxslagr[ksn]
+                vyslagr[kks] = vyslagr[ksn]
+                vzslagr[kks] = vzslagr[ksn]
+                vrslagr[kks] = vrslagr[ksn]
+                vtsave[kks] = vtsave[ksn]
+                vrotslagr[kks] = vrotslagr[ksn]
+                kks += 1
+            #   Binary + Merger
+            kbn = kkb - 1
+            while (kkb < rfrac.size):
+                rblagr[kkb] = rblagr[kbn]
+                nblagr[kkb] = nblagr[kbn]
+                vxblagr[kkb] = vxblagr[kbn]
+                vyblagr[kkb] = vyblagr[kbn]
+                vzblagr[kkb] = vzblagr[kbn]
+                vrblagr[kkb] = vrblagr[kbn]
+                vtbave[kkb] = vtbave[kbn]
+                vrotblagr[kkb] = vrotblagr[kbn]
+                kkb += 1
 
 #   Average mass
-        mlagr  = rmass/nlagr
-        mslagr = rsmass/nslagr
-        mblagr = rbmass/nblagr
+        mlagr  = np.array(map(fxovery,rmass,nlagr)  ) 
+        mslagr = np.array(map(fxovery,rsmass,nslagr)) 
+        mblagr = np.array(map(fxovery,rbmass,nblagr)) 
 #   Average velocity
         # total
-        vxlagr  = vxlagr/rmass
-        vylagr  = vylagr/rmass
-        vzlagr  = vzlagr/rmass
-        vlagr   = map(math.sqrt,vxlagr*vxlagr + vylagr*vylagr + vzlagr*vzlagr)
-        vrlagr  = vrlagr/rmass
-        vtave   = map(lambda x,y:x/y,vtave,rmass)
-        vtlagr  = map(lambda x: math.sqrt(x[0]*x[0]+x[1]*x[1]+x[2]*x[2]), vtave)
-        vrotlagr= vrotlagr/rmass
+        vxlagr  = np.array(map(fxovery,vxlagr  ,rmass)) 
+        vylagr  = np.array(map(fxovery,vylagr  ,rmass)) 
+        vzlagr  = np.array(map(fxovery,vzlagr  ,rmass)) 
+        vrlagr  = np.array(map(fxovery,vrlagr  ,rmass)) 
+        vtave   = np.array(map(fxovery,vtave   ,rmass)) 
+        vrotlagr= np.array(map(fxovery,vrotlagr,rmass)) 
+        vlagr   = np.sqrt(vxlagr*vxlagr + vylagr*vylagr + vzlagr*vzlagr)
+        vtlagr  = np.array(map(lambda x: math.sqrt(x[0]*x[0]+x[1]*x[1]+x[2]*x[2]), vtave))
         #single
-        vxslagr  = vxslagr  /rsmass
-        vyslagr  = vyslagr  /rsmass
-        vzslagr  = vzslagr  /rsmass
-        vslagr   = map(math.sqrt,vxslagr*vxslagr + vyslagr*vyslagr + vzslagr*vzslagr)
-        vrslagr  = vrslagr  /rsmass
-        vtsave   = map(lambda x,y:x/y,vtsave,rsmass)
-        vtslagr  = map(lambda x: math.sqrt(x[0]*x[0]+x[1]*x[1]+x[2]*x[2]), vtsave)
-        vrotslagr= vrotslagr/rsmass
+        vxslagr  = np.array(map(fxovery,vxslagr  ,rsmass)) 
+        vyslagr  = np.array(map(fxovery,vyslagr  ,rsmass)) 
+        vzslagr  = np.array(map(fxovery,vzslagr  ,rsmass)) 
+        vrslagr  = np.array(map(fxovery,vrslagr  ,rsmass)) 
+        vtsave   = np.array(map(fxovery,vtsave   ,rsmass)) 
+        vrotslagr= np.array(map(fxovery,vrotslagr,rsmass)) 
+        vslagr   = np.sqrt(vxslagr*vxslagr + vyslagr*vyslagr + vzslagr*vzslagr)
+        vtslagr  = np.array(map(lambda x: math.sqrt(x[0]*x[0]+x[1]*x[1]+x[2]*x[2]), vtsave))
         #binary/merger
         if(bflag):
-            vxblagr  = vxblagr  /rbmass
-            vyblagr  = vyblagr  /rbmass
-            vzblagr  = vzblagr  /rbmass
-            vblagr   = map(math.sqrt,vxblagr*vxblagr + vyblagr*vyblagr + vzblagr*vzblagr)
-            vrblagr  = vrblagr  /rbmass
-            vtbave   = map(lambda x,y:x/y,vtbave,rbmass)
-            vtblagr  = map(lambda x: math.sqrt(x[0]*x[0]+x[1]*x[1]+x[2]*x[2]), vtbave)
-            vrotblagr= vrotblagr/rbmass
+            vxblagr  = np.array(map(fxovery,vxblagr  ,rbmass)) 
+            vyblagr  = np.array(map(fxovery,vyblagr  ,rbmass)) 
+            vzblagr  = np.array(map(fxovery,vzblagr  ,rbmass)) 
+            vrblagr  = np.array(map(fxovery,vrblagr  ,rbmass)) 
+            vtbave   = np.array(map(fxovery,vtbave   ,rbmass)) 
+            vrotblagr= np.array(map(fxovery,vrotblagr,rbmass)) 
+            vblagr   = np.sqrt(vxblagr*vxblagr + vyblagr*vyblagr + vzblagr*vzblagr)
+            vtblagr  = np.array(map(lambda x: math.sqrt(x[0]*x[0]+x[1]*x[1]+x[2]*x[2]), vtbave))
     
 #   Loop again to get velocity dispersion
 #   counter for different R_lagr bins
@@ -693,16 +745,27 @@ for i in path:
         nc = 0
         ncs = 0
         ncb = 0
+        #   Previous counter
+        ncprev = 0
+        ncsprev = 0
+        ncbprev = 0
 #
         for j in idx:
             #  increase total counter
             nc += 1
 #   Binary/merger case
             if (j>=N_SINGLE):
-                # increase total counter by one in binary case
-                nc += 1
                 # increase binary counter by two 
-                ncb += 2
+                ncb += 1
+                if (fbres):
+                    # increase total counter by one in binary case
+                    nc += 1
+                    # increase binary counter by one for resolved case
+                    ncb += 1
+                    if (j>=N_SB):
+                        # For merger case
+                        nc  += 1
+                        ncb += 1
                 # x,y,z
                 dx = vx[j] - vxblagr[kkb]
                 dy = vy[j] - vyblagr[kkb]
@@ -729,9 +792,10 @@ for i in path:
                 sigrotblagr[kkb] += drot2
 
                 # check whether need to increase kkb
-                if (ncb==nblagr[kkb]):
+                if (ncb-ncbprev==nblagr[kkb]):
+                    if (fshell): ncbprev += nblagr[kkb]
                     kkb += 1
-                    if (kkb < rfrac.size):
+                    if ((not fshell) & (kkb < rfrac.size)):
                         sigxblagr[kkb] = sigxblagr[kkb-1]
                         sigyblagr[kkb] = sigyblagr[kkb-1]
                         sigzblagr[kkb] = sigzblagr[kkb-1]
@@ -769,9 +833,10 @@ for i in path:
                 sigrotslagr[kks] += drot2
 
                 # check whether need to increase kks
-                if (ncs==nslagr[kks]):
+                if (ncs-ncsprev==nslagr[kks]):
+                    if (fshell): ncsprev += nslagr[kks]
                     kks += 1
-                    if (kks < rfrac.size):
+                    if ((not fshell) & (kks < rfrac.size)):
                         sigxslagr[kks] = sigxslagr[kks-1]
                         sigyslagr[kks] = sigyslagr[kks-1]
                         sigzslagr[kks] = sigzslagr[kks-1]
@@ -806,73 +871,75 @@ for i in path:
             sigrotlagr[kk] += drot2
 
             # check whether need to increase kk
-            if (nc==nlagr[kk]):
+            if (nc-ncprev==nlagr[kk]):
+                if (fshell): ncprev += nlagr[kk]
                 kk += 1
-                if (kk < rfrac.size):
+                if ((not fshell) & (kk < rfrac.size)):
                     sigxlagr[kk] = sigxlagr[kk-1]
                     sigylagr[kk] = sigylagr[kk-1]
                     sigzlagr[kk] = sigzlagr[kk-1]
                     sigrlagr[kk] = sigrlagr[kk-1]
                     sigtlagr[kk] = sigtlagr[kk-1]
                     sigrotlagr[kk] = sigrotlagr[kk-1]
-        
-        kn = kk - 1
-        while (kk < rfrac.size):
-            sigxlagr[kk] = sigxlagr[kn]
-            sigylagr[kk] = sigylagr[kn]
-            sigzlagr[kk] = sigzlagr[kn]
-            sigrlagr[kk] = sigrlagr[kn]
-            sigtlagr[kk] = sigtlagr[kn]
-            sigrotlagr[kk] = sigrotlagr[kn]
-            kk += 1
-        ksn = kks - 1
-        while (kks < rfrac.size):
-            sigxslagr[kks] = sigxslagr[ksn]
-            sigyslagr[kks] = sigyslagr[ksn]
-            sigzslagr[kks] = sigzslagr[ksn]
-            sigrslagr[kks] = sigrslagr[ksn]
-            sigtslagr[kks] = sigtslagr[ksn]
-            sigrotslagr[kks] = sigrotslagr[ksn]
-            kks += 1
-        kbn = kkb - 1
-        while (kkb < rfrac.size):
-            sigxblagr[kkb] = sigxblagr[kbn]
-            sigyblagr[kkb] = sigyblagr[kbn]
-            sigzblagr[kkb] = sigzblagr[kbn]
-            sigrblagr[kkb] = sigrblagr[kbn]
-            sigtblagr[kkb] = sigtblagr[kbn]
-            sigrotblagr[kkb] = sigrotblagr[kbn]
-            kkb += 1
+
+        if (not fshell):
+            kn = kk - 1
+            while (kk < rfrac.size):
+                sigxlagr[kk] = sigxlagr[kn]
+                sigylagr[kk] = sigylagr[kn]
+                sigzlagr[kk] = sigzlagr[kn]
+                sigrlagr[kk] = sigrlagr[kn]
+                sigtlagr[kk] = sigtlagr[kn]
+                sigrotlagr[kk] = sigrotlagr[kn]
+                kk += 1
+            ksn = kks - 1
+            while (kks < rfrac.size):
+                sigxslagr[kks] = sigxslagr[ksn]
+                sigyslagr[kks] = sigyslagr[ksn]
+                sigzslagr[kks] = sigzslagr[ksn]
+                sigrslagr[kks] = sigrslagr[ksn]
+                sigtslagr[kks] = sigtslagr[ksn]
+                sigrotslagr[kks] = sigrotslagr[ksn]
+                kks += 1
+            kbn = kkb - 1
+            while (kkb < rfrac.size):
+                sigxblagr[kkb] = sigxblagr[kbn]
+                sigyblagr[kkb] = sigyblagr[kbn]
+                sigzblagr[kkb] = sigzblagr[kbn]
+                sigrblagr[kkb] = sigrblagr[kbn]
+                sigtblagr[kkb] = sigtblagr[kbn]
+                sigrotblagr[kkb] = sigrotblagr[kbn]
+                kkb += 1
 
 # Divide mass
         # total
 #        siglagr   = siglagr   /(rmass*3.0)
-        sigxlagr  = sigxlagr  /rmass
-        sigylagr  = sigylagr  /rmass
-        sigzlagr  = sigzlagr  /rmass
+        sigxlagr  = np.array(map(fxovery,sigxlagr  ,rmass)) 
+        sigylagr  = np.array(map(fxovery,sigylagr  ,rmass)) 
+        sigzlagr  = np.array(map(fxovery,sigzlagr  ,rmass)) 
+        sigrlagr  = np.array(map(fxovery,sigrlagr  ,rmass)) 
+        sigtlagr  = np.array(map(fxovery,sigtlagr  ,rmass)) 
+        sigrotlagr= np.array(map(fxovery,sigrotlagr,rmass))
         siglagr   = sigxlagr + sigylagr + sigzlagr
-        sigrlagr  = sigrlagr  /rmass
-        sigtlagr  = sigtlagr  /rmass
-        sigrotlagr= sigrotlagr/rmass
         #single
 #        sigslagr   = sigslagr   /(rsmass*3.0)
-        sigxslagr  = sigxslagr  /rsmass
-        sigyslagr  = sigyslagr  /rsmass
-        sigzslagr  = sigzslagr  /rsmass
+        sigxslagr  = np.array(map(fxovery,sigxslagr  ,rsmass)) 
+        sigyslagr  = np.array(map(fxovery,sigyslagr  ,rsmass)) 
+        sigzslagr  = np.array(map(fxovery,sigzslagr  ,rsmass)) 
+        sigrslagr  = np.array(map(fxovery,sigrslagr  ,rsmass)) 
+        sigtslagr  = np.array(map(fxovery,sigtslagr  ,rsmass)) 
+        sigrotslagr= np.array(map(fxovery,sigrotslagr,rsmass)) 
         sigslagr   = sigxslagr + sigyslagr + sigzslagr
-        sigrslagr  = sigrslagr  /rsmass
-        sigtslagr  = sigtslagr  /rsmass
-        sigrotslagr= sigrotslagr/rsmass
         #binary/merger
 #        sigblagr   = sigblagr   /(rbmass*3.0)
         if(bflag):
-            sigxblagr  = sigxblagr  /rbmass
-            sigyblagr  = sigyblagr  /rbmass
-            sigzblagr  = sigzblagr  /rbmass
+            sigxblagr  = np.array(map(fxovery,sigxblagr  ,rbmass)) 
+            sigyblagr  = np.array(map(fxovery,sigyblagr  ,rbmass)) 
+            sigzblagr  = np.array(map(fxovery,sigzblagr  ,rbmass)) 
+            sigrblagr  = np.array(map(fxovery,sigrblagr  ,rbmass)) 
+            sigtblagr  = np.array(map(fxovery,sigtblagr  ,rbmass)) 
+            sigrotblagr= np.array(map(fxovery,sigrotblagr,rbmass)) 
             sigblagr   = sigxblagr + sigyblagr + sigzblagr
-            sigrblagr  = sigrblagr  /rbmass
-            sigtblagr  = sigtblagr  /rbmass
-            sigrotblagr= sigrotblagr/rbmass
 
 
 #   Print data 
