@@ -35,6 +35,11 @@ vscale = 1.0
 fshell = True
 # Whether resolve binaries for average mass calculation
 fbres = False
+# Time interval for calculation (in NB unit)
+Tint  = 1.0
+# resolution of time interval in NB unit
+Tres  = 0.25
+linec = 0
 
 fl = open('snap.lst','r')
 path = fl.read()
@@ -78,6 +83,12 @@ for i in path:
             time = float(i)
 
         kj += 1
+
+        if (time < Tint*linec-Tres/2):
+            continue
+        else:
+            linec += 1
+
 
         # lagrangian radii
         rlagr=np.zeros(rfrac.size)
