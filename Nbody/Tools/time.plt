@@ -2,7 +2,8 @@
 
 #set term postscript landscape enhanced color "Text" 16
 
-set term epscairo enhanced color dashed size 14,8 font ',26'
+set term epscairo enhanced color dashed size 10,8 font ',25'
+#set term epscairo enhanced color dashed
 #set output 'time.eps'
 
 #set term pngcairo enhanced color
@@ -16,20 +17,20 @@ set macro
 f(x0,x) = x0/x
 
 ####---------------macro 5 columns----------------
-col7 = "u (column(x)*xscale):(column(1+shift)*yscale)   t columnhead(1+shift) w lp lc 1 lt 1 lw 6, \
-     '' u (column(x)*xscale):(column(2+shift)*yscale)   t columnhead(2+shift) w lp lc 2 lt 1 lw 6, \
-     '' u (column(x)*xscale):(column(3+shift)*yscale)   t columnhead(3+shift) w lp lc 3 lt 1 lw 6, \
-     '' u (column(x)*xscale):(column(4+shift)*yscale)   t columnhead(4+shift) w lp lc 4 lt 1 lw 6, \
-     '' u (column(x)*xscale):(column(5+shift)*yscale)   t columnhead(5+shift) w lp lc 5 lt 1 lw 6, \
-     '' u (column(x)*xscale):(column(6+shift)*yscale)   t columnhead(6+shift) w lp lc 8 lt 1 lw 6, \
-     '' u (column(x)*xscale):(column(7+shift)*yscale)   t columnhead(7+shift) w lp lc 7 lt 1 lw 6, \
-         f(word(offset,2)*yscale,x) t '' w l lc 7 lt 2 lw 2, \
-         f(word(offset,3)*yscale,x) t '' w l lc 7 lt 2 lw 2, \
-         f(word(offset,4)*yscale,x) t '' w l lc 7 lt 2 lw 2, \
-         f(word(offset,5)*yscale,x) t '' w l lc 7 lt 2 lw 2, \
-         f(word(offset,6)*yscale,x) t '' w l lc 7 lt 2 lw 2, \
-         f(word(offset,7)*yscale,x) t '' w l lc 7 lt 2 lw 2, \
-         f(word(offset,8)*yscale,x) t '' w l lc 7 lt 2 lw 2"
+col7 = "u (column(x)*xscale):(column(1+shift)*yscale)   t columnhead(1+shift) w lp lc 1 pt 1 lt 1 lw 8, \
+     '' u (column(x)*xscale):(column(2+shift)*yscale)   t columnhead(2+shift) w lp lc 2 pt 2 lt 1 lw 8, \
+     '' u (column(x)*xscale):(column(3+shift)*yscale)   t columnhead(3+shift) w lp lc 3 pt 3 lt 1 lw 8, \
+     '' u (column(x)*xscale):(column(4+shift)*yscale)   t columnhead(4+shift) w lp lc 4 pt 4 lt 1 lw 8, \
+     '' u (column(x)*xscale):(column(5+shift)*yscale)   t columnhead(5+shift) w lp lc 5 pt 6 lt 1 lw 8, \
+     '' u (column(x)*xscale):(column(6+shift)*yscale)   t columnhead(6+shift) w lp lc 8 pt 8 lt 1 lw 8, \
+     '' u (column(x)*xscale):(column(7+shift)*yscale)   t columnhead(7+shift) w lp lc 7 pt 10 lt 1 lw 8, \
+         f(word(offset,2)*yscale,x) t '' w l lc 7 lt 2 lw 4, \
+         f(word(offset,3)*yscale,x) t '' w l lc 7 lt 2 lw 4, \
+         f(word(offset,4)*yscale,x) t '' w l lc 7 lt 2 lw 4, \
+         f(word(offset,5)*yscale,x) t '' w l lc 7 lt 2 lw 4, \
+         f(word(offset,6)*yscale,x) t '' w l lc 7 lt 2 lw 4, \
+         f(word(offset,7)*yscale,x) t '' w l lc 7 lt 2 lw 4, \
+         f(word(offset,8)*yscale,x) t '' w l lc 7 lt 2 lw 4"
 
 
 x = 1
@@ -55,9 +56,10 @@ set logscale y
 set logscale x 2
 set xlabel 'N_{node}'
 set ylabel 'T_{tot}/T_{NB} [s]'
-set label 1 "Hydra (Garching) cluster specification per node:" at 1.1,1024000
+set label 1 "Hydra cluster specification per node:" at 1.1,1024000
 set label 2 " CPU: 20 Intel Ivy Bridge 2.8 GHz cores" at 1.1,512000
-set label 3 " GPU: 2 Nvidia K20X (each GPU: 2688 cores; 732 MHz per core) " at 1.1,256000
+set label 3 " GPU: 2 Nvidia K20X" at 1.1,256000
+set label 4 "(each GPU: 2688 cores; 732 MHz per core)" at 1.1,128000
 
 plot [][2:2000000] filename @col7
 
