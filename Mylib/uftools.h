@@ -322,8 +322,8 @@ void quicksort(std::vector<T> &arr, int m)
   }
 }
 
-template <typename T>
-void quicksort(T arr[], T brr[], int m)
+template <typename T, typename K>
+void quicksort(T arr[], K brr[], int m)
 {
   static const int M=7, NSTACK=64;
   int i,ir,j,k,jstack=-1,l=0;

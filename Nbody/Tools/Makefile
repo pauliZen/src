@@ -66,6 +66,7 @@ installh: $(HEADER)
 installlib: libnb6out3 libgpupot
 	mv -f libnb6out3.so $(LIBDIR)/
 	mv -f libgpupot.so $(LIBDIR)/
+	mv -f liblagr.so $(LIBDIR)/
 
 libnb6out3: nb6out3.h nb6out3.cxx
 	$(CXX) -shared -fPIC  nb6out3.cxx -o libnb6out3.so
@@ -74,6 +75,9 @@ libgpupot: gpupot.cu cuda_pointer.h
 #	nvcc -O3 -arch=sm_30 -dc -Xcompiler '-Wall -D CUDA_5 -fPIC -I/usr/local/cuda/samples/common/inc' gpupot.cu -c -o gpupot.so
 	nvcc -O3 -Xcompiler '-Wall -D CUDA_5 -fPIC' -shared -o libgpupot.so gpupot.cu -I/usr/local/cuda/samples/common/inc
 #	g++ -O3 -shared -fPIC -Wl,-soname,gpupot.so gpupot.o -o gpupot.so -lcuda -lcudart -L/usr/local/cuda/lib64
+
+liblagr: lagr.cpp
+	$(CXX) -shared -fPIC lagr.cpp -o liblagr.so $(MYCFLAGS)
 
 clean:
 	rm -f $(OBJECTS)
