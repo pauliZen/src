@@ -12,6 +12,20 @@
 #                    filename prefix is defined in fpr, filename 
 #                    is [fpr][time]
 
+# Input arguments: 13 (first is script path)
+#  1. filename snapshot list filename     
+#  2. hdflag   HD5 output flag
+#  3. fsnap    Fit snapshot flag
+#  4. fpr      prefix of data
+#  5. bflag    binary flag
+#  6. rscale   distance scaling [pc]
+#  7. mscale   mass scaling [M_sun]
+#  8. vscale   velocity scaling [km/s]
+#  9. fshell   calculation between shells flag
+# 10. fbres    resolving binaries during average mass calculation flag
+# 11. Tint     Time interval for output
+# 12. Tres     Time resolution for snapshots in NB unit
+# 13. lagrlib  liblagr.so path
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -25,6 +39,7 @@ from matplotlib.ticker import MaxNLocator
 
 # Custom options
 # for HDF5 output
+filename = 'snap.lst'
 hdflag = True
 # for snapshot case: Single snapshot file for Fit transformation
 fsnap = True
@@ -42,9 +57,26 @@ fbres = False
 Tint  = 0.125
 # resolution of time interval in NB unit
 Tres  = 0.125
-linec = 0
+# liblagr path
+lagrlib = "/home/lwang/lib/liblagr.so"
 
-fl = open('snap.lst','r')
+larg=len(sys.argv)
+if (larg==14):
+    filename = sys.argv[1]
+    hdflag = int(sys.argv[2])
+    fsnap  = int(sys.argv[3])
+    fpr    = sys.argv[4]
+    bflag  = int(sys.argv[5])
+    rscale = float(sys.argv[6])
+    mscale = float(sys.argv[7])
+    vscale = float(sys.argv[8])
+    fshell = int(sys.argv[9])
+    fbres  = int(sys.argv[10])
+    Tint   = float(sys.argv[11])
+    Tres   = float(sys.argv[12])
+    lagrlib= sys.argv[13]
+
+fl = open(filename,'r')
 path = fl.read()
 path = path.splitlines()
 
@@ -55,10 +87,14 @@ rfrac=np.array([0.001,0.01,0.1,0.3,0.5,0.7,0.9,1.0])
 # Safe x/y function:
 fxovery = lambda x,y: 0.0 if float(y)==0.0 else x/y
 
+linec = 0
+ifirst = True
+toffset = 0.0
+
 # Whether average from center to shell or between shells
 # flag_s = False
 
-dll = ctypes.CDLL("/home/lwang/lib/liblagr.so",mode=ctypes.RTLD_GLOBAL)
+dll = ctypes.CDLL(lagrlib,mode=ctypes.RTLD_GLOBAL)
 func = dll.lagr
 func.argtypes = [c_float, c_int, c_int, c_int,
                  POINTER(c_float), POINTER(c_float), POINTER(c_float), POINTER(c_float), POINTER(c_float), POINTER(c_float), POINTER(c_float),
@@ -118,12 +154,23 @@ for i in path:
             s = f.items()[kj][1]
 
             time = float(s.attrs['Time'])
+            if (ifirst):
+                if (time>0.0):
+                    toffset=Tint*(int((time-Tres/2.0)/Tint)+1)
+                else:
+                    print "## Time; 100 groups of data; offset %d " % rfrac.size
+                    print "Time[NB] ",
+                    for i in range(55):
+                        for j in range(rfrac.size): 
+                            print "%.2e " % rfrac[j],
+                    print " "
+                ifirst=False
         else:
             time = float(i)
 
         kj += 1
 
-        if (time < Tint*linec-Tres/2):
+        if (time-toffset < Tint*linec-Tres/2.0):
             continue
         else:
             linec += 1

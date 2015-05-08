@@ -12,8 +12,22 @@
 #                    filename prefix is defined in fpr, filename 
 #                    is [fpr][time]
 
+# Input arguments: 13 (first is script path)
+#  1. filename snapshot list filename     
+#  2. hdflag   HD5 output flag
+#  3. fsnap    Fit snapshot flag
+#  4. fpr      prefix of data
+#  5. bflag    binary flag
+#  6. rscale   distance scaling [pc]
+#  7. mscale   mass scaling [M_sun]
+#  8. vscale   velocity scaling [km/s]
+#  9. fshell   calculation between shells flag
+# 10. fbres    resolving binaries during average mass calculation flag
+# 11. Tint     Time interval for output
+# 12. Tres     Time resolution for snapshots in NB unit
 
 import numpy as np
+import sys
 import matplotlib.pyplot as plt
 import h5py
 import math
@@ -22,6 +36,7 @@ from matplotlib.ticker import MaxNLocator
 
 # Custom options
 # for HDF5 output
+filename = 'snap.lst'
 hdflag = True
 # for snapshot case: Single snapshot file for Fit transformation
 fsnap = True
@@ -36,12 +51,26 @@ fshell = True
 # Whether resolve binaries for average mass calculation
 fbres = False
 # Time interval for calculation (in NB unit)
-Tint  = 1.0
+Tint  = 2.0
 # resolution of time interval in NB unit
-Tres  = 0.25
-linec = 0
+Tres  = 0.125
 
-fl = open('snap.lst','r')
+larg=len(sys.argv)
+if (larg==13):
+    filename = sys.argv[1]
+    hdflag = int(sys.argv[2])
+    fsnap  = int(sys.argv[3])
+    fpr    = sys.argv[4]
+    bflag  = int(sys.argv[5])
+    rscale = float(sys.argv[6])
+    mscale = float(sys.argv[7])
+    vscale = float(sys.argv[8])
+    fshell = int(sys.argv[9])
+    fbres  = int(sys.argv[10])
+    Tint   = float(sys.argv[11])
+    Tres   = float(sys.argv[12])
+
+fl = open(filename,'r')
 path = fl.read()
 path = path.splitlines()
 
@@ -52,16 +81,9 @@ rfrac=np.array([0.001,0.01,0.1,0.3,0.5,0.7,0.9,1.0])
 # Safe x/y function:
 fxovery = lambda x,y: 0.0 if float(y)==0.0 else x/y
 
-# Whether average from center to shell or between shells
-# flag_s = False
-
-print "## Time; 100 groups of data; offset %d " % rfrac.size
-
-print "Time[NB] ",
-for i in range(55):
-    for j in range(rfrac.size): 
-        print "%.2e " % rfrac[j],
-print " "
+linec = 0
+ifirst = True
+toffset = 0.0
 
 for i in path:
     f = 0
@@ -79,12 +101,23 @@ for i in path:
             s = f.items()[kj][1]
 
             time = float(s.attrs['Time'])
+            if (ifirst):
+                if (time>0.0):
+                    toffset=Tint*(int((time-Tres/2.0)/Tint)+1)
+                else:
+                    print "## Time; 100 groups of data; offset %d " % rfrac.size
+                    print "Time[NB] ",
+                    for i in range(55):
+                        for j in range(rfrac.size): 
+                            print "%.2e " % rfrac[j],
+                    print " "
+                ifirst=False
         else:
             time = float(i)
 
         kj += 1
 
-        if (time < Tint*linec-Tres/2):
+        if (time-toffset < Tint*linec-Tres/2.0):
             continue
         else:
             linec += 1
@@ -529,29 +562,29 @@ for i in path:
                 #  Add mass
                 bmass += mmb[j]
 
-                #  average velocity
-                vxblagr[kkb] += mmb[j]*vx[j] 
-                vyblagr[kkb] += mmb[j]*vy[j] 
-                vzblagr[kkb] += mmb[j]*vz[j] 
-                vrblagr[kkb] += mmb[j]*vr[j] 
-                vtbave[kkb] += mmb[j]*vt[j] 
-                vrotblagr[kkb] += mmb[j]*vrot[j]
-
-
                 # increase mass/number counter for binaries in R_lagr
-                msblagr[kk] += mmb[j]
-                nsblagr[kk] += 1
-                if (fbres): nsblagr[kk] += 1
+                if (kk < rfrac.size):
+                    msblagr[kk] += mmb[j]
+                    nsblagr[kk] += 1
+                    if (fbres): nsblagr[kk] += 1
 
-                # primordial binareis
-                if (j<N_SB):
-                    if (abs(bn1[j-N_SINGLE]-bn2[j-N_SINGLE])==1):
-                        mspblagr[kk] += mmb[j]
-                        nspblagr[kk] += 1
-                        if (fbres): nspblagr[kk] += 1
+                    # primordial binareis
+                    if (j<N_SB):
+                        if (abs(bn1[j-N_SINGLE]-bn2[j-N_SINGLE])==1):
+                            mspblagr[kk] += mmb[j]
+                            nspblagr[kk] += 1
+                            if (fbres): nspblagr[kk] += 1
 
-                # Go to next bin if mass reach the R_Lagr limit
                 if (kkb < rfrac.size):
+                    #  average velocity
+                    vxblagr[kkb] += mmb[j]*vx[j] 
+                    vyblagr[kkb] += mmb[j]*vy[j] 
+                    vzblagr[kkb] += mmb[j]*vz[j] 
+                    vrblagr[kkb] += mmb[j]*vr[j] 
+                    vtbave[kkb] += mmb[j]*vt[j] 
+                    vrotblagr[kkb] += mmb[j]*vrot[j]
+
+                    # Go to next bin if mass reach the R_Lagr limit
                     if ((bmass >= rbmass[kkb]) | ((kkb == rfrac.size-1) & (ncb == N_BM))):
                         # update mass
                         rbmass[kkb] = bmass
@@ -585,16 +618,16 @@ for i in path:
                 # Add mass
                 smass += mmb[j]
 
-                #  average velocity
-                vxslagr[kks] += mmb[j]*vx[j] 
-                vyslagr[kks] += mmb[j]*vy[j] 
-                vzslagr[kks] += mmb[j]*vz[j] 
-                vrslagr[kks] += mmb[j]*vr[j] 
-                vtsave[kks] += mmb[j]*vt[j] 
-                vrotslagr[kks] += mmb[j]*vrot[j]
-
-                # Go to next bin if mass reach the R_lagr limit
                 if (kks < rfrac.size):
+                    #  average velocity
+                    vxslagr[kks] += mmb[j]*vx[j] 
+                    vyslagr[kks] += mmb[j]*vy[j] 
+                    vzslagr[kks] += mmb[j]*vz[j] 
+                    vrslagr[kks] += mmb[j]*vr[j] 
+                    vtsave[kks] += mmb[j]*vt[j] 
+                    vrotslagr[kks] += mmb[j]*vrot[j]
+
+                    # Go to next bin if mass reach the R_lagr limit
                     if ((smass >= rsmass[kks]) | ((kks == rfrac.size-1) & (ncs == N_SINGLE))):
                         # update mass
                         rsmass[kks] = smass
@@ -624,16 +657,16 @@ for i in path:
             
 #   Go to next R_lagr if mass reach limit
             cmass += mmb[j]
-            #  average velocity
-            vxlagr[kk] += mmb[j]*vx[j] 
-            vylagr[kk] += mmb[j]*vy[j] 
-            vzlagr[kk] += mmb[j]*vz[j] 
-            vrlagr[kk] += mmb[j]*vr[j] 
-            vtave[kk] += mmb[j]*vt[j] 
-            vrotlagr[kk] += mmb[j]*vrot[j]
-
 
             if (kk < rfrac.size):
+                #  average velocity
+                vxlagr[kk] += mmb[j]*vx[j] 
+                vylagr[kk] += mmb[j]*vy[j] 
+                vzlagr[kk] += mmb[j]*vz[j] 
+                vrlagr[kk] += mmb[j]*vr[j] 
+                vtave[kk] += mmb[j]*vt[j] 
+                vrotlagr[kk] += mmb[j]*vrot[j]
+
                 if ((cmass >= rmass[kk]) | ((kk == rfrac.size-1) & (nc == N_TOTR))):
                     # update mass
                     rmass[kk] = cmass
