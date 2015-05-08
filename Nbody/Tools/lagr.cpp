@@ -18,7 +18,7 @@ float sum(int n, float *x){
 }
 
 float dot(float x1, float x2, float x3) {
-  return x1*x2 + x2*x2 + x3*x3;
+  return x1*x1 + x2*x2 + x3*x3;
 }
 
 float fxovery(float x,float y) {
@@ -26,10 +26,12 @@ float fxovery(float x,float y) {
   else return 0.0;
 }
 
-void lagr(float time, int N_SINGLE, int N_BINARY, int N_MERGER, float *mass, float *x1, float *x2, float *x3, float *v1, float *v2, float *v3,
+extern "C" void lagr(float time, int N_SINGLE, int N_BINARY, int N_MERGER, float *mass, float *x1, float *x2, float *x3, float *v1, float *v2, float *v3,
           float *bm1, float *bm2, float *bxc1, float *bxc2, float *bxc3, float *bvc1, float *bvc2, float *bvc3, int *bn1, int *bn2,
           float *mm1, float *mm2, float *mm3, float *mxc1, float *mxc2, float *mxc3, float *mvc1, float *mvc2, float *mvc3,
           bool fshell=true, bool fbres=false) {
+
+  //  printf("%f %f %f %f %f %f %d %d\n",x1[0],x2[0],x3[0],x1[N_SINGLE-1],x2[N_SINGLE-1],x3[N_SINGLE-1],N_SINGLE,bn2[N_BINARY-1]);
   
   //  Single and binary number
   int N_SB = N_SINGLE + N_BINARY;
@@ -63,6 +65,7 @@ void lagr(float time, int N_SINGLE, int N_BINARY, int N_MERGER, float *mass, flo
     rmass[i] = tmass*rfrac[i];
     rsmass[i] = tsmass*rfrac[i];
     rbmass[i] = tbmass*rfrac[i];
+    //printf("%d %f %f %f %f\n",i,rfrac[i],rmass[i],rsmass[i],rbmass[i]);
   }
 
   float *r2 = new float[N_TOT];
@@ -70,7 +73,7 @@ void lagr(float time, int N_SINGLE, int N_BINARY, int N_MERGER, float *mass, flo
   for (int i=0;i<N_SINGLE;i++) {
     r2[i]=dot(x1[i],x2[i],x3[i]);
   }
-
+  
 #pragma omp parallel for
   for (int i=0;i<N_BINARY;i++) {
     r2[i+N_SINGLE]=dot(bxc1[i],bxc2[i],bxc3[i]);
@@ -87,6 +90,9 @@ void lagr(float time, int N_SINGLE, int N_BINARY, int N_MERGER, float *mass, flo
     idx[i] = i;
   }
   quicksort(r2,idx,N_TOT);
+  //  for (int i=0;i<N_TOT;i++) {
+  //    printf("%f %d; ",r2[i],idx[i]);
+  //  }
   
   // lagrangian radii
   float* rlagr =new float[NFRAC]; 
@@ -181,6 +187,102 @@ void lagr(float time, int N_SINGLE, int N_BINARY, int N_MERGER, float *mass, flo
   float* mspblagr=new float[NFRAC];
   int* nspblagr=new int[NFRAC];
 
+  // Initialize all to zero
+  for (int i=0;i<NFRAC;i++){
+    // lagrangian radii
+    rlagr[i]=0.0;
+    rslagr[i]=0.0;
+    rblagr[i]=0.0;
+
+    // numbers
+    nlagr[i] =0; 
+    nslagr[i]=0;
+    nblagr[i]=0;
+  
+    // average mass
+    mlagr[i] =0.0;
+    mslagr[i]=0.0;
+    mblagr[i]=0.0;
+
+    // average velocity
+    vlagr[i] =0.0;
+    vslagr[i]=0.0;
+    vblagr[i]=0.0;
+
+    // average x velocity
+    vxlagr[i] =0.0;
+    vxslagr[i]=0.0;
+    vxblagr[i]=0.0;
+
+    // average y velocity
+    vylagr[i]=0.0;
+    vyslagr[i]=0.0;
+    vyblagr[i]=0.0;
+
+    // average z velocity
+    vzlagr[i]=0.0;
+    vzslagr[i]=0.0;
+    vzblagr[i]=0.0;
+
+    // average tangential velocity
+    vtlagr[i]=0.0;
+    vtslagr[i]=0.0;
+    vtblagr[i]=0.0;
+
+    // average radial velocity
+    vrlagr[i]=0.0;
+    vrslagr[i]=0.0;
+    vrblagr[i]=0.0;
+
+    // velocity dispersion
+    siglagr[i]=0.0;
+    sigslagr[i]=0.0;
+    sigblagr[i]=0.0;
+
+    // radial velocity dispersion
+    sigrlagr[i]=0.0;
+    sigrslagr[i]=0.0;
+    sigrblagr[i]=0.0;
+
+    // tangential velocity dispersion
+    sigtlagr[i]=0.0;
+    sigtslagr[i]=0.0;
+    sigtblagr[i]=0.0;
+
+    // x velocity dispersion
+    sigxlagr[i]=0.0;
+    sigxslagr[i]=0.0;
+    sigxblagr[i]=0.0;
+
+    // y velocity dispersion
+    sigylagr[i]=0.0;
+    sigyslagr[i]=0.0;
+    sigyblagr[i]=0.0;
+
+    // z velocity dispersion
+    sigzlagr[i]=0.0;
+    sigzslagr[i]=0.0;
+    sigzblagr[i]=0.0;
+
+    // rotational velocity
+    vrotlagr[i]=0.0;
+    vrotslagr[i]=0.0;
+    vrotblagr[i]=0.0;
+
+    // rotational velocity dispersion
+    sigrotlagr[i]=0.0;
+    sigrotslagr[i]=0.0;
+    sigrotblagr[i]=0.0;
+
+    //	Binary mass/number inside different R_lagr[i]
+    msblagr[i]=0.0;
+    nsblagr[i]=0;
+
+    //	Primordial binary mass/number inside different R_lagr[i]
+    mspblagr[i]=0.0;
+    nspblagr[i]=0;
+  }    
+  
   // counter for different R_lagr bins
   int kk = 0;
   int kks = 0;
@@ -228,13 +330,14 @@ void lagr(float time, int N_SINGLE, int N_BINARY, int N_MERGER, float *mass, flo
   // Initialize mass array
   float*  mmb = new float[N_TOT];
 
-  for (int j=0;j<N_TOT;j++) {
+  for (int i=0;i<N_TOT;i++) {
     //  Initialization
     // position
+    int j = idx[i];
     float rx = 0.0; 
     float ry = 0.0; 
     float rz = 0.0; 
-    float ri = sqrt(r2[j]);
+    float ri = sqrt(r2[i]);
 
     //   Binary/merger case
     if (j>=N_SINGLE){
@@ -562,7 +665,8 @@ void lagr(float time, int N_SINGLE, int N_BINARY, int N_MERGER, float *mass, flo
   ncsprev = 0;
   ncbprev = 0;
 //
-  for (int j=0;j<N_TOT;j++) {
+  for (int i=0;i<N_TOT;i++) {
+    int j = idx[i];
     //  increase total counter
     nc++;
     //   Binary/merger case

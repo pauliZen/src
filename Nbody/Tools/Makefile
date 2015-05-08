@@ -63,7 +63,7 @@ install: $(shell uniq .mvlist)
 installh: $(HEADER)
 	$(foreach name, $(HEADER), ln -sf $(shell pwd)/$(name) $(HEADERDIR)/$(name);)
 
-installlib: libnb6out3 libgpupot
+installlib: libnb6out3 libgpupot liblagr
 	mv -f libnb6out3.so $(LIBDIR)/
 	mv -f libgpupot.so $(LIBDIR)/
 	mv -f liblagr.so $(LIBDIR)/
