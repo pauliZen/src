@@ -316,11 +316,11 @@ extern "C" void lagr(float time, int N_SINGLE, int N_BINARY, int N_MERGER, float
   // Notice the tangential velocity is also vector in (x,y,z) coordinate system
   float** vt = new float*[N_TOT];
   // Average tangetial velocity
-  float** vtave  = new float*[N_TOT];
-  float** vtbave = new float*[N_TOT];
-  float** vtsave = new float*[N_TOT];
-  for (int i=0;i<N_TOT;i++){
-    vt[i]     = new float[3];
+  float** vtave  = new float*[NFRAC];
+  float** vtbave = new float*[NFRAC];
+  float** vtsave = new float*[NFRAC];
+  for (int i=0;i<N_TOT;i++) vt[i]     = new float[3];
+  for (int i=0;i<NFRAC;i++) {
     vtave[i]  = new float[3];
     vtbave[i] = new float[3];
     vtsave[i] = new float[3];
@@ -457,12 +457,12 @@ extern "C" void lagr(float time, int N_SINGLE, int N_BINARY, int N_MERGER, float
           kkb++;
           // initial next bins
           if (kkb < NFRAC){
-            if ((not fshell) && (nblagr[kkb] == 0)){
+            if ((!fshell) && (nblagr[kkb] == 0)){
               vxblagr[kkb] = vxblagr[kkb-1]; 
               vyblagr[kkb] = vyblagr[kkb-1]; 
               vzblagr[kkb] = vzblagr[kkb-1]; 
               vrblagr[kkb] = vrblagr[kkb-1]; 
-              vtbave[kkb] = vtbave[kkb-1];
+               for (int k=0;k<3;k++) vtbave[kkb][k] = vtbave[kkb-1][k];
               vrotblagr[kkb] = vrotblagr[kkb-1];
             }
           }
@@ -500,12 +500,12 @@ extern "C" void lagr(float time, int N_SINGLE, int N_BINARY, int N_MERGER, float
           kks++;
           // initial next bins
           if (kks < NFRAC) {
-            if((not fshell) && (nslagr[kks] == 0)){
+            if((!fshell) && (nslagr[kks] == 0)){
               vxslagr[kks] = vxslagr[kks-1];
               vyslagr[kks] = vyslagr[kks-1];
               vzslagr[kks] = vzslagr[kks-1];
               vrslagr[kks] = vrslagr[kks-1];
-              vtsave[kks] = vtsave[kks-1];
+	      for (int k=0;k<3;k++) vtsave[kks][k] = vtsave[kks-1][k];
               vrotslagr[kks] = vrotslagr[kks-1];
             }
           }
@@ -542,7 +542,7 @@ extern "C" void lagr(float time, int N_SINGLE, int N_BINARY, int N_MERGER, float
         kk++;
         // Get initial value for next bin 
         if (kk < NFRAC ){
-          if (not fshell) {
+          if (fshell) {
             // binary counter
             if (nsblagr[kk] == 0) {
               msblagr[kk] = msblagr[kk-1];
@@ -558,7 +558,7 @@ extern "C" void lagr(float time, int N_SINGLE, int N_BINARY, int N_MERGER, float
               vylagr[kk] = vylagr[kk-1];
               vzlagr[kk] = vzlagr[kk-1];
               vrlagr[kk] = vrlagr[kk-1];
-              vtave[kk] = vtave[kk-1];
+	      for(int k=0;k<3;k++) vtave[kk][k] = vtave[kk-1][k];
               vrotlagr[kk] = vrotlagr[kk-1];
             }
           }
@@ -568,7 +568,7 @@ extern "C" void lagr(float time, int N_SINGLE, int N_BINARY, int N_MERGER, float
   }
 
   //   Fill empty bins with neighbor bin values
-  if (not fshell) {
+  if (!fshell) {
     //   Total
     int kn = kk - 1;
     while (kk < NFRAC) {
@@ -582,7 +582,7 @@ extern "C" void lagr(float time, int N_SINGLE, int N_BINARY, int N_MERGER, float
       vylagr[kk] = vylagr[kn];
       vzlagr[kk] = vzlagr[kn];
       vrlagr[kk] = vrlagr[kn];
-      vtave[kk] = vtave[kn];
+      for (int k=0;k<3;k++) vtave[kk][k] = vtave[kn][k];
       vrotlagr[kk] = vrotlagr[kn];
       kk++;
     }
@@ -595,7 +595,7 @@ extern "C" void lagr(float time, int N_SINGLE, int N_BINARY, int N_MERGER, float
       vyslagr[kks] = vyslagr[ksn];
       vzslagr[kks] = vzslagr[ksn];
       vrslagr[kks] = vrslagr[ksn];
-      vtsave[kks] = vtsave[ksn];
+      for (int k=0;k<3;k++) vtsave[kks][k] = vtsave[ksn][k];
       vrotslagr[kks] = vrotslagr[ksn];
       kks++;
     }
@@ -608,7 +608,7 @@ extern "C" void lagr(float time, int N_SINGLE, int N_BINARY, int N_MERGER, float
       vyblagr[kkb] = vyblagr[kbn];
       vzblagr[kkb] = vzblagr[kbn];
       vrblagr[kkb] = vrblagr[kbn];
-      vtbave[kkb] = vtbave[kbn];
+      for (int k=0;k<3;k++) vtbave[kkb][k] = vtbave[kbn][k];
       vrotblagr[kkb] = vrotblagr[kbn];
       kkb++;
     }
@@ -712,7 +712,7 @@ extern "C" void lagr(float time, int N_SINGLE, int N_BINARY, int N_MERGER, float
       if (ncb-ncbprev==nblagr[kkb]) {
         if (fshell) ncbprev += nblagr[kkb];
         kkb++;
-        if ((not fshell) && (kkb < NFRAC)) {
+        if ((!fshell) && (kkb < NFRAC)) {
           sigxblagr[kkb] = sigxblagr[kkb-1]; 
           sigyblagr[kkb] = sigyblagr[kkb-1]; 
           sigzblagr[kkb] = sigzblagr[kkb-1]; 
@@ -753,7 +753,7 @@ extern "C" void lagr(float time, int N_SINGLE, int N_BINARY, int N_MERGER, float
       if (ncs-ncsprev==nslagr[kks]) {
         if (fshell) ncsprev += nslagr[kks];
         kks++;
-        if ((not fshell) && (kks < NFRAC)) {
+        if ((!fshell) && (kks < NFRAC)) {
           sigxslagr[kks] = sigxslagr[kks-1]; 
           sigyslagr[kks] = sigyslagr[kks-1]; 
           sigzslagr[kks] = sigzslagr[kks-1]; 
@@ -792,7 +792,7 @@ extern "C" void lagr(float time, int N_SINGLE, int N_BINARY, int N_MERGER, float
     if (nc-ncprev==nlagr[kk]) {
       if (fshell) ncprev += nlagr[kk];
       kk++;
-      if ((not fshell) && (kk < NFRAC)) {
+      if ((!fshell) && (kk < NFRAC)) {
         sigxlagr[kk] = sigxlagr[kk-1]; 
         sigylagr[kk] = sigylagr[kk-1]; 
         sigzlagr[kk] = sigzlagr[kk-1]; 
@@ -803,7 +803,7 @@ extern "C" void lagr(float time, int N_SINGLE, int N_BINARY, int N_MERGER, float
     }
   }
 
-  if (not fshell) {
+  if (!fshell) {
     int kn = kk - 1;
     while (kk < NFRAC) {
       sigxlagr[kk] = sigxlagr[kn]; 
