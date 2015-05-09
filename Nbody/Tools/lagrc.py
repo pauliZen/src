@@ -130,14 +130,6 @@ def c_lagr(t,ns,nb,nm,m,x1,x2,x3,v1,v2,v3,bm1,bm2,bx1,bx2,bx3,bv1,bv2,bv3,bn1,bn
     mv3c = mv3.ctypes.data_as(POINTER(c_float))
     func(t,ns,nb,nm,mc,x1c,x2c,x3c,v1c,v2c,v3c,bm1c,bm2c,bx1c,bx2c,bx3c,bv1c,bv2c,bv3c,bn1c,bn2c,mm1c,mm2c,mm3c,mx1c,mx2c,mx3c,mv1c,mv2c,mv3c,fs,fb)
 
-print "## Time; 100 groups of data; offset %d " % rfrac.size
-
-print "Time[NB] ",
-for i in range(55):
-    for j in range(rfrac.size): 
-        print "%.2e " % rfrac[j],
-print " "
-
 for i in path:
     f = 0
     if (hdflag):
