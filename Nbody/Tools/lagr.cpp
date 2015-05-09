@@ -1,6 +1,7 @@
+
 #include <cstdio>
 #include <cstdlib>
-#include <omp.h>
+//#include <omp.h>
 #include <uftools.h>
 
 const int NFRAC=8;
@@ -9,7 +10,7 @@ const float rfrac[NFRAC]={0.001,0.01,0.1,0.3,0.5,0.7,0.9,1.0};
 float sum(int n, float *x){
   float res=0.0;
   if (n>0) {
-#pragma omp parallel for reduction ( + : res )
+    //#pragma omp parallel for reduction ( + : res )
     for (int i=0; i<n; i++) {
       res = res + x[i];
     }
@@ -32,6 +33,7 @@ extern "C" void lagr(float time, int N_SINGLE, int N_BINARY, int N_MERGER, float
           bool fshell=true, bool fbres=false) {
 
   //  printf("%f %f %f %f %f %f %d %d\n",x1[0],x2[0],x3[0],x1[N_SINGLE-1],x2[N_SINGLE-1],x3[N_SINGLE-1],N_SINGLE,bn2[N_BINARY-1]);
+  //  printf("%d %d\n",fshell,fbres);
   
   //  Single and binary number
   int N_SB = N_SINGLE + N_BINARY;
@@ -69,12 +71,12 @@ extern "C" void lagr(float time, int N_SINGLE, int N_BINARY, int N_MERGER, float
   }
 
   float *r2 = new float[N_TOT];
-#pragma omp parallel for
+  //#pragma omp parallel for
   for (int i=0;i<N_SINGLE;i++) {
     r2[i]=dot(x1[i],x2[i],x3[i]);
   }
   
-#pragma omp parallel for
+  //#pragma omp parallel for
   for (int i=0;i<N_BINARY;i++) {
     r2[i+N_SINGLE]=dot(bxc1[i],bxc2[i],bxc3[i]);
   }
@@ -85,7 +87,7 @@ extern "C" void lagr(float time, int N_SINGLE, int N_BINARY, int N_MERGER, float
         
   //  Get distance sorting index
   int *idx = new int[N_TOT];
-#pragma omp parallel for
+  //#pragma omp parallel for
   for (int i=0;i<N_TOT;i++) {
     idx[i] = i;
   }
@@ -187,6 +189,20 @@ extern "C" void lagr(float time, int N_SINGLE, int N_BINARY, int N_MERGER, float
   float* mspblagr=new float[NFRAC];
   int* nspblagr=new int[NFRAC];
 
+  // Average tangetial velocity
+  float** vtave  = new float*[NFRAC*10];
+  float** vtbave = new float*[NFRAC*10];
+  float** vtsave = new float*[NFRAC*10];
+  for (int i=0;i<NFRAC*10;i++) {
+    vtave[i]  = new float[3];
+    vtbave[i] = new float[3];
+    vtsave[i] = new float[3];
+    for (int j=0;j<3;j++) {
+      vtave[i][j] = 0.0;
+      vtbave[i][j] = 0.0;
+      vtsave[i][j] = 0.0;
+    }
+  }
   // Initialize all to zero
   for (int i=0;i<NFRAC;i++){
     // lagrangian radii
@@ -315,16 +331,7 @@ extern "C" void lagr(float time, int N_SINGLE, int N_BINARY, int N_MERGER, float
   float* vr = new float[N_TOT];
   // Notice the tangential velocity is also vector in (x,y,z) coordinate system
   float** vt = new float*[N_TOT];
-  // Average tangetial velocity
-  float** vtave  = new float*[NFRAC];
-  float** vtbave = new float*[NFRAC];
-  float** vtsave = new float*[NFRAC];
-  for (int i=0;i<N_TOT;i++) vt[i]     = new float[3];
-  for (int i=0;i<NFRAC;i++) {
-    vtave[i]  = new float[3];
-    vtbave[i] = new float[3];
-    vtsave[i] = new float[3];
-  }
+  for (int i=0;i<N_TOT;i++) vt[i] = new float[3];
   // rotational velocity
   float* vrot = new float[N_TOT];
   // Initialize mass array
@@ -457,7 +464,7 @@ extern "C" void lagr(float time, int N_SINGLE, int N_BINARY, int N_MERGER, float
           kkb++;
           // initial next bins
           if (kkb < NFRAC){
-            if ((!fshell) && (nblagr[kkb] == 0)){
+            if ((not fshell) && (nblagr[kkb] == 0)){
               vxblagr[kkb] = vxblagr[kkb-1]; 
               vyblagr[kkb] = vyblagr[kkb-1]; 
               vzblagr[kkb] = vzblagr[kkb-1]; 
@@ -500,7 +507,7 @@ extern "C" void lagr(float time, int N_SINGLE, int N_BINARY, int N_MERGER, float
           kks++;
           // initial next bins
           if (kks < NFRAC) {
-            if((!fshell) && (nslagr[kks] == 0)){
+            if((not fshell) && (nslagr[kks] == 0)){
               vxslagr[kks] = vxslagr[kks-1];
               vyslagr[kks] = vyslagr[kks-1];
               vzslagr[kks] = vzslagr[kks-1];
@@ -542,7 +549,7 @@ extern "C" void lagr(float time, int N_SINGLE, int N_BINARY, int N_MERGER, float
         kk++;
         // Get initial value for next bin 
         if (kk < NFRAC ){
-          if (fshell) {
+          if (not fshell) {
             // binary counter
             if (nsblagr[kk] == 0) {
               msblagr[kk] = msblagr[kk-1];
@@ -568,7 +575,7 @@ extern "C" void lagr(float time, int N_SINGLE, int N_BINARY, int N_MERGER, float
   }
 
   //   Fill empty bins with neighbor bin values
-  if (!fshell) {
+  if (not fshell) {
     //   Total
     int kn = kk - 1;
     while (kk < NFRAC) {
@@ -712,7 +719,7 @@ extern "C" void lagr(float time, int N_SINGLE, int N_BINARY, int N_MERGER, float
       if (ncb-ncbprev==nblagr[kkb]) {
         if (fshell) ncbprev += nblagr[kkb];
         kkb++;
-        if ((!fshell) && (kkb < NFRAC)) {
+        if ((not fshell) && (kkb < NFRAC)) {
           sigxblagr[kkb] = sigxblagr[kkb-1]; 
           sigyblagr[kkb] = sigyblagr[kkb-1]; 
           sigzblagr[kkb] = sigzblagr[kkb-1]; 
@@ -753,7 +760,7 @@ extern "C" void lagr(float time, int N_SINGLE, int N_BINARY, int N_MERGER, float
       if (ncs-ncsprev==nslagr[kks]) {
         if (fshell) ncsprev += nslagr[kks];
         kks++;
-        if ((!fshell) && (kks < NFRAC)) {
+        if ((not fshell) && (kks < NFRAC)) {
           sigxslagr[kks] = sigxslagr[kks-1]; 
           sigyslagr[kks] = sigyslagr[kks-1]; 
           sigzslagr[kks] = sigzslagr[kks-1]; 
@@ -792,7 +799,7 @@ extern "C" void lagr(float time, int N_SINGLE, int N_BINARY, int N_MERGER, float
     if (nc-ncprev==nlagr[kk]) {
       if (fshell) ncprev += nlagr[kk];
       kk++;
-      if ((!fshell) && (kk < NFRAC)) {
+      if ((not fshell) && (kk < NFRAC)) {
         sigxlagr[kk] = sigxlagr[kk-1]; 
         sigylagr[kk] = sigylagr[kk-1]; 
         sigzlagr[kk] = sigzlagr[kk-1]; 
@@ -803,7 +810,7 @@ extern "C" void lagr(float time, int N_SINGLE, int N_BINARY, int N_MERGER, float
     }
   }
 
-  if (!fshell) {
+  if (not fshell) {
     int kn = kk - 1;
     while (kk < NFRAC) {
       sigxlagr[kk] = sigxlagr[kn]; 
