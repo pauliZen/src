@@ -82,7 +82,7 @@ path = path.splitlines()
 
 #rfrac=np.array([0.001,0.003,0.005,0.01,0.03,0.05,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,0.95,0.99,1.0])
 # More useful fraction:
-rfrac=np.array([0.001,0.01,0.1,0.3,0.5,0.7,0.9,1.0])
+rfrac=np.array([0.001,0.01,0.1,0.3,0.5,0.7,0.9,1.0]).astype('float')
 
 # Safe x/y function:
 fxovery = lambda x,y: 0.0 if float(y)==0.0 else x/y
@@ -93,15 +93,18 @@ toffset = 0.0
 
 # Whether average from center to shell or between shells
 # flag_s = False
+def get_lagr():
+    dll = ctypes.CDLL(lagrlib,mode=ctypes.RTLD_GLOBAL)
+    func = dll.lagr
+    func.argtypes = [c_float, c_int, c_int, c_int, c_bool, c_bool,
+                     POINTER(c_float), POINTER(c_float), POINTER(c_float), POINTER(c_float), POINTER(c_float), POINTER(c_float), POINTER(c_float),
+                     POINTER(c_float), POINTER(c_float), POINTER(c_float), POINTER(c_float), POINTER(c_float), POINTER(c_float), POINTER(c_float), POINTER(c_float), POINTER(c_int), POINTER(c_int),
+                     POINTER(c_float), POINTER(c_float), POINTER(c_float), POINTER(c_float), POINTER(c_float), POINTER(c_float), POINTER(c_float),POINTER(c_float), POINTER(c_float)]
+    return func
 
-dll = ctypes.CDLL(lagrlib,mode=ctypes.RTLD_GLOBAL)
-func = dll.lagr
-func.argtypes = [c_float, c_int, c_int, c_int,
-                 POINTER(c_float), POINTER(c_float), POINTER(c_float), POINTER(c_float), POINTER(c_float), POINTER(c_float), POINTER(c_float),
-                 POINTER(c_float), POINTER(c_float), POINTER(c_float), POINTER(c_float), POINTER(c_float), POINTER(c_float), POINTER(c_float), POINTER(c_float), POINTER(c_int), POINTER(c_int),
-                 POINTER(c_float), POINTER(c_float), POINTER(c_float), POINTER(c_float), POINTER(c_float), POINTER(c_float), POINTER(c_float),POINTER(c_float), POINTER(c_float),
-                 c_bool, c_bool]
-def c_lagr(t,ns,nb,nm,m,x1,x2,x3,v1,v2,v3,bm1,bm2,bx1,bx2,bx3,bv1,bv2,bv3,bn1,bn2,mm1,mm2,mm3,mx1,mx2,mx3,mv1,mv2,mv3,fs,fb):
+__c_lagr=get_lagr()
+
+def c_lagr(t,ns,nb,nm,fs,fb,m,x1,x2,x3,v1,v2,v3,bm1,bm2,bx1,bx2,bx3,bv1,bv2,bv3,bn1,bn2,mm1,mm2,mm3,mx1,mx2,mx3,mv1,mv2,mv3):
     mc = m.ctypes.data_as(POINTER(c_float))
     x1c = x1.ctypes.data_as(POINTER(c_float))
     x2c = x2.ctypes.data_as(POINTER(c_float))
@@ -128,7 +131,7 @@ def c_lagr(t,ns,nb,nm,m,x1,x2,x3,v1,v2,v3,bm1,bm2,bx1,bx2,bx3,bv1,bv2,bv3,bn1,bn
     mv1c = mv1.ctypes.data_as(POINTER(c_float))
     mv2c = mv2.ctypes.data_as(POINTER(c_float))
     mv3c = mv3.ctypes.data_as(POINTER(c_float))
-    func(t,ns,nb,nm,mc,x1c,x2c,x3c,v1c,v2c,v3c,bm1c,bm2c,bx1c,bx2c,bx3c,bv1c,bv2c,bv3c,bn1c,bn2c,mm1c,mm2c,mm3c,mx1c,mx2c,mx3c,mv1c,mv2c,mv3c,fs,fb)
+    __c_lagr(t,ns,nb,nm,fs,fb,mc,x1c,x2c,x3c,v1c,v2c,v3c,bm1c,bm2c,bx1c,bx2c,bx3c,bv1c,bv2c,bv3c,bn1c,bn2c,mm1c,mm2c,mm3c,mx1c,mx2c,mx3c,mv1c,mv2c,mv3c)
 
 for i in path:
     f = 0
@@ -339,7 +342,7 @@ for i in path:
             else:
                 mflag = False
 ###        print x1[0],x2[0],x3[0],x1[N_SINGLE-1],x2[N_SINGLE-1],x3[N_SINGLE-1],N_SINGLE,bn2[N_BINARY-1]
-        c_lagr(time,N_SINGLE,N_BINARY,N_MERGER,mass,x1,x2,x3,v1,v2,v3,bm1,bm2,bxc1,bxc2,bxc3,bvc1,bvc2,bvc3,bn1,bn2,mm1,mm2,mm3,mxc1,mxc2,mxc3,mvc1,mvc2,mvc3,fshell,fbres)
+        c_lagr(time,N_SINGLE,N_BINARY,N_MERGER,fshell,fbres,mass,x1,x2,x3,v1,v2,v3,bm1,bm2,bxc1,bxc2,bxc3,bvc1,bvc2,bvc3,bn1,bn2,mm1,mm2,mm3,mxc1,mxc2,mxc3,mvc1,mvc2,mvc3)
 #   Close current snapshot
     if (hdflag): f.close()
 

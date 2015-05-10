@@ -1,8 +1,32 @@
+// Calculation of lagrangian radii, average mass, number of particles, average velocities, velocity dispersions
+// output: (total, single, binary seperately)
+//  R_lagr: Lagrangian radii
+//  <M>   : Average mass
+//  N     : Number of stars
+//  Mb    : Binary mass in R_lagr
+//  Nb    : Binary number in R_lagr
+//  <V>   : Average velocity
+//  <V_x> : Average velocity in x-axis
+//  <V_y> : Average velocity in y-axis
+//  <V_z> : Average velocity in z-axis
+//  <V_r> : Average velocity in r-axis
+//  <V_t> : Average velocity in t-axis
+//  <S>   : Velocity dispersion square  
+//  <S_x> : Velocity dispersion square in x-axis
+//  <S_y> : Velocity dispersion square in y-axis
+//  <S_z> : Velocity dispersion square in z-axis
+//  <S_r> : Velocity dispersion square in r-axis
+//  <S_t> : Velocity dispersion square in t-axis
+//  <V_rot>: Average rotational velocity in x-y plane
+//  <S_rot>: Velocity dispersion square of rotation in x-y plane
+//  PMb   : Primordial binaries mass in R_lagr
+//  PNb   : Primordial binaries number in R_lagr
 
 #include <cstdio>
 #include <cstdlib>
 //#include <omp.h>
 #include <uftools.h>
+
 
 const int NFRAC=8;
 const float rfrac[NFRAC]={0.001,0.01,0.1,0.3,0.5,0.7,0.9,1.0};
@@ -27,13 +51,13 @@ float fxovery(float x,float y) {
   else return 0.0;
 }
 
-extern "C" void lagr(float time, int N_SINGLE, int N_BINARY, int N_MERGER, float *mass, float *x1, float *x2, float *x3, float *v1, float *v2, float *v3,
-          float *bm1, float *bm2, float *bxc1, float *bxc2, float *bxc3, float *bvc1, float *bvc2, float *bvc3, int *bn1, int *bn2,
-          float *mm1, float *mm2, float *mm3, float *mxc1, float *mxc2, float *mxc3, float *mvc1, float *mvc2, float *mvc3,
-          bool fshell=true, bool fbres=false) {
+extern "C" void lagr(float time, int N_SINGLE, int N_BINARY, int N_MERGER,bool fshell, bool fbres, float *mass, float *x1, float *x2, float *x3, float *v1, float *v2, float *v3,
+          float *bm1=NULL, float *bm2=NULL, float *bxc1=NULL, float *bxc2=NULL, float *bxc3=NULL, float *bvc1=NULL, float *bvc2=NULL, float *bvc3=NULL, int *bn1=NULL, int *bn2=NULL,
+          float *mm1=NULL, float *mm2=NULL, float *mm3=NULL, float *mxc1=NULL, float *mxc2=NULL, float *mxc3=NULL, float *mvc1=NULL, float *mvc2=NULL, float *mvc3=NULL ) {
 
   //  printf("%f %f %f %f %f %f %d %d\n",x1[0],x2[0],x3[0],x1[N_SINGLE-1],x2[N_SINGLE-1],x3[N_SINGLE-1],N_SINGLE,bn2[N_BINARY-1]);
-  //  printf("%d %d\n",fshell,fbres);
+  // printf("%d %d\n",fshell,fbres);
+  // printf("%d %f %f %f %f %f %f %f %f \n",NFRAC,rfrac[0],rfrac[1],rfrac[2],rfrac[3],rfrac[4],rfrac[5],rfrac[6],rfrac[7]);
   
   //  Single and binary number
   int N_SB = N_SINGLE + N_BINARY;
@@ -51,8 +75,10 @@ extern "C" void lagr(float time, int N_SINGLE, int N_BINARY, int N_MERGER, float
   int N_TOTR = N_BM + N_SINGLE;
 
   float tsmass = sum(N_SINGLE, mass);
-  float	tbmass = sum(N_BINARY, bm1) + sum(N_BINARY, bm2);
-  float	tmmass = sum(N_MERGER, mm1) + sum(N_MERGER, mm2) + sum(N_MERGER, mm3);
+  float	tbmass = 0.0;
+  float	tmmass = 0.0;
+  if (N_BINARY>0) tbmass = sum(N_BINARY, bm1) + sum(N_BINARY, bm2);
+  if (N_MERGER>0) tmmass = sum(N_MERGER, mm1) + sum(N_MERGER, mm2) + sum(N_MERGER, mm3);
   // Total mass
   float tmass = tsmass + tbmass + tmmass;
   // Treat triple as binary
@@ -77,13 +103,15 @@ extern "C" void lagr(float time, int N_SINGLE, int N_BINARY, int N_MERGER, float
   }
   
   //#pragma omp parallel for
-  for (int i=0;i<N_BINARY;i++) {
-    r2[i+N_SINGLE]=dot(bxc1[i],bxc2[i],bxc3[i]);
-  }
+  if (N_BINARY>0) 
+    for (int i=0;i<N_BINARY;i++) {
+      r2[i+N_SINGLE]=dot(bxc1[i],bxc2[i],bxc3[i]);
+    }
 
-  for (int i=0;i<N_MERGER;i++) {
-    r2[i+N_SB]=dot(bxc1[i],bxc2[i],bxc3[i]);
-  }
+  if (N_MERGER>0)
+    for (int i=0;i<N_MERGER;i++) {
+      r2[i+N_SB]=dot(bxc1[i],bxc2[i],bxc3[i]);
+    }
         
   //  Get distance sorting index
   int *idx = new int[N_TOT];
@@ -348,6 +376,11 @@ extern "C" void lagr(float time, int N_SINGLE, int N_BINARY, int N_MERGER, float
 
     //   Binary/merger case
     if (j>=N_SINGLE){
+      // Safe check
+      if (N_BINARY<=0) {
+        fprintf(stderr,"Error: N_BINARY = %d but index %d > N_SINGLE (%d)",N_BINARY,j,N_SINGLE);
+        return;
+      }
       // increase binary counter by one
       ncb++;
       if (fbres){
