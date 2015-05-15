@@ -28,14 +28,11 @@
 # 13. lagrlib  liblagr.so path
 
 import numpy as np
-import matplotlib.pyplot as plt
 import h5py
 import math
 import ctypes
 import sys
 from ctypes import *
-from matplotlib.colors import BoundaryNorm
-from matplotlib.ticker import MaxNLocator
 
 # Custom options
 # for HDF5 output
