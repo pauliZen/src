@@ -52,6 +52,24 @@ int main (int argc, char **argv){
   int NBMAX=init.geti("NBmax");
   bool fshell=static_cast<bool>(init.geti("fshell"));
   bool fbres=static_cast<bool>(init.geti("fbres"));
+
+  float* mass=new float[NSMAX];
+  float* x1  =new float[NSMAX];
+  float* x2  =new float[NSMAX];
+  float* x3  =new float[NSMAX];
+  float* v1  =new float[NSMAX];
+  float* v2  =new float[NSMAX];
+  float* v3  =new float[NSMAX];
+  float* bm1 =new float[NBMAX];
+  float* bm2 =new float[NBMAX];
+  float* bxc1=new float[NBMAX];
+  float* bxc2=new float[NBMAX];
+  float* bxc3=new float[NBMAX];
+  float* bvc1=new float[NBMAX];
+  float* bvc2=new float[NBMAX];
+  float* bvc3=new float[NBMAX];
+  int*   bn1 =new int[NBMAX];
+  int*   bn2 =new int[NBMAX];
   
   for (int i=0;i<nlst;i++) {
     std::string tstr;
@@ -65,23 +83,6 @@ int main (int argc, char **argv){
 
     float time=to<float>(tstr);
     int N_SINGLE=0,N_BINARY=0,N_MERGER=0;
-    float* mass=new float[NSMAX];
-    float* x1  =new float[NSMAX];
-    float* x2  =new float[NSMAX];
-    float* x3  =new float[NSMAX];
-    float* v1  =new float[NSMAX];
-    float* v2  =new float[NSMAX];
-    float* v3  =new float[NSMAX];
-    float* bm1 =new float[NBMAX];
-    float* bm2 =new float[NBMAX];
-    float* bxc1=new float[NBMAX];
-    float* bxc2=new float[NBMAX];
-    float* bxc3=new float[NBMAX];
-    float* bvc1=new float[NBMAX];
-    float* bvc2=new float[NBMAX];
-    float* bvc3=new float[NBMAX];
-    int*   bn1 =new int[NBMAX];
-    int*   bn2 =new int[NBMAX];
 
     if (time==0.0) {
       printf("## Time; 100 groups of data; offset %d\n", NFRAC);
@@ -127,9 +128,28 @@ int main (int argc, char **argv){
     lagr(time,N_SINGLE,N_BINARY,N_MERGER,fshell,fbres,mass,x1,x2,x3,v1,v2,v3,bm1,bm2,bxc1,bxc2,bxc3,bvc1,bvc2,bvc3,bn1,bn2);
 
     fclose(fdata);
+
   }
 
   flst.close();
+
+  delete mass; 
+  delete x1  ; 
+  delete x2  ; 
+  delete x3  ; 
+  delete v1  ; 
+  delete v2  ; 
+  delete v3  ; 
+  delete bm1 ; 
+  delete bm2 ; 
+  delete bxc1; 
+  delete bxc2; 
+  delete bxc3; 
+  delete bvc1; 
+  delete bvc2; 
+  delete bvc3; 
+  delete bn1 ; 
+  delete bn2 ; 
 
   return 0;
 }
