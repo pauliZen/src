@@ -9,12 +9,12 @@ LIBDIR=~/lib
 #CXX= g++ -O3 -Wall
 
 ###release------------------#
-CXX= g++ -O3 -Wall -fopenmp
+CXX= g++ -O3 -Wall 
 
 
 ## Library -------------------------------------------#
 MYCFLAGS =-I$(shell echo ~)/include
-EXTRALIBS    +=-L$(shell echo ~)/lib -linitial -lnb6out3 -lgpupot
+EXTRALIBS    +=-L$(shell echo ~)/lib -linitial -lnb6out3 -llagr #-lgpupot
 
 ### root lib----------------------------------------#
 ROOTCFLAGS              =$(shell root-config  --cflags)
@@ -78,6 +78,9 @@ libgpupot: gpupot.cu cuda_pointer.h
 
 liblagr: lagr.cpp
 	$(CXX) -shared -fPIC lagr.cpp -o liblagr.so $(MYCFLAGS)
+
+libsurfacedensity: surfacedensity.cpp
+	$(CXX) -shared -fPIC surfacedensity.cpp -o libsurfacedensity.so $(MYCFLAGS)
 
 clean:
 	rm -f $(OBJECTS)
