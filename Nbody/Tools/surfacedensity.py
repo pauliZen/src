@@ -39,6 +39,9 @@ msun=4.83
 
 if (larg>=2):
     filename=sys.argv[1]
+    if (filename == '-h'):
+        print 'arguments: filename[data_prj] filter[V] rmax[20pc] nbins[15] rmin[0.05pc] fileout[sb] distance[pc]'
+        quit()
 if (larg>=3):
     filter=sys.argv[2]
 if (larg>=4):
@@ -58,11 +61,12 @@ if (filter=='B'): fcol=20
 
 x,y,m1,m2,mag = np.loadtxt(filename,usecols=(1,2,9,10,fcol-1),unpack=True)
 
-dm=5.0*np.log10(rs)-5.0
+##dm=5.0*np.log10(rs)-5.0
 
 xp=x.astype(np.float32)
 yp=y.astype(np.float32)
-lp=(10.0**(0.4*(msun-(mag+dm)))).astype(np.float32)
+lp=(10.0**(0.4*(msun-mag))).astype(np.float32)
+print 'sum %f' % lp.sum()
 mp=(m1+m2).astype(np.float32)
 
 rshell=np.zeros(nbins).astype(np.float32)
@@ -74,7 +78,7 @@ rarea=np.zeros(nbins).astype(np.float32)
 sd(mag.size,xp,yp,lp,mp,nbins,rmax,rmin,rshell,rden,rm,ncount,rarea)
 
 rmag=msun+21.572-2.5*np.log10(rden)
-rarc=rshell/rs*206265
+rarc=rshell/rs*206264.806
 
 fhandle=open(fout,'w')
 np.savetxt(fhandle, np.transpose((rshell,rden,rarc,rmag,ncount,rm,rarea)),fmt="%f %f %f %f %d %f %f",header="r[pc] surface_brightness[L_{sun}/pc^2] r[arcsec] surface_brigtness[mag/arcsec^2] surface_number_density[1/pc^2] surface_mass_density[M_sun/pc^2] area[pc^2]",comments='')

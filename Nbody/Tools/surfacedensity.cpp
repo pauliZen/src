@@ -17,8 +17,10 @@ extern "C" void surfacedensity(int n, float* x, float* y, float* weight, float* 
     rarea[i]=3.1415926*rshell[i]*rshell[i];
     if(i<rbin-1) rarea[i+1]=rarea[i+1]-rarea[i];
   }
+  
   float rmin2=rmin*rmin;
   float rmax2=rmax*rmax;
+  //  int outcouter=0;
   for (int i=0;i<n;i++) {
     float r2=x[i]*x[i]+y[i]*y[i];
     if (r2>rmin2) {
@@ -30,6 +32,9 @@ extern "C" void surfacedensity(int n, float* x, float* y, float* weight, float* 
           rm[nlr] +=m[i];
           rcount[nlr]++;
         }
+//         else {
+//           outcouter++;
+//         }
       }
     } else {
       rden[0] +=weight[i];
@@ -40,6 +45,12 @@ extern "C" void surfacedensity(int n, float* x, float* y, float* weight, float* 
   for (int i=0;i<rbin;i++) {
     rden[i] /=rarea[i];
     rm[i] /=rarea[i];
+    // Get the distance which devides the shell into two parts with same areas.
+    if(i>0) rshell[i]=sqrt(0.5*(rshell[i]*rshell[i]+rshell[i-1]*rshell[i-1]));
+    //if(i>0)    rshell[i+1]=sqrt(rshell[i+1]*rshell[i]);
   }
+  // sqrt(0.5)=0.707107
+  rshell[0]=0.707107*rshell[0];
+  
+  //  printf("Out counts = %d\n",outcouter);
 }
-
