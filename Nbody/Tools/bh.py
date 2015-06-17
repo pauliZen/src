@@ -1,7 +1,7 @@
 import numpy as np
 import h5py
 
-fl = open('snap.lst','r')
+fl = open('snap.part.lst','r')
 path = fl.read()
 path = path.splitlines()
 
@@ -67,19 +67,19 @@ for j in path:
                 bk2 = np.array(b['KW2'])
                 bn1 = np.array(b['NAM1'])
                 bn2 = np.array(b['NAM2'])
-         
+       
                 idxb = np.arange(N_BINARY)
                 bhidxb = idxb[((bk1==14) | (bk2==14))]
-         
+       
                 if (bhidxb.size>0):
                     titleb = 'bh_binary.%.8f' % time
                     fidxb.write(titleb+'\n')
                     fout = open('bhdata/'+titleb, 'w')
                     for i in bhidxb:
                         # m1,m2,xc,vc,a,e,p,k1,k2
-                        fout.write('%d %d %.8e %.8e %.8e %.8e %.8e %.8e %.8e %.8e %.8e %.8e %f.8e %d %d\n' % (bn1[i], bn2[i], bm1[i], bm2[i], bxc1[i], bxc2[i], bxc3[i], bvc1[i], bvc2[i], bvc3[i], ba[i], be[i], bp[i], bk1[i], bk2[i]))
+                       fout.write('%d %d %.8e %.8e %.8e %.8e %.8e %.8e %.8e %.8e %.8e %.8e %.8e %d %d\n' % (bn1[i], bn2[i], bm1[i], bm2[i], bxc1[i], bxc2[i], bxc3[i], bvc1[i], bvc2[i], bvc3[i], ba[i], be[i], bp[i], bk1[i], bk2[i]))
                     fout.close()
-     
+   
         if ('Mergers' in map(lambda x:x[0], s.items())) :
             m = s['Mergers']
             N_MERGER = m.attrs['N_MERGER']
@@ -121,6 +121,6 @@ for j in path:
                     fout.close()
 
 fidxs.close()
-fidxb.close()
+#fidxb.close()
 fidxm.close()
 
