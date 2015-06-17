@@ -7,7 +7,7 @@ import math
 
 #f = h5py.File('/home/lwang/data/GC_100/snap/snap.40_999.h5part','r')
 #f = h5py.File('/home/lwang/extradata/GC/B100_king/ns2/snap.40_1172.h5part','r')
-f = h5py.File('snap.40_11669.h5part','r')
+f = h5py.File('snap.40_10896.h5part','r')
 #f = h5py.File('/home/lwang/hdata/snap.40_329.h5part','r')
 s = f['/Step#0']
 b = s['Binaries']
