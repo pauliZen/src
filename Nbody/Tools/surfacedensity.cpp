@@ -45,6 +45,7 @@ extern "C" void surfacedensity(int n, float* x, float* y, float* weight, float* 
   for (int i=0;i<rbin;i++) {
     rden[i] /=rarea[i];
     rm[i] /=rarea[i];
+    rcount[i] /=rarea[i];
     // Get the distance which devides the shell into two parts with same areas.
     if(i>0) rshell[i]=sqrt(0.5*(rshell[i]*rshell[i]+rshell[i-1]*rshell[i-1]));
     //if(i>0)    rshell[i+1]=sqrt(rshell[i+1]*rshell[i]);
