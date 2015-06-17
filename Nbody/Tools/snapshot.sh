@@ -25,6 +25,6 @@ do
 	    output=$output_prefix
 	fi
 	echo $i' '$j
-	nb6++snapshot $time $datapath/$output $offset $nmax $amax $fflag $bflag $i
+	snapshot $time $datapath/$output $offset $nmax $amax $fflag $bflag $i
     done
 done

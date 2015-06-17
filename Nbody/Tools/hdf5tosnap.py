@@ -5,18 +5,29 @@ import math
 
 
 filename = 'snap.lst'
-# Time interval for calculation (in NB unit)
-Tint  = 1.0
-# resolution of time interval in NB unit
-Tres  = 0.125
+tscale=1.0
+tint=0.125
+tdt=1.0
+
+larg=len(sys.argv)
+
+if (larg>=2):
+    filename=sys.argv[1]
+    if (filename == '-h'):
+        print 'arguments: filename[snap.lst] tscale[1.0] dt[1.0] tint[0.125]'
+        quit()
+if (larg>=3):
+    tscale=float(sys.argv[2])
+if (larg>=4):
+    tdt=float(sys.argv[3])
+if (larg>=5):
+    tint=float(sys.argv[4])
 
 fl = open(filename,'r')
 path = fl.read()
 path = path.splitlines()
 
-toffset = 0.0
-ifirst=True
-linec=0
+fflag=False
 
 for i in path:
     f = 0
@@ -28,24 +39,15 @@ for i in path:
         s = 0
         s = f.items()[kj][1]
         time = float(s.attrs['Time'])
-        if (ifirst):
-            if (time>0.0):
-                toffset=Tint*(int((time-Tres/2.0)/Tint)+1)
-            else:
-                print "## Time; 100 groups of data; offset %d " % rfrac.size
-                print "Time[NB] ",
-                for i in range(55):
-                    for j in range(rfrac.size): 
-                        print "%.2e " % rfrac[j],
-                print " "
-            ifirst=False
-
-        kj += 1
-
-        if (time-toffset < Tint*linec-Tres/2.0):
-            continue
+        kj +=1
+        
+        tastro=time*tscale
+        tt = tdt*(int(tastro/tdt-0.5)+1)
+        if (tt-tastro<tint/2.0):
+            fflag=True
+            print 'Time = %f, Tt = %f' % (tastro,tt)
         else:
-            linec += 1
+            continue
 
         N_SINGLE = s.attrs['N_SINGLE']
 
@@ -201,5 +203,6 @@ for i in path:
                                              mm3,mzeros,np.log10(ml3),mzeros,mrs3,mzeros,mk3,mzeros,
                                              mzeros,mzeros,mx31,mx32,mx33,mv31,mv32,mv33)),fmt="%e %e %e %e %e %e  %e %e %e %e %e %e  %e %e  %e %e  %e %e  %d %d  %e %e  %e %e %e %e %e %e")
                 
-        
-                
+        if (fflag):
+            fflag=False
+            break
