@@ -11,9 +11,9 @@ s0 = 1E7
 ## mcol=system("awk '{print $3}' dpar")
 
 # V filter
-suffix='V'
-msun=4.83
-mcol=18
+## suffix='V'
+## msun=4.83
+## mcol=18
 
 # I filter
 ## suffix='I'
@@ -21,9 +21,9 @@ mcol=18
 ## mcol = 21
 
 # B filter
-## suffix='B'
-## msun = 5.48
-## mcol = 20
+suffix='B'
+msun = 5.48
+mcol = 20
 
 lst=system("cut -d' ' -f1 dlst")
 tlst=system("cut -d' ' -f2 dlst")

@@ -5,6 +5,7 @@ import numpy as np
 
 # Set up matplotlib and use a nicer set of plot parameters
 import matplotlib
+#from matplotlib import text
 matplotlib.rc_file("matplotlibrc")
 import matplotlib.pyplot as plt
 
@@ -15,7 +16,7 @@ from astropy.io import fits
 # Log scale
 from astropy.visualization import scale_image
 
-def image_cut(image_r,image_g,image_b,offset_ratio,smooth_ratio):
+def image_cut(image_r,image_g,image_b,offset_ratio,smooth_ratio,invert=False):
     isize=image_r.shape
     isize_min=np.min(isize)
     if (isize!=image_b.shape) | (isize!=image_g.shape):
@@ -23,9 +24,14 @@ def image_cut(image_r,image_g,image_b,offset_ratio,smooth_ratio):
     image_rgba=np.zeros(shape=(isize_min,isize_min,4))
     xshift=(isize[0]-isize_min)/2
     yshift=(isize[1]-isize_min)/2
-    image_rgba[:,:,0]=image_r[xshift:xshift+isize_min,yshift:yshift+isize_min]
-    image_rgba[:,:,1]=image_g[xshift:xshift+isize_min,yshift:yshift+isize_min]
-    image_rgba[:,:,2]=image_b[xshift:xshift+isize_min,yshift:yshift+isize_min]
+    if invert:
+        image_rgba[:,:,0]=1.0-image_r[xshift:xshift+isize_min,yshift:yshift+isize_min]
+        image_rgba[:,:,1]=1.0-image_g[xshift:xshift+isize_min,yshift:yshift+isize_min]
+        image_rgba[:,:,2]=1.0-image_b[xshift:xshift+isize_min,yshift:yshift+isize_min]
+    else:
+        image_rgba[:,:,0]=image_r[xshift:xshift+isize_min,yshift:yshift+isize_min]
+        image_rgba[:,:,1]=image_g[xshift:xshift+isize_min,yshift:yshift+isize_min]
+        image_rgba[:,:,2]=image_b[xshift:xshift+isize_min,yshift:yshift+isize_min]
     inner_ratio=offset_ratio-smooth_ratio
     tmp = np.linspace(-1,1,isize_min)
     x, y = np.meshgrid(tmp, tmp)
@@ -80,8 +86,11 @@ files=f.readline()
 files=files.split()
 
 type=('all','ms','rg','agb','bh','wd','bin')
-lmax=(1000.0,1000.0,1000.0,1000.0,1e-12,100.0,1000.0)
-lmr=(99.6,99.5,99.9,99.95,10.0,99.93,99.91)
+base=np.array([500.0, 500.0, 500.0, 500.0, 50.0, 5.0, 50.0])
+lmaxr=base
+lmaxg=base
+lmaxb=base
+#lmr=(99.6,99.5,99.9,99.95,99.5,99.93,99.91)
 
 for i in files:
     image=[]
@@ -95,25 +104,38 @@ for i in files:
         image_data_V = fits.getdata(image_file_V)
         image_data_I = fits.getdata(image_file_I)
 
-#        image_log_r=scale_image(image_data_I,'log',max_cut= lmax[j])
-#        image_log_b=scale_image(image_data_B,'log',max_cut= 1max[j])
-#        image_log_g=scale_image(image_data_V,'log',max_cut= 1max[j])
-        image_log_r=scale_image(image_data_I,'log',max_percent= lmr[j])
-        image_log_b=scale_image(image_data_B,'log',max_percent= lmr[j])
-        image_log_g=scale_image(image_data_V,'log',max_percent= lmr[j])
+        image_log_r=scale_image(image_data_I,'log',max_cut= lmaxr[j])
+        image_log_b=scale_image(image_data_B,'log',max_cut= lmaxb[j])
+        image_log_g=scale_image(image_data_V,'log',max_cut= lmaxg[j])
+#        image_log_r=scale_image(image_data_I,'log',max_percent= lmr[j])
+#        image_log_b=scale_image(image_data_B,'log',max_percent= lmr[j])
+#        image_log_g=scale_image(image_data_V,'log',max_percent= lmr[j])
 
-        image.append(image_cut(image_log_r,image_log_g,image_log_b,1.0,0.05))
-#    image[4][:,:,0:3] *= 10.0
+        if j==4:
+            image.append(image_cut(image_log_r,image_log_g,image_log_b,1.0,0.05,True))
+        else:
+            image.append(image_cut(image_log_r,image_log_g,image_log_b,1.0,0.05))
     image_seven=image_align7(image[0],image[1],image[2],image[3],
                              image[4],image[5],image[6])
 
-    fig = plt.figure(figsize=(16*3,16*(np.sqrt(3)+1)))
+    fig = plt.figure(figsize=(6*3,6*(np.sqrt(3)+1)))
+    fontsize=20
     fig.patch.set_visible(False)
     plt.axis('off')
     plt.imshow(image_seven)
-#    axes.Axes.text(0.3,0.3,'MS',ha='center',va='center')
-#    axes.Axes.text(0.6,0.3,'BH',ha='center',va='center')
-    plt.savefig(i+'.png')
+    isize=image_seven.shape
+    tx_top=isize[0]*(1.0/(np.sqrt(3.0)+1.0)-0.03)
+    tx_mid=isize[0]*((np.sqrt(3.0)+2.0)/(2*np.sqrt(3.0)+2.0)-0.03)
+    tx_bot=isize[0]*(1.0-0.03)
+    tx_h=isize[1]*np.array([1.0/6.0,1.0/3.0,1.0/2.0,2.0/3.0,5.0/6.0])
+    plt.text(tx_h[1],tx_top,'MS',ha='center',va='center',size=fontsize,color='w')
+    plt.text(tx_h[3],tx_top,'RG',ha='center',va='center',size=fontsize,color='w')
+    plt.text(tx_h[0],tx_mid,'AGB',ha='center',va='center',size=fontsize,color='w')
+    plt.text(tx_h[4],tx_mid,'BH',ha='center',va='center',size=fontsize)
+    plt.text(tx_h[1],tx_bot,'WD',ha='center',va='center',size=fontsize,color='w')
+    plt.text(tx_h[3],tx_bot,'Binary',ha='center',va='center',size=fontsize,color='w')
+
+    plt.savefig(i+'.eps')
     plt.close(fig)
 
 
