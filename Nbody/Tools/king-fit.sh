@@ -24,5 +24,5 @@ do
 #  V filter
     echo 'V 4.83 18' >dpar
     gnuplot king-fit-lum.plt >$i.log 2>$i.err &
-    sleep 1
+    sleep 5
 done
