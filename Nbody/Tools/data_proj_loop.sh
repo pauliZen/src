@@ -1,27 +1,25 @@
 # project group of data (require dlist (datafile name from hdf5tosnap results and time[Myr]))
 # Preprogram: hdf5tosnap.py
 
-pbin=mag_proj
-z=0.00016
-nloop=4
-
+read -p 'Data list with time[myr] (dlist):' dlist
 read -p 'program (mag_proj):' pbin
 read -p 'parallel processes (4):' nloop
 read -p 'metallicity (0.02)' z
 
+[[ -z $dlist ]] && dlist='dlist'
 [[ -z $pbin ]] && pbin=mag_proj
 [[ -z $nloop ]] && nloop=4
 [[ -z $z ]] && z=0.02
 
-[ -e dlist ] || (echo 'dlist not exist' & exit 1) || exit
+[ -e $dlist ] || (echo $dlist' not exist' & exit 1) || exit
 
-ic=`wc -l dlist|cut -d' ' -f1`
+ic=`wc -l $dlist|cut -d' ' -f1`
 lnum=`expr $ic / $nloop`
 let lnum++
 
 rm -f dlist_split.*
 
-split -a 1 -d -l $lnum dlist dlist_split.
+split -a 2 -d -l $lnum $dlist dlist_split.
 
 function sloop()
 {
