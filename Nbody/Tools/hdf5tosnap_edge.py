@@ -1,3 +1,4 @@
+# x->y y->z z->x
 import numpy as np
 import sys
 import h5py
@@ -5,6 +6,7 @@ import math
 
 
 filename = 'snap.lst'
+
 tscale=1.0
 tint=0.125
 tdt=1.0
@@ -40,7 +42,7 @@ for i in path:
         s = f.items()[kj][1]
         time = float(s.attrs['Time'])
         kj +=1
-        
+
         tastro=time*tscale
         tt = tdt*(int(tastro/tdt-0.5)+1)
         if (tt-tastro<tint/2.0):
@@ -69,10 +71,10 @@ for i in path:
         fname = 'data_%.8f' % time
         f_handle = open(fname,'a') 
         np.savetxt(f_handle,
-                   np.transpose((x1,x2,x3,v1,v2,v3,
+                   np.transpose((x2,x3,x1,v2,v3,v1,
                                  szeros,szeros,szeros,szeros,szeros,szeros,
                                  mass,szeros,np.log10(l),szeros,rs,szeros,k,szeros,
-                                 szeros,szeros,x1,x2,x3,v1,v2,v3)),fmt="%e %e %e %e %e %e  %e %e %e %e %e %e  %e %e  %e %e  %e %e  %d %d  %e %e  %e %e %e %e %e %e")
+                                 szeros,szeros,x2,x3,x1,v2,v3,v1)),fmt="%e %e %e %e %e %e  %e %e %e %e %e %e  %e %e  %e %e  %e %e  %d %d  %e %e  %e %e %e %e %e %e")
  
         bflag = 'Binaries' in map(lambda x:x[0], s.items())
 
@@ -112,12 +114,12 @@ for i in path:
                 bmr2 = bm1/bm/206265.0
 
                 np.savetxt(f_handle,
-                           np.transpose((bxc1+bmr1*bxr1,bxc2+bmr1*bxr2,bxc3+bmr1*bxr3,
-                                         bvc1+bmr1*bvr1,bvc2+bmr1*bvr2,bvc3+bmr1*bvr3,
-                                         bxc1+bmr2*bxr1,bxc2+bmr2*bxr2,bxc3+bmr2*bxr3,
-                                         bvc1+bmr2*bvr1,bvc2+bmr2*bvr2,bvc3+bmr2*bvr3,
+                           np.transpose((bxc2+bmr1*bxr2,bxc3+bmr1*bxr3,bxc1+bmr1*bxr1,
+                                         bvc2+bmr1*bvr2,bvc3+bmr1*bvr3,bvc1+bmr1*bvr1,
+                                         bxc2+bmr2*bxr2,bxc3+bmr2*bxr3,bxc1+bmr2*bxr1,
+                                         bvc2+bmr2*bvr2,bvc3+bmr2*bvr3,bvc1+bmr2*bvr1,
                                          bm1,bm2,np.log10(bl1),np.log10(bl2),brs1,brs2,bk1,bk2,
-                                         ba,be,bxc1,bxc2,bxc3,bvc1,bvc2,bvc3)),fmt="%e %e %e %e %e %e  %e %e %e %e %e %e  %e %e  %e %e  %e %e  %d %d  %e %e  %e %e %e %e %e %e")
+                                         ba,be,bxc2,bxc3,bxc1,bvc2,bvc3,bvc1)),fmt="%e %e %e %e %e %e  %e %e %e %e %e %e  %e %e  %e %e  %e %e  %d %d  %e %e  %e %e %e %e %e %e")
 
             mflag = 'Mergers' in map(lambda x:x[0], s.items())
 
@@ -192,17 +194,19 @@ for i in path:
                     mv23   = mvicm3 + mx2r*mvri3
                 
                     np.savetxt(f_handle,
-                               np.transpose((mx11,mx12,mx13,mv11,mv12,mv13,
-                                             mx21,mx22,mx23,mv21,mv22,mv23,
+                               np.transpose((mx12,mx13,mx11,mv12,mv13,mv11,
+                                             mx22,mx23,mx21,mv22,mv23,mv21,
                                              mm1,mm2,np.log10(ml1),np.log10(ml2),mrs1,mrs2,mk1,mk2,
-                                             ma0,mecc0,mxicm1,mxicm2,mxicm3,mvicm1,mvicm2,mvicm3)),fmt="%e %e %e %e %e %e  %e %e %e %e %e %e  %e %e  %e %e  %e %e  %d %d  %e %e  %e %e %e %e %e %e")
+                                             ma0,mecc0,mxicm2,mxicm3,mxicm1,mvicm2,mvicm3,mvicm1)),fmt="%e %e %e %e %e %e  %e %e %e %e %e %e  %e %e  %e %e  %e %e  %d %d  %e %e  %e %e %e %e %e %e")
 
                     np.savetxt(f_handle,
-                               np.transpose((mx31,mx32,mx33,mv31,mv32,mv33,
+                               np.transpose((mx32,mx33,mx31,mv32,mv33,mv31,
                                              mzeros,mzeros,mzeros,mzeros,mzeros,mzeros,
                                              mm3,mzeros,np.log10(ml3),mzeros,mrs3,mzeros,mk3,mzeros,
-                                             mzeros,mzeros,mx31,mx32,mx33,mv31,mv32,mv33)),fmt="%e %e %e %e %e %e  %e %e %e %e %e %e  %e %e  %e %e  %e %e  %d %d  %e %e  %e %e %e %e %e %e")
+                                             mzeros,mzeros,mx32,mx33,mx31,mv32,mv33,mv31)),fmt="%e %e %e %e %e %e  %e %e %e %e %e %e  %e %e  %e %e  %e %e  %d %d  %e %e  %e %e %e %e %e %e")
                 
         if (fflag):
             fflag=False
             break
+        
+                
