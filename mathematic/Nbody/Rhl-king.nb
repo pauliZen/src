@@ -1,0 +1,335 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     10998,        326]
+NotebookOptionsPosition[      9965,        285]
+NotebookOutlinePosition[     10304,        300]
+CellTagsIndexPosition[     10261,        297]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Half light radius from King fitting", "Title",
+ CellChangeTimes->{{3.642340437893772*^9, 3.642340448951873*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["King fitting formular", "Subchapter",
+ CellChangeTimes->{{3.6423404526253853`*^9, 3.642340458748786*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"n", "[", 
+   RowBox[{"x_", ",", "rc_", ",", "rt_"}], "]"}], ":=", 
+  RowBox[{
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"Log", "[", 
+      RowBox[{"1.0", "+", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"x", "/", "rc"}], ")"}], "^", "2"}]}], "]"}], "-", 
+     RowBox[{"4.0", "*", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"Sqrt", "[", 
+          RowBox[{"1.0", "+", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{"x", "/", "rc"}], ")"}], "^", "2"}]}], "]"}], "-", 
+         "1.0"}], ")"}], "/", 
+       RowBox[{"Sqrt", "[", 
+        RowBox[{"1.0", "+", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"rt", "/", "rc"}], ")"}], "^", "2"}]}], "]"}]}]}], "+", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"x", "/", "rc"}], ")"}], "^", "2"}], "/", 
+      RowBox[{"(", 
+       RowBox[{"1.0", "+", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"rt", "/", "rc"}], ")"}], "^", "2"}]}], ")"}]}]}], ")"}], 
+   "/", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"Log", "[", 
+      RowBox[{"1.0", "+", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"rt", "/", "rc"}], ")"}], "^", "2"}]}], "]"}], "-", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"3.0", "*", 
+         RowBox[{"Sqrt", "[", 
+          RowBox[{"1.0", "+", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{"rt", "/", "rc"}], ")"}], "^", "2"}]}], "]"}]}], "-", 
+        "1.0"}], ")"}], "*", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"Sqrt", "[", 
+          RowBox[{"1.0", "+", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{"rt", "/", "rc"}], ")"}], "^", "2"}]}], "]"}], "-", 
+         "1.0"}], ")"}], "/", 
+       RowBox[{"(", 
+        RowBox[{"1.0", "+", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"rt", "/", "rc"}], ")"}], "^", "2"}]}], ")"}]}]}]}], 
+    ")"}]}]}]], "Input",
+ CellChangeTimes->{{3.6422543241521053`*^9, 3.642254338689602*^9}, {
+  3.642339099067994*^9, 3.6423391192518616`*^9}, {3.64233935366479*^9, 
+  3.6423393539811316`*^9}, {3.6423395336667695`*^9, 3.642339629827047*^9}, {
+  3.6423397513478565`*^9, 3.642339773143386*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Data", "Subchapter",
+ CellChangeTimes->{{3.6423404630805264`*^9, 3.642340463576954*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{"Model", "=", "\"\<R7_IMF2001\>\""}], ";"}], "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"Model", "=", "\"\<R7_ROT\>\""}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"filepath", "=", 
+     RowBox[{
+     "\"\<C:\\\\Users\\\\lwang\\\\OneDrive\\\\Documents\\\\Datas\\\\Clusters\\\
+\\GC\\\\\>\"", "~~", "Model", "~~", "\"\<\\\\\>\""}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"data", "=", 
+     RowBox[{"Import", "[", 
+      RowBox[{
+       RowBox[{"filepath", "~~", "\"\<king-fit-lum.dat\>\""}], ",", 
+       "\"\<table\>\""}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"rc", "=", 
+     RowBox[{"data", "[", 
+      RowBox[{"[", 
+       RowBox[{";;", ",", "2"}], "]"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"rt", "=", 
+     RowBox[{"data", "[", 
+      RowBox[{"[", 
+       RowBox[{";;", ",", "4"}], "]"}], "]"}]}], ";"}]}]}]], "Input",
+ CellChangeTimes->{{3.642340129357035*^9, 3.6423401309856777`*^9}, {
+  3.6423402458120327`*^9, 3.6423403154069843`*^9}, {3.642340411746868*^9, 
+  3.642340430293874*^9}, {3.64234081534196*^9, 3.6423408177535486`*^9}, {
+  3.6442217084756937`*^9, 3.644221783112768*^9}, {3.6442222404318166`*^9, 
+  3.644222265947116*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Calculation", "Subchapter",
+ CellChangeTimes->{{3.642340469082452*^9, 3.6423404709355063`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"res", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Select", "[", 
+       RowBox[{
+        RowBox[{"x", "/.", 
+         RowBox[{"NSolve", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"n", "[", 
+             RowBox[{"x", ",", 
+              RowBox[{"rc", "[", 
+               RowBox[{"[", "i", "]"}], "]"}], ",", 
+              RowBox[{"rt", "[", 
+               RowBox[{"[", "i", "]"}], "]"}]}], "]"}], "\[Equal]", "0.5"}], 
+           ",", "x", ",", "Reals"}], "]"}]}], ",", "Positive"}], "]"}], "[", 
+      RowBox[{"[", "1", "]"}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", 
+       RowBox[{"Length", "@", "rc"}]}], "}"}]}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.6423396378713164`*^9, 3.642339677508006*^9}, {
+   3.642339710888606*^9, 3.6423397294760747`*^9}, {3.6423397975672665`*^9, 
+   3.642339815504122*^9}, {3.6423398493942556`*^9, 3.642339888809249*^9}, {
+   3.6423399264957523`*^9, 3.64233994196402*^9}, {3.642340027587531*^9, 
+   3.6423401241401243`*^9}, {3.6423403916216345`*^9, 3.6423403967735677`*^9}, 
+   3.642340474034851*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"Solve", "::", "ratnz"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Solve was unable to solve the system with inexact \
+coefficients. The answer was obtained by solving a corresponding exact system \
+and numericizing the result. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/Solve\\\", ButtonNote -> \
+\\\"Solve::ratnz\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{{3.6423399330242014`*^9, 3.642339942344041*^9}, {
+   3.6423400290307636`*^9, 3.6423400838112073`*^9}, 3.642340325504634*^9, 
+   3.642340554120762*^9, 3.642340820414483*^9, 3.644221786721586*^9, 
+   3.64422226940339*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"Solve", "::", "ratnz"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Solve was unable to solve the system with inexact \
+coefficients. The answer was obtained by solving a corresponding exact system \
+and numericizing the result. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/Solve\\\", ButtonNote -> \
+\\\"Solve::ratnz\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{{3.6423399330242014`*^9, 3.642339942344041*^9}, {
+   3.6423400290307636`*^9, 3.6423400838112073`*^9}, 3.642340325504634*^9, 
+   3.642340554120762*^9, 3.642340820414483*^9, 3.644221786721586*^9, 
+   3.6442222695657587`*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"Solve", "::", "ratnz"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Solve was unable to solve the system with inexact \
+coefficients. The answer was obtained by solving a corresponding exact system \
+and numericizing the result. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/Solve\\\", ButtonNote -> \
+\\\"Solve::ratnz\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{{3.6423399330242014`*^9, 3.642339942344041*^9}, {
+   3.6423400290307636`*^9, 3.6423400838112073`*^9}, 3.642340325504634*^9, 
+   3.642340554120762*^9, 3.642340820414483*^9, 3.644221786721586*^9, 
+   3.6442222697313805`*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"General", "::", "stop"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Further output of \[NoBreak]\\!\\(\\*StyleBox[\\(Solve :: \
+ratnz\\), \\\"MessageName\\\"]\\)\[NoBreak] will be suppressed during this \
+calculation. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/General/stop\\\", ButtonNote -> \
+\\\"General::stop\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{{3.6423399330242014`*^9, 3.642339942344041*^9}, {
+   3.6423400290307636`*^9, 3.6423400838112073`*^9}, 3.642340325504634*^9, 
+   3.642340554120762*^9, 3.642340820414483*^9, 3.644221786721586*^9, 
+   3.6442222697706523`*^9}]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"fin", "=", 
+   RowBox[{"MapThread", "[", 
+    RowBox[{"Append", ",", 
+     RowBox[{"{", 
+      RowBox[{"data", ",", "res"}], "}"}]}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.644221818428356*^9, 3.6442219324530854`*^9}, {
+  3.6442219751497307`*^9, 3.6442220145233464`*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Export", "Subchapter",
+ CellChangeTimes->{{3.6423404816884947`*^9, 3.642340482572506*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Export", "[", 
+  RowBox[{
+   RowBox[{"filepath", "~~", "\"\<king-fit-lum.fin\>\""}], ",", "fin", ",", 
+   "\"\<Table\>\""}], "]"}]], "Input",
+ CellChangeTimes->{{3.6423404030842705`*^9, 3.6423404063804064`*^9}, {
+  3.6423404885139227`*^9, 3.6423405484860888`*^9}, {3.6442220208340797`*^9, 
+  3.6442220312504025`*^9}, {3.6442220736895924`*^9, 3.644222074349615*^9}}],
+
+Cell[BoxData["\<\"C:\\\\Users\\\\lwang\\\\OneDrive\\\\Documents\\\\Datas\\\\\
+Clusters\\\\GC\\\\R7_ROT\\\\king-fit-lum.fin\"\>"], "Output",
+ CellChangeTimes->{3.642340564937648*^9, 3.6423408424882183`*^9, 
+  3.644222032610696*^9, 3.644222074798633*^9, 3.644222293915532*^9}]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{761, 844},
+WindowMargins->{{Automatic, 0}, {0, Automatic}},
+FrontEndVersion->"10.0 for Microsoft Windows (64-bit) (July 1, 2014)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 118, 1, 101, "Title"],
+Cell[CellGroupData[{
+Cell[723, 27, 111, 1, 67, "Subchapter"],
+Cell[837, 30, 2260, 72, 112, "Input"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3134, 107, 94, 1, 67, "Subchapter"],
+Cell[3231, 110, 1323, 35, 152, "Input"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4591, 150, 101, 1, 67, "Subchapter"],
+Cell[CellGroupData[{
+Cell[4717, 155, 1147, 28, 52, "Input"],
+Cell[5867, 185, 720, 14, 39, "Message"],
+Cell[6590, 201, 723, 14, 39, "Message"],
+Cell[7316, 217, 723, 14, 39, "Message"],
+Cell[8042, 233, 729, 14, 21, "Message"]
+}, Open  ]],
+Cell[8786, 250, 315, 8, 31, "Input"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[9138, 263, 96, 1, 67, "Subchapter"],
+Cell[CellGroupData[{
+Cell[9259, 268, 389, 7, 31, "Input"],
+Cell[9651, 277, 274, 3, 88, "Output"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
