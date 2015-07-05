@@ -35,8 +35,6 @@ rmax=20
 rmin=0.05
 nbins=15
 
-msun=4.83
-
 if (larg>=2):
     filename=sys.argv[1]
     if (filename == '-h'):
@@ -55,19 +53,28 @@ if (larg>=7):
 if (larg>=8):
     rs=float(sys.argv[7])
 
+# The msun value gotten from Binney and Merrifield (1998),Galactic Astronomy, Table 2.1 (p.53) (http://mips.as.arizona.edu/~cnaw/sun.html)
+# V filter:
+msun=4.83
 fcol=18
-if (filter=='I'): fcol=21
-if (filter=='B'): fcol=20
 
-x,y,m1,m2,mag = np.loadtxt(filename,usecols=(1,2,9,10,fcol-1),unpack=True)
+if (filter=='I'):
+    fcol=21
+    msun=4.08
+if (filter=='B'):
+    fcol=20
+    msun=5.48
+
+x,y,k1,k2,m1,m2,mag = np.loadtxt(filename,usecols=(1,2,7,8,9,10,fcol-1),unpack=True)
 
 ##dm=5.0*np.log10(rs)-5.0
+select=((k1<15) & (k2<15))
 
-xp=x.astype(np.float32)
-yp=y.astype(np.float32)
-lp=(10.0**(0.4*(msun-mag))).astype(np.float32)
-print 'sum %f' % lp.sum()
-mp=(m1+m2).astype(np.float32)
+xp=x[select].astype(np.float32)
+yp=y[select].astype(np.float32)
+lp=(10.0**(0.4*(msun-mag[select]))).astype(np.float32)
+##print 'sum %f' % lp.sum()
+mp=((m1+m2)[select]).astype(np.float32)
 
 rshell=np.zeros(nbins).astype(np.float32)
 rden=np.zeros(nbins).astype(np.float32)
@@ -75,7 +82,7 @@ rm=np.zeros(nbins).astype(np.float32)
 ncount=np.zeros(nbins).astype(np.int32)
 rarea=np.zeros(nbins).astype(np.float32)
 
-sd(mag.size,xp,yp,lp,mp,nbins,rmax,rmin,rshell,rden,rm,ncount,rarea)
+sd(mp.size,xp,yp,lp,mp,nbins,rmax,rmin,rshell,rden,rm,ncount,rarea)
 
 rmag=msun+21.572-2.5*np.log10(rden)
 rarc=rshell/rs*206264.806

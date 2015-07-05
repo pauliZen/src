@@ -1,0 +1,5 @@
+## define colors here
+
+##        Black   Blue    Cyan    dGreen  Lime    Olive   Red     Maroon  Magenta Purple 
+colors10='#000000 #0000FF #00FFFF #006400 #00FF00 #808000 #FF0000 #800000 #FF00FF #800080'
+
