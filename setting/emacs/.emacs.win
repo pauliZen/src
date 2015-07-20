@@ -1,58 +1,299 @@
+;;require plugin:=======================================================
+;;;; emacs-goodies-el
+;;;; cedet
+;;;; ECB
+;;;;dedicated
+
+;;load-path=============================================================
 (add-to-list 'load-path "~/.emacs.d/site-lisp")
 
-;;custom macro==============================================================
+;;custom macro==========================================================
 (load-file "~/.emacs.macro")
 
-;; color-theme================================================================
-(add-to-list 'load-path "~/.emacs.d/site-lisp/color-theme-6.6.0")
-(require 'color-theme)
-(eval-after-load "color-theme"
-  '(progn
-     (color-theme-initialize)
-     (color-theme-billw)))
-
-;;directory================================================================
+;;directory=============================================================
 (setq default-directory "~/")
 
-;;outline mode================================================================
-(setq default-major-mode 'outline-mode)
-(defun my-outline-mode-hook()
-  (define-key outline-mode-map "\C-c1" 'title1)
-  (define-key outline-mode-map "\C-c2" 'title2)
-  (define-key outline-mode-map "\C-c3" 'title3)
-  (define-key outline-mode-map "\C-c4" 'title4)
-  (define-key outline-mode-map "\C-c5" 'title5)
-  (define-key outline-mode-map "\C-c6" 'title6)
-  (define-key outline-mode-map "\C-c7" 'title7)
-  (define-key outline-mode-map "\C-c8" 'title8)
-  (define-key outline-mode-map "\C-c9" 'title9)
-)
-(add-hook 'outline-mode-hook 'my-outline-mode-hook)
-
-;;text mode================================================================
-(setq default-fill-column 80)
-(add-to-list 'auto-mode-alist '("\\.txt\\'" . outline-mode))
-
-;; abbreviations================================================================
+;;abbreviations=========================================================
 (setq-default abbrev-mode t)
 (read-abbrev-file "~/.abbrev_defs")
 (setq save-abbrevs t)
 
-;; password invisible================================================
+;; ;;white space===========================================================
+(load-file "~/.emacs.d/site-lisp/whitespace.el")
+(load-file "~/.emacs.d/site-lisp/highlight-chars.el")
+;; (setq whitespace-display-mappings
+;;       '((tab-mark   ?\t   [?\xBB ?\t] [?\\ ?\t])
+;; ;;	(space-mark   ?\    [?\xB7]     [?.])	; space
+;; ;;	(space-mark   ?\xA0 [?\xA4]     [?_])	; hard space
+;; ;;	(newline-mark ?\n   [?\xB6 ?\n] [?$ ?\n])	; end-of-line
+;; 	))
+
+;;======================================================================
+;;Custom function=======================================================
+;;======================================================================
+
+;;overwrite-mode
+(global-set-key [f12] 'overwrite-mode)
+		 
+;; Maximum frame========================================================
+(defun maximize-frame () 
+  (interactive)
+  (set-frame-position (selected-frame) 0 0)
+  (set-frame-size (selected-frame) 1000 1000))
+
+(global-set-key (kbd "<s-return>") 'maximize-frame)
+
+;;time-insert===========================================================
+(defun insert-current-date-time ()
+  "Insert string for the current time formatted like '2:34 PM'."
+  (interactive)                 ; permit invocation in minibuffer
+  (insert (format-time-string "%D %-H:%M")))
+
+(defun insert-current-date ()
+  "Insert string for today's date nicely formatted in American style,
+e.g. Sunday, September 17, 2000."
+  (interactive)                 ; permit invocation in minibuffer
+  (insert (format-time-string "%D")))
+
+;;Windows size
+(global-set-key "\M-]" 'enlarge-window-horizontally)
+(global-set-key "\M-[" 'shrink-window-horizontally)
+(global-set-key "\M-n" 'enlarge-window)
+(global-set-key "\M-p" 'shrink-window)
+
+;;Cua-mode==============================================================
+(cua-selection-mode t)
+;(global-set-key [f12] 'cua-mode)
+
+;;password invisible====================================================
 (add-hook 'comint-output-filter-functions
    'comint-watch-for-password-prompt)
 
-;;;; CC-mode  http://cc-mode.sourceforge.net/====================
+;;compile===============================================================
+(global-set-key "\C-ca" 'compile)
+
+;;compression-mode======================================================
+(auto-compression-mode)
+
+;;workspace=============================================================
+(global-set-key "\C-cwr" 'works-mac-right)
+(global-set-key "\C-cwd" 'works-mac-bottom)
+
+;;shell=================================================================
+(global-set-key "\C-c\C-t" 'shell)
+;(global-set-key "\C-ct" 'newshell)
+(setq ansi-color-for-comint-mode t)
+;(customize-group 'ansi-colors)
+
+;;completions buffer====================================================
+(add-to-list 'special-display-regexps '("*com.*" my-display-completions))
+;(add-to-list 'special-display-buffer-names '(".*"))
+(defun my-display-completions (buf)
+  "put the *completions* buffer in the right spot"
+  (let ((windows (delete (minibuffer-window) (window-list))))
+    (if (eq 1 (length windows))
+        (progn 
+          (select-window (car windows))
+          (split-window-vertically)))
+    (let ((target-window (window-at (- (frame-width) 4) (- (frame-height) 4)))
+          (pop-up-windows t))
+      (set-window-buffer target-window buf)
+      target-window)))
+
+(defun display-buffer-avoiding-lr-corner (buffer &optional not-this-window)
+   "Put new open file to frame not in right bottom corner"
+;   (if (member (buffer-name buffer) special-display-buffer-names)
+;       (my-display-completions buffer)
+     (save-selected-window
+       (when (buffer-file-name buffer)
+ 	(select-window (window-at (- (frame-width) 4)
+ 				  (- (frame-height) 4))))
+       (let ((display-buffer-function nil))
+	 (display-buffer buffer not-this-window))))
+
+(setq display-buffer-function 'display-buffer-avoiding-lr-corner)
+
+
+;;comment-region========================================================
+(global-set-key "\C-c\C-c" 'comment-region)
+
+;;Jump to other windows=================================================
+(global-set-key "\C-cf" 'windmove-right)
+(global-set-key "\C-cn" 'windmove-down)
+(global-set-key "\C-cp" 'windmove-up)
+(global-set-key "\C-cb" 'windmove-left)
+
+;;======================================================================
+;;Tools=================================================================
+;;======================================================================
+
+;;slime=================================================================
+;(add-to-list 'load-path "/opt/slime/")  ; your SLIME directory
+;(setq inferior-lisp-program "/usr/local/bin/sbcl") ; your Lisp system
+;(require 'slime)
+;(slime-setup '(slime-repl))
+;(global-set-key "\C-cl" 'slime)
+
+;;;;indent-complete---------------------------------------------
+;; (defun my-indent-or-complete-lisp ()
+;;   (if (looking-at "\\>")
+;;       (slime-complete-symbol)
+;;     (indent-for-tab-command)
+;;     )
+;;   )
+
+;; (defun my-emacs-slime-mode-hook()
+;;   (define-key sldb-hook-map [(tab)] 'my-indent-or-complete-lisp)
+;;   )
+
+;; (add-hook 'sldb-hook 'my-emacs-slime-mode-hook)
+
+;;======================================================================
+;; For maximum startup speed you can include the Swank server directly 
+;; in a core file. The disadvantage of this approach is that the setup 
+;; is a bit more involved and that you need to create a new core file 
+;; when you want to update SLIME or SBCL. The steps to execute are:
+;;    shell$ sbcl
+;;    * (load "/opt/slime/swank-loader.lisp")
+;;    * (swank-loader:dump-image "sbcl.core-with-swank")
+;; mv this core file to /usr/local/lib/sbcl/
+;(setq slime-lisp-implementations
+;      '((sbcl ("sbcl" "--core" "/usr/local/lib/sbcl/sbcl.core-with-swank")
+;	      :init (lambda (port-file _)
+;		      (format "(swank:start-server %S)\n" port-file)))))
+
+
+;;sheme=================================================================
+(setq scheme-program-name "C:/Program Files (x86)/MIT-GNU Scheme/bin/mit-scheme.exe")
+(require 'xscheme)
+(global-set-key "\C-cs" 'run-scheme)
+
+;;Aspell check==========================================================
+(add-to-list 'exec-path "C:/Program Files (x86)/Aspell/bin/")
+(setq ispell-program-name "aspell"
+      ispell-dictionary "english")
+(setq-default ispell-program-name "aspell")
+(setq ispell-personal-dictionary "~/.ispell")
+(require 'ispell)
+(add-hook 'LaTeX-mode-hook 'flyspell-mode)
+(global-set-key (kbd "<f8>") 'ispell-word)
+(global-set-key (kbd "C-<f8>") 'flyspell-mode)
+;; (setq ispell-program-name "aspell"
+;;       ispell-dictionary "english"
+;;       ispell-dictionary-alist
+;;       (let ((default '("[A-Za-z]" "[^A-Za-z]" "[']" nil
+;;                        ("-B" "-d" "english" "--dict-dir"
+;;                         "/Library/Application Support/cocoAspell/aspell6-en-6.0-0")
+;;                        nil iso-8859-1)))
+;;         `((nil ,@default)
+;;           ("english" ,@default))))
+
+;;color-theme===========================================================
+; (load-file "~/.emacs.d/site-lisp/color-theme.el")
+; (require 'color-theme)
+; (setq color-theme-is-global t)
+; (color-theme-select)
+; (color-theme-billw)
+; (kill-this-buffer)
+
+;;cedet=================================================================
+;; (load-file "~/.emacs.d/site-lisp/cedet-1.1/common/cedet.el")
+;; (semantic-load-enable-minimum-features)
+;; (semantic-load-enable-code-helpers)
+;(semantic-load-enable-guady-code-helpers)
+;(semantic-load-enable-excessive-code-helpers)
+;(semantic-load-enable-semantic-debugging-helpers)
+
+;;;;C/C++ include path------------------------------------------
+;; (defconst cedet-user-include-dirs
+;;   (list "."
+;; 	".."
+;; 	"../.."
+;; 	"../include"
+;; 	"/opt/root/include"
+;; 	"~/include"
+;; 	"/usr/include/sys"
+;; 	"/usr/include/bits"))
+;; (require 'semantic-c nil 'noerror)
+;; (let ((include-dirs cedet-user-include-dirs))
+;;   (mapc (lambda (dir)
+;;           (semantic-add-system-include dir 'c++-mode)
+;;           (semantic-add-system-include dir 'c-mode))
+;;         include-dirs))
+
+;;;; code tag folding-------------------------------------------
+;; (require 'semantic-tag-folding nil 'noerror)
+;; (global-semantic-tag-folding-mode 1)
+;;;; key defination---------------------------------------------
+;; (global-set-key (kbd "C-?") 'global-semantic-tag-folding-mode)
+;; (define-key semantic-tag-folding-mode-map (kbd "C-c -") 'semantic-tag-folding-fold-block)
+;; (define-key semantic-tag-folding-mode-map (kbd "C-c =") 'semantic-tag-folding-show-block)
+;; (define-key semantic-tag-folding-mode-map (kbd "C--") 'semantic-tag-folding-fold-all)
+;; (define-key semantic-tag-folding-mode-map (kbd "C-=") 'semantic-tag-folding-show-all)
+
+;;;;code jump return--------------------------------------------
+;; (global-set-key "\C-cjb"
+;; 	(lambda ()
+;;   (interactive)
+;;   (if (ring-empty-p (oref semantic-mru-bookmark-ring ring))
+;;       (error "Semantic Bookmark ring is currently empty"))
+;;   (let* ((ring (oref semantic-mru-bookmark-ring ring))
+;; 	 (alist (semantic-mrub-ring-to-assoc-list ring))
+;; 	 (first (cdr (car alist))))
+;;     (if (semantic-equivalent-tag-p (oref first tag)
+;; 				   (semantic-current-tag))
+;; 	(setq first (cdr (car (cdr alist)))))
+;;     (semantic-mrub-switch-tags first))))
+
+;;;;indent-complete---------------------------------------------
+;; (defun my-indent-or-complete (point)
+;;   (interactive "d")
+;;   (require 'imenu)
+;;   (if (looking-at "\\>")
+;;       (semantic-ia-complete-symbol-menu (point))
+;;     (if (looking-at "\\.\\|>")
+;; 	(progn
+;; 	  (forward-char 1)
+;; 	  (semantic-ia-complete-symbol-menu (point))
+;; 	  )
+;;       (indent-for-tab-command))
+;;     )
+;;   )
+
+;; (defun my-indent-or-hippie-expand
+;;   (if (looking-at "{")
+;;       (hippie-expand)
+;;     (indent-for-tab-command)))
+
+;;dedicated-mode========================================================
+(load-file "~/.emacs.d/site-lisp/dedicated.el")
+(require 'dedicated)
+
+;;thumbs================================================================
+(autoload 'thumbs "thumbs" "Preview images in a directory." t)
+
+;;======================================================================
+;;Language mode ========================================================
+;;======================================================================
+
+
+;; CC-model==============================================================
+;;;; http://cc-mode.sourceforge.net/
 (require 'cc-mode)
 (c-set-offset 'inline-open 0)
 (c-set-offset 'friend '-)
 (c-set-offset 'substatement-open 0)
+(load-file "~/.emacs.d/site-lisp/cuda_mode.el")
 
 (defun my-c-mode-common-hook()
   (setq tab-width 4 indent-tabs-mode nil)
-  (c-toggle-auto-hungry-state 1)
   (define-key c-mode-base-map [(control \`)] 'hs-toggle-hiding)
+;;  (define-key c-mode-base-map [(tab)] 'my-indent-or-complete)
+  ;; (define-key c-mode-base-map [(control tab)] 'semantic-ia-complete-symbol-menu)
   (define-key c-mode-base-map "\C-x/" 'c-comment-title)
+  (define-key c-mode-base-map [(control ?/)] 'c-comment-date)
+  ;; (define-key c-mode-base-map "\C-cjj" 'semantic-ia-fast-jump)
+  (define-key c-mode-base-map "\C-c/" 'c-debug-title)
   (setq c-macro-shrink-window-flag t)
   (setq c-macro-preprocessor "cpp")
   (setq c-macro-cppflags " ")
@@ -61,63 +302,252 @@
   (setq abbrev-mode t)
 )
 (add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
+(add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 
-;;fortran mode===============================================================
-(defun my-fortran-mode-hook()
-  (define-key fortran-mode-map "\C-x/" 'fortran-comment-title)
+;;Shell mode============================================================
+(defun my-sh-mode-common-hook()
+  (define-key sh-mode-map [(control ?/)] 'sh-comment-add)
   )
-(add-hook 'fortran-mode-hook 'my-fortran-mode-hook)
+(add-hook 'sh-mode-hook 'my-sh-mode-common-hook)
+ 
+;;fortran mode==========================================================
 
-;;compression-mode=========================================================
-(auto-compression-mode)
+(add-hook 'fortran-mode-hook 'hc-highlight-tabs)
 
-;;emacs auto-add===========================================================
+(defun my-fortran-mode-common-hook()
+  (setq auto-fill-mode t)
+  (define-key fortran-mode-map "\C-x/" 'fortran-comment-title)
+  (define-key fortran-mode-map [(control ?/)] 'fortran-comment-add)
+  )
+(add-hook 'fortran-mode-hook 'my-fortran-mode-common-hook)
+
+;;outline mode-=========================================================
+(setq default-major-mode 'outline-mode)
+(defun my-outline-mode-hook()
+  (define-key outline-mode-map "\C-c1" 'outline-title1)
+  (define-key outline-mode-map "\C-c2" 'outline-title2)
+  (define-key outline-mode-map "\C-c3" 'outline-title3)
+  (define-key outline-mode-map "\C-c4" 'outline-title4)
+  (define-key outline-mode-map "\C-c5" 'outline-title5)
+  (define-key outline-mode-map "\C-c6" 'outline-title6)
+  (define-key outline-mode-map "\C-c7" 'outline-title7)
+  (define-key outline-mode-map "\C-c8" 'outline-title8)
+  (define-key outline-mode-map "\C-c9" 'outline-title9)
+)
+(add-hook 'outline-mode-hook 'my-outline-mode-hook)
+(add-hook 'outline-mode-hook 'hc-highlight-tabs)
+
+;;text mode=============================================================
+(setq default-fill-column 80)
+(add-to-list 'auto-mode-alist '("\\.txt\\'" . outline-mode))
+
+;;emacs-lisp mode=======================================================
+(defun my-emacs-lisp-mode-hook()
+  (define-key emacs-lisp-mode-map "\C-x/" 'lisp-comment-add)
+  (define-key emacs-lisp-mode-map [(control ?/)] 'lisp-comment-add-sub)
+  )
+(add-hook 'emacs-lisp-mode-hook 'my-emacs-lisp-mode-hook)
+
+;;Latex-mode============================================================
+;(defun my-latex-mode-commom-hook()
+;  (define-key latex-mode-map [(control ?/)] 'latex-comment-line)
+;  )
+;(add-hook 'latex-mode-hook 'my-latex-mode-common-hook)
+;(add-hook 'tex-mode-hook 'my-latex-mode-common-hook)
+;(add-hook 'LaTeX-mode-hook 'my-latex-mode-common-hook)
+;(add-hook 'TeX-mode-hook 'my-latex-mode-common-hook)
+
+;;GNUplot-mode==========================================================
+;; load the file
+(load-file "~/.emacs.d/site-lisp/gnuplot-mode.el")
+;(require 'gnuplot)
+
+;; specify the gnuplot executable (if other than /usr/bin/gnuplot)
+(setq gnuplot-program "/usr/local/bin/gnuplot")
+
+;; automatically open files ending with .gp or .gnuplot in gnuplot mode
+(setq auto-mode-alist 
+(append '(("\\.\\(gp\\|gnuplot\\|plt\\)$" . gnuplot-mode)) auto-mode-alist))
+
+;;======================================================================
+;;Options of emacs======================================================
+;;======================================================================
 (custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
-; '(ecb-options-version "2.40")
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(column-number-mode t)
+ '(cua-mode t nil (cua-base))
  '(inhibit-startup-screen t)
- '(tex-dvi-print-command "dvips -t a4")
- '(tool-bar-mode nil nil (tool-bar)))
-(custom-set-faces
+ '(size-indication-mode t)
+ '(slime-complete-symbol-function (quote slime-simple-complete-symbol))
+ '(tool-bar-mode nil))
+;;(custom-set-faces
   ;; custom-set-faces was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
- )
+;; '(default ((t (:inherit nil :stipple nil :background "black" :foreground "cornsilk" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 103 :width normal :foundry "unknown" :family "DejaVu Sans Mono")))))
 
-;;thumbs================================================================
-(autoload 'thumbs "thumbs" "Preview images in a directory." t)
+;; end-of-emacs-auto-compile.el
+;(custom-set-faces
+  ;; custom-set-faces was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+; '(default ((t (:inherit nil :stipple nil :background "black" :foreground "cornsilk" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 93 :width normal :foundry "unknown" :family "DejaVu Sans Mono")))))
 
-;;workspace
-(global-set-key "\C-xw" 'works)
+;;======================================================================
+;;----------------Unused part-------------------------------------------
+;;======================================================================
 
-;;shell================================================================
-(global-set-key "\C-c\C-t" 'eshell)
+;;ECB===================================================================
+;; (add-to-list 'load-path "~/.emacs.d/site-lisp/ecb-2.40")
+;; (load-file "~/.emacs.d/site-lisp/ecb-2.40/ecb.el")
+;; (require 'ecb)
+;; (setq ecb-auto-activate nil
+;;       ecb-tip-of-the-day nil
+;;       ecb-tree-indent 4
+;;       ecb-windows-height 0.5
+;;       ecb-windows-width 0.20)
+;; ecb-auto-compatibility-check nil
+;; ecb-version-check nil
+;; inhibit-startup-message t
+;; (global-set-key [f12] 'ecb-activate);;定义F12键为激活ecb
+;; (global-set-key [C-f12] 'ecb-deactivate) ;;定义Ctrl+F12为停止ecb
+;; (global-set-key "\C-cs" 'ecb-goto-window-sources)
+;; (global-set-key "\C-cm" 'ecb-goto-window-methods)
+;; (global-set-key "\C-c1" 'ecb-goto-window-edit1)
+;; (global-set-key "\C-c2" 'ecb-goto-window-edit2)
+;; (global-set-key "\C-cd" 'ecb-goto-window-directories)
+
+
+;;windows===============================================================
+;(global-set-key [(f9)] 'my-fullscreen)
+
+;;Xcscope===============================================================
+;(require 'xcscope) ;;xcscope
+;(global-set-key "\C-xg" 'cscope-find-global-definition-no-prompting);; find global definition for the current position
+
+;;cedet=================================================================
+;      (autoload 'speedbar-frame-mode "speedbar" "Popup a speedbar frame" t)
+;      (autoload 'speedbar-get-focus "speedbar" "Jump to speedbar frame" t)
+;      (define-key-after (lookup-key global-map [menu-bar tools])
+;                 [speedbar]
+;                 '("Speedbar" .
+;                 speedbar-frame-mode)
+;                 [calendar])
+;(global-set-key [(f5)] 'speedbar)
+
+;; (setq semanticdb-search-system-databases t)
+;; (add-hook 'c-mode-common-hook
+;; 	  (lambda ()
+;; 	    (setq semanticdb-project-system-databases
+;; 		  (list (semanticdb-create-database
+;; 			 semanticdb-new-database-class
+;; 			 "/usr/include")))))
+
+;(require 'cedet)
+;(require 'semantic-ia)
+;(require 'semantic-gcc)
+;(setq-mode-local c-mode semanticdb-find-default-throttle
+;         '(project unloaded system recursive))
+;(require 'semanticdb)
+
+;; project root path
+;(setq semanticdb-project-roots 
+;	  (list
+;        (expand-file-name "/")))
+
+;(autoload 'senator-try-expand-semantic "senator")
+
+;(setq hippie-expand-try-functions-list
+;	  '(
+;		senator-try-expand-semantic
+;		try-expand-dabbrev
+;		try-expand-dabbrev-visible
+;		try-expand-dabbrev-all-buffers
+;		try-expand-dabbrev-from-kill
+;		try-expand-list
+;		try-expand-list-all-buffers
+;		try-expand-line
+;        try-expand-line-all-buffers
+;        try-complete-file-name-partially
+;        try-complete-file-name
+;	try-expand-whole-kill
+;       )
+;)
+
+;(global-set-key [(tab)] 'indent-for-tab-command)
+;(global-set-key "\M-/" 'hippie-expand)
+;(global-set-key "" 'semantic-ia-complete-symbol-menu);;右Ctrl+\ 自动补全menu
+
+;;Latex mode==============================================================
+;; (defun my-latex-mode-hook()
+;;   (define-key latex-mode-map [(tab)] 'my-indent-or-hippie-expand)
+;; )
+;; (add-hook 'latex-mode-hook 'my-latex-mode-hook)
+
+;;C++ mode====================================================================
+;(defun my-c++-mode-hook()
+;  (setq tab-width 4 indent-tabs-mode nil)
+;  (c-set-style "stroustrup")
+;;  (define-key c++-mode-map [f3] 'replace-regexp)
+;  (define-key c++-mode-map "\C-x/" 'c-comment-title)
+;  (define-key c++-mode-map [(tab)] 'my-indent-or-complete)
+;)
 
 ;;task windows================================================================
-(global-set-key "\C-xt" 'task)
+;(global-set-key "\C-xt" 'task)
+;(global-set-key "\C-cc" 'calendar)
+;(diary)
 
 ;;Maximized frames=========================================================
- (defun my-maximized ()
-   (interactive)
-   (x-send-client-message
-    nil 0 nil "_NET_WM_STATE" 32
-    '(2 "_NET_WM_STATE_MAXIMIZED_HORZ" 0))
-   (interactive)
-   (x-send-client-message
-    nil 0 nil "_NET_WM_STATE" 32
-    '(2 "_NET_WM_STATE_MAXIMIZED_VERT" 0)))
+;; (defun my-maximized ()
+;;   (interactive)
+;;   (x-send-client-message
+;;    nil 0 nil "_NET_WM_STATE" 32
+;;    '(2 "_NET_WM_STATE_MAXIMIZED_HORZ" 0))
+;;   (interactive)
+;;   (x-send-client-message
+;;    nil 0 nil "_NET_WM_STATE" 32
+;;    '(2 "_NET_WM_STATE_MAXIMIZED_VERT" 0)))
 
-(global-set-key [(f11)] 'my-maximized)
+;;(global-set-key [(f9)] 'my-maximized)
 
 ;;(run-with-idle-timer 0.1 nil 'my-maximized)
 
-;;(defun my-fullscreen ()
-;;         (interactive)
-;;         (set-frame-parameter nil 'fullscreen
-;;                              (if (frame-parameter nil 'fullscreen) nil 'fullboth)))
+;; (defun my-fullscreen ()
+;;          (interactive)
+;;          (set-frame-parameter nil 'fullscreen
+;;                               (if (frame-parameter nil 'fullscreen) nil 'fullboth)))
 
-(put 'scroll-left 'disabled nil)
+;(put 'scroll-left 'disabled nil)
+
+;; completion-ui=====================================================
+;(add-to-list 'load-path "~/.emacs.d/site-lisp/completion-ui")
+;(require 'completion-ui)
+
+;; Jump to temp
+;;(jumptemp)
+;(eshell)
+
+;; emacs-auto-compile.el
+ 
+;; Auto compiles .emacs whenever a change is saved.
+(defun auto-compile nil
+  "recompiles ~/.emacs when any changes happen to it."
+  (interactive)
+  (require 'bytecomp)
+  (if (string= (buffer-file-name)
+	       (expand-file-name (concat default-directory ".emacs")))
+      (byte-compile-file (buffer-file-name))))
+(add-hook 'after-save-hook 'auto-compile)
+ 
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
