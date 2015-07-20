@@ -75,8 +75,13 @@ print 'Time[Myr] LV_{LMS} N_{LMS} LV_{HMS} N_{HMS} LV_{HG} N_{HG} LV_{RG} N_{RG}
 
 for i in files:
     filename=i.split()
-    b,x,y,k1,k2,m1,m2=np.loadtxt(filename[0],usecols=(0,1,2,7,8,ml1-1,ml2-1),unpack=True)
-    r=np.sqrt(x*x+y*y)
+    b,x,y,k1,k2,mass1,mass2,m1,m2=np.loadtxt(filename[0],usecols=(0,1,2,7,8,9,10,ml1-1,ml2-1),unpack=True)
+    mass=mass1+mass2
+    xcenter = np.average(x,weights=mass)
+    ycenter = np.average(y,weights=mass)
+    xx= x-xcenter
+    yy= y-ycenter
+    r=np.sqrt(xx*xx+yy*yy)
     l1=10.0**(0.4*(msun-m1))
     l2=10.0**(0.4*(msun-m2))
 
@@ -151,7 +156,7 @@ for i in files:
     plt.xscale('log')
     plt.yscale('log')
     plt.xlim(0.01,100.0)
-    plt.ylim(1,1e6)
+    plt.ylim(0.9,1e6)
     
     for j in range(9):
         if (rc[j].size>0):
