@@ -46,7 +46,7 @@ plt.grid('off')
 plt.title('')
 plt.xlabel(color,fontsize=fsize)
 plt.ylabel(lum,fontsize=fsize)
-plt.xlim(-0.5,2.0)
+plt.xlim(-0.5,3.0)
 plt.ylim(20.0,-8.0)
 
 ##        Black   Blue    Cyan    Green   Lime    Olive   Red     Maroon  Magenta Purple 
@@ -73,7 +73,7 @@ for i in path:
     
     k +=1
 
-plt.legend(handles=patchs,framealpha=0.7,loc='lower right',fontsize=fsize)
+plt.legend(handles=patchs,framealpha=0.7,loc='upper right',fontsize=fsize)
 plt.yticks(fontsize=fsize)
 plt.xticks(fontsize=fsize)
 plt.savefig(dout+'.'+format)
